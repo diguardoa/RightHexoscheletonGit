@@ -1,0 +1,15 @@
+Istruzioni per connettere la mano
+
+Network Interface Configuration (on the PC)
+IP Address	10.100.39.10
+Subnet		255.255.224.0
+Def Gateway	10.100.39.1
+
+DNS 		8.8.8.8
+
+The hand respond at 10.100.39.144
+on port 3000 you have web interface
+
+
+To connect to a ROS master remember to change config file in 
+C://Windows/System32/drivers/etc/hosts
