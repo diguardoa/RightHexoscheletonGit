@@ -1,4 +1,4 @@
-%% Set Low Pass Filter (1st order)
+%% Set Low Pass Filter (1st order filter)
 cutFreq = 0.1; %Hz
 sampleTime = 0.01;
 filt = tf(1,[cutFreq 1]);
