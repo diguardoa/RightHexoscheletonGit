@@ -7,6 +7,9 @@
 extern ros::NodeHandle * SLROSNodePtr;
 extern const std::string SLROSNodeName;
 
+// For Block proxy/Calibration Subsystem/Subscribe1
+extern SimulinkSubscriber<std_msgs::Bool, SL_Bus_proxy_std_msgs_Bool> Sub_proxy_994;
+
 // For Block proxy/From Ros/Subscribe
 extern SimulinkSubscriber<std_msgs::Float64MultiArray, SL_Bus_proxy_std_msgs_Float64MultiArray> Sub_proxy_437;
 

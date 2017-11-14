@@ -2,7 +2,7 @@
 ## Makefile generated for Simulink model 'proxy'. 
 ## 
 ## Makefile     : proxy.mk
-## Generated on : Tue Oct 31 09:53:27 2017
+## Generated on : Tue Nov 14 17:58:00 2017
 ## MATLAB Coder version: 3.4 (R2017b)
 ## 
 ## Build Info:
@@ -29,7 +29,7 @@ MATLAB_ROOT               = C:/PROGRA~1/MATLAB/R2017b
 MATLAB_BIN                = C:/PROGRA~1/MATLAB/R2017b/bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)/win64
 MASTER_ANCHOR_DIR         = 
-START_DIR                 = C:/Users/Centauro/Desktop/CENTAR~1/antonio/HexoGit/RIGHTH~1/Proxy
+START_DIR                 = C:/Users/Centauro/Desktop/CENTAR~1/antonio/RIGHTH~1/Proxy
 ARCH                      = win64
 SOLVER                    = 
 SOLVER_OBJ                = 

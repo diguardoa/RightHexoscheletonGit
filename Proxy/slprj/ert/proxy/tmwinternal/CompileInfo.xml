@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1">
-    <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="42857d9f-286a-447d-a280-5d8d2ddbfdda">
+    <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="c201abbb-b5a3-4e45-bf16-e407d0aeb615">
         <dataDictionary/>
         <dataTransferInfos>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAAAAAABAAAAAQAAAAAAAAAFAAQAAQAAAAEAAAAAAAAA</dataTransferInfos>
         <hasInlineVariantBlock>false</hasInlineVariantBlock>
@@ -9,11 +9,11 @@
         <needElapsedTime>false</needElapsedTime>
         <userSpecifiedFixedStepSize>0</userSpecifiedFixedStepSize>
         <zeroInternalMemoryAtStartupUnchecked>false</zeroInternalMemoryAtStartupUnchecked>
-        <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="191cc697-0462-4127-a723-19a6d52e46a2"/>
-        <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="5a0246da-adad-4e82-8d75-36974b954745">
+        <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="936876ea-3713-4c5d-8bed-7ee9435be461"/>
+        <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="491151d0-c0fb-4e4b-9a42-e5f224d5ba58">
             <hasHiddenDeterministicRTB>false</hasHiddenDeterministicRTB>
         </periodicEventPortUnsupportedBlockInfo>
-        <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="0a976c17-7710-4b08-aa43-3ff93bb4e2c9">
+        <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="6c21bd9c-d7f0-4182-aef6-d4e92a190c17">
             <compSimulinkFunctionCatalog>AAFJTQAAAAAOAAAAgAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAFAAQADgAAAAEAAAAOAAAAQ29tcEZ1bmN0aW9ucwAAAA4AAAAwAAAABgAAAAgAAAAGAAAAAAAAAAUAAAAIAAAAAAAAAAAAAAABAAAAAAAAAAkAAAAAAAAA</compSimulinkFunctionCatalog>
             <postPropHasAnyExportedFunction>false</postPropHasAnyExportedFunction>
             <postPropHasAnyVariantExportedFunction>false</postPropHasAnyVariantExportedFunction>

@@ -1,0 +1,12 @@
+clear all; close all
+load('middleDistal.mat')
+
+forces_meas = ans(2:4,:)
+
+force_meas_norm = forces_meas - forces_meas(:,1)
+
+force_lenght = sqrt(force_meas_norm(1,:).^2 + force_meas_norm(2,:).^2 + force_meas_norm(3,:).^2)
+
+plot(force_lenght)
+hold on;
+plot(ans(5,:))

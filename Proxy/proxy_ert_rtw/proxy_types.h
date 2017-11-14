@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy".
  *
- * Model version              : 1.499
+ * Model version              : 1.648
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Oct 31 09:53:19 2017
+ * C++ source code generated on : Tue Nov 14 17:57:52 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -22,6 +22,15 @@
 #define RTW_HEADER_proxy_types_h_
 #include "rtwtypes.h"
 #include "multiword_types.h"
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_proxy_std_msgs_Bool_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_proxy_std_msgs_Bool_
+
+typedef struct {
+  boolean_T Data;
+} SL_Bus_proxy_std_msgs_Bool;
+
+#endif
+
 #ifndef DEFINED_TYPEDEF_FOR_SL_Bus_ROSVariableLengthArrayInfo_
 #define DEFINED_TYPEDEF_FOR_SL_Bus_ROSVariableLengthArrayInfo_
 
@@ -75,15 +84,6 @@ typedef struct {
 
 #endif
 
-#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_proxy_std_msgs_Bool_
-#define DEFINED_TYPEDEF_FOR_SL_Bus_proxy_std_msgs_Bool_
-
-typedef struct {
-  boolean_T Data;
-} SL_Bus_proxy_std_msgs_Bool;
-
-#endif
-
 #ifndef DEFINED_TYPEDEF_FOR_SL_Bus_proxy_std_msgs_String_
 #define DEFINED_TYPEDEF_FOR_SL_Bus_proxy_std_msgs_String_
 
@@ -133,16 +133,7 @@ typedef struct {
 
 #endif
 
-#ifndef typedef_robotics_slros_internal_block_T
-#define typedef_robotics_slros_internal_block_T
-
-typedef struct {
-  int32_T isInitialized;
-} robotics_slros_internal_block_T;
-
-#endif                                 /*typedef_robotics_slros_internal_block_T*/
-
-/* Custom Type definition for MATLAB Function: '<S12>/MATLAB Function3' */
+/* Custom Type definition for MATLAB Function: '<S14>/MATLAB Function3' */
 #ifndef struct_tag_sL6LJlPlxhdTxZzXh5NTaQC
 #define struct_tag_sL6LJlPlxhdTxZzXh5NTaQC
 
@@ -160,6 +151,15 @@ typedef struct tag_sL6LJlPlxhdTxZzXh5NTaQC sL6LJlPlxhdTxZzXh5NTaQC_proxy_T;
 
 #endif                                 /*typedef_sL6LJlPlxhdTxZzXh5NTaQC_proxy_T*/
 
+#ifndef typedef_robotics_slros_internal_block_T
+#define typedef_robotics_slros_internal_block_T
+
+typedef struct {
+  int32_T isInitialized;
+} robotics_slros_internal_block_T;
+
+#endif                                 /*typedef_robotics_slros_internal_block_T*/
+
 #ifndef typedef_robotics_slros_internal_blo_d_T
 #define typedef_robotics_slros_internal_blo_d_T
 
@@ -168,6 +168,9 @@ typedef struct {
 } robotics_slros_internal_blo_d_T;
 
 #endif                                 /*typedef_robotics_slros_internal_blo_d_T*/
+
+/* Parameters for system: '<S21>/Subsystem' */
+typedef struct P_Subsystem_proxy_T_ P_Subsystem_proxy_T;
 
 /* Parameters (auto storage) */
 typedef struct P_proxy_T_ P_proxy_T;
