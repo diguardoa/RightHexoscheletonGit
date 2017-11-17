@@ -1,3 +1,12 @@
+%% Impostazioni di connessione. Per modificare /etc/network/interfaces
+% aggiungi indirizzi in /etc/hosts
+% Mano Destra (esoscheletro) User: root
+% Ethernet: 10.100.39.24
+% Usb: 192.168.7.2
+
+% Mano Sinistra (grilletto) User: ubuntu    PWD: temppwd
+% Ethernet: 10.100.39.23
+% USB: 192.168.7.2
 %% Set Low Pass Filter (1st order fislter)
 cutFreq = 0.1; %Hz
 sampleTime = 0.01;
@@ -8,7 +17,8 @@ ampliFactor = 1.60;
 ampliFactorDistal = 1;
 
 % Set Hand Address
-RightHandAddress = '192.168.3.91';
+RightHandAddress = '10.24.4.17'%'10.100.39.24';
+LeftHandAddress = '10.24.4.15'%'10.100.39.23'
 %% Connect to ROS
 
 % % Diego PC

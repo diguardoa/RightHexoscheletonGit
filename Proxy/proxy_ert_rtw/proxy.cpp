@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy".
  *
- * Model version              : 1.648
+ * Model version              : 1.650
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Nov 14 17:57:52 2017
+ * C++ source code generated on : Fri Nov 17 11:17:07 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -2376,7 +2376,7 @@ void proxy_initialize(void)
     if (*sErr == 0) {
       LibCreate_Network(&proxy_DW.ReceivefromHaptics_NetworkLib[0U], 0,
                         "0.0.0.0", proxy_P.ReceivefromHaptics_localPort,
-                        "192.168.3.91", -1, 68, 1, MIN_int32_T);
+                        "10.24.4.17", -1, 68, 1, MIN_int32_T);
     }
 
     if (*sErr == 0) {
@@ -2397,7 +2397,7 @@ void proxy_initialize(void)
     CreateUDPInterface(&proxy_DW.UDPSend_NetworkLib[0U]);
     if (*sErr == 0) {
       LibCreate_Network(&proxy_DW.UDPSend_NetworkLib[0U], 1, "0.0.0.0", -1,
-                        "192.168.3.91", proxy_P.UDPSend_remotePort, 8192, 1, 0);
+                        "10.24.4.17", proxy_P.UDPSend_remotePort, 8192, 1, 0);
     }
 
     if (*sErr == 0) {
