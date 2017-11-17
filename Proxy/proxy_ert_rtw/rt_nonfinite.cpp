@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy".
  *
- * Model version              : 1.650
+ * Model version              : 1.651
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Fri Nov 17 11:17:07 2017
+ * C++ source code generated on : Fri Nov 17 11:45:24 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping

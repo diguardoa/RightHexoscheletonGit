@@ -14,11 +14,13 @@ filt = tf(1,[cutFreq 1]);
 filt = c2d(filt,sampleTime);
 
 ampliFactor = 1.60;
+ampliFactorMiddle = 2.00;
 ampliFactorDistal = 1;
 
 % Set Hand Address
 RightHandAddress = '10.24.4.17'%'10.100.39.24';
 LeftHandAddress = '10.24.4.15'%'10.100.39.23'
+Verosim = '10.24.4.215'
 %% Connect to ROS
 
 % % Diego PC
@@ -38,12 +40,15 @@ LeftHandAddress = '10.24.4.15'%'10.100.39.23'
 % rosinit
 
 %% Left Hand
-setenv('ROS_MASTER_URI','http://192.168.7.2:11311');
-setenv('ROS_IP','192.168.7.1');%'10.100.39.22');
-rosinit
+%setenv('ROS_MASTER_URI','http://192.168.7.2:11311');
+%setenv('ROS_IP','192.168.7.1');%'10.100.39.22');
+%rosinit
 
 % setenv('ROS_MASTER_URI','http://192.168.56.102:11311');
 % setenv('ROS_IP','192.168.56.1');%'10.100.39.22');
 % rosinit
+setenv('ROS_MASTER_URI','http://antonio-MacBookPro:11311');
+setenv('ROS_IP','10.24.4.215');%'10.100.39.22');
+rosinit
 %% First open the model, then
 robotics.ros.createSimulinkBus(gcs)

@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy".
  *
- * Model version              : 1.650
+ * Model version              : 1.651
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Fri Nov 17 11:17:07 2017
+ * C++ source code generated on : Fri Nov 17 11:45:24 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -927,7 +927,7 @@ void proxy_step(void)
     '_', 'F', 'i', 'n', 'g', 'e', 'r', '_', 'S', 'p', 'r', 'e', 'a', 'd' };
 
   /* Outputs for Atomic SubSystem: '<S1>/Subscribe1' */
-  /* MATLABSystem: '<S9>/SourceBlock' incorporates:
+  /* Start for MATLABSystem: '<S9>/SourceBlock' incorporates:
    *  Inport: '<S10>/In1'
    */
   proxy_B.Automatic = Sub_proxy_994.getLatestMessage(&proxy_B.b_varargout_2_c);
@@ -939,7 +939,7 @@ void proxy_step(void)
     proxy_B.In1_n = proxy_B.b_varargout_2_c;
   }
 
-  /* End of MATLABSystem: '<S9>/SourceBlock' */
+  /* End of Start for MATLABSystem: '<S9>/SourceBlock' */
   /* End of Outputs for SubSystem: '<S9>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<S1>/Subscribe1' */
 
@@ -947,7 +947,7 @@ void proxy_step(void)
   proxy_B.Data = proxy_B.In1_n.Data;
 
   /* Outputs for Atomic SubSystem: '<S3>/Subscribe' */
-  /* MATLABSystem: '<S11>/SourceBlock' incorporates:
+  /* Start for MATLABSystem: '<S11>/SourceBlock' incorporates:
    *  Inport: '<S12>/In1'
    */
   proxy_B.Automatic = Sub_proxy_437.getLatestMessage(&proxy_B.b_varargout_2);
@@ -959,7 +959,7 @@ void proxy_step(void)
     proxy_B.In1 = proxy_B.b_varargout_2;
   }
 
-  /* End of MATLABSystem: '<S11>/SourceBlock' */
+  /* End of Start for MATLABSystem: '<S11>/SourceBlock' */
   /* End of Outputs for SubSystem: '<S11>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<S3>/Subscribe' */
 
@@ -1605,7 +1605,7 @@ void proxy_step(void)
   proxy_B.BusAssignment.Data = proxy_B.ByteUnpacking[0];
 
   /* Outputs for Atomic SubSystem: '<S7>/Publish' */
-  /* MATLABSystem: '<S70>/SinkBlock' */
+  /* Start for MATLABSystem: '<S70>/SinkBlock' */
   Pub_proxy_264.publish(&proxy_B.BusAssignment);
 
   /* End of Outputs for SubSystem: '<S7>/Publish' */
@@ -1614,7 +1614,7 @@ void proxy_step(void)
   proxy_B.BusAssignment1.Data = proxy_B.ByteUnpacking[1];
 
   /* Outputs for Atomic SubSystem: '<S7>/Publish1' */
-  /* MATLABSystem: '<S71>/SinkBlock' */
+  /* Start for MATLABSystem: '<S71>/SinkBlock' */
   Pub_proxy_311.publish(&proxy_B.BusAssignment1);
 
   /* End of Outputs for SubSystem: '<S7>/Publish1' */
@@ -1876,7 +1876,7 @@ void proxy_step(void)
   /* End of MATLAB Function: '<S7>/MATLAB Function - Assign' */
 
   /* Outputs for Atomic SubSystem: '<S7>/Publish12' */
-  /* MATLABSystem: '<S72>/SinkBlock' */
+  /* Start for MATLABSystem: '<S72>/SinkBlock' */
   Pub_proxy_470.publish(&proxy_B.msg);
 
   /* End of Outputs for SubSystem: '<S7>/Publish12' */
@@ -2074,7 +2074,7 @@ void proxy_step(void)
   /* End of ManualSwitch: '<S7>/Automatic ' */
 
   /* Outputs for Atomic SubSystem: '<S7>/Publish2' */
-  /* MATLABSystem: '<S73>/SinkBlock' */
+  /* Start for MATLABSystem: '<S73>/SinkBlock' */
   Pub_proxy_517.publish(&proxy_B.BusAssignment2);
 
   /* End of Outputs for SubSystem: '<S7>/Publish2' */
@@ -2464,7 +2464,7 @@ void proxy_initialize(void)
     CreateUDPInterface(&proxy_DW.UDPSend_NetworkLib_e[0U]);
     if (*sErr == 0) {
       LibCreate_Network(&proxy_DW.UDPSend_NetworkLib_e[0U], 1, "0.0.0.0", -1,
-                        "10.100.39.22", proxy_P.UDPSend_remotePort_f, 8192, 1, 0);
+                        "10.24.4.215", proxy_P.UDPSend_remotePort_f, 8192, 1, 0);
     }
 
     if (*sErr == 0) {
@@ -2610,21 +2610,21 @@ void proxy_terminate(void)
   char_T *sErr;
 
   /* Terminate for Atomic SubSystem: '<S1>/Subscribe1' */
-  /* Terminate for MATLABSystem: '<S9>/SourceBlock' */
+  /* Start for MATLABSystem: '<S9>/SourceBlock' */
   if (proxy_DW.obj_i.isInitialized == 1) {
     proxy_DW.obj_i.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S9>/SourceBlock' */
+  /* End of Start for MATLABSystem: '<S9>/SourceBlock' */
   /* End of Terminate for SubSystem: '<S1>/Subscribe1' */
 
   /* Terminate for Atomic SubSystem: '<S3>/Subscribe' */
-  /* Terminate for MATLABSystem: '<S11>/SourceBlock' */
+  /* Start for MATLABSystem: '<S11>/SourceBlock' */
   if (proxy_DW.obj.isInitialized == 1) {
     proxy_DW.obj.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S11>/SourceBlock' */
+  /* End of Start for MATLABSystem: '<S11>/SourceBlock' */
   /* End of Terminate for SubSystem: '<S3>/Subscribe' */
 
   /* Terminate for S-Function (sdspFromNetwork): '<S5>/Receive from Haptics' */
@@ -2654,30 +2654,30 @@ void proxy_terminate(void)
   /* End of Terminate for S-Function (sdspToNetwork): '<S6>/UDP Send' */
 
   /* Terminate for Atomic SubSystem: '<S7>/Publish' */
-  /* Terminate for MATLABSystem: '<S70>/SinkBlock' */
+  /* Start for MATLABSystem: '<S70>/SinkBlock' */
   if (proxy_DW.obj_kr.isInitialized == 1) {
     proxy_DW.obj_kr.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S70>/SinkBlock' */
+  /* End of Start for MATLABSystem: '<S70>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S7>/Publish' */
 
   /* Terminate for Atomic SubSystem: '<S7>/Publish1' */
-  /* Terminate for MATLABSystem: '<S71>/SinkBlock' */
+  /* Start for MATLABSystem: '<S71>/SinkBlock' */
   if (proxy_DW.obj_a.isInitialized == 1) {
     proxy_DW.obj_a.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S71>/SinkBlock' */
+  /* End of Start for MATLABSystem: '<S71>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S7>/Publish1' */
 
   /* Terminate for Atomic SubSystem: '<S7>/Publish12' */
-  /* Terminate for MATLABSystem: '<S72>/SinkBlock' */
+  /* Start for MATLABSystem: '<S72>/SinkBlock' */
   if (proxy_DW.obj_b.isInitialized == 1) {
     proxy_DW.obj_b.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S72>/SinkBlock' */
+  /* End of Start for MATLABSystem: '<S72>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S7>/Publish12' */
 
   /* Terminate for S-Function (sdspToNetwork): '<S7>/UDP Send' */
@@ -2694,11 +2694,11 @@ void proxy_terminate(void)
   /* End of Terminate for S-Function (sdspToNetwork): '<S7>/UDP Send' */
 
   /* Terminate for Atomic SubSystem: '<S7>/Publish2' */
-  /* Terminate for MATLABSystem: '<S73>/SinkBlock' */
+  /* Start for MATLABSystem: '<S73>/SinkBlock' */
   if (proxy_DW.obj_k.isInitialized == 1) {
     proxy_DW.obj_k.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S73>/SinkBlock' */
+  /* End of Start for MATLABSystem: '<S73>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S7>/Publish2' */
 }
