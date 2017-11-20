@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy_linux".
  *
- * Model version              : 1.503
+ * Model version              : 1.669
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Oct 31 13:02:58 2017
+ * C++ source code generated on : Mon Nov 20 11:32:44 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -32,13 +32,622 @@ DW_proxy_linux_T proxy_linux_DW;
 RT_MODEL_proxy_linux_T proxy_linux_M_;
 RT_MODEL_proxy_linux_T *const proxy_linux_M = &proxy_linux_M_;
 
-/* Forward declaration for local functions */
-static real32_T proxy_linux_my_acos(real32_T b);
+/*
+ * System initialize for enable system:
+ *    '<S9>/Enabled Subsystem'
+ *    '<S79>/Enabled Subsystem'
+ */
+void proxy_lin_EnabledSubsystem_Init(B_EnabledSubsystem_proxy_linu_T *localB,
+  P_EnabledSubsystem_proxy_linu_T *localP)
+{
+  /* SystemInitialize for Outport: '<S10>/Out1' */
+  localB->In1 = localP->Out1_Y0;
+}
+
+/*
+ * Output and update for enable system:
+ *    '<S9>/Enabled Subsystem'
+ *    '<S79>/Enabled Subsystem'
+ */
+void proxy_linux_EnabledSubsystem(boolean_T rtu_Enable, const
+  SL_Bus_proxy_linux_std_msgs_Bool *rtu_In1, B_EnabledSubsystem_proxy_linu_T
+  *localB)
+{
+  /* Outputs for Enabled SubSystem: '<S9>/Enabled Subsystem' incorporates:
+   *  EnablePort: '<S10>/Enable'
+   */
+  if (rtu_Enable) {
+    /* Inport: '<S10>/In1' */
+    localB->In1 = *rtu_In1;
+  }
+
+  /* End of Outputs for SubSystem: '<S9>/Enabled Subsystem' */
+}
+
+/*
+ * System initialize for enable system:
+ *    '<S21>/Subsystem'
+ *    '<S29>/Subsystem'
+ *    '<S50>/Subsystem'
+ *    '<S58>/Subsystem'
+ *    '<S17>/Subsystem'
+ *    '<S65>/Subsystem'
+ *    '<S69>/Subsystem'
+ */
+void proxy_linux_Subsystem_Init(B_Subsystem_proxy_linux_T *localB,
+  DW_Subsystem_proxy_linux_T *localDW, P_Subsystem_proxy_linux_T *localP)
+{
+  /* InitializeConditions for Memory: '<S30>/Memory' */
+  localDW->Memory_PreviousInput = localP->Memory_InitialCondition;
+
+  /* SystemInitialize for Outport: '<S30>/Out1' */
+  localB->Memory = localP->Out1_Y0;
+}
+
+/*
+ * Outputs for enable system:
+ *    '<S21>/Subsystem'
+ *    '<S29>/Subsystem'
+ *    '<S50>/Subsystem'
+ *    '<S58>/Subsystem'
+ *    '<S17>/Subsystem'
+ *    '<S65>/Subsystem'
+ *    '<S69>/Subsystem'
+ */
+void proxy_linux_Subsystem(boolean_T rtu_Enable, B_Subsystem_proxy_linux_T
+  *localB, DW_Subsystem_proxy_linux_T *localDW)
+{
+  /* Outputs for Enabled SubSystem: '<S21>/Subsystem' incorporates:
+   *  EnablePort: '<S30>/Enable'
+   */
+  if (rtu_Enable) {
+    /* Memory: '<S30>/Memory' */
+    localB->Memory = localDW->Memory_PreviousInput;
+  }
+
+  /* End of Outputs for SubSystem: '<S21>/Subsystem' */
+}
+
+/*
+ * Update for enable system:
+ *    '<S21>/Subsystem'
+ *    '<S29>/Subsystem'
+ *    '<S50>/Subsystem'
+ *    '<S58>/Subsystem'
+ *    '<S17>/Subsystem'
+ *    '<S65>/Subsystem'
+ *    '<S69>/Subsystem'
+ */
+void proxy_linux_Subsystem_Update(boolean_T rtu_Enable, real32_T rtu_In1,
+  DW_Subsystem_proxy_linux_T *localDW)
+{
+  /* Update for Enabled SubSystem: '<S21>/Subsystem' incorporates:
+   *  EnablePort: '<S30>/Enable'
+   */
+  if (rtu_Enable) {
+    /* Update for Memory: '<S30>/Memory' */
+    localDW->Memory_PreviousInput = rtu_In1;
+  }
+
+  /* End of Update for SubSystem: '<S21>/Subsystem' */
+}
 
 /*
  * Output and update for atomic system:
- *    '<S11>/MATLAB Function'
- *    '<S12>/MATLAB Function'
+ *    '<S14>/Jacobian2'
+ *    '<S16>/Jacobian2'
+ */
+void proxy_linux_Jacobian2(const real32_T rtu_pose[8], real32_T rtu_sensor,
+  real32_T rtu_sensor_f, real_T rtu_measurements, real_T rtu_measurements_n,
+  const real_T rtu_q_pr[2], real_T rtu_J22_old, B_Jacobian2_proxy_linux_T
+  *localB)
+{
+  real32_T J22_c_tmp_tmp;
+  real32_T a_tmp_tmp;
+  real32_T J22_c_tmp;
+  real32_T J22_c_tmp_0;
+  real32_T J22_c_tmp_1;
+  real32_T J22_c_tmp_2;
+  real32_T J22_c_tmp_tmp_0;
+  real32_T a_tmp_tmp_tmp;
+  real32_T J22_c_tmp_3;
+  real32_T a_tmp_tmp_tmp_tmp;
+  real32_T J22_c_tmp_4;
+  real32_T a_tmp_tmp_tmp_tmp_0;
+  real32_T J22_c_tmp_tmp_tmp;
+  real32_T J22_c_tmp_5;
+  real32_T a_tmp_tmp_0;
+  real32_T a_tmp_tmp_1;
+  localB->x_tmp = (real32_T)sin((real_T)rtu_pose[5]);
+
+  /* SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport2' */
+  localB->a_tmp = rtu_sensor_f - rtu_pose[2];
+  localB->a_tmp_m = (real32_T)sin((real_T)rtu_pose[2]);
+  localB->a_tmp_c = (real32_T)cos((real_T)localB->a_tmp);
+
+  /* SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport2' */
+  localB->a_tmp_k = rtu_sensor_f - rtu_pose[3];
+  localB->a_tmp_tmp_p = localB->a_tmp_k - rtu_pose[2];
+  localB->a_tmp_cx = (real32_T)cos((real_T)localB->a_tmp_tmp_p);
+  localB->a_tmp_b = (real32_T)cos((real_T)rtu_pose[2]);
+  localB->a_tmp_tmp = (real32_T)sin((real_T)localB->a_tmp);
+  localB->a_tmp = localB->a_tmp_tmp * 43.0F;
+  localB->a_tmp_cv = (real32_T)sin((real_T)localB->a_tmp_tmp_p);
+  localB->a_tmp_f = rtu_pose[4] - rtu_pose[2];
+  localB->J22_c = localB->a_tmp_cv * 40.0F;
+  localB->a_tmp_g = localB->a_tmp_cx * 40.0F;
+  localB->a_tmp_g1 = rtu_pose[0] + rtu_pose[1];
+  localB->a_tmp_me = localB->a_tmp_c * 9.0F;
+  localB->a_tmp_n = localB->a_tmp_cv * 39.0F;
+  localB->a_tmp_p = (real32_T)cos((real_T)localB->a_tmp_g1);
+  localB->a_tmp_l = localB->a_tmp_c * 16.0F;
+  localB->a_tmp_j = localB->a_tmp_tmp * 9.0F;
+  localB->a_tmp_d = localB->a_tmp_cx * 39.0F;
+  localB->a_tmp_g1 = (real32_T)sin((real_T)localB->a_tmp_g1);
+  localB->a_tmp_k = (real32_T)cos((real_T)(localB->a_tmp_k - rtu_pose[4]));
+  localB->a_tmp_tmp_p = localB->a_tmp_cv * 27.0F;
+  localB->a_tmp_tmp_g = (real32_T)sin((real_T)localB->a_tmp_f);
+  a_tmp_tmp_tmp_tmp = localB->J22_c + localB->a_tmp_d;
+  localB->a_tmp_tmp_tmp = a_tmp_tmp_tmp_tmp * localB->a_tmp_g1;
+  localB->a_tmp_tmp_tmp_b = localB->a_tmp_g - localB->a_tmp_n;
+  localB->a_tmp_tmp_l = localB->a_tmp_tmp_tmp + localB->a_tmp_tmp_tmp_b *
+    localB->a_tmp_p;
+  localB->a_tmp_tmp_d = localB->a_tmp_c * 43.0F;
+  localB->a_tmp_tmp_dy = localB->a_tmp_tmp * 16.0F;
+  localB->a_tmp_tmp_lx = (real32_T)cos((real_T)rtu_pose[0]);
+  a_tmp_tmp_tmp_tmp_0 = 35.0F * localB->a_tmp_m;
+  a_tmp_tmp_tmp = a_tmp_tmp_tmp_tmp_0 - localB->a_tmp;
+  localB->a_tmp_tmp_o = a_tmp_tmp_tmp - localB->a_tmp_l;
+  localB->a_tmp_tmp_b = ((localB->a_tmp_l - localB->a_tmp_j) - localB->J22_c) -
+    localB->a_tmp_d;
+  localB->a_tmp_tmp_n = localB->a_tmp_cx * 27.0F;
+  localB->a_tmp_f = (real32_T)cos((real_T)localB->a_tmp_f);
+  localB->a_tmp_tmp_bs = ((localB->a_tmp_me + localB->a_tmp_tmp_dy) +
+    localB->a_tmp_g) - localB->a_tmp_n;
+  localB->a_tmp_tmp_tmp_h = ((((86.0F * localB->a_tmp_b - 37.0F *
+    localB->a_tmp_m) - localB->a_tmp) - localB->a_tmp_j) - localB->J22_c) -
+    localB->a_tmp_tmp_p;
+  localB->a_tmp_tmp_tmp_d = ((((37.0F * localB->a_tmp_b + 86.0F *
+    localB->a_tmp_m) - localB->a_tmp_tmp_d) - localB->a_tmp_me) -
+    localB->a_tmp_g) - localB->a_tmp_tmp_n;
+  localB->a_tmp_tmp_ln = localB->a_tmp_tmp_tmp_d * localB->a_tmp_f +
+    localB->a_tmp_tmp_tmp_h * localB->a_tmp_tmp_g;
+  localB->a_tmp_n = (real32_T)sin((real_T)rtu_pose[1]);
+  a_tmp_tmp = localB->a_tmp_k * (67.0F * localB->a_tmp_n);
+  a_tmp_tmp_0 = localB->a_tmp_tmp_o * a_tmp_tmp;
+  a_tmp_tmp_1 = (localB->a_tmp_tmp_ln * localB->a_tmp_tmp_l +
+                 (localB->a_tmp_tmp_bs * localB->a_tmp_p - localB->a_tmp_tmp_b *
+                  localB->a_tmp_g1) * (localB->a_tmp_k * 67.0F)) *
+    localB->a_tmp_tmp_lx;
+  localB->a_tmp_m = a_tmp_tmp_0 - a_tmp_tmp_1;
+  localB->J22_c_tmp_tmp = (real32_T)sin((real_T)rtu_pose[0]);
+  J22_c_tmp_tmp_tmp = 35.0F * localB->a_tmp_b;
+  J22_c_tmp_tmp = (localB->a_tmp_tmp_d + J22_c_tmp_tmp_tmp) -
+    localB->a_tmp_tmp_dy;
+  localB->a_tmp_b = J22_c_tmp_tmp * localB->a_tmp_tmp_lx - localB->a_tmp_tmp_o *
+    localB->J22_c_tmp_tmp;
+  J22_c_tmp_tmp_0 = localB->a_tmp_g1 * 67.0F * localB->a_tmp_k;
+  localB->J22_c_tmp = localB->a_tmp_tmp_b * J22_c_tmp_tmp_0;
+
+  /* SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport3' */
+  J22_c_tmp = (real32_T)rtu_measurements_n * localB->a_tmp_tmp_lx;
+  J22_c_tmp_0 = (real32_T)rtu_measurements - rtu_pose[6];
+  J22_c_tmp_1 = J22_c_tmp - rtu_pose[6] * localB->J22_c_tmp_tmp;
+
+  /* SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport3' */
+  J22_c_tmp_2 = (real32_T)rtu_measurements_n * localB->J22_c_tmp_tmp;
+  localB->a_tmp_cx = (localB->a_tmp_tmp_tmp_h * localB->a_tmp_tmp_tmp_b +
+                      localB->a_tmp_tmp_bs * (localB->a_tmp_cv * 67.0F)) *
+    localB->a_tmp_tmp_g + (localB->a_tmp_tmp_tmp_d * (localB->a_tmp_tmp_tmp_b *
+    localB->a_tmp_f) + localB->a_tmp_tmp_bs * (localB->a_tmp_f * 67.0F *
+    localB->a_tmp_cx));
+  localB->a_tmp_tmp_tmp = (localB->J22_c_tmp - localB->a_tmp_tmp_ln *
+    localB->a_tmp_tmp_tmp) - localB->a_tmp_cx * localB->a_tmp_p;
+  J22_c_tmp += J22_c_tmp_0 * localB->J22_c_tmp_tmp;
+  localB->a_tmp_cv = localB->a_tmp_p * 67.0F * localB->a_tmp_k;
+  J22_c_tmp_0 = J22_c_tmp_2 - J22_c_tmp_0 * localB->a_tmp_tmp_lx;
+  localB->a_tmp_tmp_tmp_b = localB->a_tmp_tmp_tmp * localB->J22_c_tmp_tmp +
+    J22_c_tmp_tmp * a_tmp_tmp;
+  J22_c_tmp_2 += rtu_pose[6] * localB->a_tmp_tmp_lx;
+  J22_c_tmp_3 = 67.0F * localB->J22_c_tmp_tmp;
+  localB->a_tmp_tmp_tmp_h = localB->a_tmp_g1 * localB->a_tmp_tmp_lx;
+  J22_c_tmp_4 = localB->a_tmp_p * localB->a_tmp_tmp_lx;
+  localB->a_tmp_tmp_tmp_d = (real32_T)cos((real_T)rtu_pose[5]);
+  J22_c_tmp_5 = localB->a_tmp_k * (67.0F * rtu_pose[7]);
+  localB->a_tmp_tmp_tmp = J22_c_tmp_3 * localB->a_tmp_n * localB->a_tmp_k *
+    J22_c_tmp_1 * localB->a_tmp_tmp_o - (localB->a_tmp_m * J22_c_tmp_2 -
+    localB->a_tmp_tmp_tmp * (J22_c_tmp_1 * localB->J22_c_tmp_tmp)) *
+    localB->a_tmp_tmp_lx;
+  J22_c_tmp_2 += (((localB->a_tmp_b * J22_c_tmp_5 + localB->a_tmp_b *
+                    (J22_c_tmp_tmp_0 * J22_c_tmp)) - localB->a_tmp_b *
+                   (localB->a_tmp_cv * J22_c_tmp_0)) - localB->a_tmp_tmp_tmp_b *
+                  J22_c_tmp_1) / localB->a_tmp_m;
+  J22_c_tmp_tmp = (real32_T)tan((real_T)rtu_pose[5]);
+  J22_c_tmp_tmp_0 = localB->a_tmp_tmp * 18.0F;
+  localB->a_tmp_tmp = (J22_c_tmp_tmp_0 + a_tmp_tmp_tmp_tmp_0) -
+    (J22_c_tmp_tmp_tmp - localB->a_tmp_c * 18.0F) * J22_c_tmp_tmp;
+  localB->a_tmp_tmp_p += (localB->a_tmp + localB->a_tmp_j) + localB->J22_c;
+  a_tmp_tmp_tmp_tmp_0 = 67.0F * localB->a_tmp_tmp_lx;
+  J22_c_tmp_tmp_tmp = a_tmp_tmp_tmp_tmp_0 * localB->a_tmp_g1 * localB->a_tmp_k;
+  localB->a_tmp_g = ((localB->a_tmp_tmp_d + localB->a_tmp_me) + localB->a_tmp_g)
+    + localB->a_tmp_tmp_n;
+  localB->a_tmp += localB->a_tmp_l;
+  J22_c_tmp_3 = (((((a_tmp_tmp_tmp - localB->a_tmp_j) - localB->J22_c) -
+                   localB->a_tmp_d) * J22_c_tmp_tmp_tmp - localB->a_tmp_tmp_o *
+                  (J22_c_tmp_3 * localB->a_tmp_p * localB->a_tmp_k)) -
+                 localB->a_tmp_tmp_ln * (a_tmp_tmp_tmp_tmp *
+    localB->a_tmp_tmp_tmp_h)) - localB->a_tmp_cx * J22_c_tmp_4;
+  J22_c_tmp_5 = localB->a_tmp_tmp_tmp * (localB->a_tmp_tmp * J22_c_tmp_5);
+  localB->J22_c_tmp = ((((localB->a_tmp_tmp_p * localB->a_tmp_tmp_g *
+    localB->a_tmp_tmp_l * localB->a_tmp_b + localB->J22_c_tmp * localB->a_tmp_b)
+    + localB->a_tmp_g * localB->a_tmp_f * localB->a_tmp_tmp_l * localB->a_tmp_b)
+                        - localB->a_tmp_tmp_bs * localB->a_tmp_cv *
+                        localB->a_tmp_b) - localB->a_tmp_m *
+                       (localB->a_tmp_tmp_d - localB->a_tmp_tmp_dy)) -
+    localB->a_tmp_tmp_tmp_b * localB->a_tmp;
+  localB->a_tmp_cv = (((localB->a_tmp_tmp * (localB->a_tmp_tmp_g *
+    localB->a_tmp_tmp_lx) * localB->a_tmp_tmp_p * localB->a_tmp_tmp_l +
+                        localB->a_tmp_tmp * J22_c_tmp_tmp_tmp *
+                        localB->a_tmp_tmp_b) + localB->a_tmp_tmp *
+                       (localB->a_tmp_f * localB->a_tmp_tmp_lx) *
+                       localB->a_tmp_g * localB->a_tmp_tmp_l) -
+                      localB->a_tmp_tmp * (a_tmp_tmp * localB->a_tmp)) -
+    localB->a_tmp_tmp * (a_tmp_tmp_tmp_tmp_0 * localB->a_tmp_p * localB->a_tmp_k)
+    * localB->a_tmp_tmp_bs;
+  localB->a_tmp_tmp_tmp_b = J22_c_tmp_3 * (18.0F * J22_c_tmp_tmp *
+    localB->a_tmp_c);
+
+  /* SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport2' */
+  localB->J22_c = ((localB->J22_c_tmp * -(((J22_c_tmp * localB->a_tmp_tmp_tmp_h
+    + rtu_pose[7] * localB->a_tmp_tmp_lx) - J22_c_tmp_1 * localB->a_tmp_n) -
+    J22_c_tmp_0 * J22_c_tmp_4) / (localB->a_tmp_tmp_tmp * rtu_pose[7]) -
+                    (real32_T)fabs((real_T)(J22_c_tmp_2 * ((J22_c_tmp_3 *
+    (localB->x_tmp * localB->x_tmp) / (localB->a_tmp_m * localB->a_tmp_tmp_tmp_d)
+    + localB->a_tmp_tmp_tmp_d) * (localB->a_tmp_m * localB->a_tmp_m)) /
+    J22_c_tmp_5)) * ((rtu_sensor - (real32_T)rtu_q_pr[0]) / 0.01F * 2.0F) /
+                    ((rtu_sensor_f - (real32_T)rtu_q_pr[1]) / 0.01F)) -
+                   J22_c_tmp_2 * (localB->a_tmp_m * localB->a_tmp_m) *
+                   (J22_c_tmp_tmp_0 - (localB->a_tmp_cv -
+    localB->a_tmp_tmp_tmp_b) / localB->a_tmp_m) / J22_c_tmp_5) / 2.0F;
+  if ((localB->J22_c == 0.0F) || rtIsNaNF(localB->J22_c) || rtIsInfF
+      (localB->J22_c)) {
+    localB->J22_c = (real32_T)rtu_J22_old;
+  } else {
+    localB->J22_c = -(real32_T)fabs((real_T)localB->J22_c);
+  }
+
+  localB->J22_ol = localB->J22_c;
+  localB->JTcomp[0] = (((((a_tmp_tmp_tmp * localB->a_tmp_tmp_tmp_h - 16.0F *
+    localB->a_tmp_tmp_lx * localB->a_tmp_g1 * localB->a_tmp_c) -
+    localB->a_tmp_tmp_o * localB->a_tmp_n) - localB->a_tmp_tmp_o *
+    (localB->a_tmp_p * localB->J22_c_tmp_tmp)) * (localB->x_tmp * localB->x_tmp *
+    67.0F * localB->a_tmp_k) + a_tmp_tmp_0) - a_tmp_tmp_1) * -localB->a_tmp_b /
+    (localB->a_tmp_tmp_tmp * (localB->a_tmp_tmp * localB->a_tmp_tmp_tmp_d));
+  localB->JTcomp[1] = localB->J22_c_tmp * localB->a_tmp_tmp_lx /
+    localB->a_tmp_tmp_tmp - ((localB->a_tmp_cv - localB->a_tmp_m *
+    J22_c_tmp_tmp_0) - localB->a_tmp_tmp_tmp_b) * localB->a_tmp_b /
+    (localB->a_tmp_tmp_tmp * localB->a_tmp_tmp);
+
+  /* SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport2' incorporates:
+   *  SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport3'
+   */
+  localB->JTcomp[2] = -(((((((((real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+    * 43.0F + 35.0F * (real32_T)cos((real_T)rtu_pose[2])) - (real32_T)sin
+    ((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) * (real32_T)cos((real_T)
+    rtu_pose[0]) - ((35.0F * (real32_T)sin((real_T)rtu_pose[2]) - (real32_T)sin
+                     ((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F) - (real32_T)
+                    cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) *
+    (real32_T)sin((real_T)rtu_pose[0])) * ((real32_T)cos((real_T)((rtu_sensor_f
+    - rtu_pose[3]) - rtu_pose[4])) * (67.0F * rtu_pose[7])) + ((((real32_T)cos
+    ((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F + 35.0F * (real32_T)cos
+    ((real_T)rtu_pose[2])) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2]))
+    * 16.0F) * (real32_T)cos((real_T)rtu_pose[0]) - ((35.0F * (real32_T)sin
+    ((real_T)rtu_pose[2]) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) *
+    43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) *
+    (real32_T)sin((real_T)rtu_pose[0])) * ((real32_T)sin((real_T)(rtu_pose[0] +
+    rtu_pose[1])) * 67.0F * (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[4])) * (((real32_T)rtu_measurements - rtu_pose[6]) * (real32_T)
+                       sin((real_T)rtu_pose[0]) + (real32_T)rtu_measurements_n *
+                       (real32_T)cos((real_T)rtu_pose[0])))) - ((((real32_T)cos
+    ((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F + 35.0F * (real32_T)cos
+    ((real_T)rtu_pose[2])) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2]))
+    * 16.0F) * (real32_T)cos((real_T)rtu_pose[0]) - ((35.0F * (real32_T)sin
+    ((real_T)rtu_pose[2]) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) *
+    43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) *
+    (real32_T)sin((real_T)rtu_pose[0])) * ((real32_T)cos((real_T)(rtu_pose[0] +
+    rtu_pose[1])) * 67.0F * (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[4])) * ((real32_T)rtu_measurements_n * (real32_T)sin((real_T)
+    rtu_pose[0]) - ((real32_T)rtu_measurements - rtu_pose[6]) * (real32_T)cos
+                       ((real_T)rtu_pose[0])))) - (((((((real32_T)cos((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 16.0F - (real32_T)sin((real_T)(rtu_sensor_f
+    - rtu_pose[2])) * 9.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 39.0F) * ((real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1]))
+    * 67.0F * (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[4])))
+    - ((((((37.0F * (real32_T)cos((real_T)rtu_pose[2]) + 86.0F * (real32_T)sin
+            ((real_T)rtu_pose[2])) - (real32_T)cos((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+          * 9.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * (real32_T)cos((real_T)(rtu_pose[4] - rtu_pose[2]))
+       + (((((86.0F * (real32_T)cos((real_T)rtu_pose[2]) - 37.0F * (real32_T)sin
+              ((real_T)rtu_pose[2])) - (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2]))
+            * 9.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * (real32_T)sin((real_T)(rtu_pose[4] - rtu_pose[2])))
+    * (((real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+        40.0F + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2]))
+        * 39.0F) * (real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1])))) -
+    (((((((86.0F * (real32_T)cos((real_T)rtu_pose[2]) - 37.0F * (real32_T)sin
+           ((real_T)rtu_pose[2])) - (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2]))
+         * 9.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * ((real32_T)cos((real_T)((rtu_sensor_f - rtu_pose
+    [3]) - rtu_pose[2])) * 40.0F - (real32_T)sin((real_T)((rtu_sensor_f -
+    rtu_pose[3]) - rtu_pose[2])) * 39.0F) + ((((real32_T)cos((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 9.0F + (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 16.0F) + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 39.0F) * ((real32_T)sin((real_T)((rtu_sensor_f - rtu_pose
+    [3]) - rtu_pose[2])) * 67.0F)) * (real32_T)sin((real_T)(rtu_pose[4] -
+    rtu_pose[2])) + ((((((37.0F * (real32_T)cos((real_T)rtu_pose[2]) + 86.0F *
+    (real32_T)sin((real_T)rtu_pose[2])) - (real32_T)cos((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+                        * 9.0F) - (real32_T)cos((real_T)((rtu_sensor_f -
+    rtu_pose[3]) - rtu_pose[2])) * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f
+    - rtu_pose[3]) - rtu_pose[2])) * 27.0F) * (((real32_T)cos((real_T)
+    ((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F - (real32_T)sin
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 39.0F) * (real32_T)
+    cos((real_T)(rtu_pose[4] - rtu_pose[2]))) + ((((real32_T)cos((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 9.0F + (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 16.0F) + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 39.0F) * ((real32_T)cos((real_T)(rtu_pose[4] - rtu_pose[2]))
+    * 67.0F * (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])))))
+    * (real32_T)cos((real_T)(rtu_pose[0] + rtu_pose[1]))) * (real32_T)sin
+    ((real_T)rtu_pose[0]) + (((real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+    * 43.0F + 35.0F * (real32_T)cos((real_T)rtu_pose[2])) - (real32_T)sin
+    ((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) * ((real32_T)cos((real_T)
+    ((rtu_sensor_f - rtu_pose[3]) - rtu_pose[4])) * (67.0F * (real32_T)sin
+    ((real_T)rtu_pose[1])))) * ((real32_T)rtu_measurements_n * (real32_T)cos
+    ((real_T)rtu_pose[0]) - rtu_pose[6] * (real32_T)sin((real_T)rtu_pose[0]))) /
+    (((35.0F * (real32_T)sin((real_T)rtu_pose[2]) - (real32_T)sin((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f
+    - rtu_pose[2])) * 16.0F) * ((real32_T)cos((real_T)((rtu_sensor_f - rtu_pose
+    [3]) - rtu_pose[4])) * (67.0F * (real32_T)sin((real_T)rtu_pose[1]))) -
+     (((((((37.0F * (real32_T)cos((real_T)rtu_pose[2]) + 86.0F * (real32_T)sin
+            ((real_T)rtu_pose[2])) - (real32_T)cos((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+          * 9.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * (real32_T)cos((real_T)(rtu_pose[4] - rtu_pose[2]))
+       + (((((86.0F * (real32_T)cos((real_T)rtu_pose[2]) - 37.0F * (real32_T)sin
+              ((real_T)rtu_pose[2])) - (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2]))
+            * 9.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * (real32_T)sin((real_T)(rtu_pose[4] - rtu_pose[2])))
+      * (((real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+          40.0F + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 39.0F) * (real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1]))
+         + ((real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+            40.0F - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 39.0F) * (real32_T)cos((real_T)(rtu_pose[0] + rtu_pose[1])))
+      + (((((real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F +
+            (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) +
+           (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+           40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 39.0F) * (real32_T)cos((real_T)(rtu_pose[0] + rtu_pose[1]))
+         - ((((real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F -
+              (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F) -
+             (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2]))
+             * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 39.0F) * (real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1])))
+      * ((real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[4])) *
+         67.0F)) * (real32_T)cos((real_T)rtu_pose[0])) + ((real32_T)
+    rtu_measurements_n * (real32_T)sin((real_T)rtu_pose[0]) + rtu_pose[6] *
+    (real32_T)cos((real_T)rtu_pose[0]))) * (((((((((35.0F * (real32_T)sin
+    ((real_T)rtu_pose[2]) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) *
+    43.0F) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F) -
+    (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F)
+    - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+    39.0F) * (67.0F * (real32_T)cos((real_T)rtu_pose[0]) * (real32_T)sin((real_T)
+    (rtu_pose[0] + rtu_pose[1])) * (real32_T)cos((real_T)((rtu_sensor_f -
+    rtu_pose[3]) - rtu_pose[4]))) - ((35.0F * (real32_T)sin((real_T)rtu_pose[2])
+    - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F) - (real32_T)
+    cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) * (67.0F * (real32_T)sin
+    ((real_T)rtu_pose[0]) * (real32_T)cos((real_T)(rtu_pose[0] + rtu_pose[1])) *
+    (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[4])))) -
+    ((((((37.0F * (real32_T)cos((real_T)rtu_pose[2]) + 86.0F * (real32_T)sin
+          ((real_T)rtu_pose[2])) - (real32_T)cos((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+        * 9.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * (real32_T)cos((real_T)(rtu_pose[4] - rtu_pose[2]))
+     + (((((86.0F * (real32_T)cos((real_T)rtu_pose[2]) - 37.0F * (real32_T)sin
+            ((real_T)rtu_pose[2])) - (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2]))
+          * 9.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * (real32_T)sin((real_T)(rtu_pose[4] - rtu_pose[2])))
+    * (((real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+        40.0F + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2]))
+        * 39.0F) * ((real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1])) *
+                    (real32_T)cos((real_T)rtu_pose[0])))) - (((((((86.0F *
+    (real32_T)cos((real_T)rtu_pose[2]) - 37.0F * (real32_T)sin((real_T)rtu_pose
+    [2])) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F) -
+    (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F) - (real32_T)sin
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F) - (real32_T)
+    sin((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 27.0F) *
+    ((real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F
+     - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+     39.0F) + ((((real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F +
+                 (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) +
+                (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2]))
+                * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 39.0F) * ((real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 67.0F)) * (real32_T)sin((real_T)(rtu_pose[4] - rtu_pose[2]))
+    + ((((((37.0F * (real32_T)cos((real_T)rtu_pose[2]) + 86.0F * (real32_T)sin
+            ((real_T)rtu_pose[2])) - (real32_T)cos((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+          * 9.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * (((real32_T)cos((real_T)((rtu_sensor_f -
+    rtu_pose[3]) - rtu_pose[2])) * 40.0F - (real32_T)sin((real_T)((rtu_sensor_f
+    - rtu_pose[3]) - rtu_pose[2])) * 39.0F) * (real32_T)cos((real_T)(rtu_pose[4]
+    - rtu_pose[2]))) + ((((real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) *
+    9.0F + (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) +
+    (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F)
+                        - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 39.0F) * ((real32_T)cos((real_T)(rtu_pose[4] - rtu_pose[2]))
+    * 67.0F * (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])))))
+    * ((real32_T)cos((real_T)(rtu_pose[0] + rtu_pose[1])) * (real32_T)cos
+       ((real_T)rtu_pose[0]))) * (localB->x_tmp * localB->x_tmp) / ((((35.0F *
+    (real32_T)sin((real_T)rtu_pose[2]) - (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+    * 16.0F) * ((real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[4]))
+                * (67.0F * (real32_T)sin((real_T)rtu_pose[1]))) - (((((((37.0F *
+    (real32_T)cos((real_T)rtu_pose[2]) + 86.0F * (real32_T)sin((real_T)rtu_pose
+    [2])) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F) -
+    (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F) - (real32_T)cos
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F) - (real32_T)
+    cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 27.0F) *
+    (real32_T)cos((real_T)(rtu_pose[4] - rtu_pose[2])) + (((((86.0F * (real32_T)
+    cos((real_T)rtu_pose[2]) - 37.0F * (real32_T)sin((real_T)rtu_pose[2])) -
+    (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F) - (real32_T)sin
+    ((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F) - (real32_T)sin((real_T)
+    ((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F) - (real32_T)sin
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 27.0F) * (real32_T)
+    sin((real_T)(rtu_pose[4] - rtu_pose[2]))) * (((real32_T)sin((real_T)
+    ((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F + (real32_T)cos
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 39.0F) * (real32_T)
+    sin((real_T)(rtu_pose[0] + rtu_pose[1])) + ((real32_T)cos((real_T)
+    ((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F - (real32_T)sin
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 39.0F) * (real32_T)
+    cos((real_T)(rtu_pose[0] + rtu_pose[1]))) + (((((real32_T)cos((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 9.0F + (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 16.0F) + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 39.0F) * (real32_T)cos((real_T)(rtu_pose[0] + rtu_pose[1]))
+    - ((((real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F - (real32_T)
+         sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F) - (real32_T)sin
+        ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F) -
+       (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+       39.0F) * (real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1]))) * ((real32_T)
+    cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[4])) * 67.0F)) *
+    (real32_T)cos((real_T)rtu_pose[0])) * (real32_T)cos((real_T)rtu_pose[5])) +
+    (real32_T)cos((real_T)rtu_pose[5])) * (localB->a_tmp_m * localB->a_tmp_m)) /
+                        ((67.0F * (real32_T)sin((real_T)rtu_pose[0]) * (real32_T)
+    sin((real_T)rtu_pose[1]) * (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[4])) * ((real32_T)rtu_measurements_n * (real32_T)cos((real_T)
+    rtu_pose[0]) - rtu_pose[6] * (real32_T)sin((real_T)rtu_pose[0])) * ((35.0F *
+    (real32_T)sin((real_T)rtu_pose[2]) - (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+    * 16.0F) - ((((35.0F * (real32_T)sin((real_T)rtu_pose[2]) - (real32_T)sin
+                   ((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F) - (real32_T)
+                  cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F) *
+                 ((real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[4])) * (67.0F * (real32_T)sin((real_T)rtu_pose[1]))) - (((((((37.0F
+    * (real32_T)cos((real_T)rtu_pose[2]) + 86.0F * (real32_T)sin((real_T)
+    rtu_pose[2])) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F)
+    - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F) - (real32_T)
+    cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F) -
+    (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 27.0F)
+    * (real32_T)cos((real_T)(rtu_pose[4] - rtu_pose[2])) + (((((86.0F *
+    (real32_T)cos((real_T)rtu_pose[2]) - 37.0F * (real32_T)sin((real_T)rtu_pose
+    [2])) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 43.0F) -
+    (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F) - (real32_T)sin
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F) - (real32_T)
+    sin((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 27.0F) *
+    (real32_T)sin((real_T)(rtu_pose[4] - rtu_pose[2]))) * (((real32_T)sin
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F + (real32_T)
+    cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 39.0F) *
+    (real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1])) + ((real32_T)cos((real_T)
+    ((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F - (real32_T)sin
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 39.0F) * (real32_T)
+    cos((real_T)(rtu_pose[0] + rtu_pose[1]))) + (((((real32_T)cos((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 9.0F + (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 16.0F) + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 39.0F) * (real32_T)cos((real_T)(rtu_pose[0] + rtu_pose[1]))
+    - ((((real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2])) * 16.0F - (real32_T)
+         sin((real_T)(rtu_sensor_f - rtu_pose[2])) * 9.0F) - (real32_T)sin
+        ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F) -
+       (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+       39.0F) * (real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1]))) * ((real32_T)
+    cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[4])) * 67.0F)) *
+                 (real32_T)cos((real_T)rtu_pose[0])) * ((real32_T)
+    rtu_measurements_n * (real32_T)sin((real_T)rtu_pose[0]) + rtu_pose[6] *
+    (real32_T)cos((real_T)rtu_pose[0])) - ((((((real32_T)cos((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 16.0F - (real32_T)sin((real_T)(rtu_sensor_f
+    - rtu_pose[2])) * 9.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 39.0F) * ((real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1]))
+    * 67.0F * (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[4])))
+    - ((((((37.0F * (real32_T)cos((real_T)rtu_pose[2]) + 86.0F * (real32_T)sin
+            ((real_T)rtu_pose[2])) - (real32_T)cos((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+          * 9.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * (real32_T)cos((real_T)(rtu_pose[4] - rtu_pose[2]))
+       + (((((86.0F * (real32_T)cos((real_T)rtu_pose[2]) - 37.0F * (real32_T)sin
+              ((real_T)rtu_pose[2])) - (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2]))
+            * 9.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * (real32_T)sin((real_T)(rtu_pose[4] - rtu_pose[2])))
+    * (((real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) *
+        40.0F + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2]))
+        * 39.0F) * (real32_T)sin((real_T)(rtu_pose[0] + rtu_pose[1])))) -
+    (((((((86.0F * (real32_T)cos((real_T)rtu_pose[2]) - 37.0F * (real32_T)sin
+           ((real_T)rtu_pose[2])) - (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)sin((real_T)(rtu_sensor_f - rtu_pose[2]))
+         * 9.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3]) -
+    rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 27.0F) * ((real32_T)cos((real_T)((rtu_sensor_f - rtu_pose
+    [3]) - rtu_pose[2])) * 40.0F - (real32_T)sin((real_T)((rtu_sensor_f -
+    rtu_pose[3]) - rtu_pose[2])) * 39.0F) + ((((real32_T)cos((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 9.0F + (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 16.0F) + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 39.0F) * ((real32_T)sin((real_T)((rtu_sensor_f - rtu_pose
+    [3]) - rtu_pose[2])) * 67.0F)) * (real32_T)sin((real_T)(rtu_pose[4] -
+    rtu_pose[2])) + ((((((37.0F * (real32_T)cos((real_T)rtu_pose[2]) + 86.0F *
+    (real32_T)sin((real_T)rtu_pose[2])) - (real32_T)cos((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 43.0F) - (real32_T)cos((real_T)(rtu_sensor_f - rtu_pose[2]))
+                        * 9.0F) - (real32_T)cos((real_T)((rtu_sensor_f -
+    rtu_pose[3]) - rtu_pose[2])) * 40.0F) - (real32_T)cos((real_T)((rtu_sensor_f
+    - rtu_pose[3]) - rtu_pose[2])) * 27.0F) * (((real32_T)cos((real_T)
+    ((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 40.0F - (real32_T)sin
+    ((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])) * 39.0F) * (real32_T)
+    cos((real_T)(rtu_pose[4] - rtu_pose[2]))) + ((((real32_T)cos((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 9.0F + (real32_T)sin((real_T)(rtu_sensor_f -
+    rtu_pose[2])) * 16.0F) + (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 40.0F) - (real32_T)sin((real_T)((rtu_sensor_f - rtu_pose[3])
+    - rtu_pose[2])) * 39.0F) * ((real32_T)cos((real_T)(rtu_pose[4] - rtu_pose[2]))
+    * 67.0F * (real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[2])))))
+    * (real32_T)cos((real_T)(rtu_pose[0] + rtu_pose[1]))) * (((real32_T)
+    rtu_measurements_n * (real32_T)cos((real_T)rtu_pose[0]) - rtu_pose[6] *
+    (real32_T)sin((real_T)rtu_pose[0])) * (real32_T)sin((real_T)rtu_pose[0]))) *
+    (real32_T)cos((real_T)rtu_pose[0])) * ((((real32_T)sin((real_T)(rtu_sensor_f
+    - rtu_pose[2])) * 18.0F + 35.0F * (real32_T)sin((real_T)rtu_pose[2])) -
+    (35.0F * (real32_T)cos((real_T)rtu_pose[2]) - (real32_T)cos((real_T)
+    (rtu_sensor_f - rtu_pose[2])) * 18.0F) * (real32_T)tan((real_T)rtu_pose[5]))
+    * ((real32_T)cos((real_T)((rtu_sensor_f - rtu_pose[3]) - rtu_pose[4])) *
+       (67.0F * rtu_pose[7])))));
+  localB->JTcomp[3] = localB->J22_c;
+
+  /* SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport2' */
+  localB->q_next[0] = rtu_sensor;
+  localB->q_next[1] = rtu_sensor_f;
+}
+
+/*
+ * Output and update for atomic system:
+ *    '<S14>/MATLAB Function'
+ *    '<S16>/MATLAB Function'
  */
 void proxy_linux_MATLABFunction(const real32_T rtu_Jcomponents[4], real_T
   rtu_j_f1, real_T rtu_j_f2, B_MATLABFunction_proxy_linux_T *localB)
@@ -51,19 +660,276 @@ void proxy_linux_MATLABFunction(const real32_T rtu_Jcomponents[4], real_T
   localB->y[1] += rtu_Jcomponents[3] * (real32_T)rtu_j_f2;
 }
 
-/* Function for MATLAB Function: '<S18>/Index New Pose Estimation ' */
-static real32_T proxy_linux_my_acos(real32_T b)
+/*
+ * Output and update for atomic system:
+ *    '<S14>/MATLAB Function2'
+ *    '<S16>/MATLAB Function2'
+ */
+void proxy_linux_MATLABFunction2(const real32_T rtu_cons[2], real32_T rtu_sens,
+  real32_T rtu_sens_f, real32_T rtu_enab, B_MATLABFunction2_proxy_linux_T
+  *localB)
 {
-  real32_T a;
-  if (b < -1.0F) {
-    a = -1.0F;
-  } else if (b > 1.0F) {
-    a = 1.0F;
+  if (rtu_enab == 0.0F) {
+    localB->y[0] = rtu_cons[0];
+    localB->y[1] = rtu_cons[1];
   } else {
-    a = b;
+    /* SignalConversion: '<S27>/TmpSignal ConversionAt SFunction Inport2' */
+    localB->y[0] = rtu_sens;
+    localB->y[1] = rtu_sens_f;
+  }
+}
+
+/*
+ * Output and update for atomic system:
+ *    '<S14>/MATLAB Function3'
+ *    '<S16>/MATLAB Function3'
+ */
+void proxy_linux_MATLABFunction3(const real32_T rtu_u[2], const real32_T
+  rtu_measurements[2], B_MATLABFunction3_proxy_linux_T *localB)
+{
+  real32_T atemp;
+  real32_T LAK;
+  real32_T qN;
+  real32_T xK1;
+  real32_T xH;
+  real32_T yH;
+  real32_T xC;
+  real32_T xD;
+  real32_T yD;
+  real32_T yI;
+  real32_T LLI;
+  real32_T xD1;
+  real32_T yH_tmp;
+  real32_T LAK_tmp;
+  real32_T atemp_tmp;
+  real32_T xD_tmp;
+  atemp = 1549.0F - 1260.0F * (real32_T)cos((real_T)rtu_u[1]);
+  if (atemp < 0.0F) {
+    printf("errore LAK \n");
+    fflush(stdout);
+    atemp = 1.0F;
   }
 
-  return a;
+  LAK = (real32_T)sqrt((real_T)atemp);
+  xD_tmp = LAK * LAK;
+  xH = (rtu_u[0] + 117.77F) * (rtu_u[0] + 117.77F);
+  qN = ((xH + -xD_tmp) + 18396.0391F) / ((rtu_u[0] + 117.77F) * 2.0F * 135.632F);
+  if ((real32_T)fabs((real_T)qN) > 1.0F) {
+    printf("errore qN");
+    fflush(stdout);
+    qN = 0.0F;
+  } else {
+    qN = (real32_T)fabs((real_T)(real32_T)acos((real_T)qN)) - 0.1108F;
+  }
+
+  xK1 = ((xD_tmp + -324.0F) + 1225.0F) / (2.0F * LAK * 35.0F);
+  LAK = ((-xH + xD_tmp) + 18396.0391F) / (2.0F * LAK * 135.632F);
+  if ((real32_T)fabs((real_T)xK1) > 1.0F) {
+    printf("errore qK1 \n");
+    fflush(stdout);
+    xK1 = 0.0F;
+  } else {
+    xD_tmp = (real32_T)acos((real_T)xK1);
+    if (xD_tmp >= 0.0F) {
+      xK1 = (real32_T)fabs((real_T)(real32_T)acos((real_T)xK1));
+    } else {
+      xK1 = (real32_T)fabs((real_T)xD_tmp) + 1.57079637F;
+    }
+  }
+
+  if ((real32_T)fabs((real_T)LAK) > 1.0F) {
+    printf("errore gK2 \n");
+    fflush(stdout);
+    LAK = 0.0F;
+  } else {
+    xD_tmp = (real32_T)acos((real_T)LAK);
+    if (xD_tmp >= 0.0F) {
+      LAK = (real32_T)fabs((real_T)(real32_T)acos((real_T)LAK));
+    } else {
+      LAK = (real32_T)fabs((real_T)xD_tmp) + 1.57079637F;
+    }
+  }
+
+  xK1 = 3.14159274F - ((xK1 + LAK) + 0.1108F);
+  xD1 = (real32_T)cos((real_T)xK1);
+  xH = -72.0F * xD1;
+  yH_tmp = (real32_T)sin((real_T)xK1);
+  yH = 72.0F * yH_tmp;
+  LAK = rtu_u[1] - xK1;
+  LLI = (real32_T)cos((real_T)LAK);
+  xC = -35.0F * xD1 - LLI * 43.0F;
+  LAK_tmp = (real32_T)sin((real_T)LAK);
+  LAK = 35.0F * yH_tmp - LAK_tmp * 43.0F;
+  xD = xC - LLI * 9.0F;
+  yD = LAK - LAK_tmp * 9.0F;
+  xC += LAK_tmp * 16.0F;
+  yI = LAK - LLI * 16.0F;
+  LAK = yI - (-(rtu_measurements[0] + 3.0F));
+  LLI = (real32_T)sqrt((real_T)((xC - -10.0F) * (xC - -10.0F) + LAK * LAK));
+  LAK_tmp = rtu_measurements[0] * rtu_measurements[0];
+  atemp_tmp = LLI * LLI;
+  atemp = atemp_tmp - LAK_tmp;
+  if (atemp < 0.0F) {
+    printf("errore c1 \n");
+    fflush(stdout);
+    atemp = 0.0F;
+  }
+
+  LAK = (real32_T)sqrt((real_T)atemp);
+  LLI = ((-LAK_tmp + atemp_tmp) + LAK * LAK) / (2.0F * LAK * LLI);
+  if ((real32_T)fabs((real_T)LLI) > 1.0F) {
+    printf("errore qj1 \n");
+    fflush(stdout);
+    LLI = 0.0F;
+  } else {
+    xD_tmp = (real32_T)acos((real_T)LLI);
+    if (xD_tmp >= 0.0F) {
+      LLI = (real32_T)fabs((real_T)(real32_T)acos((real_T)LLI));
+    } else {
+      LLI = (real32_T)fabs((real_T)xD_tmp) + 1.57079637F;
+    }
+  }
+
+  xC = (real32_T)atan((real_T)((-(rtu_measurements[0] + 3.0F) - yI) / (-10.0F -
+    xC))) + LLI;
+  if (xC <= 0.0F) {
+    xC = (real32_T)fabs((real_T)xC);
+  }
+
+  yI = xH - xD;
+  LLI = yH - yD;
+  yI = (real32_T)sqrt((real_T)(yI * yI + LLI * LLI));
+  xH = (xH - 86.0F * yH_tmp) - xD;
+  yH = (yH - 86.0F * xD1) - yD;
+  atemp = (real32_T)sqrt((real_T)(xH * xH + yH * yH));
+  yH_tmp = atemp * atemp;
+  atemp_tmp = yI * yI;
+  yH = ((-atemp_tmp + yH_tmp) + 7396.0F) / (2.0F * atemp * 86.0F);
+  xH = ((yH_tmp + -4489.0F) + 2116.0F) / (2.0F * atemp * 46.0F);
+  if ((real32_T)fabs((real_T)yH) > 1.0F) {
+    printf("errore qG1 \n");
+    fflush(stdout);
+    yH = 0.0F;
+  } else {
+    xD_tmp = (real32_T)acos((real_T)yH);
+    if (xD_tmp >= 0.0F) {
+      yH = (real32_T)fabs((real_T)(real32_T)acos((real_T)yH));
+    } else {
+      yH = (real32_T)fabs((real_T)xD_tmp) + 1.57079637F;
+    }
+  }
+
+  if ((real32_T)fabs((real_T)xH) > 1.0F) {
+    printf("errore qG2 \n");
+    fflush(stdout);
+    xH = 0.0F;
+  } else {
+    xD_tmp = (real32_T)acos((real_T)xH);
+    if (xD_tmp >= 0.0F) {
+      xH = (real32_T)fabs((real_T)(real32_T)acos((real_T)xH));
+    } else {
+      xH = (real32_T)fabs((real_T)xD_tmp) + 1.57079637F;
+    }
+  }
+
+  LLI = -(rtu_measurements[0] + 3.0F) - rtu_measurements[1] * (real32_T)sin
+    ((real_T)xC);
+  xD1 = ((atemp_tmp + -7396.0F) + yH_tmp) / (2.0F * yI * atemp);
+  atemp = ((yH_tmp + -2116.0F) + 4489.0F) / (2.0F * atemp * 67.0F);
+  yI = ((atemp_tmp + -1369.0F) + 2704.0F) / (2.0F * yI * 52.0F);
+  if ((real32_T)fabs((real_T)xD1) > 1.0F) {
+    printf("errore qD1");
+    fflush(stdout);
+    xD1 = 0.0F;
+  } else {
+    xD_tmp = (real32_T)acos((real_T)xD1);
+    if (xD_tmp >= 0.0F) {
+      xD1 = (real32_T)fabs((real_T)(real32_T)acos((real_T)xD1));
+    } else {
+      xD1 = (real32_T)fabs((real_T)xD_tmp) + 1.57079637F;
+    }
+  }
+
+  if ((real32_T)fabs((real_T)atemp) > 1.0F) {
+    printf("errore qD2 \n");
+    fflush(stdout);
+    atemp = 0.0F;
+  } else {
+    xD_tmp = (real32_T)acos((real_T)atemp);
+    if (xD_tmp >= 0.0F) {
+      atemp = (real32_T)fabs((real_T)(real32_T)acos((real_T)atemp));
+    } else {
+      atemp = (real32_T)fabs((real_T)xD_tmp) + 1.57079637F;
+    }
+  }
+
+  if ((real32_T)fabs((real_T)yI) > 1.0F) {
+    printf("errore qD3 \n");
+    fflush(stdout);
+    yI = 0.0F;
+  } else {
+    xD_tmp = (real32_T)acos((real_T)yI);
+    if (xD_tmp >= 0.0F) {
+      yI = (real32_T)fabs((real_T)(real32_T)acos((real_T)yI));
+    } else {
+      yI = (real32_T)fabs((real_T)xD_tmp) + 1.57079637F;
+    }
+  }
+
+  yI = 3.14159274F - ((xD1 + atemp) + yI);
+  xD_tmp = (rtu_u[1] - yI) - xK1;
+  yH_tmp = (real32_T)sin((real_T)xD_tmp);
+  xD_tmp = (real32_T)cos((real_T)xD_tmp);
+  xD = (xD - xD_tmp * 40.0F) + yH_tmp * 39.0F;
+  yD = (yD - yH_tmp * 40.0F) - xD_tmp * 39.0F;
+  atemp_tmp = xD - (-10.0F - rtu_measurements[1] * (real32_T)cos((real_T)xC));
+  xD = yD - LLI;
+  xD1 = (real32_T)sqrt((real_T)(atemp_tmp * atemp_tmp + xD * xD));
+  xD_tmp = xD1 * xD1;
+  atemp = xD_tmp - LAK_tmp;
+  if (atemp < 0.0F) {
+    printf("errore c2");
+    fflush(stdout);
+    atemp = 0.0F;
+  } else {
+    atemp = (real32_T)sqrt((real_T)atemp);
+  }
+
+  xD1 = ((-(rtu_measurements[0] * rtu_measurements[0]) + xD_tmp) + atemp * atemp)
+    / (2.0F * atemp * xD1);
+  if ((real32_T)fabs((real_T)xD1) > 1.0F) {
+    printf("errore qj2 \n");
+    fflush(stdout);
+    xD1 = 0.0F;
+  } else {
+    xD_tmp = (real32_T)acos((real_T)xD1);
+    if (xD_tmp >= 0.0F) {
+      xD1 = (real32_T)fabs((real_T)(real32_T)acos((real_T)xD1));
+    } else {
+      xD1 = (real32_T)fabs((real_T)xD_tmp) + 1.57079637F;
+    }
+  }
+
+  if (atemp_tmp <= 0.0F) {
+    yD = (real32_T)atan((real_T)((yD - LLI) / atemp_tmp));
+  } else {
+    yD = (real32_T)atan((real_T)(xD / atemp_tmp)) + 3.14159274F;
+  }
+
+  yD = (xD1 + yD) - xC;
+  localB->y[0] = xC;
+  if (yD <= -1.5707963267948966) {
+    localB->y[1] = 6.28318548F + yD;
+  } else {
+    localB->y[1] = yD;
+  }
+
+  localB->y[2] = xK1;
+  localB->y[3] = yI;
+  localB->y[4] = 3.14159274F - (yH + xH);
+  localB->y[5] = qN;
+  localB->y[6] = LAK;
+  localB->y[7] = atemp;
 }
 
 /* Model step function */
@@ -102,3959 +968,820 @@ void proxy_linux_step(void)
   static const char_T j[24] = { 'r', 'i', 'g', 'h', 't', '_', 'h', 'a', 'n', 'd',
     '_', 'F', 'i', 'n', 'g', 'e', 'r', '_', 'S', 'p', 'r', 'e', 'a', 'd' };
 
-  boolean_T b_varargout_1;
-  SL_Bus_proxy_linux_std_msgs_Bool rtb_BusAssignment2;
-  real32_T xH_tmp;
-  real32_T LLI_tmp_tmp;
-  real32_T LLI_tmp;
-  real32_T LLI_tmp_0;
-  real32_T LLI_tmp_tmp_0;
-  real32_T LLI_tmp_tmp_1;
-  real32_T LLI_tmp_tmp_2;
-  real32_T LLI_tmp_tmp_3;
-  real32_T LLI_tmp_tmp_4;
-  real32_T LLI_tmp_tmp_5;
-  real32_T LLI_tmp_tmp_tmp;
-  real32_T LLI_tmp_tmp_tmp_tmp;
-  real32_T LAK_tmp_tmp;
+  /* Outputs for Atomic SubSystem: '<S1>/Subscribe1' */
+  /* MATLABSystem: '<S9>/SourceBlock' */
+  proxy_linux_B.Automatic = Sub_proxy_linux_994.getLatestMessage
+    (&proxy_linux_B.b_varargout_2_c);
 
-  /* ManualSwitch: '<Root>/Manual Switch' */
-  if (proxy_linux_P.ManualSwitch_CurrentSetting_b == 1) {
-    /* BusAssignment: '<S7>/Bus Assignment2' incorporates:
-     *  Constant: '<Root>/Constant'
-     */
-    rtb_BusAssignment2.Data = proxy_linux_P.Constant_Value_ok;
-  } else {
-    /* BusAssignment: '<S7>/Bus Assignment2' incorporates:
-     *  Constant: '<Root>/Constant1'
-     */
-    rtb_BusAssignment2.Data = proxy_linux_P.Constant1_Value_k;
+  /* Outputs for Enabled SubSystem: '<S9>/Enabled Subsystem' */
+  proxy_linux_EnabledSubsystem(proxy_linux_B.Automatic,
+    &proxy_linux_B.b_varargout_2_c, &proxy_linux_B.EnabledSubsystem);
+
+  /* End of Outputs for SubSystem: '<S9>/Enabled Subsystem' */
+
+  /* End of Outputs for SubSystem: '<S1>/Subscribe1' */
+
+  /* Logic: '<S1>/Logical Operator' */
+  proxy_linux_B.LogicalOperator = !proxy_linux_B.EnabledSubsystem.In1.Data;
+
+  /* Outputs for Atomic SubSystem: '<S3>/Subscribe' */
+  /* MATLABSystem: '<S11>/SourceBlock' incorporates:
+   *  Inport: '<S12>/In1'
+   */
+  proxy_linux_B.Automatic = Sub_proxy_linux_437.getLatestMessage
+    (&proxy_linux_B.b_varargout_2);
+
+  /* Outputs for Enabled SubSystem: '<S11>/Enabled Subsystem' incorporates:
+   *  EnablePort: '<S12>/Enable'
+   */
+  if (proxy_linux_B.Automatic) {
+    proxy_linux_B.In1 = proxy_linux_B.b_varargout_2;
   }
 
-  /* End of ManualSwitch: '<Root>/Manual Switch' */
+  /* End of MATLABSystem: '<S11>/SourceBlock' */
+  /* End of Outputs for SubSystem: '<S11>/Enabled Subsystem' */
+  /* End of Outputs for SubSystem: '<S3>/Subscribe' */
 
-  /* Outputs for Atomic SubSystem: '<S7>/Publish2' */
-  /* MATLABSystem: '<S58>/SinkBlock' */
-  Pub_proxy_linux_517.publish(&rtb_BusAssignment2);
+  /* DeadZone: '<S3>/Dead Zone' incorporates:
+   *  SignalConversion: '<S3>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
+   */
+  if (proxy_linux_B.In1.Data[0] > proxy_linux_P.DeadZone_End) {
+    proxy_linux_B.DeadZone = proxy_linux_B.In1.Data[0] -
+      proxy_linux_P.DeadZone_End;
+  } else if (proxy_linux_B.In1.Data[0] >= proxy_linux_P.DeadZone_Start) {
+    proxy_linux_B.DeadZone = 0.0;
+  } else {
+    proxy_linux_B.DeadZone = proxy_linux_B.In1.Data[0] -
+      proxy_linux_P.DeadZone_Start;
+  }
 
-  /* End of Outputs for SubSystem: '<S7>/Publish2' */
+  /* End of DeadZone: '<S3>/Dead Zone' */
 
-  /* S-Function (sdspFromNetwork): '<S4>/Receive from Haptics' */
+  /* DeadZone: '<S3>/Dead Zone2' incorporates:
+   *  SignalConversion: '<S3>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
+   */
+  if (proxy_linux_B.In1.Data[2] > proxy_linux_P.DeadZone2_End) {
+    proxy_linux_B.DeadZone2 = proxy_linux_B.In1.Data[2] -
+      proxy_linux_P.DeadZone2_End;
+  } else if (proxy_linux_B.In1.Data[2] >= proxy_linux_P.DeadZone2_Start) {
+    proxy_linux_B.DeadZone2 = 0.0;
+  } else {
+    proxy_linux_B.DeadZone2 = proxy_linux_B.In1.Data[2] -
+      proxy_linux_P.DeadZone2_Start;
+  }
+
+  /* End of DeadZone: '<S3>/Dead Zone2' */
+
+  /* DeadZone: '<S3>/Dead Zone3' incorporates:
+   *  SignalConversion: '<S3>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
+   */
+  if (proxy_linux_B.In1.Data[3] > proxy_linux_P.DeadZone3_End) {
+    proxy_linux_B.DeadZone3 = proxy_linux_B.In1.Data[3] -
+      proxy_linux_P.DeadZone3_End;
+  } else if (proxy_linux_B.In1.Data[3] >= proxy_linux_P.DeadZone3_Start) {
+    proxy_linux_B.DeadZone3 = 0.0;
+  } else {
+    proxy_linux_B.DeadZone3 = proxy_linux_B.In1.Data[3] -
+      proxy_linux_P.DeadZone3_Start;
+  }
+
+  /* End of DeadZone: '<S3>/Dead Zone3' */
+
+  /* DeadZone: '<S3>/Dead Zone4' incorporates:
+   *  SignalConversion: '<S3>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
+   */
+  if (proxy_linux_B.In1.Data[4] > proxy_linux_P.DeadZone4_End) {
+    proxy_linux_B.DeadZone4 = proxy_linux_B.In1.Data[4] -
+      proxy_linux_P.DeadZone4_End;
+  } else if (proxy_linux_B.In1.Data[4] >= proxy_linux_P.DeadZone4_Start) {
+    proxy_linux_B.DeadZone4 = 0.0;
+  } else {
+    proxy_linux_B.DeadZone4 = proxy_linux_B.In1.Data[4] -
+      proxy_linux_P.DeadZone4_Start;
+  }
+
+  /* End of DeadZone: '<S3>/Dead Zone4' */
+
+  /* DeadZone: '<S3>/Dead Zone5' incorporates:
+   *  SignalConversion: '<S3>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
+   */
+  if (proxy_linux_B.In1.Data[5] > proxy_linux_P.DeadZone5_End) {
+    proxy_linux_B.DeadZone5 = proxy_linux_B.In1.Data[5] -
+      proxy_linux_P.DeadZone5_End;
+  } else if (proxy_linux_B.In1.Data[5] >= proxy_linux_P.DeadZone5_Start) {
+    proxy_linux_B.DeadZone5 = 0.0;
+  } else {
+    proxy_linux_B.DeadZone5 = proxy_linux_B.In1.Data[5] -
+      proxy_linux_P.DeadZone5_Start;
+  }
+
+  /* End of DeadZone: '<S3>/Dead Zone5' */
+
+  /* DeadZone: '<S3>/Dead Zone6' incorporates:
+   *  SignalConversion: '<S3>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
+   */
+  if (proxy_linux_B.In1.Data[6] > proxy_linux_P.DeadZone6_End) {
+    proxy_linux_B.DeadZone6 = proxy_linux_B.In1.Data[6] -
+      proxy_linux_P.DeadZone6_End;
+  } else if (proxy_linux_B.In1.Data[6] >= proxy_linux_P.DeadZone6_Start) {
+    proxy_linux_B.DeadZone6 = 0.0;
+  } else {
+    proxy_linux_B.DeadZone6 = proxy_linux_B.In1.Data[6] -
+      proxy_linux_P.DeadZone6_Start;
+  }
+
+  /* End of DeadZone: '<S3>/Dead Zone6' */
+
+  /* DeadZone: '<S3>/Dead Zone7' incorporates:
+   *  SignalConversion: '<S3>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
+   */
+  if (proxy_linux_B.In1.Data[7] > proxy_linux_P.DeadZone7_End) {
+    proxy_linux_B.DeadZone7 = proxy_linux_B.In1.Data[7] -
+      proxy_linux_P.DeadZone7_End;
+  } else if (proxy_linux_B.In1.Data[7] >= proxy_linux_P.DeadZone7_Start) {
+    proxy_linux_B.DeadZone7 = 0.0;
+  } else {
+    proxy_linux_B.DeadZone7 = proxy_linux_B.In1.Data[7] -
+      proxy_linux_P.DeadZone7_Start;
+  }
+
+  /* End of DeadZone: '<S3>/Dead Zone7' */
+
+  /* DiscreteTransferFcn: '<S3>/Filt 1' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Gain1 = proxy_linux_P.Filt1_NumCoef[1] *
+      proxy_linux_DW.Filt1_states;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S3>/Filt 1' */
+
+  /* DiscreteTransferFcn: '<S3>/Filt 2' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Filt2 = proxy_linux_P.Filt2_NumCoef[1] *
+      proxy_linux_DW.Filt2_states;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S3>/Filt 2' */
+
+  /* DiscreteTransferFcn: '<S3>/Filt 3' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Gain6 = proxy_linux_P.Filt3_NumCoef[1] *
+      proxy_linux_DW.Filt3_states;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S3>/Filt 3' */
+
+  /* DiscreteTransferFcn: '<S3>/Filt 4' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Gain2 = proxy_linux_P.Filt4_NumCoef[1] *
+      proxy_linux_DW.Filt4_states;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S3>/Filt 4' */
+
+  /* DiscreteTransferFcn: '<S3>/Filt 5' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Gain7 = proxy_linux_P.Filt5_NumCoef[1] *
+      proxy_linux_DW.Filt5_states;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S3>/Filt 5' */
+
+  /* DiscreteTransferFcn: '<S3>/Filt 6' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Gain3 = proxy_linux_P.Filt6_NumCoef[1] *
+      proxy_linux_DW.Filt6_states;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S3>/Filt 6' */
+
+  /* DiscreteTransferFcn: '<S3>/Filt 8' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Saturation1_j = proxy_linux_P.Filt8_NumCoef[1] *
+      proxy_linux_DW.Filt8_states;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S3>/Filt 8' */
+
+  /* Gain: '<S3>/Gain1' */
+  proxy_linux_B.Gain1 *= proxy_linux_P.Gain1_Gain;
+
+  /* Gain: '<S3>/Gain2' */
+  proxy_linux_B.Gain2 *= proxy_linux_P.Gain2_Gain;
+
+  /* Gain: '<S3>/Gain3' */
+  proxy_linux_B.Gain3 *= proxy_linux_P.Gain3_Gain;
+
+  /* Gain: '<S3>/Gain5' */
+  proxy_linux_B.Gain5 = proxy_linux_P.Gain5_Gain * proxy_linux_B.Saturation1_j;
+
+  /* Gain: '<S3>/Gain6' */
+  proxy_linux_B.Gain6 *= proxy_linux_P.Gain6_Gain;
+
+  /* Gain: '<S3>/Gain7' */
+  proxy_linux_B.Gain7 *= proxy_linux_P.Gain7_Gain;
+
+  /* S-Function (sdspFromNetwork): '<S5>/Receive from Haptics' */
   sErr = GetErrorBuffer(&proxy_linux_DW.ReceivefromHaptics_NetworkLib[0U]);
-  proxy_linux_B.samplesRead = 68;
+  proxy_linux_B.k = 68;
   LibOutputs_Network(&proxy_linux_DW.ReceivefromHaptics_NetworkLib[0U],
-                     &proxy_linux_B.ReceivefromHaptics_o1[0U],
-                     &proxy_linux_B.samplesRead);
+                     &proxy_linux_B.ReceivefromHaptics_o1[0U], &proxy_linux_B.k);
   if (*sErr != 0) {
     rtmSetErrorStatus(proxy_linux_M, sErr);
     rtmSetStopRequested(proxy_linux_M, 1);
   }
 
-  proxy_linux_B.ReceivefromHaptics_o2 = (uint16_T)proxy_linux_B.samplesRead;
+  proxy_linux_B.ReceivefromHaptics_o2 = (uint16_T)proxy_linux_B.k;
 
-  /* End of S-Function (sdspFromNetwork): '<S4>/Receive from Haptics' */
+  /* End of S-Function (sdspFromNetwork): '<S5>/Receive from Haptics' */
 
-  /* S-Function (byte2any): '<S4>/Byte Unpack' */
+  /* S-Function (byte2any): '<S5>/Byte Unpack' */
 
-  /* Unpack: <S4>/Byte Unpack */
+  /* Unpack: <S5>/Byte Unpack */
   (void) memcpy(&proxy_linux_B.ByteUnpack[0],
                 &proxy_linux_B.ReceivefromHaptics_o1[0],
                 68);
 
-  /* BusAssignment: '<S7>/Bus Assignment' */
-  proxy_linux_B.BusAssignment.Data = proxy_linux_B.ByteUnpack[0];
+  /* Outputs for Enabled SubSystem: '<S21>/Subsystem' */
+  proxy_linux_Subsystem(proxy_linux_B.LogicalOperator, &proxy_linux_B.Subsystem,
+                        &proxy_linux_DW.Subsystem);
 
-  /* Outputs for Atomic SubSystem: '<S7>/Publish' */
-  /* MATLABSystem: '<S55>/SinkBlock' */
-  Pub_proxy_linux_264.publish(&proxy_linux_B.BusAssignment);
+  /* End of Outputs for SubSystem: '<S21>/Subsystem' */
 
-  /* End of Outputs for SubSystem: '<S7>/Publish' */
-
-  /* BusAssignment: '<S7>/Bus Assignment1' */
-  proxy_linux_B.BusAssignment1.Data = proxy_linux_B.ByteUnpack[1];
-
-  /* Outputs for Atomic SubSystem: '<S7>/Publish1' */
-  /* MATLABSystem: '<S56>/SinkBlock' */
-  Pub_proxy_linux_311.publish(&proxy_linux_B.BusAssignment1);
-
-  /* End of Outputs for SubSystem: '<S7>/Publish1' */
-
-  /* DiscreteTransferFcn: '<S7>/Filt ' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_0 = proxy_linux_P.Filt_NumCoef[1] *
-      proxy_linux_DW.Filt_states;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S7>/Filt ' */
-
-  /* DiscreteTransferFcn: '<S7>/Filt 1' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_1 = proxy_linux_P.Filt1_NumCoef_j[1]
-      * proxy_linux_DW.Filt1_states_d;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S7>/Filt 1' */
-
-  /* DiscreteTransferFcn: '<S7>/Filt 2' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_2 = proxy_linux_P.Filt2_NumCoef_o[1]
-      * proxy_linux_DW.Filt2_states_d;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S7>/Filt 2' */
-
-  /* DiscreteTransferFcn: '<S7>/Filt 3' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_3 = proxy_linux_P.Filt3_NumCoef_m[1]
-      * proxy_linux_DW.Filt3_states_h;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S7>/Filt 3' */
-
-  /* DiscreteTransferFcn: '<S7>/Filt 4' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_4 = proxy_linux_P.Filt4_NumCoef_f[1]
-      * proxy_linux_DW.Filt4_states_a;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S7>/Filt 4' */
-
-  /* DiscreteTransferFcn: '<S7>/Filt 5' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = proxy_linux_P.Filt5_NumCoef_e[1]
-      * proxy_linux_DW.Filt5_states_j;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S7>/Filt 5' */
-
-  /* DiscreteTransferFcn: '<S7>/Filt 6' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_6 = proxy_linux_P.Filt6_NumCoef_j[1]
-      * proxy_linux_DW.Filt6_states_n;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S7>/Filt 6' */
-
-  /* DiscreteTransferFcn: '<S7>/Filt 7' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 = proxy_linux_P.Filt7_NumCoef[1] *
-      proxy_linux_DW.Filt7_states;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S7>/Filt 7' */
-
-  /* DiscreteTransferFcn: '<S7>/Filt 8' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = proxy_linux_P.Filt8_NumCoef[1] *
-      proxy_linux_DW.Filt8_states;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S7>/Filt 8' */
-
-  /* MATLAB Function: '<S7>/MATLAB Function - Assign' incorporates:
-   *  Constant: '<S53>/Constant'
+  /* Switch: '<S21>/Switch' incorporates:
+   *  Constant: '<S21>/Constant1'
    */
-  proxy_linux_B.msg = proxy_linux_P.Constant_Value;
-  proxy_linux_B.msg.Position_SL_Info.CurrentLength = 9U;
-  proxy_linux_B.msg.Position[0] = proxy_linux_B.rtb_VectorConcatenate_idx_0;
-  proxy_linux_B.msg.Position[1] = proxy_linux_B.rtb_VectorConcatenate_idx_1;
-  proxy_linux_B.msg.Position[2] = proxy_linux_B.rtb_VectorConcatenate_idx_2;
-  proxy_linux_B.msg.Position[3] = proxy_linux_B.rtb_VectorConcatenate_idx_3;
-  proxy_linux_B.msg.Position[4] = proxy_linux_B.rtb_VectorConcatenate_idx_4;
-  proxy_linux_B.msg.Position[5] = proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.msg.Position[6] = proxy_linux_B.rtb_VectorConcatenate_idx_6;
-  proxy_linux_B.msg.Position[7] = proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  proxy_linux_B.msg.Position[8] = proxy_linux_B.rtb_VectorConcatenate_idx_8;
-  proxy_linux_B.msg.Velocity_SL_Info.CurrentLength = 9U;
-  proxy_linux_B.msg.Effort_SL_Info.CurrentLength = 9U;
-  memset(&proxy_linux_B.msg.Velocity[0], 0, 9U * sizeof(real_T));
-  memset(&proxy_linux_B.msg.Effort[0], 0, 9U * sizeof(real_T));
-  proxy_linux_B.msg.Name_SL_Info.CurrentLength = 9U;
-  for (proxy_linux_B.samplesRead = 0; proxy_linux_B.samplesRead < 24;
-       proxy_linux_B.samplesRead++) {
-    proxy_linux_B.msg.Name[0].Data[proxy_linux_B.samplesRead] = (uint8_T)
-      b[proxy_linux_B.samplesRead];
-  }
-
-  proxy_linux_B.msg.Name[0].Data_SL_Info.CurrentLength = 24U;
-  for (proxy_linux_B.samplesRead = 0; proxy_linux_B.samplesRead < 27;
-       proxy_linux_B.samplesRead++) {
-    proxy_linux_B.msg.Name[1].Data[proxy_linux_B.samplesRead] = (uint8_T)
-      c[proxy_linux_B.samplesRead];
-  }
-
-  proxy_linux_B.msg.Name[1].Data_SL_Info.CurrentLength = 27U;
-  for (proxy_linux_B.samplesRead = 0; proxy_linux_B.samplesRead < 30;
-       proxy_linux_B.samplesRead++) {
-    proxy_linux_B.msg.Name[2].Data[proxy_linux_B.samplesRead] = (uint8_T)
-      d[proxy_linux_B.samplesRead];
-  }
-
-  proxy_linux_B.msg.Name[2].Data_SL_Info.CurrentLength = 30U;
-  for (proxy_linux_B.samplesRead = 0; proxy_linux_B.samplesRead < 32;
-       proxy_linux_B.samplesRead++) {
-    proxy_linux_B.msg.Name[3].Data[proxy_linux_B.samplesRead] = (uint8_T)
-      e[proxy_linux_B.samplesRead];
-  }
-
-  proxy_linux_B.msg.Name[3].Data_SL_Info.CurrentLength = 32U;
-  for (proxy_linux_B.samplesRead = 0; proxy_linux_B.samplesRead < 31;
-       proxy_linux_B.samplesRead++) {
-    proxy_linux_B.msg.Name[4].Data[proxy_linux_B.samplesRead] = (uint8_T)
-      f[proxy_linux_B.samplesRead];
-  }
-
-  proxy_linux_B.msg.Name[4].Data_SL_Info.CurrentLength = 31U;
-  for (proxy_linux_B.samplesRead = 0; proxy_linux_B.samplesRead < 33;
-       proxy_linux_B.samplesRead++) {
-    proxy_linux_B.msg.Name[5].Data[proxy_linux_B.samplesRead] = (uint8_T)
-      g[proxy_linux_B.samplesRead];
-  }
-
-  proxy_linux_B.msg.Name[5].Data_SL_Info.CurrentLength = 33U;
-  for (proxy_linux_B.samplesRead = 0; proxy_linux_B.samplesRead < 22;
-       proxy_linux_B.samplesRead++) {
-    proxy_linux_B.msg.Name[6].Data[proxy_linux_B.samplesRead] = (uint8_T)
-      h[proxy_linux_B.samplesRead];
-  }
-
-  proxy_linux_B.msg.Name[6].Data_SL_Info.CurrentLength = 22U;
-  for (proxy_linux_B.samplesRead = 0; proxy_linux_B.samplesRead < 16;
-       proxy_linux_B.samplesRead++) {
-    proxy_linux_B.msg.Name[7].Data[proxy_linux_B.samplesRead] = (uint8_T)
-      i[proxy_linux_B.samplesRead];
-  }
-
-  proxy_linux_B.msg.Name[7].Data_SL_Info.CurrentLength = 16U;
-  for (proxy_linux_B.samplesRead = 0; proxy_linux_B.samplesRead < 24;
-       proxy_linux_B.samplesRead++) {
-    proxy_linux_B.msg.Name[8].Data[proxy_linux_B.samplesRead] = (uint8_T)
-      j[proxy_linux_B.samplesRead];
-  }
-
-  proxy_linux_B.msg.Name[8].Data_SL_Info.CurrentLength = 24U;
-
-  /* End of MATLAB Function: '<S7>/MATLAB Function - Assign' */
-
-  /* Outputs for Atomic SubSystem: '<S7>/Publish12' */
-  /* MATLABSystem: '<S57>/SinkBlock' */
-  Pub_proxy_linux_470.publish(&proxy_linux_B.msg);
-
-  /* End of Outputs for SubSystem: '<S7>/Publish12' */
-
-  /* ManualSwitch: '<S15>/Manual Switch1' incorporates:
-   *  Constant: '<S15>/Constant'
-   *  MATLAB Function: '<S15>/MATLAB Function1'
-   */
-  if (proxy_linux_P.ManualSwitch1_CurrentSetting_o == 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_0 = proxy_linux_B.ByteUnpack[7] /
-      400.0F;
+  if (proxy_linux_B.LogicalOperator) {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant1_Value;
   } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_0 = proxy_linux_P.Constant_Value_i;
+    proxy_linux_B.Saturation4 = proxy_linux_B.Subsystem.Memory;
   }
 
-  /* End of ManualSwitch: '<S15>/Manual Switch1' */
+  /* End of Switch: '<S21>/Switch' */
 
-  /* Saturate: '<S7>/Saturation' */
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_0 >
-      proxy_linux_P.Saturation_UpperSat_g) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_0 =
-      proxy_linux_P.Saturation_UpperSat_g;
-  } else {
-    if (proxy_linux_B.rtb_VectorConcatenate_idx_0 <
-        proxy_linux_P.Saturation_LowerSat_h) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_0 =
-        proxy_linux_P.Saturation_LowerSat_h;
-    }
-  }
-
-  /* End of Saturate: '<S7>/Saturation' */
-
-  /* ManualSwitch: '<S15>/Manual Switch' incorporates:
-   *  Constant: '<S15>/Constant'
-   *  MATLAB Function: '<S15>/MATLAB Function'
+  /* Sum: '<S21>/Sum' incorporates:
+   *  Gain: '<S21>/Gain  Aggiustato'
    */
-  if (proxy_linux_P.ManualSwitch_CurrentSetting_l == 1) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_1 = (proxy_linux_B.ByteUnpack[16] -
-      380.0F) / 220.0F;
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_1 = proxy_linux_P.Constant_Value_i;
-  }
+  proxy_linux_B.Sum = proxy_linux_P.GainAggiustato_Gain *
+    proxy_linux_B.ByteUnpack[8] - proxy_linux_B.Saturation4;
 
-  /* End of ManualSwitch: '<S15>/Manual Switch' */
-
-  /* Saturate: '<S7>/Saturation1' */
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_1 >
-      proxy_linux_P.Saturation1_UpperSat_iy) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_1 =
-      proxy_linux_P.Saturation1_UpperSat_iy;
-  } else {
-    if (proxy_linux_B.rtb_VectorConcatenate_idx_1 <
-        proxy_linux_P.Saturation1_LowerSat_o) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_1 =
-        proxy_linux_P.Saturation1_LowerSat_o;
-    }
-  }
-
-  /* End of Saturate: '<S7>/Saturation1' */
-
-  /* Gain: '<S28>/Gain  Aggiustato' */
-  proxy_linux_B.rtb_VectorConcatenate_idx_2 = proxy_linux_P.GainAggiustato_Gain *
-    proxy_linux_B.ByteUnpack[8];
-
-  /* Sum: '<S32>/Sum1' incorporates:
-   *  Constant: '<S32>/Constant'
-   *  Gain: '<S32>/Gain Aggiustato'
+  /* DataTypeConversion: '<S23>/Conversion' incorporates:
+   *  UnitDelay: '<S14>/Unit Delay3'
    */
-  proxy_linux_B.Sum1 = proxy_linux_P.Constant_Value_e -
-    proxy_linux_P.GainAggiustato_Gain_e * proxy_linux_B.ByteUnpack[15];
+  proxy_linux_B.Conversion_a[0] = proxy_linux_DW.UnitDelay3_DSTATE[0];
+  proxy_linux_B.Conversion_a[1] = proxy_linux_DW.UnitDelay3_DSTATE[1];
 
-  /* MATLAB Function: '<S31>/Pose' incorporates:
-   *  Constant: '<S29>/finger width'
-   *  Constant: '<S29>/proximal length'
-   *  DataTypeConversion: '<S28>/Data Type Conversion'
-   *  SignalConversion: '<S37>/TmpSignal ConversionAt SFunction Inport1'
+  /* DataTypeConversion: '<S14>/Data Type Conversion' incorporates:
+   *  Constant: '<S24>/finger width'
+   *  Constant: '<S24>/proximal length'
    */
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = 1549.0F - 1260.0F * (real32_T)cos
-    ((real_T)proxy_linux_B.Sum1);
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_8 < 0.0F) {
-    printf("errore LAK \n");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = 1.0F;
+  proxy_linux_B.DataTypeConversion[0] = (real32_T)
+    proxy_linux_P.fingerwidth_Value;
+  proxy_linux_B.DataTypeConversion[1] = (real32_T)
+    proxy_linux_P.proximallength_Value;
+
+  /* Saturate: '<S14>/Saturation3' */
+  if (proxy_linux_B.Sum > proxy_linux_P.Saturation3_UpperSat) {
+    proxy_linux_B.Saturation3 = proxy_linux_P.Saturation3_UpperSat;
+  } else if (proxy_linux_B.Sum < proxy_linux_P.Saturation3_LowerSat) {
+    proxy_linux_B.Saturation3 = proxy_linux_P.Saturation3_LowerSat;
+  } else {
+    proxy_linux_B.Saturation3 = proxy_linux_B.Sum;
   }
 
-  proxy_linux_B.LAK = (real32_T)sqrt((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.xH_tmp_tmp = proxy_linux_B.LAK * proxy_linux_B.LAK;
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 =
-    (proxy_linux_B.rtb_VectorConcatenate_idx_2 + 117.77F) *
-    (proxy_linux_B.rtb_VectorConcatenate_idx_2 + 117.77F);
-  proxy_linux_B.rtb_VectorConcatenate_idx_5 =
-    ((proxy_linux_B.rtb_VectorConcatenate_idx_6 + -proxy_linux_B.xH_tmp_tmp) +
-     18396.0391F) / ((proxy_linux_B.rtb_VectorConcatenate_idx_2 + 117.77F) *
-                     2.0F * 135.632F);
-  if ((real32_T)fabs((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_5) > 1.0F)
+  /* End of Saturate: '<S14>/Saturation3' */
+
+  /* Outputs for Enabled SubSystem: '<S29>/Subsystem' */
+  proxy_linux_Subsystem(proxy_linux_B.LogicalOperator,
+                        &proxy_linux_B.Subsystem_l, &proxy_linux_DW.Subsystem_l);
+
+  /* End of Outputs for SubSystem: '<S29>/Subsystem' */
+
+  /* Switch: '<S29>/Switch' incorporates:
+   *  Constant: '<S29>/Constant1'
+   */
+  if (proxy_linux_B.LogicalOperator) {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant1_Value_n;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_B.Subsystem_l.Memory;
+  }
+
+  /* End of Switch: '<S29>/Switch' */
+
+  /* Sum: '<S29>/Sum1' incorporates:
+   *  Constant: '<S29>/Constant'
+   *  Gain: '<S29>/Gain Aggiustato'
+   *  Sum: '<S29>/Sum'
+   */
+  proxy_linux_B.ManualSwitch_p = (proxy_linux_P.Constant_Value_ph -
+    proxy_linux_B.Saturation4) - proxy_linux_P.GainAggiustato_Gain_b *
+    proxy_linux_B.ByteUnpack[15];
+
+  /* Saturate: '<S14>/Saturation2' */
+  if (proxy_linux_B.ManualSwitch_p > proxy_linux_P.Saturation2_UpperSat) {
+    proxy_linux_B.Saturation2 = proxy_linux_P.Saturation2_UpperSat;
+  } else if (proxy_linux_B.ManualSwitch_p < proxy_linux_P.Saturation2_LowerSat)
   {
-    printf("errore qN");
-    fflush(stdout);
-    proxy_linux_B.qN = 0.0F;
+    proxy_linux_B.Saturation2 = proxy_linux_P.Saturation2_LowerSat;
   } else {
-    proxy_linux_B.qN = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_5)) - 0.1108F;
+    proxy_linux_B.Saturation2 = proxy_linux_B.ManualSwitch_p;
   }
 
-  proxy_linux_B.rtb_VectorConcatenate_idx_5 = ((proxy_linux_B.xH_tmp_tmp +
-    -324.0F) + 1225.0F) / (2.0F * proxy_linux_B.LAK * 35.0F);
-  proxy_linux_B.LAK = ((-proxy_linux_B.rtb_VectorConcatenate_idx_6 +
-                        proxy_linux_B.xH_tmp_tmp) + 18396.0391F) / (2.0F *
-    proxy_linux_B.LAK * 135.632F);
-  if ((real32_T)fabs((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_5) > 1.0F)
-  {
-    printf("errore qK1 \n");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_5);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_5 = (real32_T)fabs((real_T)
-        (real32_T)acos((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_5));
-    } else {
-      proxy_linux_B.rtb_VectorConcatenate_idx_5 = (real32_T)fabs((real_T)
-        proxy_linux_B.xH_tmp_tmp) + 1.57079637F;
-    }
-  }
+  /* End of Saturate: '<S14>/Saturation2' */
 
-  if ((real32_T)fabs((real_T)proxy_linux_B.LAK) > 1.0F) {
-    printf("errore gK2 \n");
-    fflush(stdout);
-    proxy_linux_B.LAK = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LAK);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LAK = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LAK));
-    } else {
-      proxy_linux_B.LAK = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  proxy_linux_B.rtb_VectorConcatenate_idx_5 = 3.14159274F -
-    ((proxy_linux_B.rtb_VectorConcatenate_idx_5 + proxy_linux_B.LAK) + 0.1108F);
-  proxy_linux_B.xH_tmp = (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_5);
-  proxy_linux_B.xH = -72.0F * proxy_linux_B.xH_tmp;
-  proxy_linux_B.rtb_DataTypeConversion_a_idx_1 = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_5);
-  proxy_linux_B.yH = 72.0F * proxy_linux_B.rtb_DataTypeConversion_a_idx_1;
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 = proxy_linux_B.Sum1 -
-    proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_7);
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 = -35.0F * proxy_linux_B.xH_tmp -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 43.0F;
-  proxy_linux_B.LAK_tmp_k = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_7);
-  proxy_linux_B.LAK = 35.0F * proxy_linux_B.rtb_DataTypeConversion_a_idx_1 -
-    proxy_linux_B.LAK_tmp_k * 43.0F;
-  proxy_linux_B.xD = proxy_linux_B.rtb_VectorConcatenate_idx_6 -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 9.0F;
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 = proxy_linux_B.LAK -
-    proxy_linux_B.LAK_tmp_k * 9.0F;
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 += proxy_linux_B.LAK_tmp_k * 16.0F;
-  proxy_linux_B.yI = proxy_linux_B.LAK -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 16.0F;
-  proxy_linux_B.LAK = proxy_linux_B.yI - (-((real32_T)
-    proxy_linux_P.fingerwidth_Value + 3.0F));
-  proxy_linux_B.LLI = (real32_T)sqrt((real_T)
-    ((proxy_linux_B.rtb_VectorConcatenate_idx_6 - -10.0F) *
-     (proxy_linux_B.rtb_VectorConcatenate_idx_6 - -10.0F) + proxy_linux_B.LAK *
-     proxy_linux_B.LAK));
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__m = (real32_T)
-    proxy_linux_P.fingerwidth_Value * (real32_T)proxy_linux_P.fingerwidth_Value;
-  proxy_linux_B.rtb_y_p_idx_1 = proxy_linux_B.LLI * proxy_linux_B.LLI;
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = proxy_linux_B.rtb_y_p_idx_1 -
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__m;
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_8 < 0.0F) {
-    printf("errore c1 \n");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = 0.0F;
-  }
-
-  proxy_linux_B.LAK = (real32_T)sqrt((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.LLI = ((-proxy_linux_B.rtb_TmpSignalConversionAtSFu__m +
-                        proxy_linux_B.rtb_y_p_idx_1) + proxy_linux_B.LAK *
-                       proxy_linux_B.LAK) / (2.0F * proxy_linux_B.LAK *
-    proxy_linux_B.LLI);
-  if ((real32_T)fabs((real_T)proxy_linux_B.LLI) > 1.0F) {
-    printf("errore qj1 \n");
-    fflush(stdout);
-    proxy_linux_B.LLI = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LLI);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LLI = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LLI));
-    } else {
-      proxy_linux_B.LLI = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 = (real32_T)atan((real_T)
-    ((-((real32_T)proxy_linux_P.fingerwidth_Value + 3.0F) - proxy_linux_B.yI) /
-     (-10.0F - proxy_linux_B.rtb_VectorConcatenate_idx_6))) + proxy_linux_B.LLI;
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_6 <= 0.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_6 = (real32_T)fabs((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_6);
-  }
-
-  proxy_linux_B.LLI = proxy_linux_B.xH - proxy_linux_B.xD;
-  proxy_linux_B.yI = proxy_linux_B.yH -
-    proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  proxy_linux_B.LHD = (real32_T)sqrt((real_T)(proxy_linux_B.LLI *
-    proxy_linux_B.LLI + proxy_linux_B.yI * proxy_linux_B.yI));
-  proxy_linux_B.LLI = (proxy_linux_B.xH - 86.0F *
-                       proxy_linux_B.rtb_DataTypeConversion_a_idx_1) -
-    proxy_linux_B.xD;
-  proxy_linux_B.xH = (proxy_linux_B.yH - 86.0F * proxy_linux_B.xH_tmp) -
-    proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  proxy_linux_B.LDG = (real32_T)sqrt((real_T)(proxy_linux_B.LLI *
-    proxy_linux_B.LLI + proxy_linux_B.xH * proxy_linux_B.xH));
-  proxy_linux_B.xH_tmp = proxy_linux_B.LDG * proxy_linux_B.LDG;
-  proxy_linux_B.xH_tmp_c = proxy_linux_B.LHD * proxy_linux_B.LHD;
-  proxy_linux_B.xH = ((-proxy_linux_B.xH_tmp_c + proxy_linux_B.xH_tmp) + 7396.0F)
-    / (2.0F * proxy_linux_B.LDG * 86.0F);
-  proxy_linux_B.yI = ((proxy_linux_B.xH_tmp + -4489.0F) + 2116.0F) / (2.0F *
-    proxy_linux_B.LDG * 46.0F);
-  if ((real32_T)fabs((real_T)proxy_linux_B.xH) > 1.0F) {
-    printf("errore qG1 \n");
-    fflush(stdout);
-    proxy_linux_B.xH = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.xH);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.xH = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.xH));
-    } else {
-      proxy_linux_B.xH = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  if ((real32_T)fabs((real_T)proxy_linux_B.yI) > 1.0F) {
-    printf("errore qG2 \n");
-    fflush(stdout);
-    proxy_linux_B.yI = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.yI);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.yI = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.yI));
-    } else {
-      proxy_linux_B.yI = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  proxy_linux_B.yH = -((real32_T)proxy_linux_P.fingerwidth_Value + 3.0F) -
-    (real32_T)proxy_linux_P.proximallength_Value * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_6);
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = ((proxy_linux_B.xH_tmp_c +
-    -7396.0F) + proxy_linux_B.xH_tmp) / (2.0F * proxy_linux_B.LHD *
-    proxy_linux_B.LDG);
-  proxy_linux_B.LDG = ((proxy_linux_B.xH_tmp + -2116.0F) + 4489.0F) / (2.0F *
-    proxy_linux_B.LDG * 67.0F);
-  proxy_linux_B.LHD = ((proxy_linux_B.xH_tmp_c + -1369.0F) + 2704.0F) / (2.0F *
-    proxy_linux_B.LHD * 52.0F);
-  if ((real32_T)fabs((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_8) > 1.0F)
-  {
-    printf("errore qD1");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_8);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)fabs((real_T)
-        (real32_T)acos((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_8));
-    } else {
-      proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)fabs((real_T)
-        proxy_linux_B.xH_tmp_tmp) + 1.57079637F;
-    }
-  }
-
-  if ((real32_T)fabs((real_T)proxy_linux_B.LDG) > 1.0F) {
-    printf("errore qD2 \n");
-    fflush(stdout);
-    proxy_linux_B.LDG = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LDG);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LDG = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LDG));
-    } else {
-      proxy_linux_B.LDG = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  if ((real32_T)fabs((real_T)proxy_linux_B.LHD) > 1.0F) {
-    printf("errore qD3 \n");
-    fflush(stdout);
-    proxy_linux_B.LHD = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LHD);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LHD = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LHD));
-    } else {
-      proxy_linux_B.LHD = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  proxy_linux_B.LHD = 3.14159274F - ((proxy_linux_B.rtb_VectorConcatenate_idx_8
-    + proxy_linux_B.LDG) + proxy_linux_B.LHD);
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (proxy_linux_B.Sum1 -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__c = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.xD = (proxy_linux_B.xD -
-                      proxy_linux_B.rtb_VectorConcatenate_idx_8 * 40.0F) +
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__c * 39.0F;
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 =
-    (proxy_linux_B.rtb_VectorConcatenate_idx_7 -
-     proxy_linux_B.rtb_TmpSignalConversionAtSFu__c * 40.0F) -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 39.0F;
-  proxy_linux_B.rtb_y_p_idx_1 = proxy_linux_B.xD - (-10.0F - (real32_T)
-    proxy_linux_P.proximallength_Value * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_6));
-  proxy_linux_B.xD = proxy_linux_B.rtb_VectorConcatenate_idx_7 -
-    proxy_linux_B.yH;
-  proxy_linux_B.LDG = (real32_T)sqrt((real_T)(proxy_linux_B.rtb_y_p_idx_1 *
-    proxy_linux_B.rtb_y_p_idx_1 + proxy_linux_B.xD * proxy_linux_B.xD));
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__c = proxy_linux_B.LDG *
-    proxy_linux_B.LDG;
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 =
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__m;
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_8 < 0.0F) {
-    printf("errore c2");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = 0.0F;
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)sqrt((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  }
-
-  proxy_linux_B.LDG = ((-((real32_T)proxy_linux_P.fingerwidth_Value * (real32_T)
-    proxy_linux_P.fingerwidth_Value) +
-                        proxy_linux_B.rtb_TmpSignalConversionAtSFu__c) +
-                       proxy_linux_B.rtb_VectorConcatenate_idx_8 *
-                       proxy_linux_B.rtb_VectorConcatenate_idx_8) / (2.0F *
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * proxy_linux_B.LDG);
-  if ((real32_T)fabs((real_T)proxy_linux_B.LDG) > 1.0F) {
-    printf("errore qj2 \n");
-    fflush(stdout);
-    proxy_linux_B.LDG = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LDG);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LDG = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LDG));
-    } else {
-      proxy_linux_B.LDG = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  if (proxy_linux_B.rtb_y_p_idx_1 <= 0.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 = (real32_T)atan((real_T)
-      ((proxy_linux_B.rtb_VectorConcatenate_idx_7 - proxy_linux_B.yH) /
-       proxy_linux_B.rtb_y_p_idx_1));
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 = (real32_T)atan((real_T)
-      (proxy_linux_B.xD / proxy_linux_B.rtb_y_p_idx_1)) + 3.14159274F;
-  }
-
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 = (proxy_linux_B.LDG +
-    proxy_linux_B.rtb_VectorConcatenate_idx_7) -
-    proxy_linux_B.rtb_VectorConcatenate_idx_6;
-  proxy_linux_B.y_l[0] = proxy_linux_B.rtb_VectorConcatenate_idx_6;
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_7 <= -1.5707963267948966) {
-    proxy_linux_B.y_l[1] = 6.28318548F +
-      proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  } else {
-    proxy_linux_B.y_l[1] = proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  }
-
-  proxy_linux_B.y_l[2] = proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.y_l[3] = proxy_linux_B.LHD;
-  proxy_linux_B.y_l[4] = 3.14159274F - (proxy_linux_B.xH + proxy_linux_B.yI);
-  proxy_linux_B.y_l[5] = proxy_linux_B.qN;
-  proxy_linux_B.y_l[6] = proxy_linux_B.LAK;
-  proxy_linux_B.y_l[7] = proxy_linux_B.rtb_VectorConcatenate_idx_8;
-
-  /* End of MATLAB Function: '<S31>/Pose' */
-
-  /* Gain: '<S20>/Gain  Aggiustato' */
-  proxy_linux_B.rtb_VectorConcatenate_idx_3 =
-    proxy_linux_P.GainAggiustato_Gain_d * proxy_linux_B.ByteUnpack[8];
-
-  /* Sum: '<S26>/Sum1' incorporates:
-   *  Constant: '<S26>/Constant'
-   *  Gain: '<S26>/Gain Aggiustato'
-   */
-  proxy_linux_B.Sum1_b = proxy_linux_P.Constant_Value_f -
-    proxy_linux_P.GainAggiustato_Gain_a * proxy_linux_B.ByteUnpack[15];
-
-  /* MATLAB Function: '<S18>/Index New Pose Estimation ' incorporates:
-   *  Constant: '<S18>/Sensor1'
-   *  SignalConversion: '<S24>/TmpSignal ConversionAt SFunction Inport1'
-   */
-  proxy_linux_B.LA2K = (real32_T)sqrt((real_T)(1506.56836F - 1174.6F * (real32_T)
-    cos((real_T)proxy_linux_B.Sum1_b)));
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 = proxy_linux_B.LA2K *
-    proxy_linux_B.LA2K;
-  proxy_linux_B.rtb_VectorConcatenate_idx_4 = (real32_T)sqrt((real_T)
-    ((proxy_linux_B.rtb_VectorConcatenate_idx_6 + 169.0F) - (real32_T)cos
-     ((real_T)(2.00712872F - proxy_linux_my_acos((proxy_linux_B.LA2K *
-    proxy_linux_B.LA2K + -943.43158F) / (33.56F * proxy_linux_B.LA2K)))) *
-     (26.0F * proxy_linux_B.LA2K)));
-  proxy_linux_B.rtb_VectorConcatenate_idx_5 =
-    ((proxy_linux_B.rtb_VectorConcatenate_idx_6 + -281.56839F) + 1225.0F) /
-    (2.0F * proxy_linux_B.LA2K * 35.0F);
-  proxy_linux_B.LAK = ((-((proxy_linux_B.rtb_VectorConcatenate_idx_3 + 123.0F) *
-    (proxy_linux_B.rtb_VectorConcatenate_idx_3 + 123.0F)) +
-                        proxy_linux_B.rtb_VectorConcatenate_idx_4 *
-                        proxy_linux_B.rtb_VectorConcatenate_idx_4) + 21806.1328F)
-    / (2.0F * proxy_linux_B.rtb_VectorConcatenate_idx_4 * 147.669F);
-  proxy_linux_B.LA2K = ((proxy_linux_B.rtb_VectorConcatenate_idx_6 + -169.0F) +
-                        proxy_linux_B.rtb_VectorConcatenate_idx_4 *
-                        proxy_linux_B.rtb_VectorConcatenate_idx_4) / (2.0F *
-    proxy_linux_B.LA2K * proxy_linux_B.rtb_VectorConcatenate_idx_4);
-  if (proxy_linux_my_acos(proxy_linux_B.rtb_VectorConcatenate_idx_5) >= 0.0F) {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)fabs((real_T)proxy_linux_my_acos
-      (proxy_linux_B.rtb_VectorConcatenate_idx_5));
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)fabs((real_T)proxy_linux_my_acos
-      (proxy_linux_B.rtb_VectorConcatenate_idx_5)) + 1.57079637F;
-  }
-
-  if (proxy_linux_my_acos(proxy_linux_B.LAK) >= 0.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_6 = (real32_T)fabs((real_T)
-      proxy_linux_my_acos(proxy_linux_B.LAK));
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_6 = (real32_T)fabs((real_T)
-      proxy_linux_my_acos(proxy_linux_B.LAK)) + 1.57079637F;
-  }
-
-  if (proxy_linux_my_acos(proxy_linux_B.LA2K) >= 0.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = (real32_T)fabs((real_T)
-      proxy_linux_my_acos(proxy_linux_B.LA2K));
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = (real32_T)fabs((real_T)
-      proxy_linux_my_acos(proxy_linux_B.LA2K)) + 1.57079637F;
-  }
-
-  proxy_linux_B.rtb_VectorConcatenate_idx_5 = 3.14159274F -
-    (((proxy_linux_B.xH_tmp_tmp + proxy_linux_B.rtb_VectorConcatenate_idx_6) +
-      proxy_linux_B.rtb_VectorConcatenate_idx_5) + 0.20071286F);
-  proxy_linux_B.xH_tmp = (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_5);
-  proxy_linux_B.xH = -72.0F * proxy_linux_B.xH_tmp;
-  proxy_linux_B.rtb_DataTypeConversion_a_idx_1 = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_5);
-  proxy_linux_B.yH = 72.0F * proxy_linux_B.rtb_DataTypeConversion_a_idx_1;
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 = proxy_linux_B.Sum1_b -
-    proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_7);
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 = -35.0F * proxy_linux_B.xH_tmp -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 43.0F;
-  proxy_linux_B.LAK_tmp_k = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_7);
-  proxy_linux_B.LAK = 35.0F * proxy_linux_B.rtb_DataTypeConversion_a_idx_1 -
-    proxy_linux_B.LAK_tmp_k * 43.0F;
-  proxy_linux_B.xD = proxy_linux_B.rtb_VectorConcatenate_idx_6 -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 9.0F;
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 = proxy_linux_B.LAK -
-    proxy_linux_B.LAK_tmp_k * 9.0F;
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 += proxy_linux_B.LAK_tmp_k * 16.0F;
-  proxy_linux_B.yI = proxy_linux_B.LAK -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 16.0F;
-  proxy_linux_B.LAK = proxy_linux_B.yI - (real32_T)
-    -(proxy_linux_P.Sensor1_Value[1] - 1.8);
-  proxy_linux_B.LLI = (real32_T)sqrt((real_T)
-    ((proxy_linux_B.rtb_VectorConcatenate_idx_6 - -10.0F) *
-     (proxy_linux_B.rtb_VectorConcatenate_idx_6 - -10.0F) + proxy_linux_B.LAK *
-     proxy_linux_B.LAK));
-  proxy_linux_B.LAK_tmp = proxy_linux_P.Sensor1_Value[1] *
-    proxy_linux_P.Sensor1_Value[1];
-  proxy_linux_B.LAK_tmp_k = proxy_linux_B.LLI * proxy_linux_B.LLI;
-  proxy_linux_B.LAK = (real32_T)sqrt((real_T)(proxy_linux_B.LAK_tmp_k -
-    (real32_T)proxy_linux_B.LAK_tmp));
-  proxy_linux_B.LLI = (((real32_T)-proxy_linux_B.LAK_tmp +
-                        proxy_linux_B.LAK_tmp_k) + proxy_linux_B.LAK *
-                       proxy_linux_B.LAK) / (2.0F * proxy_linux_B.LAK *
-    proxy_linux_B.LLI);
-  if (proxy_linux_my_acos(proxy_linux_B.LLI) >= 0.0F) {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)fabs((real_T)proxy_linux_my_acos
-      (proxy_linux_B.LLI));
-  } else {
-    if (proxy_linux_B.LLI < -1.0F) {
-      proxy_linux_B.LLI = -1.0F;
-    } else {
-      if (proxy_linux_B.LLI > 1.0F) {
-        proxy_linux_B.LLI = 1.0F;
-      }
-    }
-
-    proxy_linux_B.xH_tmp_tmp = (real32_T)fabs((real_T)proxy_linux_B.LLI) +
-      1.57079637F;
-  }
-
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 = (real32_T)atan((real_T)(((real32_T)
-    -(proxy_linux_P.Sensor1_Value[1] - 1.8) - proxy_linux_B.yI) / (-10.0F -
-    proxy_linux_B.rtb_VectorConcatenate_idx_6))) + proxy_linux_B.xH_tmp_tmp;
-  proxy_linux_B.yI = proxy_linux_B.xH - proxy_linux_B.xD;
-  proxy_linux_B.LLI = proxy_linux_B.yH -
-    proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  proxy_linux_B.LHD = (real32_T)sqrt((real_T)(proxy_linux_B.yI *
-    proxy_linux_B.yI + proxy_linux_B.LLI * proxy_linux_B.LLI));
-  proxy_linux_B.xH = (proxy_linux_B.xH - 86.0F *
-                      proxy_linux_B.rtb_DataTypeConversion_a_idx_1) -
-    proxy_linux_B.xD;
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (proxy_linux_B.yH - 86.0F *
-    proxy_linux_B.xH_tmp) - proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  proxy_linux_B.LDG = (real32_T)sqrt((real_T)(proxy_linux_B.xH *
-    proxy_linux_B.xH + proxy_linux_B.rtb_VectorConcatenate_idx_8 *
-    proxy_linux_B.rtb_VectorConcatenate_idx_8));
-  proxy_linux_B.xH_tmp = proxy_linux_B.LDG * proxy_linux_B.LDG;
-  proxy_linux_B.xH_tmp_c = proxy_linux_B.LHD * proxy_linux_B.LHD;
-  proxy_linux_B.xH = ((-proxy_linux_B.xH_tmp_c + proxy_linux_B.xH_tmp) + 7396.0F)
-    / (2.0F * proxy_linux_B.LDG * 86.0F);
-  proxy_linux_B.yI = ((proxy_linux_B.xH_tmp + -4489.0F) + 2116.0F) / (2.0F *
-    proxy_linux_B.LDG * 46.0F);
-  proxy_linux_B.yH = (real32_T)-(proxy_linux_P.Sensor1_Value[1] - 1.8) -
-    (real32_T)proxy_linux_P.Sensor1_Value[0] * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_6);
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = ((proxy_linux_B.xH_tmp_c +
-    -7396.0F) + proxy_linux_B.xH_tmp) / (2.0F * proxy_linux_B.LHD *
-    proxy_linux_B.LDG);
-  proxy_linux_B.LDG = ((proxy_linux_B.xH_tmp + -2116.0F) + 4489.0F) / (2.0F *
-    proxy_linux_B.LDG * 67.0F);
-  proxy_linux_B.LHD = ((proxy_linux_B.xH_tmp_c + -1369.0F) + 2704.0F) / (2.0F *
-    proxy_linux_B.LHD * 52.0F);
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_8 < -1.0F) {
-    proxy_linux_B.LA2K = -1.0F;
-  } else if (proxy_linux_B.rtb_VectorConcatenate_idx_8 > 1.0F) {
-    proxy_linux_B.LA2K = 1.0F;
-  } else {
-    proxy_linux_B.LA2K = proxy_linux_B.rtb_VectorConcatenate_idx_8;
-  }
-
-  if (proxy_linux_B.LA2K >= 0.0F) {
-    if (proxy_linux_B.rtb_VectorConcatenate_idx_8 < -1.0F) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_8 = -1.0F;
-    } else {
-      if (proxy_linux_B.rtb_VectorConcatenate_idx_8 > 1.0F) {
-        proxy_linux_B.rtb_VectorConcatenate_idx_8 = 1.0F;
-      }
-    }
-
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)fabs((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  } else {
-    if (proxy_linux_B.rtb_VectorConcatenate_idx_8 < -1.0F) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_8 = -1.0F;
-    } else {
-      if (proxy_linux_B.rtb_VectorConcatenate_idx_8 > 1.0F) {
-        proxy_linux_B.rtb_VectorConcatenate_idx_8 = 1.0F;
-      }
-    }
-
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)fabs((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_8) + 1.57079637F;
-  }
-
-  if (proxy_linux_B.LDG < -1.0F) {
-    proxy_linux_B.LA2K = -1.0F;
-  } else if (proxy_linux_B.LDG > 1.0F) {
-    proxy_linux_B.LA2K = 1.0F;
-  } else {
-    proxy_linux_B.LA2K = proxy_linux_B.LDG;
-  }
-
-  if (proxy_linux_B.LA2K >= 0.0F) {
-    if (proxy_linux_B.LDG < -1.0F) {
-      proxy_linux_B.LDG = -1.0F;
-    } else {
-      if (proxy_linux_B.LDG > 1.0F) {
-        proxy_linux_B.LDG = 1.0F;
-      }
-    }
-
-    proxy_linux_B.LDG = (real32_T)fabs((real_T)proxy_linux_B.LDG);
-  } else {
-    if (proxy_linux_B.LDG < -1.0F) {
-      proxy_linux_B.LDG = -1.0F;
-    } else {
-      if (proxy_linux_B.LDG > 1.0F) {
-        proxy_linux_B.LDG = 1.0F;
-      }
-    }
-
-    proxy_linux_B.LDG = (real32_T)fabs((real_T)proxy_linux_B.LDG) + 1.57079637F;
-  }
-
-  if (proxy_linux_B.LHD < -1.0F) {
-    proxy_linux_B.LA2K = -1.0F;
-  } else if (proxy_linux_B.LHD > 1.0F) {
-    proxy_linux_B.LA2K = 1.0F;
-  } else {
-    proxy_linux_B.LA2K = proxy_linux_B.LHD;
-  }
-
-  if (proxy_linux_B.LA2K >= 0.0F) {
-    if (proxy_linux_B.LHD < -1.0F) {
-      proxy_linux_B.LHD = -1.0F;
-    } else {
-      if (proxy_linux_B.LHD > 1.0F) {
-        proxy_linux_B.LHD = 1.0F;
-      }
-    }
-
-    proxy_linux_B.LHD = (real32_T)fabs((real_T)proxy_linux_B.LHD);
-  } else {
-    if (proxy_linux_B.LHD < -1.0F) {
-      proxy_linux_B.LHD = -1.0F;
-    } else {
-      if (proxy_linux_B.LHD > 1.0F) {
-        proxy_linux_B.LHD = 1.0F;
-      }
-    }
-
-    proxy_linux_B.LHD = (real32_T)fabs((real_T)proxy_linux_B.LHD) + 1.57079637F;
-  }
-
-  proxy_linux_B.LHD = 3.14159274F - ((proxy_linux_B.rtb_VectorConcatenate_idx_8
-    + proxy_linux_B.LDG) + proxy_linux_B.LHD);
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (proxy_linux_B.Sum1_b -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__c = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.xD = (proxy_linux_B.xD -
-                      proxy_linux_B.rtb_VectorConcatenate_idx_8 * 40.0F) +
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__c * 39.0F;
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 =
-    (proxy_linux_B.rtb_VectorConcatenate_idx_7 -
-     proxy_linux_B.rtb_TmpSignalConversionAtSFu__c * 40.0F) -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 39.0F;
-  proxy_linux_B.LA2K = proxy_linux_B.xD - (-10.0F - (real32_T)
-    proxy_linux_P.Sensor1_Value[0] * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_6));
-  proxy_linux_B.GainAggiustato_g = proxy_linux_B.rtb_VectorConcatenate_idx_7 -
-    proxy_linux_B.yH;
-  proxy_linux_B.LDG = (real32_T)sqrt((real_T)(proxy_linux_B.LA2K *
-    proxy_linux_B.LA2K + proxy_linux_B.GainAggiustato_g *
-    proxy_linux_B.GainAggiustato_g));
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__m = proxy_linux_B.LDG *
-    proxy_linux_B.LDG;
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)sqrt((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__m - (real32_T)
-     (proxy_linux_P.Sensor1_Value[1] * proxy_linux_P.Sensor1_Value[1])));
-  proxy_linux_B.LDG = (((real32_T)-(proxy_linux_P.Sensor1_Value[1] *
-    proxy_linux_P.Sensor1_Value[1]) +
-                        proxy_linux_B.rtb_TmpSignalConversionAtSFu__m) +
-                       proxy_linux_B.rtb_VectorConcatenate_idx_8 *
-                       proxy_linux_B.rtb_VectorConcatenate_idx_8) / (2.0F *
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * proxy_linux_B.LDG);
-  if (proxy_linux_B.LA2K <= 0.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 = (real32_T)atan((real_T)
-      ((proxy_linux_B.rtb_VectorConcatenate_idx_7 - proxy_linux_B.yH) /
-       proxy_linux_B.LA2K));
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 = (real32_T)atan((real_T)
-      (proxy_linux_B.GainAggiustato_g / proxy_linux_B.LA2K)) + 3.14159274F;
-  }
-
-  proxy_linux_B.rtb_pose_idx_0 = proxy_linux_B.rtb_VectorConcatenate_idx_6;
-  if (proxy_linux_B.LDG < -1.0F) {
-    proxy_linux_B.LA2K = -1.0F;
-  } else if (proxy_linux_B.LDG > 1.0F) {
-    proxy_linux_B.LA2K = 1.0F;
-  } else {
-    proxy_linux_B.LA2K = proxy_linux_B.LDG;
-  }
-
-  if (proxy_linux_B.LA2K >= 0.0F) {
-    if (proxy_linux_B.LDG < -1.0F) {
-      proxy_linux_B.LDG = -1.0F;
-    } else {
-      if (proxy_linux_B.LDG > 1.0F) {
-        proxy_linux_B.LDG = 1.0F;
-      }
-    }
-
-    proxy_linux_B.LDG = (real32_T)fabs((real_T)proxy_linux_B.LDG);
-  } else {
-    if (proxy_linux_B.LDG < -1.0F) {
-      proxy_linux_B.LDG = -1.0F;
-    } else {
-      if (proxy_linux_B.LDG > 1.0F) {
-        proxy_linux_B.LDG = 1.0F;
-      }
-    }
-
-    proxy_linux_B.LDG = (real32_T)fabs((real_T)proxy_linux_B.LDG) + 1.57079637F;
-  }
-
-  proxy_linux_B.rtb_pose_idx_1 = (proxy_linux_B.LDG +
-    proxy_linux_B.rtb_VectorConcatenate_idx_7) -
-    proxy_linux_B.rtb_VectorConcatenate_idx_6;
-  proxy_linux_B.rtb_pose_idx_2 = proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.rtb_pose_idx_3 = proxy_linux_B.LHD;
-  if (proxy_linux_B.xH < -1.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = -1.0F;
-  } else if (proxy_linux_B.xH > 1.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = 1.0F;
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = proxy_linux_B.xH;
-  }
-
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_5 >= 0.0F) {
-    if (proxy_linux_B.xH < -1.0F) {
-      proxy_linux_B.xH = -1.0F;
-    } else {
-      if (proxy_linux_B.xH > 1.0F) {
-        proxy_linux_B.xH = 1.0F;
-      }
-    }
-
-    proxy_linux_B.xH = (real32_T)fabs((real_T)proxy_linux_B.xH);
-  } else {
-    if (proxy_linux_B.xH < -1.0F) {
-      proxy_linux_B.xH = -1.0F;
-    } else {
-      if (proxy_linux_B.xH > 1.0F) {
-        proxy_linux_B.xH = 1.0F;
-      }
-    }
-
-    proxy_linux_B.xH = (real32_T)fabs((real_T)proxy_linux_B.xH) + 1.57079637F;
-  }
-
-  if (proxy_linux_B.yI < -1.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = -1.0F;
-  } else if (proxy_linux_B.yI > 1.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = 1.0F;
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = proxy_linux_B.yI;
-  }
-
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_5 >= 0.0F) {
-    if (proxy_linux_B.yI < -1.0F) {
-      proxy_linux_B.yI = -1.0F;
-    } else {
-      if (proxy_linux_B.yI > 1.0F) {
-        proxy_linux_B.yI = 1.0F;
-      }
-    }
-
-    proxy_linux_B.yI = (real32_T)fabs((real_T)proxy_linux_B.yI);
-  } else {
-    if (proxy_linux_B.yI < -1.0F) {
-      proxy_linux_B.yI = -1.0F;
-    } else {
-      if (proxy_linux_B.yI > 1.0F) {
-        proxy_linux_B.yI = 1.0F;
-      }
-    }
-
-    proxy_linux_B.yI = (real32_T)fabs((real_T)proxy_linux_B.yI) + 1.57079637F;
-  }
-
-  proxy_linux_B.rtb_pose_idx_4 = 3.14159274F - (proxy_linux_B.xH +
-    proxy_linux_B.yI);
-  proxy_linux_B.rtb_pose_idx_5 = (real32_T)fabs((real_T)proxy_linux_my_acos
-    ((((proxy_linux_B.rtb_VectorConcatenate_idx_3 + 123.0F) *
-       (proxy_linux_B.rtb_VectorConcatenate_idx_3 + 123.0F) +
-       -(proxy_linux_B.rtb_VectorConcatenate_idx_4 *
-         proxy_linux_B.rtb_VectorConcatenate_idx_4)) + 21806.1328F) /
-     ((proxy_linux_B.rtb_VectorConcatenate_idx_3 + 123.0F) * 2.0F * 147.669F)))
-    - 0.20071286F;
-  proxy_linux_B.rtb_pose_idx_6 = proxy_linux_B.LAK;
-  proxy_linux_B.rtb_pose_idx_7 = proxy_linux_B.rtb_VectorConcatenate_idx_8;
-
-  /* ManualSwitch: '<S11>/Manual Switch1' incorporates:
-   *  MATLAB Function: '<S18>/Index New Pose Estimation '
-   */
-  if (proxy_linux_P.ManualSwitch1_CurrentSetting_ox == 1) {
-    /* ManualSwitch: '<S19>/Manual Switch1' incorporates:
-     *  Constant: '<S19>/Constant1'
-     */
-    if (proxy_linux_P.ManualSwitch1_CurrentSetting == 1) {
-      proxy_linux_B.LA2K = proxy_linux_B.y_l[1];
-    } else {
-      proxy_linux_B.LA2K = proxy_linux_P.Constant1_Value_d;
-    }
-
-    /* End of ManualSwitch: '<S19>/Manual Switch1' */
-  } else {
-    proxy_linux_B.LA2K = proxy_linux_B.rtb_VectorConcatenate_idx_8;
-  }
-
-  /* End of ManualSwitch: '<S11>/Manual Switch1' */
-
-  /* Saturate: '<S7>/Saturation2' */
-  if (proxy_linux_B.LA2K > proxy_linux_P.Saturation2_UpperSat) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_4 =
-      proxy_linux_P.Saturation2_UpperSat;
-  } else if (proxy_linux_B.LA2K < proxy_linux_P.Saturation2_LowerSat) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_4 =
-      proxy_linux_P.Saturation2_LowerSat;
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_4 = proxy_linux_B.LA2K;
-  }
-
-  /* End of Saturate: '<S7>/Saturation2' */
-
-  /* ManualSwitch: '<S11>/Manual Switch' incorporates:
-   *  MATLAB Function: '<S18>/Index New Pose Estimation '
-   */
-  if (proxy_linux_P.ManualSwitch_CurrentSetting_bd == 1) {
-    /* ManualSwitch: '<S19>/Manual Switch' incorporates:
-     *  Constant: '<S19>/Constant1'
-     */
-    if (proxy_linux_P.ManualSwitch_CurrentSetting == 1) {
-      proxy_linux_B.LA2K = proxy_linux_B.y_l[0];
-    } else {
-      proxy_linux_B.LA2K = proxy_linux_P.Constant1_Value_d;
-    }
-
-    /* End of ManualSwitch: '<S19>/Manual Switch' */
-  } else {
-    proxy_linux_B.LA2K = proxy_linux_B.LAK;
-  }
-
-  /* End of ManualSwitch: '<S11>/Manual Switch' */
-
-  /* Saturate: '<S7>/Saturation3' */
-  if (proxy_linux_B.LA2K > proxy_linux_P.Saturation3_UpperSat) {
-    proxy_linux_B.LA2K = proxy_linux_P.Saturation3_UpperSat;
-  } else {
-    if (proxy_linux_B.LA2K < proxy_linux_P.Saturation3_LowerSat) {
-      proxy_linux_B.LA2K = proxy_linux_P.Saturation3_LowerSat;
-    }
-  }
-
-  /* End of Saturate: '<S7>/Saturation3' */
-
-  /* Gain: '<S12>/Gain  Aggiustato' */
-  proxy_linux_B.GainAggiustato_g = proxy_linux_P.GainAggiustato_Gain_h *
-    proxy_linux_B.ByteUnpack[9];
-
-  /* Sum: '<S45>/Sum1' incorporates:
-   *  Constant: '<S45>/Constant'
-   *  Gain: '<S45>/Gain Aggiustato'
-   */
-  proxy_linux_B.Sum1_h = proxy_linux_P.Constant_Value_b -
-    proxy_linux_P.GainAggiustato_Gain_o * proxy_linux_B.ByteUnpack[14];
-
-  /* ManualSwitch: '<S12>/Manual Switch5' incorporates:
-   *  Constant: '<S12>/Constant4'
-   *  Constant: '<S12>/Constant5'
+  /* ManualSwitch: '<S14>/Manual Switch5' incorporates:
+   *  Constant: '<S14>/Constant4'
+   *  Constant: '<S14>/Constant5'
    */
   if (proxy_linux_P.ManualSwitch5_CurrentSetting == 1) {
-    proxy_linux_B.xH_tmp_tmp = proxy_linux_P.Constant4_Value;
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant4_Value;
   } else {
-    proxy_linux_B.xH_tmp_tmp = proxy_linux_P.Constant5_Value;
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant5_Value;
   }
 
-  /* End of ManualSwitch: '<S12>/Manual Switch5' */
+  /* End of ManualSwitch: '<S14>/Manual Switch5' */
 
-  /* MATLAB Function: '<S12>/MATLAB Function2' incorporates:
-   *  Constant: '<S12>/Constant1'
-   *  SignalConversion: '<S43>/TmpSignal ConversionAt SFunction Inport2'
-   */
-  if (proxy_linux_B.xH_tmp_tmp == 0.0F) {
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__m =
-      proxy_linux_P.Constant1_Value_de[0];
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__c =
-      proxy_linux_P.Constant1_Value_de[1];
-  } else {
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__m =
-      proxy_linux_B.GainAggiustato_g;
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__c = proxy_linux_B.Sum1_h;
-  }
-
-  /* End of MATLAB Function: '<S12>/MATLAB Function2' */
-
-  /* MATLAB Function: '<S12>/MATLAB Function3' incorporates:
-   *  Constant: '<S40>/finger width'
-   *  Constant: '<S40>/proximal length'
-   *  DataTypeConversion: '<S12>/Data Type Conversion'
-   */
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = 1549.0F - 1260.0F * (real32_T)cos
-    ((real_T)proxy_linux_B.rtb_TmpSignalConversionAtSFu__c);
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_8 < 0.0F) {
-    printf("errore LAK \n");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = 1.0F;
-  }
-
-  proxy_linux_B.LAK = (real32_T)sqrt((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.xH_tmp_tmp = proxy_linux_B.LAK * proxy_linux_B.LAK;
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 =
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__m + 117.77F) *
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__m + 117.77F);
-  proxy_linux_B.rtb_VectorConcatenate_idx_5 =
-    ((proxy_linux_B.rtb_VectorConcatenate_idx_6 + -proxy_linux_B.xH_tmp_tmp) +
-     18396.0391F) / ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__m + 117.77F) *
-                     2.0F * 135.632F);
-  if ((real32_T)fabs((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_5) > 1.0F)
-  {
-    printf("errore qN");
-    fflush(stdout);
-    proxy_linux_B.qN = 0.0F;
-  } else {
-    proxy_linux_B.qN = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_5)) - 0.1108F;
-  }
-
-  proxy_linux_B.rtb_VectorConcatenate_idx_5 = ((proxy_linux_B.xH_tmp_tmp +
-    -324.0F) + 1225.0F) / (2.0F * proxy_linux_B.LAK * 35.0F);
-  proxy_linux_B.LAK = ((-proxy_linux_B.rtb_VectorConcatenate_idx_6 +
-                        proxy_linux_B.xH_tmp_tmp) + 18396.0391F) / (2.0F *
-    proxy_linux_B.LAK * 135.632F);
-  if ((real32_T)fabs((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_5) > 1.0F)
-  {
-    printf("errore qK1 \n");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_5);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_5 = (real32_T)fabs((real_T)
-        (real32_T)acos((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_5));
-    } else {
-      proxy_linux_B.rtb_VectorConcatenate_idx_5 = (real32_T)fabs((real_T)
-        proxy_linux_B.xH_tmp_tmp) + 1.57079637F;
-    }
-  }
-
-  if ((real32_T)fabs((real_T)proxy_linux_B.LAK) > 1.0F) {
-    printf("errore gK2 \n");
-    fflush(stdout);
-    proxy_linux_B.LAK = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LAK);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LAK = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LAK));
-    } else {
-      proxy_linux_B.LAK = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  proxy_linux_B.rtb_VectorConcatenate_idx_5 = 3.14159274F -
-    ((proxy_linux_B.rtb_VectorConcatenate_idx_5 + proxy_linux_B.LAK) + 0.1108F);
-  proxy_linux_B.xH_tmp = (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_5);
-  proxy_linux_B.xH = -72.0F * proxy_linux_B.xH_tmp;
-  proxy_linux_B.rtb_DataTypeConversion_a_idx_1 = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_5);
-  proxy_linux_B.yH = 72.0F * proxy_linux_B.rtb_DataTypeConversion_a_idx_1;
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 =
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_7);
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 = -35.0F * proxy_linux_B.xH_tmp -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 43.0F;
-  proxy_linux_B.LAK_tmp_k = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_7);
-  proxy_linux_B.LAK = 35.0F * proxy_linux_B.rtb_DataTypeConversion_a_idx_1 -
-    proxy_linux_B.LAK_tmp_k * 43.0F;
-  proxy_linux_B.xD = proxy_linux_B.rtb_VectorConcatenate_idx_6 -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 9.0F;
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 = proxy_linux_B.LAK -
-    proxy_linux_B.LAK_tmp_k * 9.0F;
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 += proxy_linux_B.LAK_tmp_k * 16.0F;
-  proxy_linux_B.yI = proxy_linux_B.LAK -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 16.0F;
-  proxy_linux_B.LAK = proxy_linux_B.yI - (-((real32_T)
-    proxy_linux_P.fingerwidth_Value_n + 3.0F));
-  proxy_linux_B.LLI = (real32_T)sqrt((real_T)
-    ((proxy_linux_B.rtb_VectorConcatenate_idx_6 - -10.0F) *
-     (proxy_linux_B.rtb_VectorConcatenate_idx_6 - -10.0F) + proxy_linux_B.LAK *
-     proxy_linux_B.LAK));
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__m = (real32_T)
-    proxy_linux_P.fingerwidth_Value_n * (real32_T)
-    proxy_linux_P.fingerwidth_Value_n;
-  proxy_linux_B.rtb_y_p_idx_1 = proxy_linux_B.LLI * proxy_linux_B.LLI;
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = proxy_linux_B.rtb_y_p_idx_1 -
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__m;
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_8 < 0.0F) {
-    printf("errore c1 \n");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = 0.0F;
-  }
-
-  proxy_linux_B.LAK = (real32_T)sqrt((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.LLI = ((-proxy_linux_B.rtb_TmpSignalConversionAtSFu__m +
-                        proxy_linux_B.rtb_y_p_idx_1) + proxy_linux_B.LAK *
-                       proxy_linux_B.LAK) / (2.0F * proxy_linux_B.LAK *
-    proxy_linux_B.LLI);
-  if ((real32_T)fabs((real_T)proxy_linux_B.LLI) > 1.0F) {
-    printf("errore qj1 \n");
-    fflush(stdout);
-    proxy_linux_B.LLI = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LLI);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LLI = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LLI));
-    } else {
-      proxy_linux_B.LLI = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  proxy_linux_B.rtb_VectorConcatenate_idx_6 = (real32_T)atan((real_T)
-    ((-((real32_T)proxy_linux_P.fingerwidth_Value_n + 3.0F) - proxy_linux_B.yI) /
-     (-10.0F - proxy_linux_B.rtb_VectorConcatenate_idx_6))) + proxy_linux_B.LLI;
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_6 <= 0.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_6 = (real32_T)fabs((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_6);
-  }
-
-  proxy_linux_B.LLI = proxy_linux_B.xH - proxy_linux_B.xD;
-  proxy_linux_B.yI = proxy_linux_B.yH -
-    proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  proxy_linux_B.LHD = (real32_T)sqrt((real_T)(proxy_linux_B.LLI *
-    proxy_linux_B.LLI + proxy_linux_B.yI * proxy_linux_B.yI));
-  proxy_linux_B.LLI = (proxy_linux_B.xH - 86.0F *
-                       proxy_linux_B.rtb_DataTypeConversion_a_idx_1) -
-    proxy_linux_B.xD;
-  proxy_linux_B.xH = (proxy_linux_B.yH - 86.0F * proxy_linux_B.xH_tmp) -
-    proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  proxy_linux_B.LDG = (real32_T)sqrt((real_T)(proxy_linux_B.LLI *
-    proxy_linux_B.LLI + proxy_linux_B.xH * proxy_linux_B.xH));
-  proxy_linux_B.xH_tmp = proxy_linux_B.LDG * proxy_linux_B.LDG;
-  proxy_linux_B.xH_tmp_c = proxy_linux_B.LHD * proxy_linux_B.LHD;
-  proxy_linux_B.xH = ((-proxy_linux_B.xH_tmp_c + proxy_linux_B.xH_tmp) + 7396.0F)
-    / (2.0F * proxy_linux_B.LDG * 86.0F);
-  proxy_linux_B.yI = ((proxy_linux_B.xH_tmp + -4489.0F) + 2116.0F) / (2.0F *
-    proxy_linux_B.LDG * 46.0F);
-  if ((real32_T)fabs((real_T)proxy_linux_B.xH) > 1.0F) {
-    printf("errore qG1 \n");
-    fflush(stdout);
-    proxy_linux_B.xH = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.xH);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.xH = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.xH));
-    } else {
-      proxy_linux_B.xH = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  if ((real32_T)fabs((real_T)proxy_linux_B.yI) > 1.0F) {
-    printf("errore qG2 \n");
-    fflush(stdout);
-    proxy_linux_B.yI = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.yI);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.yI = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.yI));
-    } else {
-      proxy_linux_B.yI = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  proxy_linux_B.yH = -((real32_T)proxy_linux_P.fingerwidth_Value_n + 3.0F) -
-    (real32_T)proxy_linux_P.proximallength_Value_b * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_6);
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = ((proxy_linux_B.xH_tmp_c +
-    -7396.0F) + proxy_linux_B.xH_tmp) / (2.0F * proxy_linux_B.LHD *
-    proxy_linux_B.LDG);
-  proxy_linux_B.LDG = ((proxy_linux_B.xH_tmp + -2116.0F) + 4489.0F) / (2.0F *
-    proxy_linux_B.LDG * 67.0F);
-  proxy_linux_B.LHD = ((proxy_linux_B.xH_tmp_c + -1369.0F) + 2704.0F) / (2.0F *
-    proxy_linux_B.LHD * 52.0F);
-  if ((real32_T)fabs((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_8) > 1.0F)
-  {
-    printf("errore qD1");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_8);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)fabs((real_T)
-        (real32_T)acos((real_T)proxy_linux_B.rtb_VectorConcatenate_idx_8));
-    } else {
-      proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)fabs((real_T)
-        proxy_linux_B.xH_tmp_tmp) + 1.57079637F;
-    }
-  }
-
-  if ((real32_T)fabs((real_T)proxy_linux_B.LDG) > 1.0F) {
-    printf("errore qD2 \n");
-    fflush(stdout);
-    proxy_linux_B.LDG = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LDG);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LDG = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LDG));
-    } else {
-      proxy_linux_B.LDG = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  if ((real32_T)fabs((real_T)proxy_linux_B.LHD) > 1.0F) {
-    printf("errore qD3 \n");
-    fflush(stdout);
-    proxy_linux_B.LHD = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LHD);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LHD = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LHD));
-    } else {
-      proxy_linux_B.LHD = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  proxy_linux_B.LHD = 3.14159274F - ((proxy_linux_B.rtb_VectorConcatenate_idx_8
-    + proxy_linux_B.LDG) + proxy_linux_B.LHD);
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 =
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__c = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.xD = (proxy_linux_B.xD -
-                      proxy_linux_B.rtb_VectorConcatenate_idx_8 * 40.0F) +
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__c * 39.0F;
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 =
-    (proxy_linux_B.rtb_VectorConcatenate_idx_7 -
-     proxy_linux_B.rtb_TmpSignalConversionAtSFu__c * 40.0F) -
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * 39.0F;
-  proxy_linux_B.rtb_y_p_idx_1 = proxy_linux_B.xD - (-10.0F - (real32_T)
-    proxy_linux_P.proximallength_Value_b * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_VectorConcatenate_idx_6));
-  proxy_linux_B.xD = proxy_linux_B.rtb_VectorConcatenate_idx_7 -
-    proxy_linux_B.yH;
-  proxy_linux_B.LDG = (real32_T)sqrt((real_T)(proxy_linux_B.rtb_y_p_idx_1 *
-    proxy_linux_B.rtb_y_p_idx_1 + proxy_linux_B.xD * proxy_linux_B.xD));
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__c = proxy_linux_B.LDG *
-    proxy_linux_B.LDG;
-  proxy_linux_B.rtb_VectorConcatenate_idx_8 =
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__m;
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_8 < 0.0F) {
-    printf("errore c2");
-    fflush(stdout);
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = 0.0F;
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 = (real32_T)sqrt((real_T)
-      proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  }
-
-  proxy_linux_B.LDG = ((-((real32_T)proxy_linux_P.fingerwidth_Value_n *
-    (real32_T)proxy_linux_P.fingerwidth_Value_n) +
-                        proxy_linux_B.rtb_TmpSignalConversionAtSFu__c) +
-                       proxy_linux_B.rtb_VectorConcatenate_idx_8 *
-                       proxy_linux_B.rtb_VectorConcatenate_idx_8) / (2.0F *
-    proxy_linux_B.rtb_VectorConcatenate_idx_8 * proxy_linux_B.LDG);
-  if ((real32_T)fabs((real_T)proxy_linux_B.LDG) > 1.0F) {
-    printf("errore qj2 \n");
-    fflush(stdout);
-    proxy_linux_B.LDG = 0.0F;
-  } else {
-    proxy_linux_B.xH_tmp_tmp = (real32_T)acos((real_T)proxy_linux_B.LDG);
-    if (proxy_linux_B.xH_tmp_tmp >= 0.0F) {
-      proxy_linux_B.LDG = (real32_T)fabs((real_T)(real32_T)acos((real_T)
-        proxy_linux_B.LDG));
-    } else {
-      proxy_linux_B.LDG = (real32_T)fabs((real_T)proxy_linux_B.xH_tmp_tmp) +
-        1.57079637F;
-    }
-  }
-
-  if (proxy_linux_B.rtb_y_p_idx_1 <= 0.0F) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 = (real32_T)atan((real_T)
-      ((proxy_linux_B.rtb_VectorConcatenate_idx_7 - proxy_linux_B.yH) /
-       proxy_linux_B.rtb_y_p_idx_1));
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 = (real32_T)atan((real_T)
-      (proxy_linux_B.xD / proxy_linux_B.rtb_y_p_idx_1)) + 3.14159274F;
-  }
-
-  proxy_linux_B.rtb_VectorConcatenate_idx_7 = (proxy_linux_B.LDG +
-    proxy_linux_B.rtb_VectorConcatenate_idx_7) -
-    proxy_linux_B.rtb_VectorConcatenate_idx_6;
-  proxy_linux_B.LDG = proxy_linux_B.rtb_VectorConcatenate_idx_6;
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_7 <= -1.5707963267948966) {
-    proxy_linux_B.rtb_y_p_idx_1 = 6.28318548F +
-      proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  } else {
-    proxy_linux_B.rtb_y_p_idx_1 = proxy_linux_B.rtb_VectorConcatenate_idx_7;
-  }
-
-  proxy_linux_B.rtb_y_p_idx_2 = proxy_linux_B.rtb_VectorConcatenate_idx_5;
-  proxy_linux_B.rtb_y_p_idx_4 = 3.14159274F - (proxy_linux_B.xH +
-    proxy_linux_B.yI);
-  proxy_linux_B.rtb_y_p_idx_5 = proxy_linux_B.qN;
-  proxy_linux_B.rtb_y_p_idx_6 = proxy_linux_B.LAK;
-
-  /* Saturate: '<S7>/Saturation4' */
-  if (proxy_linux_B.rtb_y_p_idx_1 > proxy_linux_P.Saturation4_UpperSat) {
-    proxy_linux_B.qN = proxy_linux_P.Saturation4_UpperSat;
-  } else if (proxy_linux_B.rtb_y_p_idx_1 < proxy_linux_P.Saturation4_LowerSat) {
-    proxy_linux_B.qN = proxy_linux_P.Saturation4_LowerSat;
-  } else {
-    proxy_linux_B.qN = proxy_linux_B.rtb_y_p_idx_1;
-  }
-
-  /* End of Saturate: '<S7>/Saturation4' */
-
-  /* Saturate: '<S7>/Saturation5' incorporates:
-   *  MATLAB Function: '<S12>/MATLAB Function3'
-   */
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_6 >
-      proxy_linux_P.Saturation5_UpperSat) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 =
-      proxy_linux_P.Saturation5_UpperSat;
-  } else if (proxy_linux_B.rtb_VectorConcatenate_idx_6 <
-             proxy_linux_P.Saturation5_LowerSat) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 =
-      proxy_linux_P.Saturation5_LowerSat;
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_5 =
-      proxy_linux_B.rtb_VectorConcatenate_idx_6;
-  }
-
-  /* End of Saturate: '<S7>/Saturation5' */
-
-  /* ManualSwitch: '<S14>/Manual Switch' incorporates:
+  /* MATLAB Function: '<S14>/MATLAB Function2' incorporates:
    *  Constant: '<S14>/Constant1'
-   *  MATLAB Function: '<S14>/Pose Estimation'
    */
-  if (proxy_linux_P.ManualSwitch_CurrentSetting_bx == 1) {
-    /* Saturate: '<S14>/Saturation' */
-    if (proxy_linux_B.ByteUnpack[10] > proxy_linux_P.Saturation_UpperSat_b) {
-      proxy_linux_B.xH_tmp_tmp = proxy_linux_P.Saturation_UpperSat_b;
-    } else if (proxy_linux_B.ByteUnpack[10] <
-               proxy_linux_P.Saturation_LowerSat_b) {
-      proxy_linux_B.xH_tmp_tmp = proxy_linux_P.Saturation_LowerSat_b;
+  proxy_linux_MATLABFunction2(proxy_linux_P.Constant1_Value_c,
+    proxy_linux_B.Saturation3, proxy_linux_B.Saturation2,
+    proxy_linux_B.Saturation4, &proxy_linux_B.sf_MATLABFunction2);
+
+  /* MATLAB Function: '<S14>/MATLAB Function3' */
+  proxy_linux_MATLABFunction3(proxy_linux_B.sf_MATLABFunction2.y,
+    proxy_linux_B.DataTypeConversion, &proxy_linux_B.sf_MATLABFunction3);
+
+  /* MATLAB Function: '<S14>/Jacobian2' incorporates:
+   *  Constant: '<S24>/finger width'
+   *  Constant: '<S24>/proximal length'
+   *  DataTypeConversion: '<S22>/Conversion'
+   *  UnitDelay: '<S14>/Unit Delay1'
+   */
+  proxy_linux_Jacobian2(proxy_linux_B.sf_MATLABFunction3.y,
+                        proxy_linux_B.Saturation3, proxy_linux_B.Saturation2,
+                        proxy_linux_P.fingerwidth_Value,
+                        proxy_linux_P.proximallength_Value,
+                        proxy_linux_B.Conversion_a, (real_T)
+                        proxy_linux_DW.UnitDelay1_DSTATE,
+                        &proxy_linux_B.sf_Jacobian2);
+
+  /* MATLAB Function: '<S14>/MATLAB Function' incorporates:
+   *  Gain: '<S14>/Gain'
+   *  Gain: '<S14>/Gain1'
+   */
+  proxy_linux_MATLABFunction(proxy_linux_B.sf_Jacobian2.JTcomp,
+    proxy_linux_P.Gain_Gain_a * proxy_linux_B.Gain3, proxy_linux_P.Gain1_Gain_i *
+    proxy_linux_B.Gain7, &proxy_linux_B.sf_MATLABFunction_d);
+
+  /* Sum: '<S29>/Sum2' incorporates:
+   *  Constant: '<S29>/Constant2'
+   */
+  proxy_linux_B.Sum2 = proxy_linux_B.ManualSwitch_p -
+    proxy_linux_P.Constant2_Value_g;
+
+  /* Outputs for Enabled SubSystem: '<S50>/Subsystem' */
+  proxy_linux_Subsystem(proxy_linux_B.LogicalOperator,
+                        &proxy_linux_B.Subsystem_a, &proxy_linux_DW.Subsystem_a);
+
+  /* End of Outputs for SubSystem: '<S50>/Subsystem' */
+
+  /* Switch: '<S50>/Switch' incorporates:
+   *  Constant: '<S50>/Constant1'
+   */
+  if (proxy_linux_B.LogicalOperator) {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant1_Value_nn;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_B.Subsystem_a.Memory;
+  }
+
+  /* End of Switch: '<S50>/Switch' */
+
+  /* Sum: '<S50>/Sum' incorporates:
+   *  Gain: '<S50>/Gain  Aggiustato'
+   */
+  proxy_linux_B.Sum_l = proxy_linux_P.GainAggiustato_Gain_h *
+    proxy_linux_B.ByteUnpack[9] - proxy_linux_B.Saturation4;
+
+  /* DataTypeConversion: '<S52>/Conversion' incorporates:
+   *  UnitDelay: '<S16>/Unit Delay3'
+   */
+  proxy_linux_B.Conversion_a[0] = proxy_linux_DW.UnitDelay3_DSTATE_k[0];
+  proxy_linux_B.Conversion_a[1] = proxy_linux_DW.UnitDelay3_DSTATE_k[1];
+
+  /* DataTypeConversion: '<S16>/Data Type Conversion' incorporates:
+   *  Constant: '<S53>/finger width'
+   *  Constant: '<S53>/proximal length'
+   */
+  proxy_linux_B.DataTypeConversion[0] = (real32_T)
+    proxy_linux_P.fingerwidth_Value_n;
+  proxy_linux_B.DataTypeConversion[1] = (real32_T)
+    proxy_linux_P.proximallength_Value_b;
+
+  /* Saturate: '<S16>/Saturation3' */
+  if (proxy_linux_B.Sum_l > proxy_linux_P.Saturation3_UpperSat_d) {
+    proxy_linux_B.Saturation3 = proxy_linux_P.Saturation3_UpperSat_d;
+  } else if (proxy_linux_B.Sum_l < proxy_linux_P.Saturation3_LowerSat_n) {
+    proxy_linux_B.Saturation3 = proxy_linux_P.Saturation3_LowerSat_n;
+  } else {
+    proxy_linux_B.Saturation3 = proxy_linux_B.Sum_l;
+  }
+
+  /* End of Saturate: '<S16>/Saturation3' */
+
+  /* Outputs for Enabled SubSystem: '<S58>/Subsystem' */
+  proxy_linux_Subsystem(proxy_linux_B.LogicalOperator,
+                        &proxy_linux_B.Subsystem_c, &proxy_linux_DW.Subsystem_c);
+
+  /* End of Outputs for SubSystem: '<S58>/Subsystem' */
+
+  /* Switch: '<S58>/Switch' incorporates:
+   *  Constant: '<S58>/Constant1'
+   */
+  if (proxy_linux_B.LogicalOperator) {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant1_Value_a;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_B.Subsystem_c.Memory;
+  }
+
+  /* End of Switch: '<S58>/Switch' */
+
+  /* Sum: '<S58>/Sum1' incorporates:
+   *  Constant: '<S58>/Constant'
+   *  Gain: '<S58>/Gain Aggiustato'
+   *  Sum: '<S58>/Sum'
+   */
+  proxy_linux_B.ManualSwitch_p = (proxy_linux_P.Constant_Value_bd -
+    proxy_linux_B.Saturation4) - proxy_linux_P.GainAggiustato_Gain_o *
+    proxy_linux_B.ByteUnpack[14];
+
+  /* Saturate: '<S16>/Saturation2' */
+  if (proxy_linux_B.ManualSwitch_p > proxy_linux_P.Saturation2_UpperSat_l) {
+    proxy_linux_B.Saturation2 = proxy_linux_P.Saturation2_UpperSat_l;
+  } else if (proxy_linux_B.ManualSwitch_p < proxy_linux_P.Saturation2_LowerSat_i)
+  {
+    proxy_linux_B.Saturation2 = proxy_linux_P.Saturation2_LowerSat_i;
+  } else {
+    proxy_linux_B.Saturation2 = proxy_linux_B.ManualSwitch_p;
+  }
+
+  /* End of Saturate: '<S16>/Saturation2' */
+
+  /* ManualSwitch: '<S16>/Manual Switch5' incorporates:
+   *  Constant: '<S16>/Constant4'
+   *  Constant: '<S16>/Constant5'
+   */
+  if (proxy_linux_P.ManualSwitch5_CurrentSetting_d == 1) {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant4_Value_n;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant5_Value_p;
+  }
+
+  /* End of ManualSwitch: '<S16>/Manual Switch5' */
+
+  /* MATLAB Function: '<S16>/MATLAB Function2' incorporates:
+   *  Constant: '<S16>/Constant1'
+   */
+  proxy_linux_MATLABFunction2(proxy_linux_P.Constant1_Value_d,
+    proxy_linux_B.Saturation3, proxy_linux_B.Saturation2,
+    proxy_linux_B.Saturation4, &proxy_linux_B.sf_MATLABFunction2_o);
+
+  /* MATLAB Function: '<S16>/MATLAB Function3' */
+  proxy_linux_MATLABFunction3(proxy_linux_B.sf_MATLABFunction2_o.y,
+    proxy_linux_B.DataTypeConversion, &proxy_linux_B.sf_MATLABFunction3_b);
+
+  /* MATLAB Function: '<S16>/Jacobian2' incorporates:
+   *  Constant: '<S53>/finger width'
+   *  Constant: '<S53>/proximal length'
+   *  DataTypeConversion: '<S51>/Conversion'
+   *  UnitDelay: '<S16>/Unit Delay1'
+   */
+  proxy_linux_Jacobian2(proxy_linux_B.sf_MATLABFunction3_b.y,
+                        proxy_linux_B.Saturation3, proxy_linux_B.Saturation2,
+                        proxy_linux_P.fingerwidth_Value_n,
+                        proxy_linux_P.proximallength_Value_b,
+                        proxy_linux_B.Conversion_a, (real_T)
+                        proxy_linux_DW.UnitDelay1_DSTATE_e,
+                        &proxy_linux_B.sf_Jacobian2_o);
+
+  /* MATLAB Function: '<S16>/MATLAB Function' incorporates:
+   *  Gain: '<S16>/Gain'
+   *  Gain: '<S16>/Gain1'
+   */
+  proxy_linux_MATLABFunction(proxy_linux_B.sf_Jacobian2_o.JTcomp,
+    proxy_linux_P.Gain_Gain_m * proxy_linux_B.Gain2, proxy_linux_P.Gain1_Gain_m *
+    proxy_linux_B.Gain6, &proxy_linux_B.sf_MATLABFunction_dm);
+
+  /* Sum: '<S58>/Sum2' incorporates:
+   *  Constant: '<S58>/Constant2'
+   */
+  proxy_linux_B.Sum2_j = proxy_linux_B.ManualSwitch_p -
+    proxy_linux_P.Constant2_Value_b;
+
+  /* Outputs for Enabled SubSystem: '<S17>/Subsystem' */
+  proxy_linux_Subsystem(proxy_linux_B.LogicalOperator,
+                        &proxy_linux_B.Subsystem_f, &proxy_linux_DW.Subsystem_f);
+
+  /* End of Outputs for SubSystem: '<S17>/Subsystem' */
+
+  /* Switch: '<S17>/Switch' incorporates:
+   *  Constant: '<S17>/Constant2'
+   */
+  if (proxy_linux_B.LogicalOperator) {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant2_Value;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_B.Subsystem_f.Memory;
+  }
+
+  /* End of Switch: '<S17>/Switch' */
+
+  /* Sum: '<S17>/Sum' */
+  proxy_linux_B.ManualSwitch_p = proxy_linux_B.ByteUnpack[11] -
+    proxy_linux_B.Saturation4;
+
+  /* ManualSwitch: '<S17>/Manual Switch' incorporates:
+   *  Constant: '<S17>/Constant1'
+   *  MATLAB Function: '<S17>/Pose Estimation'
+   */
+  if (proxy_linux_P.ManualSwitch_CurrentSetting_c == 1) {
+    /* Saturate: '<S17>/Saturation' */
+    if (proxy_linux_B.ManualSwitch_p > proxy_linux_P.Saturation_UpperSat_c) {
+      proxy_linux_B.Saturation3 = proxy_linux_P.Saturation_UpperSat_c;
+    } else if (proxy_linux_B.ManualSwitch_p <
+               proxy_linux_P.Saturation_LowerSat_l) {
+      proxy_linux_B.Saturation3 = proxy_linux_P.Saturation_LowerSat_l;
     } else {
-      proxy_linux_B.xH_tmp_tmp = proxy_linux_B.ByteUnpack[10];
+      proxy_linux_B.Saturation3 = proxy_linux_B.ManualSwitch_p;
+    }
+
+    /* End of Saturate: '<S17>/Saturation' */
+    proxy_linux_B.Saturation6 = proxy_linux_B.Saturation3 / 950.0F;
+  } else {
+    proxy_linux_B.Saturation6 = proxy_linux_P.Constant1_Value_l;
+  }
+
+  /* End of ManualSwitch: '<S17>/Manual Switch' */
+
+  /* Gain: '<S17>/Gain1' */
+  proxy_linux_B.Saturation3 = proxy_linux_P.Gain1_Gain_p *
+    proxy_linux_B.Saturation6;
+
+  /* Sum: '<S17>/Sum2' incorporates:
+   *  Constant: '<S17>/Constant3'
+   */
+  proxy_linux_B.Sum2_f = proxy_linux_B.ManualSwitch_p -
+    proxy_linux_P.Constant3_Value_d;
+
+  /* Gain: '<S17>/Gain' */
+  proxy_linux_B.Saturation1_j = proxy_linux_P.Gain_Gain_ad * proxy_linux_B.Gain1;
+
+  /* Saturate: '<S17>/Saturation1' */
+  if (proxy_linux_B.Saturation1_j > proxy_linux_P.Saturation1_UpperSat_a) {
+    proxy_linux_B.Saturation1_j = proxy_linux_P.Saturation1_UpperSat_a;
+  } else {
+    if (proxy_linux_B.Saturation1_j < proxy_linux_P.Saturation1_LowerSat_f) {
+      proxy_linux_B.Saturation1_j = proxy_linux_P.Saturation1_LowerSat_f;
+    }
+  }
+
+  /* End of Saturate: '<S17>/Saturation1' */
+
+  /* Outputs for Enabled SubSystem: '<S65>/Subsystem' */
+  proxy_linux_Subsystem(proxy_linux_B.LogicalOperator,
+                        &proxy_linux_B.Subsystem_cc,
+                        &proxy_linux_DW.Subsystem_cc);
+
+  /* End of Outputs for SubSystem: '<S65>/Subsystem' */
+
+  /* Switch: '<S65>/Switch' incorporates:
+   *  Constant: '<S65>/Constant2'
+   */
+  if (proxy_linux_B.LogicalOperator) {
+    proxy_linux_B.Saturation6 = proxy_linux_P.Constant2_Value_n;
+  } else {
+    proxy_linux_B.Saturation6 = proxy_linux_B.Subsystem_cc.Memory;
+  }
+
+  /* End of Switch: '<S65>/Switch' */
+
+  /* Sum: '<S18>/Sum' */
+  proxy_linux_B.Saturation6 = proxy_linux_B.ByteUnpack[10] -
+    proxy_linux_B.Saturation6;
+
+  /* Saturate: '<S18>/Saturation' */
+  proxy_linux_B.ManualSwitch_p = proxy_linux_B.Saturation6;
+
+  /* Sum: '<S65>/Sum2' incorporates:
+   *  Constant: '<S65>/Constant3'
+   */
+  proxy_linux_B.Sum2_h = proxy_linux_B.Saturation6 -
+    proxy_linux_P.Constant3_Value_j;
+
+  /* ManualSwitch: '<S19>/Manual Switch1' incorporates:
+   *  Constant: '<S19>/Constant'
+   *  MATLAB Function: '<S19>/MATLAB Function1'
+   */
+  if (proxy_linux_P.ManualSwitch1_CurrentSetting == 1) {
+    proxy_linux_B.Saturation6 = (proxy_linux_B.ByteUnpack[7] - 10.0F) / 400.0F;
+  } else {
+    proxy_linux_B.Saturation6 = proxy_linux_P.Constant_Value_i;
+  }
+
+  /* End of ManualSwitch: '<S19>/Manual Switch1' */
+
+  /* Gain: '<S19>/Gain3' */
+  proxy_linux_B.Gain3_f = proxy_linux_P.Gain3_Gain_m * proxy_linux_B.Saturation6;
+
+  /* Outputs for Enabled SubSystem: '<S69>/Subsystem' */
+  proxy_linux_Subsystem(proxy_linux_B.LogicalOperator,
+                        &proxy_linux_B.Subsystem_p, &proxy_linux_DW.Subsystem_p);
+
+  /* End of Outputs for SubSystem: '<S69>/Subsystem' */
+
+  /* Switch: '<S69>/Switch' incorporates:
+   *  Constant: '<S69>/Constant2'
+   */
+  if (proxy_linux_B.LogicalOperator) {
+    proxy_linux_B.Saturation6 = proxy_linux_P.Constant2_Value_j;
+  } else {
+    proxy_linux_B.Saturation6 = proxy_linux_B.Subsystem_p.Memory;
+  }
+
+  /* End of Switch: '<S69>/Switch' */
+
+  /* Sum: '<S19>/Sum1' */
+  proxy_linux_B.Sum1 = proxy_linux_B.ByteUnpack[16] - proxy_linux_B.Saturation6;
+
+  /* ManualSwitch: '<S19>/Manual Switch' incorporates:
+   *  Constant: '<S19>/Constant'
+   *  MATLAB Function: '<S19>/MATLAB Function'
+   */
+  if (proxy_linux_P.ManualSwitch_CurrentSetting_l == 1) {
+    proxy_linux_B.Saturation6 = proxy_linux_B.Sum1 / 30.0F;
+  } else {
+    proxy_linux_B.Saturation6 = proxy_linux_P.Constant_Value_i;
+  }
+
+  /* End of ManualSwitch: '<S19>/Manual Switch' */
+
+  /* Gain: '<S19>/Gain4' */
+  proxy_linux_B.Saturation2 = proxy_linux_P.Gain4_Gain_n *
+    proxy_linux_B.Saturation6;
+
+  /* Sum: '<S69>/Sum2' incorporates:
+   *  Constant: '<S69>/Constant3'
+   */
+  proxy_linux_B.Sum2_i = proxy_linux_P.Constant3_Value_c + proxy_linux_B.Sum1;
+
+  /* DataTypeConversion: '<S19>/Data Type Conversion' incorporates:
+   *  Gain: '<S19>/Gain'
+   *  Gain: '<S19>/Gain2'
+   */
+  proxy_linux_B.Saturation6 = (real32_T)(proxy_linux_P.Gain_Gain_m1 *
+    proxy_linux_B.Gain5 * proxy_linux_P.Gain2_Gain_b);
+
+  /* ManualSwitch: '<S6>/Manual Switch' incorporates:
+   *  Constant: '<S6>/Constant1'
+   *  Constant: '<S6>/Constant3'
+   */
+  if (proxy_linux_P.ManualSwitch_CurrentSetting_m == 1) {
+    proxy_linux_B.Sum1 = proxy_linux_P.Constant3_Value;
+  } else {
+    proxy_linux_B.Sum1 = proxy_linux_P.Constant1_Value_e;
+  }
+
+  /* End of ManualSwitch: '<S6>/Manual Switch' */
+
+  /* ManualSwitch: '<S6>/Manual Switch1' incorporates:
+   *  Constant: '<S6>/Constant'
+   *  Constant: '<S6>/Constant4'
+   */
+  if (proxy_linux_P.ManualSwitch1_CurrentSetting_p == 1) {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant4_Value_f;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant_Value_o;
+  }
+
+  /* End of ManualSwitch: '<S6>/Manual Switch1' */
+
+  /* Switch: '<S6>/Switch' incorporates:
+   *  Constant: '<S6>/Constant2'
+   */
+  if (!(proxy_linux_B.Saturation4 > proxy_linux_P.Switch_Threshold)) {
+    proxy_linux_B.Saturation6 = proxy_linux_P.Constant2_Value_d;
+  }
+
+  /* End of Switch: '<S6>/Switch' */
+
+  /* Switch: '<S6>/Switch1' incorporates:
+   *  Constant: '<S6>/Constant2'
+   */
+  if (proxy_linux_B.Saturation4 > proxy_linux_P.Switch1_Threshold) {
+    /* Gain: '<S14>/Gain4' */
+    proxy_linux_B.Saturation3_b = proxy_linux_P.Gain4_Gain_a *
+      proxy_linux_B.sf_MATLABFunction_d.y[0];
+
+    /* Saturate: '<S14>/Saturation' */
+    if (proxy_linux_B.Saturation3_b > proxy_linux_P.Saturation_UpperSat_i) {
+      proxy_linux_B.Saturation3_b = proxy_linux_P.Saturation_UpperSat_i;
+    } else {
+      if (proxy_linux_B.Saturation3_b < proxy_linux_P.Saturation_LowerSat_i) {
+        proxy_linux_B.Saturation3_b = proxy_linux_P.Saturation_LowerSat_i;
+      }
     }
 
     /* End of Saturate: '<S14>/Saturation' */
-    proxy_linux_B.rtb_VectorConcatenate_idx_6 = proxy_linux_B.xH_tmp_tmp /
-      900.0F;
   } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_6 = proxy_linux_P.Constant1_Value_g;
+    proxy_linux_B.Saturation3_b = proxy_linux_P.Constant2_Value_d;
   }
 
-  /* End of ManualSwitch: '<S14>/Manual Switch' */
+  /* End of Switch: '<S6>/Switch1' */
 
-  /* Saturate: '<S7>/Saturation6' */
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_6 >
-      proxy_linux_P.Saturation6_UpperSat) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_6 =
-      proxy_linux_P.Saturation6_UpperSat;
-  } else {
-    if (proxy_linux_B.rtb_VectorConcatenate_idx_6 <
-        proxy_linux_P.Saturation6_LowerSat) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_6 =
-        proxy_linux_P.Saturation6_LowerSat;
-    }
-  }
-
-  /* End of Saturate: '<S7>/Saturation6' */
-
-  /* ManualSwitch: '<S13>/Manual Switch' incorporates:
-   *  Constant: '<S13>/Constant1'
-   *  MATLAB Function: '<S13>/Pose Estimation'
+  /* Switch: '<S6>/Switch2' incorporates:
+   *  Constant: '<S6>/Constant2'
    */
-  if (proxy_linux_P.ManualSwitch_CurrentSetting_c == 1) {
-    /* Saturate: '<S13>/Saturation' */
-    if (proxy_linux_B.ByteUnpack[11] > proxy_linux_P.Saturation_UpperSat_c) {
-      proxy_linux_B.xH_tmp_tmp = proxy_linux_P.Saturation_UpperSat_c;
-    } else if (proxy_linux_B.ByteUnpack[11] <
-               proxy_linux_P.Saturation_LowerSat_l) {
-      proxy_linux_B.xH_tmp_tmp = proxy_linux_P.Saturation_LowerSat_l;
+  if (proxy_linux_B.Saturation4 > proxy_linux_P.Switch2_Threshold) {
+    /* Gain: '<S16>/Gain4' */
+    proxy_linux_B.Saturation2_h = proxy_linux_P.Gain4_Gain *
+      proxy_linux_B.sf_MATLABFunction_dm.y[0];
+
+    /* Saturate: '<S16>/Saturation' */
+    if (proxy_linux_B.Saturation2_h > proxy_linux_P.Saturation_UpperSat) {
+      proxy_linux_B.Saturation2_h = proxy_linux_P.Saturation_UpperSat;
     } else {
-      proxy_linux_B.xH_tmp_tmp = proxy_linux_B.ByteUnpack[11];
+      if (proxy_linux_B.Saturation2_h < proxy_linux_P.Saturation_LowerSat) {
+        proxy_linux_B.Saturation2_h = proxy_linux_P.Saturation_LowerSat;
+      }
     }
 
-    /* End of Saturate: '<S13>/Saturation' */
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 = proxy_linux_B.xH_tmp_tmp /
-      950.0F;
+    /* End of Saturate: '<S16>/Saturation' */
   } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 = proxy_linux_P.Constant1_Value;
+    proxy_linux_B.Saturation2_h = proxy_linux_P.Constant2_Value_d;
   }
 
-  /* End of ManualSwitch: '<S13>/Manual Switch' */
+  /* End of Switch: '<S6>/Switch2' */
 
-  /* Saturate: '<S7>/Saturation7' */
-  if (proxy_linux_B.rtb_VectorConcatenate_idx_7 >
-      proxy_linux_P.Saturation7_UpperSat) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_7 =
-      proxy_linux_P.Saturation7_UpperSat;
-  } else {
-    if (proxy_linux_B.rtb_VectorConcatenate_idx_7 <
-        proxy_linux_P.Saturation7_LowerSat) {
-      proxy_linux_B.rtb_VectorConcatenate_idx_7 =
-        proxy_linux_P.Saturation7_LowerSat;
-    }
-  }
-
-  /* End of Saturate: '<S7>/Saturation7' */
-
-  /* MATLAB Function: '<S10>/MATLAB Function' */
-  proxy_linux_B.xD = (-proxy_linux_B.ByteUnpack[13] + 460.0F) / 50.0F / 2.0F;
-
-  /* Saturate: '<S7>/Saturation8' */
-  if (proxy_linux_B.xD > proxy_linux_P.Saturation8_UpperSat) {
-    proxy_linux_B.xD = proxy_linux_P.Saturation8_UpperSat;
-  } else {
-    if (proxy_linux_B.xD < proxy_linux_P.Saturation8_LowerSat) {
-      proxy_linux_B.xD = proxy_linux_P.Saturation8_LowerSat;
-    }
-  }
-
-  /* End of Saturate: '<S7>/Saturation8' */
-
-  /* DiscreteTransferFcn: '<S2>/Filt 1' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.Filt1 = proxy_linux_P.Filt1_NumCoef[1] *
-      proxy_linux_DW.Filt1_states;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S2>/Filt 1' */
-
-  /* DiscreteTransferFcn: '<S2>/Filt 2' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.Filt2 = proxy_linux_P.Filt2_NumCoef[1] *
-      proxy_linux_DW.Filt2_states;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S2>/Filt 2' */
-
-  /* DiscreteTransferFcn: '<S2>/Filt 3' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.Filt3 = proxy_linux_P.Filt3_NumCoef[1] *
-      proxy_linux_DW.Filt3_states;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S2>/Filt 3' */
-
-  /* DiscreteTransferFcn: '<S2>/Filt 4' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.Filt4 = proxy_linux_P.Filt4_NumCoef[1] *
-      proxy_linux_DW.Filt4_states;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S2>/Filt 4' */
-
-  /* DiscreteTransferFcn: '<S2>/Filt 5' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.Filt5 = proxy_linux_P.Filt5_NumCoef[1] *
-      proxy_linux_DW.Filt5_states;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S2>/Filt 5' */
-
-  /* DiscreteTransferFcn: '<S2>/Filt 6' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_B.Filt6 = proxy_linux_P.Filt6_NumCoef[1] *
-      proxy_linux_DW.Filt6_states;
-    proxy_linux_B.samplesRead++;
-  }
-
-  /* End of DiscreteTransferFcn: '<S2>/Filt 6' */
-
-  /* Outputs for Atomic SubSystem: '<S2>/Subscribe' */
-  /* MATLABSystem: '<S8>/SourceBlock' incorporates:
-   *  Inport: '<S9>/In1'
+  /* Switch: '<S6>/Switch3' incorporates:
+   *  Constant: '<S6>/Constant2'
    */
-  b_varargout_1 = Sub_proxy_linux_437.getLatestMessage
-    (&proxy_linux_B.b_varargout_2);
-
-  /* Outputs for Enabled SubSystem: '<S8>/Enabled Subsystem' incorporates:
-   *  EnablePort: '<S9>/Enable'
-   */
-  if (b_varargout_1) {
-    proxy_linux_B.In1 = proxy_linux_B.b_varargout_2;
-  }
-
-  /* End of MATLABSystem: '<S8>/SourceBlock' */
-  /* End of Outputs for SubSystem: '<S8>/Enabled Subsystem' */
-  /* End of Outputs for SubSystem: '<S2>/Subscribe' */
-
-  /* SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport2' incorporates:
-   *  MATLAB Function: '<S18>/Jacobian2'
-   */
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__m =
-    proxy_linux_B.rtb_VectorConcatenate_idx_3;
-  proxy_linux_B.rtb_TmpSignalConversionAtSFu__c = proxy_linux_B.Sum1_b;
-
-  /* MATLAB Function: '<S18>/Jacobian2' incorporates:
-   *  Constant: '<S18>/Sensor1'
-   *  SignalConversion: '<S25>/TmpSignal ConversionAt SFunction Inport2'
-   *  UnitDelay: '<S18>/Unit Delay1'
-   *  UnitDelay: '<S18>/Unit Delay3'
-   */
-  proxy_linux_B.rtb_DataTypeConversion_a_idx_1 = (proxy_linux_B.Sum1_b -
-    proxy_linux_DW.UnitDelay3_DSTATE[1]) / 0.01F;
-  proxy_linux_B.yH = (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_5);
-  proxy_linux_B.LAK_tmp_k = proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2;
-  proxy_linux_B.LAK_tmp_b = proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1;
-  proxy_linux_B.LAK_tmp_p = (real32_T)cos((real_T)proxy_linux_B.LAK_tmp_b);
-  proxy_linux_B.LAK_tmp_b = (real32_T)sin((real_T)proxy_linux_B.LAK_tmp_b);
-  proxy_linux_B.LAK_tmp_c = (real32_T)cos((real_T)((proxy_linux_B.Sum1_b -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4));
-  proxy_linux_B.LAK_tmp_f = (real32_T)sin((real_T)proxy_linux_B.LAK_tmp_k);
-  proxy_linux_B.LAK_tmp_k = (real32_T)cos((real_T)proxy_linux_B.LAK_tmp_k);
-  proxy_linux_B.LAK_tmp_g = (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1);
-  proxy_linux_B.LAK = ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_b
-    - proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_2)) * 16.0F) *
-    (proxy_linux_B.LAK_tmp_c * (67.0F * proxy_linux_B.LAK_tmp_g)) - (((((((37.0F
-    * (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)
-    sin((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)
-    cos((real_T)(proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_2)) * 9.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_3)
-    - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_3) -
-     proxy_linux_B.rtb_pose_idx_2)) * 27.0F) * proxy_linux_B.LAK_tmp_k +
-    (((((86.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) - 37.0F *
-         (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin
-        ((real_T)(proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_2)) * 43.0F)
-       - (real32_T)sin((real_T)(proxy_linux_B.Sum1_b -
-    proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_3) -
-     proxy_linux_B.rtb_pose_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_3) -
-     proxy_linux_B.rtb_pose_idx_2)) * 27.0F) * proxy_linux_B.LAK_tmp_f) *
-    (((real32_T)sin((real_T)((proxy_linux_B.Sum1_b -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-      (real32_T)cos((real_T)((proxy_linux_B.Sum1_b -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-     proxy_linux_B.LAK_tmp_b + ((real32_T)cos((real_T)((proxy_linux_B.Sum1_b -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_3)
-    - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) * proxy_linux_B.LAK_tmp_p) +
-    (((((real32_T)cos((real_T)(proxy_linux_B.Sum1_b -
-    proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)
-       cos((real_T)((proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_3) -
-                    proxy_linux_B.rtb_pose_idx_2)) * 40.0F) - (real32_T)sin
-      ((real_T)((proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_3) -
-                proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-     proxy_linux_B.LAK_tmp_p - ((((real32_T)cos((real_T)(proxy_linux_B.Sum1_b -
-    proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)
-    sin((real_T)((proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_3) -
-                 proxy_linux_B.rtb_pose_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_b - proxy_linux_B.rtb_pose_idx_3) -
-     proxy_linux_B.rtb_pose_idx_2)) * 39.0F) * proxy_linux_B.LAK_tmp_b) *
-    (proxy_linux_B.LAK_tmp_c * 67.0F)) * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.Sum1_b = (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_5);
-  proxy_linux_B.LLI = ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1))) - (((((((37.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * 67.0F)) *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH = (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_5);
-  proxy_linux_B.yI = ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1))) - (((((((37.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * 67.0F)) *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_tmp_tmp = 35.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2);
-  proxy_linux_B.xH_tmp_tmp = ((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F + proxy_linux_B.xH_tmp_tmp_tmp) -
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_2)) * 16.0F;
-  proxy_linux_B.xH_tmp = proxy_linux_B.xH_tmp_tmp * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_0) - ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_tmp_l = proxy_linux_B.LAK_tmp_b * 67.0F * (real32_T)cos
-    ((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4));
-  proxy_linux_B.xH_tmp_c = ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    proxy_linux_B.xH_tmp_tmp_l;
-  proxy_linux_B.xH_tmp_g = (real32_T)proxy_linux_P.Sensor1_Value[1] * (real32_T)
-    cos((real_T)proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_m = (real32_T)proxy_linux_P.Sensor1_Value[0] -
-    proxy_linux_B.rtb_pose_idx_6;
-  proxy_linux_B.LAK_tmp_c = proxy_linux_B.xH_tmp_g -
-    proxy_linux_B.rtb_pose_idx_6 * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_n = (real32_T)proxy_linux_P.Sensor1_Value[1] * (real32_T)
-    sin((real_T)proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_tmp_ld = ((((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    ((real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-     (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) +
-    ((((real32_T)cos((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-     (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    ((real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 67.0F)) *
-    proxy_linux_B.LAK_tmp_f + ((((((37.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (((real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-      (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-     proxy_linux_B.LAK_tmp_k) + ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (proxy_linux_B.LAK_tmp_k * 67.0F * (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2))));
-  proxy_linux_B.xH_tmp_p = (proxy_linux_B.xH_tmp_c - ((((((37.0F * (real32_T)cos
-    ((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)))) - proxy_linux_B.xH_tmp_tmp_ld *
-    proxy_linux_B.LAK_tmp_p;
-  proxy_linux_B.xH_tmp_g += proxy_linux_B.xH_tmp_m * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_j = proxy_linux_B.LAK_tmp_p * 67.0F * (real32_T)cos
-    ((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4));
-  proxy_linux_B.xH_tmp_m = proxy_linux_B.xH_tmp_n - proxy_linux_B.xH_tmp_m *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_d = proxy_linux_B.xH_tmp_p * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_0) + proxy_linux_B.xH_tmp_tmp * ((real32_T)cos
-    ((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) *
-    (67.0F * (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1)));
-  proxy_linux_B.xH_tmp_n += proxy_linux_B.rtb_pose_idx_6 * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.rtb_pose_idx_6 = 67.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_gu = proxy_linux_B.LAK_tmp_b * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_dh = proxy_linux_B.LAK_tmp_p * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_dy = (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    proxy_linux_B.rtb_pose_idx_7);
-  proxy_linux_B.xH_tmp_p = proxy_linux_B.rtb_pose_idx_6 *
-    proxy_linux_B.LAK_tmp_g * (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) *
-    proxy_linux_B.LAK_tmp_c * ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) - ((((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1))) - (((((((37.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * 67.0F)) *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0)) *
-    proxy_linux_B.xH_tmp_n - proxy_linux_B.xH_tmp_p * (proxy_linux_B.LAK_tmp_c *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_0))) * (real32_T)cos
-    ((real_T)proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_n += (((proxy_linux_B.xH_tmp * proxy_linux_B.xH_tmp_dy +
-    proxy_linux_B.xH_tmp * (proxy_linux_B.xH_tmp_tmp_l * proxy_linux_B.xH_tmp_g))
-    - proxy_linux_B.xH_tmp * (proxy_linux_B.xH_tmp_j * proxy_linux_B.xH_tmp_m))
-    - proxy_linux_B.xH_tmp_d * proxy_linux_B.LAK_tmp_c) / (((35.0F * (real32_T)
-    sin((real_T)proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1))) - (((((((37.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * 67.0F)) *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0));
-  proxy_linux_B.xH_tmp_l = proxy_linux_B.xH_tmp_tmp_tmp - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 18.0F;
-  proxy_linux_B.xH_tmp_tmp = (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 18.0F;
-  proxy_linux_B.xH_tmp_tmp_tmp = proxy_linux_B.xH_tmp_tmp + 35.0F * (real32_T)
-    sin((real_T)proxy_linux_B.rtb_pose_idx_2);
-  proxy_linux_B.xH_tmp_o = (((real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) + (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) +
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F;
-  proxy_linux_B.xH_tmp_tmp_l = 67.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_b = proxy_linux_B.xH_tmp_tmp_l * proxy_linux_B.LAK_tmp_b *
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4));
-  proxy_linux_B.xH_tmp_nu = (((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F + (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F;
-  xH_tmp = (real32_T)sin((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c
-    - proxy_linux_B.rtb_pose_idx_2)) * 43.0F + (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F;
-  proxy_linux_B.rtb_pose_idx_6 = ((((((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    proxy_linux_B.xH_tmp_b - ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * (proxy_linux_B.rtb_pose_idx_6 *
-    proxy_linux_B.LAK_tmp_p * (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)))) -
-    ((((((37.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F *
-          (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos
-         ((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-                   proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos
-        ((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-                  proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-      (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-     (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-     (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    proxy_linux_B.xH_tmp_gu)) - proxy_linux_B.xH_tmp_tmp_ld *
-    proxy_linux_B.xH_tmp_dh;
-  proxy_linux_B.xH_tmp_c = ((((proxy_linux_B.xH_tmp_o * proxy_linux_B.LAK_tmp_f *
-    (((real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-      (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-     (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-     (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * proxy_linux_B.xH_tmp +
-    proxy_linux_B.xH_tmp_c * proxy_linux_B.xH_tmp) + proxy_linux_B.xH_tmp_nu *
-    proxy_linux_B.LAK_tmp_k * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * proxy_linux_B.xH_tmp) - ((((real32_T)cos
-    ((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    proxy_linux_B.xH_tmp_j * proxy_linux_B.xH_tmp) - (((35.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1))) - (((((((37.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * 67.0F)) *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0)) * ((real32_T)cos
-    ((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_2)) * 43.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F)) - proxy_linux_B.xH_tmp_d * xH_tmp;
-  proxy_linux_B.xH_tmp_j = proxy_linux_B.LAK_tmp_f * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  proxy_linux_B.xH_tmp_d = proxy_linux_B.LAK_tmp_k * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_0);
-  xH_tmp *= (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1));
-  proxy_linux_B.xH_tmp_tmp_l = proxy_linux_B.xH_tmp_tmp_l *
-    proxy_linux_B.LAK_tmp_p * (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4));
-  proxy_linux_B.xH = ((proxy_linux_B.xH_tmp_c * -(((proxy_linux_B.xH_tmp_g *
-    proxy_linux_B.xH_tmp_gu + proxy_linux_B.rtb_pose_idx_7 * (real32_T)cos
-    ((real_T)proxy_linux_B.rtb_pose_idx_0)) - proxy_linux_B.LAK_tmp_c *
-    proxy_linux_B.LAK_tmp_g) - proxy_linux_B.xH_tmp_m * proxy_linux_B.xH_tmp_dh)
-                       / (proxy_linux_B.xH_tmp_p * proxy_linux_B.rtb_pose_idx_7)
-                       - (real32_T)fabs((real_T)(proxy_linux_B.xH_tmp_n *
-    ((proxy_linux_B.rtb_pose_idx_6 * (proxy_linux_B.xH * proxy_linux_B.xH) /
-      ((((35.0F * (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_2) -
-          (real32_T)sin((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1))) - (((((((37.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * 67.0F)) *
-        (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0)) * (real32_T)cos
-       ((real_T)proxy_linux_B.rtb_pose_idx_5)) + (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_5)) * (proxy_linux_B.LLI * proxy_linux_B.LLI)) /
-    (proxy_linux_B.xH_tmp_p * ((proxy_linux_B.xH_tmp_tmp_tmp -
-    proxy_linux_B.xH_tmp_l * (real32_T)tan((real_T)proxy_linux_B.rtb_pose_idx_5))
-    * proxy_linux_B.xH_tmp_dy)))) * ((proxy_linux_B.rtb_VectorConcatenate_idx_3
-    - proxy_linux_DW.UnitDelay3_DSTATE[0]) / 0.01F * 2.0F) /
-                       proxy_linux_B.rtb_DataTypeConversion_a_idx_1) -
-                      proxy_linux_B.xH_tmp_n * (proxy_linux_B.yI *
-    proxy_linux_B.yI) * (proxy_linux_B.xH_tmp_tmp -
-    ((((((proxy_linux_B.xH_tmp_tmp_tmp - proxy_linux_B.xH_tmp_l * (real32_T)tan
-          ((real_T)proxy_linux_B.rtb_pose_idx_5)) * proxy_linux_B.xH_tmp_j *
-         proxy_linux_B.xH_tmp_o * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (proxy_linux_B.xH_tmp_tmp_tmp -
-    proxy_linux_B.xH_tmp_l * (real32_T)tan((real_T)proxy_linux_B.rtb_pose_idx_5))
-         * proxy_linux_B.xH_tmp_b * ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F)) +
-        (proxy_linux_B.xH_tmp_tmp_tmp - proxy_linux_B.xH_tmp_l * (real32_T)tan
-         ((real_T)proxy_linux_B.rtb_pose_idx_5)) * proxy_linux_B.xH_tmp_d *
-        proxy_linux_B.xH_tmp_nu * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)))) - (proxy_linux_B.xH_tmp_tmp_tmp -
-    proxy_linux_B.xH_tmp_l * (real32_T)tan((real_T)proxy_linux_B.rtb_pose_idx_5))
-       * xH_tmp) - (proxy_linux_B.xH_tmp_tmp_tmp - proxy_linux_B.xH_tmp_l *
-                    (real32_T)tan((real_T)proxy_linux_B.rtb_pose_idx_5)) *
-      proxy_linux_B.xH_tmp_tmp_l * ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F)) -
-     proxy_linux_B.rtb_pose_idx_6 * (18.0F * (real32_T)tan((real_T)
-    proxy_linux_B.rtb_pose_idx_5) * (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)))) / (((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1))) - (((((((37.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * 67.0F)) *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0))) /
-                      (proxy_linux_B.xH_tmp_p * ((proxy_linux_B.xH_tmp_tmp_tmp -
-    proxy_linux_B.xH_tmp_l * (real32_T)tan((real_T)proxy_linux_B.rtb_pose_idx_5))
-    * proxy_linux_B.xH_tmp_dy))) / 2.0F;
-  if ((proxy_linux_B.xH == 0.0F) || rtIsNaNF(proxy_linux_B.xH) || rtIsInfF
-      (proxy_linux_B.xH)) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_3 = proxy_linux_DW.UnitDelay1_DSTATE;
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_3 = -(real32_T)fabs((real_T)
-      proxy_linux_B.xH);
-  }
-
-  proxy_linux_B.JTcomp_p[0] = ((((((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) * proxy_linux_B.xH_tmp_gu - 16.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0) *
-    proxy_linux_B.LAK_tmp_b * (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2))) - ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * proxy_linux_B.LAK_tmp_g) -
-    ((35.0F * (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_2) - (real32_T)
-      sin((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-                   proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos
-     ((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_2)) * 16.0F) *
-    (proxy_linux_B.LAK_tmp_p * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_0))) * (proxy_linux_B.yH * proxy_linux_B.yH *
-    67.0F * (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4))) + ((35.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1)))) - (((((((37.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * 67.0F)) *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0)) * -proxy_linux_B.xH_tmp
-    / (proxy_linux_B.xH_tmp_p * ((proxy_linux_B.xH_tmp_tmp_tmp -
-         proxy_linux_B.xH_tmp_l * (real32_T)tan((real_T)
-          proxy_linux_B.rtb_pose_idx_5)) * (real32_T)cos((real_T)
-         proxy_linux_B.rtb_pose_idx_5)));
-  proxy_linux_B.JTcomp_p[1] = proxy_linux_B.xH_tmp_c * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_0) / proxy_linux_B.xH_tmp_p -
-    (((((((proxy_linux_B.xH_tmp_tmp_tmp - proxy_linux_B.xH_tmp_l * (real32_T)tan
-           ((real_T)proxy_linux_B.rtb_pose_idx_5)) * proxy_linux_B.xH_tmp_j *
-          proxy_linux_B.xH_tmp_o * (((real32_T)sin((real_T)
-             ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-            40.0F + (real32_T)cos((real_T)
-             ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-            39.0F) * (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-             proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-             ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-            40.0F - (real32_T)sin((real_T)
-             ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-            39.0F) * (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-             proxy_linux_B.rtb_pose_idx_1))) + (proxy_linux_B.xH_tmp_tmp_tmp -
-           proxy_linux_B.xH_tmp_l * (real32_T)tan((real_T)
-            proxy_linux_B.rtb_pose_idx_5)) * proxy_linux_B.xH_tmp_b *
-          ((((real32_T)cos((real_T)
-              (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-              (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-             ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-            40.0F) - (real32_T)cos((real_T)
-            ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-           39.0F)) + (proxy_linux_B.xH_tmp_tmp_tmp - proxy_linux_B.xH_tmp_l *
-                      (real32_T)tan((real_T)proxy_linux_B.rtb_pose_idx_5)) *
-         proxy_linux_B.xH_tmp_d * proxy_linux_B.xH_tmp_nu * (((real32_T)sin
-           ((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-                      proxy_linux_B.rtb_pose_idx_3) -
-                     proxy_linux_B.rtb_pose_idx_2)) * 40.0F + (real32_T)cos
-           ((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-                      proxy_linux_B.rtb_pose_idx_3) -
-                     proxy_linux_B.rtb_pose_idx_2)) * 39.0F) * (real32_T)sin
-          ((real_T)(proxy_linux_B.rtb_pose_idx_0 + proxy_linux_B.rtb_pose_idx_1))
-          + ((real32_T)cos((real_T)
-            ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-             40.0F - (real32_T)sin((real_T)
-            ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-             39.0F) * (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-            proxy_linux_B.rtb_pose_idx_1)))) - (proxy_linux_B.xH_tmp_tmp_tmp -
-         proxy_linux_B.xH_tmp_l * (real32_T)tan((real_T)
-          proxy_linux_B.rtb_pose_idx_5)) * xH_tmp) -
-       (proxy_linux_B.xH_tmp_tmp_tmp - proxy_linux_B.xH_tmp_l * (real32_T)tan
-        ((real_T)proxy_linux_B.rtb_pose_idx_5)) * proxy_linux_B.xH_tmp_tmp_l *
-       ((((real32_T)cos((real_T)(proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-            proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-           (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-            proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-          ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-            proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-         40.0F) - (real32_T)sin((real_T)
-         ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-           proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-        39.0F)) - (((35.0F * (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_2)
-                     - (real32_T)sin((real_T)
-          (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-           proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-         (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-          proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-         ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-           proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) *
-        (67.0F * (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1))) -
-                   (((((((37.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-              (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-             (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-            ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                       40.0F) - (real32_T)cos((real_T)
-           ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-             proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                      27.0F) * (real32_T)cos((real_T)
-          (proxy_linux_B.rtb_pose_idx_4 - proxy_linux_B.rtb_pose_idx_2)) +
-                     (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-              (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-               proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-             (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-            ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                       40.0F) - (real32_T)sin((real_T)
-           ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-             proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                      27.0F) * (real32_T)sin((real_T)
-          (proxy_linux_B.rtb_pose_idx_4 - proxy_linux_B.rtb_pose_idx_2))) *
-                    (((real32_T)sin((real_T)
-           ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-             proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                      40.0F + (real32_T)cos((real_T)
-           ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-             proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                      39.0F) * (real32_T)sin((real_T)
-          (proxy_linux_B.rtb_pose_idx_0 + proxy_linux_B.rtb_pose_idx_1)) +
-                     ((real32_T)cos((real_T)
-           ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-             proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                      40.0F - (real32_T)sin((real_T)
-           ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-             proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                      39.0F) * (real32_T)cos((real_T)
-          (proxy_linux_B.rtb_pose_idx_0 + proxy_linux_B.rtb_pose_idx_1))) +
-                    (((((real32_T)cos((real_T)
-             (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-             (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-            ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                       40.0F) - (real32_T)sin((real_T)
-           ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-             proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                      39.0F) * (real32_T)cos((real_T)
-          (proxy_linux_B.rtb_pose_idx_0 + proxy_linux_B.rtb_pose_idx_1)) -
-                     ((((real32_T)cos((real_T)
-             (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-             (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-            ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-              proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                       40.0F) - (real32_T)cos((real_T)
-           ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-             proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) *
-                      39.0F) * (real32_T)sin((real_T)
-          (proxy_linux_B.rtb_pose_idx_0 + proxy_linux_B.rtb_pose_idx_1))) *
-                    ((real32_T)cos((real_T)
-          ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-            proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) *
-                     67.0F)) * (real32_T)cos((real_T)
-        proxy_linux_B.rtb_pose_idx_0)) * proxy_linux_B.xH_tmp_tmp) -
-     proxy_linux_B.rtb_pose_idx_6 * (18.0F * (real32_T)tan((real_T)
-       proxy_linux_B.rtb_pose_idx_5) * (real32_T)cos((real_T)
-       (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-        proxy_linux_B.rtb_pose_idx_2)))) * proxy_linux_B.xH_tmp /
-    (proxy_linux_B.xH_tmp_p * (proxy_linux_B.xH_tmp_tmp_tmp -
-      proxy_linux_B.xH_tmp_l * (real32_T)tan((real_T)
-       proxy_linux_B.rtb_pose_idx_5)));
-  proxy_linux_B.JTcomp_p[2] = -(proxy_linux_B.xH_tmp_n *
-    ((proxy_linux_B.rtb_pose_idx_6 * (proxy_linux_B.Sum1_b *
-    proxy_linux_B.Sum1_b) / ((((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_pose_idx_1))) - (((((((37.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_2) + 86.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_pose_idx_2)) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_pose_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 27.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_4 -
-    proxy_linux_B.rtb_pose_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F +
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) + (((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F) + (real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)cos((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-     proxy_linux_B.rtb_pose_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 40.0F) -
-    (real32_T)cos((real_T)((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-    proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_2)) * 39.0F) *
-    (real32_T)sin((real_T)(proxy_linux_B.rtb_pose_idx_0 +
-    proxy_linux_B.rtb_pose_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.rtb_TmpSignalConversionAtSFu__c -
-      proxy_linux_B.rtb_pose_idx_3) - proxy_linux_B.rtb_pose_idx_4)) * 67.0F)) *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_pose_idx_0)) * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_5)) + (real32_T)cos((real_T)
-    proxy_linux_B.rtb_pose_idx_5)) * (proxy_linux_B.LAK * proxy_linux_B.LAK)) /
-    (proxy_linux_B.xH_tmp_p * ((proxy_linux_B.xH_tmp_tmp_tmp -
-    proxy_linux_B.xH_tmp_l * (real32_T)tan((real_T)proxy_linux_B.rtb_pose_idx_5))
-    * proxy_linux_B.xH_tmp_dy)));
-  proxy_linux_B.JTcomp_p[3] = proxy_linux_B.rtb_VectorConcatenate_idx_3;
-
-  /* MATLAB Function: '<S11>/MATLAB Function' incorporates:
-   *  Gain: '<S11>/Gain'
-   *  Gain: '<S11>/Gain1'
-   *  Gain: '<S2>/Gain3'
-   *  Gain: '<S2>/Gain7'
-   */
-  proxy_linux_MATLABFunction(proxy_linux_B.JTcomp_p, proxy_linux_P.Gain_Gain_g *
-    (proxy_linux_P.Gain3_Gain * proxy_linux_B.Filt6), proxy_linux_P.Gain1_Gain_a
-    * (proxy_linux_P.Gain7_Gain * proxy_linux_B.Filt5),
-    &proxy_linux_B.sf_MATLABFunction_o);
-
-  /* SignalConversion: '<S36>/TmpSignal ConversionAt SFunction Inport2' incorporates:
-   *  MATLAB Function: '<S31>/Jacobian2'
-   */
-  proxy_linux_B.rtb_pose_idx_0 = proxy_linux_B.rtb_VectorConcatenate_idx_2;
-  proxy_linux_B.yI = proxy_linux_B.Sum1;
-
-  /* MATLAB Function: '<S31>/Jacobian2' incorporates:
-   *  Constant: '<S29>/finger width'
-   *  Constant: '<S29>/proximal length'
-   *  DataTypeConversion: '<S28>/Data Type Conversion'
-   *  SignalConversion: '<S36>/TmpSignal ConversionAt SFunction Inport2'
-   *  UnitDelay: '<S31>/Unit Delay1'
-   *  UnitDelay: '<S31>/Unit Delay3'
-   */
-  xH_tmp = proxy_linux_B.Sum1 - proxy_linux_B.y_l[2];
-  proxy_linux_B.rtb_DataTypeConversion_a_idx_1 = (real32_T)sin((real_T)
-    proxy_linux_B.y_l[2]);
-  proxy_linux_B.LAK_tmp_k = (real32_T)cos((real_T)xH_tmp);
-  proxy_linux_B.LAK_tmp_b = proxy_linux_B.Sum1 - proxy_linux_B.y_l[3];
-  proxy_linux_B.xH_tmp_o = proxy_linux_B.LAK_tmp_b - proxy_linux_B.y_l[2];
-  proxy_linux_B.xH_tmp_j = (real32_T)cos((real_T)proxy_linux_B.xH_tmp_o);
-  proxy_linux_B.xH_tmp = (real32_T)cos((real_T)proxy_linux_B.y_l[2]);
-  LLI_tmp_tmp = (real32_T)sin((real_T)xH_tmp);
-  xH_tmp = LLI_tmp_tmp * 43.0F;
-  proxy_linux_B.xH_tmp_d = (real32_T)sin((real_T)proxy_linux_B.xH_tmp_o);
-  proxy_linux_B.xH_tmp_tmp = proxy_linux_B.y_l[4] - proxy_linux_B.y_l[2];
-  proxy_linux_B.LAK_tmp_p = proxy_linux_B.xH_tmp_d * 40.0F;
-  proxy_linux_B.xH_tmp_nu = proxy_linux_B.xH_tmp_j * 40.0F;
-  proxy_linux_B.xH_tmp_b = proxy_linux_B.y_l[0] + proxy_linux_B.y_l[1];
-  LLI_tmp = proxy_linux_B.LAK_tmp_k * 9.0F;
-  proxy_linux_B.xH_tmp_c = proxy_linux_B.xH_tmp_d * 39.0F;
-  proxy_linux_B.LAK_tmp_g = (real32_T)cos((real_T)proxy_linux_B.xH_tmp_b);
-  LLI_tmp_0 = proxy_linux_B.LAK_tmp_k * 16.0F;
-  proxy_linux_B.Sum1_b = LLI_tmp_tmp * 9.0F;
-  proxy_linux_B.rtb_pose_idx_1 = proxy_linux_B.xH_tmp_j * 39.0F;
-  proxy_linux_B.xH_tmp_b = (real32_T)sin((real_T)proxy_linux_B.xH_tmp_b);
-  proxy_linux_B.LAK_tmp_b = (real32_T)cos((real_T)(proxy_linux_B.LAK_tmp_b -
-    proxy_linux_B.y_l[4]));
-  proxy_linux_B.xH_tmp_o = proxy_linux_B.xH_tmp_d * 27.0F;
-  proxy_linux_B.rtb_pose_idx_2 = (real32_T)sin((real_T)proxy_linux_B.xH_tmp_tmp);
-  proxy_linux_B.LAK = proxy_linux_B.LAK_tmp_p + proxy_linux_B.rtb_pose_idx_1;
-  proxy_linux_B.xH_tmp_p = proxy_linux_B.LAK * proxy_linux_B.xH_tmp_b;
-  proxy_linux_B.rtb_pose_idx_6 = proxy_linux_B.xH_tmp_nu -
-    proxy_linux_B.xH_tmp_c;
-  proxy_linux_B.yH = proxy_linux_B.xH_tmp_p + proxy_linux_B.rtb_pose_idx_6 *
-    proxy_linux_B.LAK_tmp_g;
-  proxy_linux_B.rtb_pose_idx_3 = proxy_linux_B.LAK_tmp_k * 43.0F;
-  proxy_linux_B.rtb_pose_idx_4 = LLI_tmp_tmp * 16.0F;
-  proxy_linux_B.rtb_pose_idx_5 = (real32_T)cos((real_T)proxy_linux_B.y_l[0]);
-  LLI_tmp_tmp_tmp_tmp = 35.0F * proxy_linux_B.rtb_DataTypeConversion_a_idx_1;
-  proxy_linux_B.rtb_pose_idx_7 = LLI_tmp_tmp_tmp_tmp - xH_tmp;
-  proxy_linux_B.LLI = proxy_linux_B.rtb_pose_idx_7 - LLI_tmp_0;
-  LLI_tmp_tmp_0 = ((LLI_tmp_0 - proxy_linux_B.Sum1_b) - proxy_linux_B.LAK_tmp_p)
-    - proxy_linux_B.rtb_pose_idx_1;
-  LLI_tmp_tmp_1 = proxy_linux_B.xH_tmp_j * 27.0F;
-  LLI_tmp_tmp_2 = (real32_T)cos((real_T)proxy_linux_B.xH_tmp_tmp);
-  LLI_tmp_tmp_3 = ((LLI_tmp + proxy_linux_B.rtb_pose_idx_4) +
-                   proxy_linux_B.xH_tmp_nu) - proxy_linux_B.xH_tmp_c;
-  proxy_linux_B.xH_tmp_gu = ((((86.0F * proxy_linux_B.xH_tmp - 37.0F *
-    proxy_linux_B.rtb_DataTypeConversion_a_idx_1) - xH_tmp) -
-    proxy_linux_B.Sum1_b) - proxy_linux_B.LAK_tmp_p) - proxy_linux_B.xH_tmp_o;
-  proxy_linux_B.xH_tmp_dh = ((((37.0F * proxy_linux_B.xH_tmp + 86.0F *
-    proxy_linux_B.rtb_DataTypeConversion_a_idx_1) - proxy_linux_B.rtb_pose_idx_3)
-    - LLI_tmp) - proxy_linux_B.xH_tmp_nu) - LLI_tmp_tmp_1;
-  LLI_tmp_tmp_4 = proxy_linux_B.xH_tmp_dh * LLI_tmp_tmp_2 +
-    proxy_linux_B.xH_tmp_gu * proxy_linux_B.rtb_pose_idx_2;
-  LLI_tmp_tmp_tmp = (real32_T)sin((real_T)proxy_linux_B.y_l[1]);
-  LLI_tmp_tmp_5 = proxy_linux_B.LAK_tmp_b * (67.0F * LLI_tmp_tmp_tmp);
-  proxy_linux_B.rtb_DataTypeConversion_a_idx_1 = proxy_linux_B.LLI *
-    LLI_tmp_tmp_5 - (LLI_tmp_tmp_4 * proxy_linux_B.yH + (LLI_tmp_tmp_3 *
-    proxy_linux_B.LAK_tmp_g - LLI_tmp_tmp_0 * proxy_linux_B.xH_tmp_b) *
-                     (proxy_linux_B.LAK_tmp_b * 67.0F)) *
-    proxy_linux_B.rtb_pose_idx_5;
-  proxy_linux_B.xH = (real32_T)sin((real_T)proxy_linux_B.y_l[5]);
-  proxy_linux_B.xH_tmp_tmp = (real32_T)sin((real_T)proxy_linux_B.y_l[0]);
-  proxy_linux_B.xH_tmp_tmp_tmp = 35.0F * proxy_linux_B.xH_tmp;
-  proxy_linux_B.xH_tmp_tmp_l = (proxy_linux_B.rtb_pose_idx_3 +
-    proxy_linux_B.xH_tmp_tmp_tmp) - proxy_linux_B.rtb_pose_idx_4;
-  proxy_linux_B.xH_tmp = proxy_linux_B.xH_tmp_tmp_l *
-    proxy_linux_B.rtb_pose_idx_5 - proxy_linux_B.LLI * proxy_linux_B.xH_tmp_tmp;
-  proxy_linux_B.xH_tmp_tmp_ld = proxy_linux_B.xH_tmp_b * 67.0F *
-    proxy_linux_B.LAK_tmp_b;
-  proxy_linux_B.xH_tmp_c = LLI_tmp_tmp_0 * proxy_linux_B.xH_tmp_tmp_ld;
-  proxy_linux_B.xH_tmp_g = (real32_T)proxy_linux_P.fingerwidth_Value *
-    proxy_linux_B.rtb_pose_idx_5;
-  proxy_linux_B.xH_tmp_m = (real32_T)proxy_linux_P.proximallength_Value -
-    proxy_linux_B.y_l[6];
-  proxy_linux_B.LAK_tmp_c = proxy_linux_B.xH_tmp_g - proxy_linux_B.y_l[6] *
-    proxy_linux_B.xH_tmp_tmp;
-  proxy_linux_B.xH_tmp_n = (real32_T)proxy_linux_P.fingerwidth_Value *
-    proxy_linux_B.xH_tmp_tmp;
-  proxy_linux_B.LAK_tmp_f = (proxy_linux_B.xH_tmp_gu *
-    proxy_linux_B.rtb_pose_idx_6 + LLI_tmp_tmp_3 * (proxy_linux_B.xH_tmp_d *
-    67.0F)) * proxy_linux_B.rtb_pose_idx_2 + (proxy_linux_B.xH_tmp_dh *
-    (proxy_linux_B.rtb_pose_idx_6 * LLI_tmp_tmp_2) + LLI_tmp_tmp_3 *
-    (LLI_tmp_tmp_2 * 67.0F * proxy_linux_B.xH_tmp_j));
-  proxy_linux_B.xH_tmp_p = (proxy_linux_B.xH_tmp_c - LLI_tmp_tmp_4 *
-    proxy_linux_B.xH_tmp_p) - proxy_linux_B.LAK_tmp_f * proxy_linux_B.LAK_tmp_g;
-  proxy_linux_B.xH_tmp_g += proxy_linux_B.xH_tmp_m * proxy_linux_B.xH_tmp_tmp;
-  proxy_linux_B.xH_tmp_j = proxy_linux_B.LAK_tmp_g * 67.0F *
-    proxy_linux_B.LAK_tmp_b;
-  proxy_linux_B.xH_tmp_m = proxy_linux_B.xH_tmp_n - proxy_linux_B.xH_tmp_m *
-    proxy_linux_B.rtb_pose_idx_5;
-  proxy_linux_B.xH_tmp_d = proxy_linux_B.xH_tmp_p * proxy_linux_B.xH_tmp_tmp +
-    proxy_linux_B.xH_tmp_tmp_l * LLI_tmp_tmp_5;
-  proxy_linux_B.xH_tmp_n += proxy_linux_B.y_l[6] * proxy_linux_B.rtb_pose_idx_5;
-  proxy_linux_B.rtb_pose_idx_6 = 67.0F * proxy_linux_B.xH_tmp_tmp;
-  proxy_linux_B.xH_tmp_gu = proxy_linux_B.xH_tmp_b *
-    proxy_linux_B.rtb_pose_idx_5;
-  proxy_linux_B.xH_tmp_dh = proxy_linux_B.LAK_tmp_g *
-    proxy_linux_B.rtb_pose_idx_5;
-  proxy_linux_B.xH_tmp_dy = (real32_T)cos((real_T)proxy_linux_B.y_l[5]);
-  proxy_linux_B.xH_tmp_l = proxy_linux_B.LAK_tmp_b * (67.0F * proxy_linux_B.y_l
-    [7]);
-  proxy_linux_B.xH_tmp_p = proxy_linux_B.rtb_pose_idx_6 * LLI_tmp_tmp_tmp *
-    proxy_linux_B.LAK_tmp_b * proxy_linux_B.LAK_tmp_c * proxy_linux_B.LLI -
-    (proxy_linux_B.rtb_DataTypeConversion_a_idx_1 * proxy_linux_B.xH_tmp_n -
-     proxy_linux_B.xH_tmp_p * (proxy_linux_B.LAK_tmp_c *
-      proxy_linux_B.xH_tmp_tmp)) * proxy_linux_B.rtb_pose_idx_5;
-  proxy_linux_B.xH_tmp_n += (((proxy_linux_B.xH_tmp * proxy_linux_B.xH_tmp_l +
-    proxy_linux_B.xH_tmp * (proxy_linux_B.xH_tmp_tmp_ld * proxy_linux_B.xH_tmp_g))
-    - proxy_linux_B.xH_tmp * (proxy_linux_B.xH_tmp_j * proxy_linux_B.xH_tmp_m))
-    - proxy_linux_B.xH_tmp_d * proxy_linux_B.LAK_tmp_c) /
-    proxy_linux_B.rtb_DataTypeConversion_a_idx_1;
-  proxy_linux_B.xH_tmp_tmp = (real32_T)tan((real_T)proxy_linux_B.y_l[5]);
-  proxy_linux_B.xH_tmp_tmp_l = LLI_tmp_tmp * 18.0F;
-  proxy_linux_B.xH_tmp_tmp_tmp = (proxy_linux_B.xH_tmp_tmp_l +
-    LLI_tmp_tmp_tmp_tmp) - (proxy_linux_B.xH_tmp_tmp_tmp -
-    proxy_linux_B.LAK_tmp_k * 18.0F) * proxy_linux_B.xH_tmp_tmp;
-  proxy_linux_B.xH_tmp_o += (xH_tmp + proxy_linux_B.Sum1_b) +
-    proxy_linux_B.LAK_tmp_p;
-  proxy_linux_B.xH_tmp_tmp_ld = 67.0F * proxy_linux_B.rtb_pose_idx_5;
-  proxy_linux_B.xH_tmp_b = proxy_linux_B.xH_tmp_tmp_ld * proxy_linux_B.xH_tmp_b *
-    proxy_linux_B.LAK_tmp_b;
-  proxy_linux_B.xH_tmp_nu = ((proxy_linux_B.rtb_pose_idx_3 + LLI_tmp) +
-    proxy_linux_B.xH_tmp_nu) + LLI_tmp_tmp_1;
-  xH_tmp += LLI_tmp_0;
-  proxy_linux_B.rtb_pose_idx_6 = (((((proxy_linux_B.rtb_pose_idx_7 -
-    proxy_linux_B.Sum1_b) - proxy_linux_B.LAK_tmp_p) -
-    proxy_linux_B.rtb_pose_idx_1) * proxy_linux_B.xH_tmp_b - proxy_linux_B.LLI *
-    (proxy_linux_B.rtb_pose_idx_6 * proxy_linux_B.LAK_tmp_g *
-     proxy_linux_B.LAK_tmp_b)) - LLI_tmp_tmp_4 * (proxy_linux_B.LAK *
-    proxy_linux_B.xH_tmp_gu)) - proxy_linux_B.LAK_tmp_f *
-    proxy_linux_B.xH_tmp_dh;
-  proxy_linux_B.xH_tmp_l = proxy_linux_B.xH_tmp_p *
-    (proxy_linux_B.xH_tmp_tmp_tmp * proxy_linux_B.xH_tmp_l);
-  proxy_linux_B.xH = (((((((proxy_linux_B.xH_tmp_o *
-    proxy_linux_B.rtb_pose_idx_2 * proxy_linux_B.yH * proxy_linux_B.xH_tmp +
-    proxy_linux_B.xH_tmp_c * proxy_linux_B.xH_tmp) + proxy_linux_B.xH_tmp_nu *
-    LLI_tmp_tmp_2 * proxy_linux_B.yH * proxy_linux_B.xH_tmp) - LLI_tmp_tmp_3 *
-    proxy_linux_B.xH_tmp_j * proxy_linux_B.xH_tmp) -
-    proxy_linux_B.rtb_DataTypeConversion_a_idx_1 * (proxy_linux_B.rtb_pose_idx_3
-    - proxy_linux_B.rtb_pose_idx_4)) - proxy_linux_B.xH_tmp_d * xH_tmp) *
-                       -(((proxy_linux_B.xH_tmp_g * proxy_linux_B.xH_tmp_gu +
-    proxy_linux_B.y_l[7] * proxy_linux_B.rtb_pose_idx_5) -
-    proxy_linux_B.LAK_tmp_c * LLI_tmp_tmp_tmp) - proxy_linux_B.xH_tmp_m *
-    proxy_linux_B.xH_tmp_dh) / (proxy_linux_B.xH_tmp_p * proxy_linux_B.y_l[7]) -
-                       (real32_T)fabs((real_T)(proxy_linux_B.xH_tmp_n *
-    ((proxy_linux_B.rtb_pose_idx_6 * (proxy_linux_B.xH * proxy_linux_B.xH) /
-      (proxy_linux_B.rtb_DataTypeConversion_a_idx_1 * proxy_linux_B.xH_tmp_dy) +
-      proxy_linux_B.xH_tmp_dy) * (proxy_linux_B.rtb_DataTypeConversion_a_idx_1 *
-    proxy_linux_B.rtb_DataTypeConversion_a_idx_1)) / proxy_linux_B.xH_tmp_l)) *
-                       ((proxy_linux_B.rtb_VectorConcatenate_idx_2 -
-    proxy_linux_DW.UnitDelay3_DSTATE_c[0]) / 0.01F * 2.0F) /
-                       ((proxy_linux_B.Sum1 -
-    proxy_linux_DW.UnitDelay3_DSTATE_c[1]) / 0.01F)) - proxy_linux_B.xH_tmp_n *
-                      (proxy_linux_B.rtb_DataTypeConversion_a_idx_1 *
-                       proxy_linux_B.rtb_DataTypeConversion_a_idx_1) *
-                      (proxy_linux_B.xH_tmp_tmp_l -
-                       (((((proxy_linux_B.xH_tmp_tmp_tmp *
-    (proxy_linux_B.rtb_pose_idx_2 * proxy_linux_B.rtb_pose_idx_5) *
-    proxy_linux_B.xH_tmp_o * proxy_linux_B.yH + proxy_linux_B.xH_tmp_tmp_tmp *
-    proxy_linux_B.xH_tmp_b * LLI_tmp_tmp_0) + proxy_linux_B.xH_tmp_tmp_tmp *
-    (LLI_tmp_tmp_2 * proxy_linux_B.rtb_pose_idx_5) * proxy_linux_B.xH_tmp_nu *
-    proxy_linux_B.yH) - proxy_linux_B.xH_tmp_tmp_tmp * (LLI_tmp_tmp_5 * xH_tmp))
-    - proxy_linux_B.xH_tmp_tmp_tmp * (proxy_linux_B.xH_tmp_tmp_ld *
-    proxy_linux_B.LAK_tmp_g * proxy_linux_B.LAK_tmp_b) * LLI_tmp_tmp_3) -
-                        proxy_linux_B.rtb_pose_idx_6 * (18.0F *
-    proxy_linux_B.xH_tmp_tmp * proxy_linux_B.LAK_tmp_k)) /
-                       proxy_linux_B.rtb_DataTypeConversion_a_idx_1) /
-                      proxy_linux_B.xH_tmp_l) / 2.0F;
-  if ((proxy_linux_B.xH == 0.0F) || rtIsNaNF(proxy_linux_B.xH) || rtIsInfF
-      (proxy_linux_B.xH)) {
-    proxy_linux_B.rtb_VectorConcatenate_idx_2 =
-      proxy_linux_DW.UnitDelay1_DSTATE_m;
-  } else {
-    proxy_linux_B.rtb_VectorConcatenate_idx_2 = -(real32_T)fabs((real_T)
-      proxy_linux_B.xH);
-  }
-
-  /* SignalConversion: '<S41>/TmpSignal ConversionAt SFunction Inport2' incorporates:
-   *  MATLAB Function: '<S12>/Jacobian2'
-   */
-  proxy_linux_B.rtb_pose_idx_1 = proxy_linux_B.GainAggiustato_g;
-  proxy_linux_B.rtb_pose_idx_2 = proxy_linux_B.Sum1_h;
-
-  /* MATLAB Function: '<S12>/Jacobian2' incorporates:
-   *  Constant: '<S40>/finger width'
-   *  Constant: '<S40>/proximal length'
-   *  MATLAB Function: '<S12>/MATLAB Function3'
-   *  SignalConversion: '<S41>/TmpSignal ConversionAt SFunction Inport2'
-   *  UnitDelay: '<S12>/Unit Delay1'
-   *  UnitDelay: '<S12>/Unit Delay3'
-   */
-  proxy_linux_B.rtb_DataTypeConversion_a_idx_1 = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_5);
-  proxy_linux_B.LAK_tmp_k = proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2;
-  proxy_linux_B.LAK_tmp_b = (real32_T)cos((real_T)proxy_linux_B.LAK_tmp_k);
-  proxy_linux_B.LAK_tmp_p = proxy_linux_B.Sum1_h - proxy_linux_B.LHD;
-  proxy_linux_B.xH_tmp_o = proxy_linux_B.LAK_tmp_p - proxy_linux_B.rtb_y_p_idx_2;
-  proxy_linux_B.LAK_tmp_c = (real32_T)cos((real_T)proxy_linux_B.xH_tmp_o);
-  proxy_linux_B.xH_tmp_b = (real32_T)sin((real_T)proxy_linux_B.LAK_tmp_k);
-  proxy_linux_B.LAK_tmp_k = proxy_linux_B.xH_tmp_b * 43.0F;
-  proxy_linux_B.LAK_tmp_f = (real32_T)sin((real_T)proxy_linux_B.xH_tmp_o);
-  proxy_linux_B.LAK_tmp_g = proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2;
-  proxy_linux_B.Sum1 = proxy_linux_B.LAK_tmp_f * 40.0F;
-  proxy_linux_B.xH_tmp_nu = proxy_linux_B.LAK_tmp_c * 40.0F;
-  proxy_linux_B.Sum1_b = proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1;
-  LLI_tmp_tmp_tmp_tmp = proxy_linux_B.LAK_tmp_b * 9.0F;
-  proxy_linux_B.xH_tmp = proxy_linux_B.LAK_tmp_f * 39.0F;
-  proxy_linux_B.LAK = (real32_T)cos((real_T)proxy_linux_B.Sum1_b);
-  xH_tmp = proxy_linux_B.LAK_tmp_b * 16.0F;
-  proxy_linux_B.xH = proxy_linux_B.xH_tmp_b * 9.0F;
-  proxy_linux_B.LLI = proxy_linux_B.LAK_tmp_c * 39.0F;
-  proxy_linux_B.Sum1_b = (real32_T)sin((real_T)proxy_linux_B.Sum1_b);
-  proxy_linux_B.LAK_tmp_p = (real32_T)cos((real_T)(proxy_linux_B.LAK_tmp_p -
-    proxy_linux_B.rtb_y_p_idx_4));
-  proxy_linux_B.xH_tmp_o = proxy_linux_B.LAK_tmp_f * 27.0F;
-  LLI_tmp_tmp_0 = (real32_T)sin((real_T)proxy_linux_B.LAK_tmp_g);
-  LLI_tmp_0 = proxy_linux_B.Sum1 + proxy_linux_B.LLI;
-  proxy_linux_B.xH_tmp_n = LLI_tmp_0 * proxy_linux_B.Sum1_b;
-  proxy_linux_B.xH_tmp_tmp_ld = proxy_linux_B.xH_tmp_nu - proxy_linux_B.xH_tmp;
-  LLI_tmp_tmp_2 = proxy_linux_B.xH_tmp_n + proxy_linux_B.xH_tmp_tmp_ld *
-    proxy_linux_B.LAK;
-  LLI_tmp = proxy_linux_B.LAK_tmp_b * 43.0F;
-  LLI_tmp_tmp_1 = proxy_linux_B.xH_tmp_b * 16.0F;
-  proxy_linux_B.yH = 35.0F * (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)
-    - proxy_linux_B.LAK_tmp_k;
-  proxy_linux_B.rtb_pose_idx_3 = proxy_linux_B.yH - xH_tmp;
-  LLI_tmp_tmp_3 = ((xH_tmp - proxy_linux_B.xH) - proxy_linux_B.Sum1) -
-    proxy_linux_B.LLI;
-  LAK_tmp_tmp = proxy_linux_B.LAK_tmp_c * 27.0F;
-  LLI_tmp_tmp_4 = (real32_T)cos((real_T)proxy_linux_B.LAK_tmp_g);
-  LLI_tmp_tmp_tmp = ((LLI_tmp_tmp_tmp_tmp + LLI_tmp_tmp_1) +
-                     proxy_linux_B.xH_tmp_nu) - proxy_linux_B.xH_tmp;
-  proxy_linux_B.xH_tmp_p = ((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - proxy_linux_B.LAK_tmp_k) - proxy_linux_B.xH)
-    - proxy_linux_B.Sum1) - proxy_linux_B.xH_tmp_o;
-  proxy_linux_B.xH_tmp_j = ((((37.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) + 86.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - LLI_tmp) - LLI_tmp_tmp_tmp_tmp) -
-    proxy_linux_B.xH_tmp_nu) - LAK_tmp_tmp;
-  LLI_tmp_tmp_5 = proxy_linux_B.xH_tmp_j * LLI_tmp_tmp_4 +
-    proxy_linux_B.xH_tmp_p * LLI_tmp_tmp_0;
-  proxy_linux_B.rtb_pose_idx_4 = (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_1);
-  LLI_tmp_tmp = proxy_linux_B.LAK_tmp_p * (67.0F * proxy_linux_B.rtb_pose_idx_4);
-  proxy_linux_B.rtb_pose_idx_5 = proxy_linux_B.rtb_pose_idx_3 * LLI_tmp_tmp;
-  proxy_linux_B.rtb_pose_idx_7 = (LLI_tmp_tmp_5 * LLI_tmp_tmp_2 +
-    (LLI_tmp_tmp_tmp * proxy_linux_B.LAK - LLI_tmp_tmp_3 * proxy_linux_B.Sum1_b)
-    * (proxy_linux_B.LAK_tmp_p * 67.0F)) * (real32_T)cos((real_T)
-    proxy_linux_B.LDG);
-  proxy_linux_B.LAK_tmp_g = proxy_linux_B.rtb_pose_idx_5 -
-    proxy_linux_B.rtb_pose_idx_7;
-  proxy_linux_B.xH_tmp_tmp_tmp = 35.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2);
-  proxy_linux_B.xH_tmp_tmp = (LLI_tmp + proxy_linux_B.xH_tmp_tmp_tmp) -
-    LLI_tmp_tmp_1;
-  proxy_linux_B.xH_tmp = proxy_linux_B.xH_tmp_tmp * (real32_T)cos((real_T)
-    proxy_linux_B.LDG) - proxy_linux_B.rtb_pose_idx_3 * (real32_T)sin((real_T)
-    proxy_linux_B.LDG);
-  proxy_linux_B.xH_tmp_tmp_l = proxy_linux_B.Sum1_b * 67.0F *
-    proxy_linux_B.LAK_tmp_p;
-  proxy_linux_B.xH_tmp_c = LLI_tmp_tmp_3 * proxy_linux_B.xH_tmp_tmp_l;
-  proxy_linux_B.xH_tmp_g = (real32_T)proxy_linux_P.fingerwidth_Value_n -
-    proxy_linux_B.rtb_y_p_idx_6;
-  proxy_linux_B.xH_tmp_m = (real32_T)proxy_linux_P.proximallength_Value_b *
-    (real32_T)cos((real_T)proxy_linux_B.LDG) - proxy_linux_B.rtb_y_p_idx_6 *
-    (real32_T)sin((real_T)proxy_linux_B.LDG);
-  proxy_linux_B.xH_tmp_tmp_ld = (proxy_linux_B.xH_tmp_p *
-    proxy_linux_B.xH_tmp_tmp_ld + LLI_tmp_tmp_tmp * (proxy_linux_B.LAK_tmp_f *
-    67.0F)) * LLI_tmp_tmp_0 + (proxy_linux_B.xH_tmp_j *
-    (proxy_linux_B.xH_tmp_tmp_ld * LLI_tmp_tmp_4) + LLI_tmp_tmp_tmp *
-    (LLI_tmp_tmp_4 * 67.0F * proxy_linux_B.LAK_tmp_c));
-  proxy_linux_B.LAK_tmp_c = (proxy_linux_B.xH_tmp_c - LLI_tmp_tmp_5 *
-    proxy_linux_B.xH_tmp_n) - proxy_linux_B.xH_tmp_tmp_ld * proxy_linux_B.LAK;
-  proxy_linux_B.xH_tmp_n = proxy_linux_B.xH_tmp_g * (real32_T)sin((real_T)
-    proxy_linux_B.LDG) + (real32_T)proxy_linux_P.proximallength_Value_b *
-    (real32_T)cos((real_T)proxy_linux_B.LDG);
-  proxy_linux_B.xH_tmp_p = proxy_linux_B.LAK * 67.0F * proxy_linux_B.LAK_tmp_p;
-  proxy_linux_B.xH_tmp_g = (real32_T)proxy_linux_P.proximallength_Value_b *
-    (real32_T)sin((real_T)proxy_linux_B.LDG) - proxy_linux_B.xH_tmp_g *
-    (real32_T)cos((real_T)proxy_linux_B.LDG);
-  proxy_linux_B.xH_tmp_j = proxy_linux_B.LAK_tmp_c * (real32_T)sin((real_T)
-    proxy_linux_B.LDG) + proxy_linux_B.xH_tmp_tmp * LLI_tmp_tmp;
-  proxy_linux_B.xH_tmp_d = (real32_T)proxy_linux_P.proximallength_Value_b *
-    (real32_T)sin((real_T)proxy_linux_B.LDG) + proxy_linux_B.rtb_y_p_idx_6 *
-    (real32_T)cos((real_T)proxy_linux_B.LDG);
-  proxy_linux_B.rtb_pose_idx_6 = 67.0F * (real32_T)sin((real_T)proxy_linux_B.LDG);
-  proxy_linux_B.xH_tmp_gu = proxy_linux_B.Sum1_b * (real32_T)cos((real_T)
-    proxy_linux_B.LDG);
-  proxy_linux_B.xH_tmp_dh = proxy_linux_B.LAK * (real32_T)cos((real_T)
-    proxy_linux_B.LDG);
-  proxy_linux_B.xH_tmp_dy = (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_5);
-  proxy_linux_B.xH_tmp_l = proxy_linux_B.LAK_tmp_p * (67.0F *
-    proxy_linux_B.rtb_VectorConcatenate_idx_8);
-  proxy_linux_B.LAK_tmp_c = proxy_linux_B.rtb_pose_idx_6 *
-    proxy_linux_B.rtb_pose_idx_4 * proxy_linux_B.LAK_tmp_p *
-    proxy_linux_B.xH_tmp_m * proxy_linux_B.rtb_pose_idx_3 -
-    (proxy_linux_B.LAK_tmp_g * proxy_linux_B.xH_tmp_d - proxy_linux_B.LAK_tmp_c *
-     (proxy_linux_B.xH_tmp_m * (real32_T)sin((real_T)proxy_linux_B.LDG))) *
-    (real32_T)cos((real_T)proxy_linux_B.LDG);
-  proxy_linux_B.xH_tmp_d += (((proxy_linux_B.xH_tmp * proxy_linux_B.xH_tmp_l +
-    proxy_linux_B.xH_tmp * (proxy_linux_B.xH_tmp_tmp_l * proxy_linux_B.xH_tmp_n))
-    - proxy_linux_B.xH_tmp * (proxy_linux_B.xH_tmp_p * proxy_linux_B.xH_tmp_g))
-    - proxy_linux_B.xH_tmp_j * proxy_linux_B.xH_tmp_m) / proxy_linux_B.LAK_tmp_g;
-  proxy_linux_B.xH_tmp_tmp = (real32_T)tan((real_T)proxy_linux_B.rtb_y_p_idx_5);
-  proxy_linux_B.xH_tmp_tmp_l = proxy_linux_B.xH_tmp_b * 18.0F;
-  proxy_linux_B.xH_tmp_tmp_tmp = (proxy_linux_B.xH_tmp_tmp_l + 35.0F * (real32_T)
-    sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (proxy_linux_B.xH_tmp_tmp_tmp -
-    proxy_linux_B.LAK_tmp_b * 18.0F) * proxy_linux_B.xH_tmp_tmp;
-  proxy_linux_B.xH_tmp_o += (proxy_linux_B.LAK_tmp_k + proxy_linux_B.xH) +
-    proxy_linux_B.Sum1;
-  proxy_linux_B.LAK_tmp_f = 67.0F * (real32_T)cos((real_T)proxy_linux_B.LDG);
-  proxy_linux_B.xH_tmp_b = proxy_linux_B.LAK_tmp_f * proxy_linux_B.Sum1_b *
-    proxy_linux_B.LAK_tmp_p;
-  proxy_linux_B.xH_tmp_nu = ((LLI_tmp + LLI_tmp_tmp_tmp_tmp) +
-    proxy_linux_B.xH_tmp_nu) + LAK_tmp_tmp;
-  xH_tmp += proxy_linux_B.LAK_tmp_k;
-  proxy_linux_B.rtb_pose_idx_6 = (((((proxy_linux_B.yH - proxy_linux_B.xH) -
-    proxy_linux_B.Sum1) - proxy_linux_B.LLI) * proxy_linux_B.xH_tmp_b -
-    proxy_linux_B.rtb_pose_idx_3 * (proxy_linux_B.rtb_pose_idx_6 *
-    proxy_linux_B.LAK * proxy_linux_B.LAK_tmp_p)) - LLI_tmp_tmp_5 * (LLI_tmp_0 *
-    proxy_linux_B.xH_tmp_gu)) - proxy_linux_B.xH_tmp_tmp_ld *
-    proxy_linux_B.xH_tmp_dh;
-  proxy_linux_B.xH_tmp_l = proxy_linux_B.LAK_tmp_c *
-    (proxy_linux_B.xH_tmp_tmp_tmp * proxy_linux_B.xH_tmp_l);
-  proxy_linux_B.xH_tmp_c = ((((proxy_linux_B.xH_tmp_o * LLI_tmp_tmp_0 *
-    LLI_tmp_tmp_2 * proxy_linux_B.xH_tmp + proxy_linux_B.xH_tmp_c *
-    proxy_linux_B.xH_tmp) + proxy_linux_B.xH_tmp_nu * LLI_tmp_tmp_4 *
-    LLI_tmp_tmp_2 * proxy_linux_B.xH_tmp) - LLI_tmp_tmp_tmp *
-    proxy_linux_B.xH_tmp_p * proxy_linux_B.xH_tmp) - proxy_linux_B.LAK_tmp_g *
-    (LLI_tmp - LLI_tmp_tmp_1)) - proxy_linux_B.xH_tmp_j * xH_tmp;
-  proxy_linux_B.xH_tmp_p = (((proxy_linux_B.xH_tmp_tmp_tmp * (LLI_tmp_tmp_0 *
-    (real32_T)cos((real_T)proxy_linux_B.LDG)) * proxy_linux_B.xH_tmp_o *
-    LLI_tmp_tmp_2 + proxy_linux_B.xH_tmp_tmp_tmp * proxy_linux_B.xH_tmp_b *
-    LLI_tmp_tmp_3) + proxy_linux_B.xH_tmp_tmp_tmp * (LLI_tmp_tmp_4 * (real32_T)
-    cos((real_T)proxy_linux_B.LDG)) * proxy_linux_B.xH_tmp_nu * LLI_tmp_tmp_2) -
-    proxy_linux_B.xH_tmp_tmp_tmp * (LLI_tmp_tmp * xH_tmp)) -
-    proxy_linux_B.xH_tmp_tmp_tmp * (proxy_linux_B.LAK_tmp_f * proxy_linux_B.LAK *
-    proxy_linux_B.LAK_tmp_p) * LLI_tmp_tmp_tmp;
-  proxy_linux_B.xH_tmp_j = proxy_linux_B.rtb_pose_idx_6 * (18.0F *
-    proxy_linux_B.xH_tmp_tmp * proxy_linux_B.LAK_tmp_b);
-  proxy_linux_B.xH = ((proxy_linux_B.xH_tmp_c * -(((proxy_linux_B.xH_tmp_n *
-    proxy_linux_B.xH_tmp_gu + proxy_linux_B.rtb_VectorConcatenate_idx_8 *
-    (real32_T)cos((real_T)proxy_linux_B.LDG)) - proxy_linux_B.xH_tmp_m *
-    proxy_linux_B.rtb_pose_idx_4) - proxy_linux_B.xH_tmp_g *
-    proxy_linux_B.xH_tmp_dh) / (proxy_linux_B.LAK_tmp_c *
-    proxy_linux_B.rtb_VectorConcatenate_idx_8) - (real32_T)fabs((real_T)
-    (proxy_linux_B.xH_tmp_d * ((proxy_linux_B.rtb_pose_idx_6 *
-    (proxy_linux_B.rtb_DataTypeConversion_a_idx_1 *
-     proxy_linux_B.rtb_DataTypeConversion_a_idx_1) / (proxy_linux_B.LAK_tmp_g *
-    proxy_linux_B.xH_tmp_dy) + proxy_linux_B.xH_tmp_dy) *
-    (proxy_linux_B.LAK_tmp_g * proxy_linux_B.LAK_tmp_g)) /
-     proxy_linux_B.xH_tmp_l)) * ((proxy_linux_B.GainAggiustato_g -
-    proxy_linux_DW.UnitDelay3_DSTATE_k[0]) / 0.01F * 2.0F) /
-                       ((proxy_linux_B.Sum1_h -
-    proxy_linux_DW.UnitDelay3_DSTATE_k[1]) / 0.01F)) - proxy_linux_B.xH_tmp_d *
-                      (proxy_linux_B.LAK_tmp_g * proxy_linux_B.LAK_tmp_g) *
-                      (proxy_linux_B.xH_tmp_tmp_l - (proxy_linux_B.xH_tmp_p -
-    proxy_linux_B.xH_tmp_j) / proxy_linux_B.LAK_tmp_g) / proxy_linux_B.xH_tmp_l)
-    / 2.0F;
-  if ((proxy_linux_B.xH == 0.0F) || rtIsNaNF(proxy_linux_B.xH) || rtIsInfF
-      (proxy_linux_B.xH)) {
-    proxy_linux_B.Sum1 = proxy_linux_DW.UnitDelay1_DSTATE_e;
-  } else {
-    proxy_linux_B.Sum1 = -(real32_T)fabs((real_T)proxy_linux_B.xH);
-  }
-
-  proxy_linux_B.JTcomp_p[0] = (((((proxy_linux_B.yH * proxy_linux_B.xH_tmp_gu -
-    16.0F * (real32_T)cos((real_T)proxy_linux_B.LDG) * proxy_linux_B.Sum1_b *
-    proxy_linux_B.LAK_tmp_b) - proxy_linux_B.rtb_pose_idx_3 *
-    proxy_linux_B.rtb_pose_idx_4) - proxy_linux_B.rtb_pose_idx_3 *
-    (proxy_linux_B.LAK * (real32_T)sin((real_T)proxy_linux_B.LDG))) *
-    (proxy_linux_B.rtb_DataTypeConversion_a_idx_1 *
-     proxy_linux_B.rtb_DataTypeConversion_a_idx_1 * 67.0F *
-     proxy_linux_B.LAK_tmp_p) + proxy_linux_B.rtb_pose_idx_5) -
-    proxy_linux_B.rtb_pose_idx_7) * -proxy_linux_B.xH_tmp /
-    (proxy_linux_B.LAK_tmp_c * (proxy_linux_B.xH_tmp_tmp_tmp *
-      proxy_linux_B.xH_tmp_dy));
-  proxy_linux_B.JTcomp_p[1] = proxy_linux_B.xH_tmp_c * (real32_T)cos((real_T)
-    proxy_linux_B.LDG) / proxy_linux_B.LAK_tmp_c - ((proxy_linux_B.xH_tmp_p -
-    proxy_linux_B.LAK_tmp_g * proxy_linux_B.xH_tmp_tmp_l) -
-    proxy_linux_B.xH_tmp_j) * proxy_linux_B.xH_tmp / (proxy_linux_B.LAK_tmp_c *
-    proxy_linux_B.xH_tmp_tmp_tmp);
-  proxy_linux_B.JTcomp_p[2] = -(((((((((real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F + 35.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) * (real32_T)
-    cos((real_T)proxy_linux_B.LDG) - ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) * (real32_T)
-    sin((real_T)proxy_linux_B.LDG)) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_4)) *
-    (67.0F * proxy_linux_B.rtb_VectorConcatenate_idx_8)) + ((((real32_T)cos
-    ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F +
-    35.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin
-    ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) *
-    (real32_T)cos((real_T)proxy_linux_B.LDG) - ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) * (real32_T)
-    sin((real_T)proxy_linux_B.LDG)) * ((real32_T)sin((real_T)(proxy_linux_B.LDG
-    + proxy_linux_B.rtb_y_p_idx_1)) * 67.0F * (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_4)) *
-    (((real32_T)proxy_linux_P.fingerwidth_Value_n - proxy_linux_B.rtb_y_p_idx_6)
-     * (real32_T)sin((real_T)proxy_linux_B.LDG) + (real32_T)
-     proxy_linux_P.proximallength_Value_b * (real32_T)cos((real_T)
-    proxy_linux_B.LDG)))) - ((((real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 43.0F + 35.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) * (real32_T)cos((real_T)
-    proxy_linux_B.LDG) - ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) * (real32_T)
-    sin((real_T)proxy_linux_B.LDG)) * ((real32_T)cos((real_T)(proxy_linux_B.LDG
-    + proxy_linux_B.rtb_y_p_idx_1)) * 67.0F * (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_4)) *
-    ((real32_T)proxy_linux_P.proximallength_Value_b * (real32_T)sin((real_T)
-    proxy_linux_B.LDG) - ((real32_T)proxy_linux_P.fingerwidth_Value_n -
-    proxy_linux_B.rtb_y_p_idx_6) * (real32_T)cos((real_T)proxy_linux_B.LDG)))) -
-    (((((((real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-         sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                      proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos
-        ((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                  proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * ((real32_T)sin
-    ((real_T)(proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1)) * 67.0F *
-    (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_4))) - ((((((37.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) + 86.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)cos((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * (real32_T)cos((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * (real32_T)sin((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    40.0F + (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * (real32_T)sin((real_T)
-    (proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1)))) - (((((((86.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2) - 37.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)
-    sin((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * ((real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD)
-    - proxy_linux_B.rtb_y_p_idx_2)) * 40.0F - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-              39.0F) + ((((real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) + (real32_T)
-    cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-                        39.0F) * ((real32_T)sin((real_T)((proxy_linux_B.Sum1_h -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) * 67.0F)) * (real32_T)sin
-    ((real_T)(proxy_linux_B.rtb_y_p_idx_4 - proxy_linux_B.rtb_y_p_idx_2)) +
-    ((((((37.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2) + 86.0F *
-          (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)cos
-         ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F)
-        - (real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-       40.0F) - (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD)
-    - proxy_linux_B.rtb_y_p_idx_2)) * 27.0F) * (((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    40.0F - (real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_y_p_idx_4 - proxy_linux_B.rtb_y_p_idx_2))) + ((((real32_T)
-    cos((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F +
-    (real32_T)sin((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-    16.0F) + (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * ((real32_T)cos((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2)) * 67.0F * (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)))))
-      * (real32_T)cos((real_T)(proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1)))
-     * (real32_T)sin((real_T)proxy_linux_B.LDG) + (((real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F + 35.0F *
-    (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) * ((real32_T)
-    cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_4)) * (67.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_1)))) * ((real32_T)
-    proxy_linux_P.proximallength_Value_b * (real32_T)cos((real_T)
-    proxy_linux_B.LDG) - proxy_linux_B.rtb_y_p_idx_6 * (real32_T)sin((real_T)
-    proxy_linux_B.LDG))) / (((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) * ((real32_T)
-    cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_4)) * (67.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_1))) - (((((((37.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) + 86.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)cos((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * (real32_T)cos((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * (real32_T)sin((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    40.0F + (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * (real32_T)sin((real_T)
-    (proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    40.0F - (real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * (real32_T)cos((real_T)
-    (proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1))) + (((((real32_T)cos
-    ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F +
-    (real32_T)sin((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-    16.0F) + (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * (real32_T)cos((real_T)(proxy_linux_B.LDG +
-    proxy_linux_B.rtb_y_p_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F - (real32_T)
-    sin((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * (real32_T)sin((real_T)(proxy_linux_B.LDG +
-    proxy_linux_B.rtb_y_p_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_4)) *
-    67.0F)) * (real32_T)cos((real_T)proxy_linux_B.LDG)) + ((real32_T)
-    proxy_linux_P.proximallength_Value_b * (real32_T)sin((real_T)
-    proxy_linux_B.LDG) + proxy_linux_B.rtb_y_p_idx_6 * (real32_T)cos((real_T)
-    proxy_linux_B.LDG))) * (((((((((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * (67.0F * (real32_T)cos((real_T)proxy_linux_B.LDG) * (real32_T)sin
-              ((real_T)(proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1)) *
-              (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD)
-    - proxy_linux_B.rtb_y_p_idx_4))) - ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) * (67.0F *
-    (real32_T)sin((real_T)proxy_linux_B.LDG) * (real32_T)cos((real_T)
-    (proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1)) * (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_4))))
-    - ((((((37.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2) + 86.0F *
-            (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)cos
-           ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-           43.0F) - (real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-         40.0F) - (real32_T)cos((real_T)((proxy_linux_B.Sum1_h -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) * 27.0F) * (real32_T)cos
-       ((real_T)(proxy_linux_B.rtb_y_p_idx_4 - proxy_linux_B.rtb_y_p_idx_2)) +
-       (((((86.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2) - 37.0F *
-            (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin
-           ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-           43.0F) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-         40.0F) - (real32_T)sin((real_T)((proxy_linux_B.Sum1_h -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) * 27.0F) * (real32_T)sin
-       ((real_T)(proxy_linux_B.rtb_y_p_idx_4 - proxy_linux_B.rtb_y_p_idx_2))) *
-    (((real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F + (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-      39.0F) * ((real32_T)sin((real_T)(proxy_linux_B.LDG +
-    proxy_linux_B.rtb_y_p_idx_1)) * (real32_T)cos((real_T)proxy_linux_B.LDG))))
-    - (((((((86.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2) - 37.0F *
-             (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin
-            ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-            43.0F) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-          40.0F) - (real32_T)sin((real_T)((proxy_linux_B.Sum1_h -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) * 27.0F) * ((real32_T)cos
-    ((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-              proxy_linux_B.rtb_y_p_idx_2)) * 40.0F - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) + ((((real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) + (real32_T)
-               cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-              39.0F) * ((real32_T)sin((real_T)((proxy_linux_B.Sum1_h -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) * 67.0F)) * (real32_T)sin
-       ((real_T)(proxy_linux_B.rtb_y_p_idx_4 - proxy_linux_B.rtb_y_p_idx_2)) +
-       ((((((37.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2) + 86.0F *
-             (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)cos
-            ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-            43.0F) - (real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-          40.0F) - (real32_T)cos((real_T)((proxy_linux_B.Sum1_h -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) * 27.0F) * (((real32_T)
-    cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * (real32_T)cos((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2))) + ((((real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F + (real32_T)sin
-    ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) +
-    (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * ((real32_T)cos((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2)) * 67.0F * (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)))))
-    * ((real32_T)cos((real_T)(proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1)) *
-       (real32_T)cos((real_T)proxy_linux_B.LDG))) *
-    (proxy_linux_B.rtb_DataTypeConversion_a_idx_1 *
-     proxy_linux_B.rtb_DataTypeConversion_a_idx_1) / ((((35.0F * (real32_T)sin
-    ((real_T)proxy_linux_B.rtb_y_p_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)
-    cos((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) *
-    ((real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_4)) * (67.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_1))) - (((((((37.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) + 86.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)cos((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * (real32_T)cos((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * (real32_T)sin((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    40.0F + (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * (real32_T)sin((real_T)
-    (proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    40.0F - (real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * (real32_T)cos((real_T)
-    (proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1))) + (((((real32_T)cos
-    ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F +
-    (real32_T)sin((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-    16.0F) + (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * (real32_T)cos((real_T)(proxy_linux_B.LDG +
-    proxy_linux_B.rtb_y_p_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F - (real32_T)
-    sin((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * (real32_T)sin((real_T)(proxy_linux_B.LDG +
-    proxy_linux_B.rtb_y_p_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_4)) *
-    67.0F)) * (real32_T)cos((real_T)proxy_linux_B.LDG)) * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_5)) + (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_5)) * (proxy_linux_B.LAK_tmp_g *
-    proxy_linux_B.LAK_tmp_g)) / ((67.0F * (real32_T)sin((real_T)
-    proxy_linux_B.LDG) * (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_1) *
-    (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_4)) * ((real32_T)
-    proxy_linux_P.proximallength_Value_b * (real32_T)cos((real_T)
-    proxy_linux_B.LDG) - proxy_linux_B.rtb_y_p_idx_6 * (real32_T)sin((real_T)
-    proxy_linux_B.LDG)) * ((35.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) - ((((35.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)
-    cos((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) *
-    ((real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_4)) * (67.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_1))) - (((((((37.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) + 86.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)cos((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * (real32_T)cos((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2)) + (((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * (real32_T)sin((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2))) * (((real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    40.0F + (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * (real32_T)sin((real_T)
-    (proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1)) + ((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    40.0F - (real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * (real32_T)cos((real_T)
-    (proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1))) + (((((real32_T)cos
-    ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F +
-    (real32_T)sin((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-    16.0F) + (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * (real32_T)cos((real_T)(proxy_linux_B.LDG +
-    proxy_linux_B.rtb_y_p_idx_1)) - ((((real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F - (real32_T)
-    sin((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) -
-    (real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * (real32_T)sin((real_T)(proxy_linux_B.LDG +
-    proxy_linux_B.rtb_y_p_idx_1))) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_4)) *
-    67.0F)) * (real32_T)cos((real_T)proxy_linux_B.LDG)) * ((real32_T)
-    proxy_linux_P.proximallength_Value_b * (real32_T)sin((real_T)
-    proxy_linux_B.LDG) + proxy_linux_B.rtb_y_p_idx_6 * (real32_T)cos((real_T)
-    proxy_linux_B.LDG)) - ((((((real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 16.0F - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * ((real32_T)sin((real_T)(proxy_linux_B.LDG +
-    proxy_linux_B.rtb_y_p_idx_1)) * 67.0F * (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_4)))
-    - ((((((37.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2) + 86.0F *
-            (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)cos
-           ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-           43.0F) - (real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-         40.0F) - (real32_T)cos((real_T)((proxy_linux_B.Sum1_h -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) * 27.0F) * (real32_T)cos
-       ((real_T)(proxy_linux_B.rtb_y_p_idx_4 - proxy_linux_B.rtb_y_p_idx_2)) +
-       (((((86.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2) - 37.0F *
-            (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin
-           ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-           43.0F) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-         40.0F) - (real32_T)sin((real_T)((proxy_linux_B.Sum1_h -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) * 27.0F) * (real32_T)sin
-       ((real_T)(proxy_linux_B.rtb_y_p_idx_4 - proxy_linux_B.rtb_y_p_idx_2))) *
-    (((real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F + (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-      39.0F) * (real32_T)sin((real_T)(proxy_linux_B.LDG +
-    proxy_linux_B.rtb_y_p_idx_1)))) - (((((((86.0F * (real32_T)cos((real_T)
-    proxy_linux_B.rtb_y_p_idx_2) - 37.0F * (real32_T)sin((real_T)
-    proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)sin((real_T)(proxy_linux_B.Sum1_h
-    - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F) - (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)
-    sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    27.0F) * ((real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD)
-    - proxy_linux_B.rtb_y_p_idx_2)) * 40.0F - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-              39.0F) + ((((real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F + (real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 16.0F) + (real32_T)
-    cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-                 proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-                        39.0F) * ((real32_T)sin((real_T)((proxy_linux_B.Sum1_h -
-    proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) * 67.0F)) * (real32_T)sin
-    ((real_T)(proxy_linux_B.rtb_y_p_idx_4 - proxy_linux_B.rtb_y_p_idx_2)) +
-    ((((((37.0F * (real32_T)cos((real_T)proxy_linux_B.rtb_y_p_idx_2) + 86.0F *
-          (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (real32_T)cos
-         ((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 43.0F)
-        - (real32_T)cos((real_T)(proxy_linux_B.Sum1_h -
-    proxy_linux_B.rtb_y_p_idx_2)) * 9.0F) - (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-       40.0F) - (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD)
-    - proxy_linux_B.rtb_y_p_idx_2)) * 27.0F) * (((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    40.0F - (real32_T)sin((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 39.0F) * (real32_T)cos((real_T)
-    (proxy_linux_B.rtb_y_p_idx_4 - proxy_linux_B.rtb_y_p_idx_2))) + ((((real32_T)
-    cos((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 9.0F +
-    (real32_T)sin((real_T)(proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) *
-    16.0F) + (real32_T)cos((real_T)((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) -
-    proxy_linux_B.rtb_y_p_idx_2)) * 40.0F) - (real32_T)sin((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)) *
-    39.0F) * ((real32_T)cos((real_T)(proxy_linux_B.rtb_y_p_idx_4 -
-    proxy_linux_B.rtb_y_p_idx_2)) * 67.0F * (real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_2)))))
-    * (real32_T)cos((real_T)(proxy_linux_B.LDG + proxy_linux_B.rtb_y_p_idx_1))) *
-    (((real32_T)proxy_linux_P.proximallength_Value_b * (real32_T)cos((real_T)
-    proxy_linux_B.LDG) - proxy_linux_B.rtb_y_p_idx_6 * (real32_T)sin((real_T)
-    proxy_linux_B.LDG)) * (real32_T)sin((real_T)proxy_linux_B.LDG))) * (real32_T)
-    cos((real_T)proxy_linux_B.LDG)) * ((((real32_T)sin((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 18.0F + 35.0F *
-    (real32_T)sin((real_T)proxy_linux_B.rtb_y_p_idx_2)) - (35.0F * (real32_T)cos
-    ((real_T)proxy_linux_B.rtb_y_p_idx_2) - (real32_T)cos((real_T)
-    (proxy_linux_B.Sum1_h - proxy_linux_B.rtb_y_p_idx_2)) * 18.0F) * (real32_T)
-    tan((real_T)proxy_linux_B.rtb_y_p_idx_5)) * ((real32_T)cos((real_T)
-    ((proxy_linux_B.Sum1_h - proxy_linux_B.LHD) - proxy_linux_B.rtb_y_p_idx_4)) *
-    (67.0F * proxy_linux_B.rtb_VectorConcatenate_idx_8)))));
-  proxy_linux_B.JTcomp_p[3] = proxy_linux_B.Sum1;
-
-  /* MATLAB Function: '<S12>/MATLAB Function' incorporates:
-   *  Gain: '<S12>/Gain'
-   *  Gain: '<S12>/Gain1'
-   *  Gain: '<S2>/Gain2'
-   *  Gain: '<S2>/Gain6'
-   */
-  proxy_linux_MATLABFunction(proxy_linux_B.JTcomp_p, proxy_linux_P.Gain_Gain_m *
-    (proxy_linux_P.Gain2_Gain * proxy_linux_B.Filt4), proxy_linux_P.Gain1_Gain_m
-    * (proxy_linux_P.Gain6_Gain * proxy_linux_B.Filt3),
-    &proxy_linux_B.sf_MATLABFunction_d);
-
-  /* ManualSwitch: '<S5>/Manual Switch1' incorporates:
-   *  Constant: '<S5>/Constant'
-   *  Constant: '<S5>/Constant4'
-   */
-  if (proxy_linux_P.ManualSwitch1_CurrentSetting_p == 1) {
-    proxy_linux_B.Sum1_b = proxy_linux_P.Constant4_Value_f;
-  } else {
-    proxy_linux_B.Sum1_b = proxy_linux_P.Constant_Value_o;
-  }
-
-  /* End of ManualSwitch: '<S5>/Manual Switch1' */
-
-  /* Switch: '<S5>/Switch1' incorporates:
-   *  Constant: '<S5>/Constant2'
-   */
-  if (proxy_linux_B.Sum1_b > proxy_linux_P.Switch1_Threshold) {
-    /* Saturate: '<S11>/Saturation' */
-    if (proxy_linux_B.sf_MATLABFunction_o.y[0] >
-        proxy_linux_P.Saturation_UpperSat_m) {
-      proxy_linux_B.GainAggiustato_g = proxy_linux_P.Saturation_UpperSat_m;
-    } else if (proxy_linux_B.sf_MATLABFunction_o.y[0] <
-               proxy_linux_P.Saturation_LowerSat_i) {
-      proxy_linux_B.GainAggiustato_g = proxy_linux_P.Saturation_LowerSat_i;
-    } else {
-      proxy_linux_B.GainAggiustato_g = proxy_linux_B.sf_MATLABFunction_o.y[0];
-    }
-
-    /* End of Saturate: '<S11>/Saturation' */
-  } else {
-    proxy_linux_B.GainAggiustato_g = proxy_linux_P.Constant2_Value;
-  }
-
-  /* End of Switch: '<S5>/Switch1' */
-
-  /* Switch: '<S5>/Switch2' incorporates:
-   *  Constant: '<S5>/Constant2'
-   */
-  if (proxy_linux_B.Sum1_b > proxy_linux_P.Switch2_Threshold) {
-    /* Saturate: '<S12>/Saturation' */
-    if (proxy_linux_B.sf_MATLABFunction_d.y[0] >
-        proxy_linux_P.Saturation_UpperSat) {
-      proxy_linux_B.Sum1_h = proxy_linux_P.Saturation_UpperSat;
-    } else if (proxy_linux_B.sf_MATLABFunction_d.y[0] <
-               proxy_linux_P.Saturation_LowerSat) {
-      proxy_linux_B.Sum1_h = proxy_linux_P.Saturation_LowerSat;
-    } else {
-      proxy_linux_B.Sum1_h = proxy_linux_B.sf_MATLABFunction_d.y[0];
-    }
-
-    /* End of Saturate: '<S12>/Saturation' */
-  } else {
-    proxy_linux_B.Sum1_h = proxy_linux_P.Constant2_Value;
-  }
-
-  /* End of Switch: '<S5>/Switch2' */
-
-  /* Switch: '<S5>/Switch3' incorporates:
-   *  Constant: '<S5>/Constant2'
-   */
-  if (proxy_linux_B.Sum1_b > proxy_linux_P.Switch3_Threshold) {
-    /* Gain: '<S14>/Gain' incorporates:
-     *  Gain: '<S2>/Gain'
+  if (proxy_linux_B.Saturation4 > proxy_linux_P.Switch3_Threshold) {
+    /* Gain: '<S18>/Gain' incorporates:
+     *  Gain: '<S3>/Gain'
      */
-    proxy_linux_B.LAK_tmp = proxy_linux_P.Gain_Gain_k * proxy_linux_B.Filt2 *
+    proxy_linux_B.Gain1 = proxy_linux_P.Gain_Gain * proxy_linux_B.Filt2 *
       proxy_linux_P.Gain_Gain_o;
 
-    /* Saturate: '<S14>/Saturation1' */
-    if (proxy_linux_B.LAK_tmp > proxy_linux_P.Saturation1_UpperSat_i) {
-      proxy_linux_B.LAK = (real32_T)proxy_linux_P.Saturation1_UpperSat_i;
-    } else if (proxy_linux_B.LAK_tmp < proxy_linux_P.Saturation1_LowerSat_a) {
-      proxy_linux_B.LAK = (real32_T)proxy_linux_P.Saturation1_LowerSat_a;
+    /* Saturate: '<S18>/Saturation1' */
+    if (proxy_linux_B.Gain1 > proxy_linux_P.Saturation1_UpperSat) {
+      proxy_linux_B.Saturation1_n = (real32_T)proxy_linux_P.Saturation1_UpperSat;
+    } else if (proxy_linux_B.Gain1 < proxy_linux_P.Saturation1_LowerSat) {
+      proxy_linux_B.Saturation1_n = (real32_T)proxy_linux_P.Saturation1_LowerSat;
     } else {
-      proxy_linux_B.LAK = (real32_T)proxy_linux_B.LAK_tmp;
+      proxy_linux_B.Saturation1_n = (real32_T)proxy_linux_B.Gain1;
     }
 
-    /* End of Saturate: '<S14>/Saturation1' */
+    /* End of Saturate: '<S18>/Saturation1' */
   } else {
-    proxy_linux_B.LAK = proxy_linux_P.Constant2_Value;
+    proxy_linux_B.Saturation1_n = proxy_linux_P.Constant2_Value_d;
   }
 
-  /* End of Switch: '<S5>/Switch3' */
+  /* End of Switch: '<S6>/Switch3' */
 
-  /* Switch: '<S5>/Switch4' incorporates:
-   *  Constant: '<S5>/Constant2'
+  /* Switch: '<S6>/Switch4' incorporates:
+   *  Constant: '<S6>/Constant2'
    */
-  if (proxy_linux_B.Sum1_b > proxy_linux_P.Switch4_Threshold) {
-    /* Gain: '<S13>/Gain' incorporates:
-     *  Gain: '<S2>/Gain1'
-     */
-    proxy_linux_B.LAK_tmp = proxy_linux_P.Gain1_Gain * proxy_linux_B.Filt1 *
-      proxy_linux_P.Gain_Gain;
-
-    /* Saturate: '<S13>/Saturation1' */
-    if (proxy_linux_B.LAK_tmp > proxy_linux_P.Saturation1_UpperSat) {
-      proxy_linux_B.yH = (real32_T)proxy_linux_P.Saturation1_UpperSat;
-    } else if (proxy_linux_B.LAK_tmp < proxy_linux_P.Saturation1_LowerSat) {
-      proxy_linux_B.yH = (real32_T)proxy_linux_P.Saturation1_LowerSat;
-    } else {
-      proxy_linux_B.yH = (real32_T)proxy_linux_B.LAK_tmp;
-    }
-
-    /* End of Saturate: '<S13>/Saturation1' */
+  if (proxy_linux_B.Saturation4 > proxy_linux_P.Switch4_Threshold) {
+    proxy_linux_B.Saturation_f = (real32_T)proxy_linux_B.Saturation1_j;
   } else {
-    proxy_linux_B.yH = proxy_linux_P.Constant2_Value;
+    proxy_linux_B.Saturation_f = proxy_linux_P.Constant2_Value_d;
   }
 
-  /* End of Switch: '<S5>/Switch4' */
+  /* End of Switch: '<S6>/Switch4' */
 
-  /* SignalConversion: '<S5>/TmpSignal ConversionAtByte PackInport1' */
+  /* SignalConversion: '<S6>/TmpSignal ConversionAtByte PackInport1' incorporates:
+   *  Constant: '<S6>/Constant'
+   */
   proxy_linux_B.TmpSignalConversionAtBytePackIn[0] = proxy_linux_B.ByteUnpack[0];
-
-  /* ManualSwitch: '<S5>/Manual Switch' */
-  if (proxy_linux_P.ManualSwitch_CurrentSetting_m == 1) {
-    /* SignalConversion: '<S5>/TmpSignal ConversionAtByte PackInport1' incorporates:
-     *  Constant: '<S5>/Constant3'
-     */
-    proxy_linux_B.TmpSignalConversionAtBytePackIn[1] =
-      proxy_linux_P.Constant3_Value;
-  } else {
-    /* SignalConversion: '<S5>/TmpSignal ConversionAtByte PackInport1' incorporates:
-     *  Constant: '<S5>/Constant1'
-     */
-    proxy_linux_B.TmpSignalConversionAtBytePackIn[1] =
-      proxy_linux_P.Constant1_Value_e;
-  }
-
-  /* End of ManualSwitch: '<S5>/Manual Switch' */
-
-  /* Switch: '<S5>/Switch' */
-  if (proxy_linux_B.Sum1_b > proxy_linux_P.Switch_Threshold) {
-    /* SignalConversion: '<S5>/TmpSignal ConversionAtByte PackInport1' */
-    proxy_linux_B.TmpSignalConversionAtBytePackIn[2] = 0.0F;
-  } else {
-    /* SignalConversion: '<S5>/TmpSignal ConversionAtByte PackInport1' incorporates:
-     *  Constant: '<S5>/Constant2'
-     */
-    proxy_linux_B.TmpSignalConversionAtBytePackIn[2] =
-      proxy_linux_P.Constant2_Value;
-  }
-
-  /* End of Switch: '<S5>/Switch' */
-
-  /* SignalConversion: '<S5>/TmpSignal ConversionAtByte PackInport1' incorporates:
-   *  Constant: '<S5>/Constant'
-   */
-  proxy_linux_B.TmpSignalConversionAtBytePackIn[3] =
-    proxy_linux_B.GainAggiustato_g;
-  proxy_linux_B.TmpSignalConversionAtBytePackIn[4] = proxy_linux_B.Sum1_h;
-  proxy_linux_B.TmpSignalConversionAtBytePackIn[5] = proxy_linux_B.LAK;
-  proxy_linux_B.TmpSignalConversionAtBytePackIn[6] = proxy_linux_B.yH;
+  proxy_linux_B.TmpSignalConversionAtBytePackIn[1] = proxy_linux_B.Sum1;
+  proxy_linux_B.TmpSignalConversionAtBytePackIn[2] = proxy_linux_B.Saturation6;
+  proxy_linux_B.TmpSignalConversionAtBytePackIn[3] = proxy_linux_B.Saturation3_b;
+  proxy_linux_B.TmpSignalConversionAtBytePackIn[4] = proxy_linux_B.Saturation2_h;
+  proxy_linux_B.TmpSignalConversionAtBytePackIn[5] = proxy_linux_B.Saturation1_n;
+  proxy_linux_B.TmpSignalConversionAtBytePackIn[6] = proxy_linux_B.Saturation_f;
   proxy_linux_B.TmpSignalConversionAtBytePackIn[7] =
     proxy_linux_P.Constant_Value_o;
   proxy_linux_B.TmpSignalConversionAtBytePackIn[8] =
@@ -4066,238 +1793,636 @@ void proxy_linux_step(void)
   proxy_linux_B.TmpSignalConversionAtBytePackIn[11] =
     proxy_linux_P.Constant_Value_o;
 
-  /* S-Function (any2byte): '<S5>/Byte Pack' */
+  /* S-Function (any2byte): '<S6>/Byte Pack' */
 
-  /* Pack: <S5>/Byte Pack */
+  /* Pack: <S6>/Byte Pack */
   (void) memcpy(&proxy_linux_B.BytePack[0],
                 &proxy_linux_B.TmpSignalConversionAtBytePackIn[0],
                 48);
 
-  /* Update for DiscreteTransferFcn: '<S7>/Filt ' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt_states = (proxy_linux_B.rtb_VectorConcatenate_idx_0 -
-      proxy_linux_P.Filt_DenCoef[1] * proxy_linux_DW.Filt_states) /
-      proxy_linux_P.Filt_DenCoef[0];
-    proxy_linux_B.samplesRead++;
+  /* BusAssignment: '<S7>/Bus Assignment' */
+  proxy_linux_B.BusAssignment.Data = proxy_linux_B.ByteUnpack[0];
+
+  /* Outputs for Atomic SubSystem: '<S7>/Publish' */
+  /* MATLABSystem: '<S75>/SinkBlock' */
+  Pub_proxy_linux_264.publish(&proxy_linux_B.BusAssignment);
+
+  /* End of Outputs for SubSystem: '<S7>/Publish' */
+
+  /* BusAssignment: '<S7>/Bus Assignment1' */
+  proxy_linux_B.BusAssignment1.Data = proxy_linux_B.ByteUnpack[1];
+
+  /* Outputs for Atomic SubSystem: '<S7>/Publish1' */
+  /* MATLABSystem: '<S76>/SinkBlock' */
+  Pub_proxy_linux_311.publish(&proxy_linux_B.BusAssignment1);
+
+  /* End of Outputs for SubSystem: '<S7>/Publish1' */
+
+  /* DiscreteTransferFcn: '<S7>/Filt ' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Saturation_f = proxy_linux_P.Filt_NumCoef[1] *
+      proxy_linux_DW.Filt_states;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S7>/Filt ' */
+  /* End of DiscreteTransferFcn: '<S7>/Filt ' */
 
-  /* Update for DiscreteTransferFcn: '<S7>/Filt 1' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt1_states_d = (proxy_linux_B.rtb_VectorConcatenate_idx_1 -
-      proxy_linux_P.Filt1_DenCoef_l[1] * proxy_linux_DW.Filt1_states_d) /
-      proxy_linux_P.Filt1_DenCoef_l[0];
-    proxy_linux_B.samplesRead++;
+  /* Saturate: '<S7>/Saturation' */
+  if (proxy_linux_B.Saturation_f > proxy_linux_P.Saturation_UpperSat_g) {
+    proxy_linux_B.Saturation_f = proxy_linux_P.Saturation_UpperSat_g;
+  } else {
+    if (proxy_linux_B.Saturation_f < proxy_linux_P.Saturation_LowerSat_h) {
+      proxy_linux_B.Saturation_f = proxy_linux_P.Saturation_LowerSat_h;
+    }
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 1' */
+  /* End of Saturate: '<S7>/Saturation' */
 
-  /* Update for DiscreteTransferFcn: '<S7>/Filt 2' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt2_states_d = (proxy_linux_B.rtb_VectorConcatenate_idx_4 -
-      proxy_linux_P.Filt2_DenCoef_a[1] * proxy_linux_DW.Filt2_states_d) /
-      proxy_linux_P.Filt2_DenCoef_a[0];
-    proxy_linux_B.samplesRead++;
+  /* DiscreteTransferFcn: '<S7>/Filt 1' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Saturation1_n = proxy_linux_P.Filt1_NumCoef_j[1] *
+      proxy_linux_DW.Filt1_states_d;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 2' */
+  /* End of DiscreteTransferFcn: '<S7>/Filt 1' */
 
-  /* Update for DiscreteTransferFcn: '<S7>/Filt 3' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt3_states_h = (proxy_linux_B.LA2K -
-      proxy_linux_P.Filt3_DenCoef_k[1] * proxy_linux_DW.Filt3_states_h) /
-      proxy_linux_P.Filt3_DenCoef_k[0];
-    proxy_linux_B.samplesRead++;
+  /* Saturate: '<S7>/Saturation1' */
+  if (proxy_linux_B.Saturation1_n > proxy_linux_P.Saturation1_UpperSat_i) {
+    proxy_linux_B.Saturation1_n = proxy_linux_P.Saturation1_UpperSat_i;
+  } else {
+    if (proxy_linux_B.Saturation1_n < proxy_linux_P.Saturation1_LowerSat_o) {
+      proxy_linux_B.Saturation1_n = proxy_linux_P.Saturation1_LowerSat_o;
+    }
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 3' */
+  /* End of Saturate: '<S7>/Saturation1' */
 
-  /* Update for DiscreteTransferFcn: '<S7>/Filt 4' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt4_states_a = (proxy_linux_B.qN -
-      proxy_linux_P.Filt4_DenCoef_l[1] * proxy_linux_DW.Filt4_states_a) /
-      proxy_linux_P.Filt4_DenCoef_l[0];
-    proxy_linux_B.samplesRead++;
+  /* DiscreteTransferFcn: '<S7>/Filt 2' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Saturation2_h = proxy_linux_P.Filt2_NumCoef_o[1] *
+      proxy_linux_DW.Filt2_states_d;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 4' */
+  /* End of DiscreteTransferFcn: '<S7>/Filt 2' */
 
-  /* Update for DiscreteTransferFcn: '<S7>/Filt 5' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt5_states_j = (proxy_linux_B.rtb_VectorConcatenate_idx_5 -
-      proxy_linux_P.Filt5_DenCoef_g[1] * proxy_linux_DW.Filt5_states_j) /
-      proxy_linux_P.Filt5_DenCoef_g[0];
-    proxy_linux_B.samplesRead++;
+  /* Saturate: '<S7>/Saturation2' */
+  if (proxy_linux_B.Saturation2_h > proxy_linux_P.Saturation2_UpperSat_l4) {
+    proxy_linux_B.Saturation2_h = proxy_linux_P.Saturation2_UpperSat_l4;
+  } else {
+    if (proxy_linux_B.Saturation2_h < proxy_linux_P.Saturation2_LowerSat_c) {
+      proxy_linux_B.Saturation2_h = proxy_linux_P.Saturation2_LowerSat_c;
+    }
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 5' */
+  /* End of Saturate: '<S7>/Saturation2' */
 
-  /* Update for DiscreteTransferFcn: '<S7>/Filt 6' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt6_states_n = (proxy_linux_B.rtb_VectorConcatenate_idx_6 -
-      proxy_linux_P.Filt6_DenCoef_n[1] * proxy_linux_DW.Filt6_states_n) /
-      proxy_linux_P.Filt6_DenCoef_n[0];
-    proxy_linux_B.samplesRead++;
+  /* DiscreteTransferFcn: '<S7>/Filt 3' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Saturation3_b = proxy_linux_P.Filt3_NumCoef_m[1] *
+      proxy_linux_DW.Filt3_states_h;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 6' */
+  /* End of DiscreteTransferFcn: '<S7>/Filt 3' */
 
-  /* Update for DiscreteTransferFcn: '<S7>/Filt 7' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt7_states = (proxy_linux_B.rtb_VectorConcatenate_idx_7 -
-      proxy_linux_P.Filt7_DenCoef[1] * proxy_linux_DW.Filt7_states) /
-      proxy_linux_P.Filt7_DenCoef[0];
-    proxy_linux_B.samplesRead++;
+  /* Saturate: '<S7>/Saturation3' */
+  if (proxy_linux_B.Saturation3_b > proxy_linux_P.Saturation3_UpperSat_e) {
+    proxy_linux_B.Saturation3_b = proxy_linux_P.Saturation3_UpperSat_e;
+  } else {
+    if (proxy_linux_B.Saturation3_b < proxy_linux_P.Saturation3_LowerSat_e) {
+      proxy_linux_B.Saturation3_b = proxy_linux_P.Saturation3_LowerSat_e;
+    }
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 7' */
+  /* End of Saturate: '<S7>/Saturation3' */
 
-  /* Update for DiscreteTransferFcn: '<S7>/Filt 8' */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt8_states = (proxy_linux_B.xD -
-      proxy_linux_P.Filt8_DenCoef[1] * proxy_linux_DW.Filt8_states) /
-      proxy_linux_P.Filt8_DenCoef[0];
-    proxy_linux_B.samplesRead++;
+  /* DiscreteTransferFcn: '<S7>/Filt 4' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Filt4_NumCoef_f[1] *
+      proxy_linux_DW.Filt4_states_a;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 8' */
+  /* End of DiscreteTransferFcn: '<S7>/Filt 4' */
 
-  /* Update for DiscreteTransferFcn: '<S2>/Filt 1' incorporates:
-   *  SignalConversion: '<S2>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
+  /* Saturate: '<S7>/Saturation4' */
+  if (proxy_linux_B.Saturation4 > proxy_linux_P.Saturation4_UpperSat) {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Saturation4_UpperSat;
+  } else {
+    if (proxy_linux_B.Saturation4 < proxy_linux_P.Saturation4_LowerSat) {
+      proxy_linux_B.Saturation4 = proxy_linux_P.Saturation4_LowerSat;
+    }
+  }
+
+  /* End of Saturate: '<S7>/Saturation4' */
+
+  /* DiscreteTransferFcn: '<S7>/Filt 5' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Sum1 = proxy_linux_P.Filt5_NumCoef_e[1] *
+      proxy_linux_DW.Filt5_states_j;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S7>/Filt 5' */
+
+  /* Saturate: '<S7>/Saturation5' */
+  if (proxy_linux_B.Sum1 > proxy_linux_P.Saturation5_UpperSat) {
+    proxy_linux_B.Sum1 = proxy_linux_P.Saturation5_UpperSat;
+  } else {
+    if (proxy_linux_B.Sum1 < proxy_linux_P.Saturation5_LowerSat) {
+      proxy_linux_B.Sum1 = proxy_linux_P.Saturation5_LowerSat;
+    }
+  }
+
+  /* End of Saturate: '<S7>/Saturation5' */
+
+  /* DiscreteTransferFcn: '<S7>/Filt 6' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Saturation6 = proxy_linux_P.Filt6_NumCoef_j[1] *
+      proxy_linux_DW.Filt6_states_n;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S7>/Filt 6' */
+
+  /* Saturate: '<S7>/Saturation6' */
+  if (proxy_linux_B.Saturation6 > proxy_linux_P.Saturation6_UpperSat) {
+    proxy_linux_B.Saturation6 = proxy_linux_P.Saturation6_UpperSat;
+  } else {
+    if (proxy_linux_B.Saturation6 < proxy_linux_P.Saturation6_LowerSat) {
+      proxy_linux_B.Saturation6 = proxy_linux_P.Saturation6_LowerSat;
+    }
+  }
+
+  /* End of Saturate: '<S7>/Saturation6' */
+
+  /* DiscreteTransferFcn: '<S7>/Filt 7' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.Saturation7 = proxy_linux_P.Filt7_NumCoef[1] *
+      proxy_linux_DW.Filt7_states;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S7>/Filt 7' */
+
+  /* Saturate: '<S7>/Saturation7' */
+  if (proxy_linux_B.Saturation7 > proxy_linux_P.Saturation7_UpperSat) {
+    proxy_linux_B.Saturation7 = proxy_linux_P.Saturation7_UpperSat;
+  } else {
+    if (proxy_linux_B.Saturation7 < proxy_linux_P.Saturation7_LowerSat) {
+      proxy_linux_B.Saturation7 = proxy_linux_P.Saturation7_LowerSat;
+    }
+  }
+
+  /* End of Saturate: '<S7>/Saturation7' */
+
+  /* DiscreteTransferFcn: '<S7>/Filt 8' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_B.DeadZone_m = proxy_linux_P.Filt8_NumCoef_n[1] *
+      proxy_linux_DW.Filt8_states_h;
+    proxy_linux_B.k++;
+  }
+
+  /* End of DiscreteTransferFcn: '<S7>/Filt 8' */
+
+  /* Saturate: '<S7>/Saturation8' */
+  if (proxy_linux_B.DeadZone_m > proxy_linux_P.Saturation8_UpperSat) {
+    proxy_linux_B.DeadZone_m = proxy_linux_P.Saturation8_UpperSat;
+  } else {
+    if (proxy_linux_B.DeadZone_m < proxy_linux_P.Saturation8_LowerSat) {
+      proxy_linux_B.DeadZone_m = proxy_linux_P.Saturation8_LowerSat;
+    }
+  }
+
+  /* End of Saturate: '<S7>/Saturation8' */
+
+  /* MATLAB Function: '<S7>/MATLAB Function - Assign' incorporates:
+   *  Constant: '<S73>/Constant'
+   *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn1'
+   *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn2'
+   *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn3'
+   *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn4'
+   *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn5'
+   *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn6'
+   *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn7'
+   *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn8'
+   *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn9'
    */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt1_states = (proxy_linux_B.In1.Data[7] -
+  proxy_linux_B.msg = proxy_linux_P.Constant_Value;
+  proxy_linux_B.msg.Position_SL_Info.CurrentLength = 9U;
+  proxy_linux_B.msg.Position[0] = proxy_linux_B.Saturation_f;
+  proxy_linux_B.msg.Position[1] = proxy_linux_B.Saturation1_n;
+  proxy_linux_B.msg.Position[2] = proxy_linux_B.Saturation2_h;
+  proxy_linux_B.msg.Position[3] = proxy_linux_B.Saturation3_b;
+  proxy_linux_B.msg.Position[4] = proxy_linux_B.Saturation4;
+  proxy_linux_B.msg.Position[5] = proxy_linux_B.Sum1;
+  proxy_linux_B.msg.Position[6] = proxy_linux_B.Saturation6;
+  proxy_linux_B.msg.Position[7] = proxy_linux_B.Saturation7;
+  proxy_linux_B.msg.Position[8] = proxy_linux_B.DeadZone_m;
+  proxy_linux_B.msg.Velocity_SL_Info.CurrentLength = 9U;
+  proxy_linux_B.msg.Effort_SL_Info.CurrentLength = 9U;
+  memset(&proxy_linux_B.msg.Velocity[0], 0, 9U * sizeof(real_T));
+  memset(&proxy_linux_B.msg.Effort[0], 0, 9U * sizeof(real_T));
+  proxy_linux_B.msg.Name_SL_Info.CurrentLength = 9U;
+  for (proxy_linux_B.k = 0; proxy_linux_B.k < 24; proxy_linux_B.k++) {
+    proxy_linux_B.msg.Name[0].Data[proxy_linux_B.k] = (uint8_T)b[proxy_linux_B.k];
+  }
+
+  proxy_linux_B.msg.Name[0].Data_SL_Info.CurrentLength = 24U;
+  for (proxy_linux_B.k = 0; proxy_linux_B.k < 27; proxy_linux_B.k++) {
+    proxy_linux_B.msg.Name[1].Data[proxy_linux_B.k] = (uint8_T)c[proxy_linux_B.k];
+  }
+
+  proxy_linux_B.msg.Name[1].Data_SL_Info.CurrentLength = 27U;
+  for (proxy_linux_B.k = 0; proxy_linux_B.k < 30; proxy_linux_B.k++) {
+    proxy_linux_B.msg.Name[2].Data[proxy_linux_B.k] = (uint8_T)d[proxy_linux_B.k];
+  }
+
+  proxy_linux_B.msg.Name[2].Data_SL_Info.CurrentLength = 30U;
+  for (proxy_linux_B.k = 0; proxy_linux_B.k < 32; proxy_linux_B.k++) {
+    proxy_linux_B.msg.Name[3].Data[proxy_linux_B.k] = (uint8_T)e[proxy_linux_B.k];
+  }
+
+  proxy_linux_B.msg.Name[3].Data_SL_Info.CurrentLength = 32U;
+  for (proxy_linux_B.k = 0; proxy_linux_B.k < 31; proxy_linux_B.k++) {
+    proxy_linux_B.msg.Name[4].Data[proxy_linux_B.k] = (uint8_T)f[proxy_linux_B.k];
+  }
+
+  proxy_linux_B.msg.Name[4].Data_SL_Info.CurrentLength = 31U;
+  for (proxy_linux_B.k = 0; proxy_linux_B.k < 33; proxy_linux_B.k++) {
+    proxy_linux_B.msg.Name[5].Data[proxy_linux_B.k] = (uint8_T)g[proxy_linux_B.k];
+  }
+
+  proxy_linux_B.msg.Name[5].Data_SL_Info.CurrentLength = 33U;
+  for (proxy_linux_B.k = 0; proxy_linux_B.k < 22; proxy_linux_B.k++) {
+    proxy_linux_B.msg.Name[6].Data[proxy_linux_B.k] = (uint8_T)h[proxy_linux_B.k];
+  }
+
+  proxy_linux_B.msg.Name[6].Data_SL_Info.CurrentLength = 22U;
+  for (proxy_linux_B.k = 0; proxy_linux_B.k < 16; proxy_linux_B.k++) {
+    proxy_linux_B.msg.Name[7].Data[proxy_linux_B.k] = (uint8_T)i[proxy_linux_B.k];
+  }
+
+  proxy_linux_B.msg.Name[7].Data_SL_Info.CurrentLength = 16U;
+  for (proxy_linux_B.k = 0; proxy_linux_B.k < 24; proxy_linux_B.k++) {
+    proxy_linux_B.msg.Name[8].Data[proxy_linux_B.k] = (uint8_T)j[proxy_linux_B.k];
+  }
+
+  proxy_linux_B.msg.Name[8].Data_SL_Info.CurrentLength = 24U;
+
+  /* End of MATLAB Function: '<S7>/MATLAB Function - Assign' */
+
+  /* Outputs for Atomic SubSystem: '<S7>/Publish12' */
+  /* MATLABSystem: '<S77>/SinkBlock' */
+  Pub_proxy_linux_470.publish(&proxy_linux_B.msg);
+
+  /* End of Outputs for SubSystem: '<S7>/Publish12' */
+
+  /* SignalConversion: '<S7>/TmpSignal ConversionAtByte PackInport1' */
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[0] = proxy_linux_B.ByteUnpack[0];
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[1] = proxy_linux_B.ByteUnpack[1];
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[2] = proxy_linux_B.Saturation_f;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[3] = proxy_linux_B.Saturation1_n;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[4] = proxy_linux_B.Saturation2_h;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[5] = proxy_linux_B.Saturation3_b;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[6] = proxy_linux_B.Saturation4;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[7] = proxy_linux_B.Sum1;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[8] = proxy_linux_B.Saturation6;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[9] = proxy_linux_B.Saturation7;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[10] = proxy_linux_B.DeadZone_m;
+
+  /* S-Function (any2byte): '<S7>/Byte Pack' */
+
+  /* Pack: <S7>/Byte Pack */
+  (void) memcpy(&proxy_linux_B.BytePack_c[0],
+                &proxy_linux_B.TmpSignalConversionAtBytePack_b[0],
+                44);
+
+  /* Gain: '<S7>/Gain1' */
+  proxy_linux_B.Saturation7 = proxy_linux_P.ampliFactor * proxy_linux_B.Gain3_f;
+
+  /* Gain: '<S7>/Gain2' */
+  proxy_linux_B.DeadZone_m = proxy_linux_P.ampliFactor *
+    proxy_linux_B.Saturation2;
+
+  /* ManualSwitch: '<S18>/Manual Switch' incorporates:
+   *  Constant: '<S18>/Constant1'
+   *  MATLAB Function: '<S18>/Pose Estimation'
+   */
+  if (proxy_linux_P.ManualSwitch_CurrentSetting_b == 1) {
+    /* Saturate: '<S18>/Saturation' */
+    if (proxy_linux_B.ManualSwitch_p > proxy_linux_P.Saturation_UpperSat_b) {
+      proxy_linux_B.ManualSwitch_p = proxy_linux_P.Saturation_UpperSat_b;
+    } else {
+      if (proxy_linux_B.ManualSwitch_p < proxy_linux_P.Saturation_LowerSat_b) {
+        proxy_linux_B.ManualSwitch_p = proxy_linux_P.Saturation_LowerSat_b;
+      }
+    }
+
+    proxy_linux_B.Saturation4 = proxy_linux_B.ManualSwitch_p / 900.0F;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant1_Value_g;
+  }
+
+  /* End of ManualSwitch: '<S18>/Manual Switch' */
+
+  /* Gain: '<S7>/Gain7' */
+  proxy_linux_B.ManualSwitch_p = proxy_linux_P.ampliFactor *
+    proxy_linux_B.Saturation4;
+
+  /* Gain: '<S7>/Gain8' */
+  proxy_linux_B.Saturation3 *= proxy_linux_P.ampliFactor;
+
+  /* ManualSwitch: '<S13>/Manual Switch' incorporates:
+   *  Constant: '<S13>/Constant'
+   *  MATLAB Function: '<S13>/MATLAB Function'
+   */
+  if (proxy_linux_P.ManualSwitch_CurrentSetting_o == 1) {
+    proxy_linux_B.Saturation4 = (-proxy_linux_B.ByteUnpack[13] + 460.0F) / 50.0F
+      / 2.2F;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_P.Constant_Value_gc;
+  }
+
+  /* End of ManualSwitch: '<S13>/Manual Switch' */
+
+  /* Gain: '<S7>/Gain9' */
+  proxy_linux_B.Saturation2 = proxy_linux_P.ampliFactor *
+    proxy_linux_B.Saturation4;
+
+  /* DeadZone: '<S81>/Dead Zone' */
+  if (proxy_linux_B.sf_MATLABFunction3_b.y[1] > proxy_linux_P.DeadZone_End_d) {
+    proxy_linux_B.Saturation4 = proxy_linux_B.sf_MATLABFunction3_b.y[1] -
+      proxy_linux_P.DeadZone_End_d;
+  } else if (proxy_linux_B.sf_MATLABFunction3_b.y[1] >=
+             proxy_linux_P.DeadZone_Start_n) {
+    proxy_linux_B.Saturation4 = 0.0F;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_B.sf_MATLABFunction3_b.y[1] -
+      proxy_linux_P.DeadZone_Start_n;
+  }
+
+  /* End of DeadZone: '<S81>/Dead Zone' */
+
+  /* Product: '<S81>/Product' incorporates:
+   *  Constant: '<S81>/Constant2'
+   *  Gain: '<S81>/Gain'
+   *  Sum: '<S81>/Sum'
+   */
+  proxy_linux_B.Gain3_f = (proxy_linux_P.Gain_Gain_n * proxy_linux_B.Saturation4
+    + proxy_linux_P.ampliFactorDistal) * proxy_linux_B.sf_MATLABFunction3_b.y[1];
+
+  /* DeadZone: '<S80>/Dead Zone' */
+  if (proxy_linux_B.Gain3_f > proxy_linux_P.DeadZone_End_g) {
+    proxy_linux_B.Sum1 = proxy_linux_B.Gain3_f - proxy_linux_P.DeadZone_End_g;
+  } else if (proxy_linux_B.Gain3_f >= proxy_linux_P.DeadZone_Start_a) {
+    proxy_linux_B.Sum1 = 0.0F;
+  } else {
+    proxy_linux_B.Sum1 = proxy_linux_B.Gain3_f - proxy_linux_P.DeadZone_Start_a;
+  }
+
+  /* End of DeadZone: '<S80>/Dead Zone' */
+
+  /* Product: '<S80>/Product' incorporates:
+   *  Constant: '<S80>/Constant2'
+   *  Sum: '<S80>/Sum'
+   */
+  proxy_linux_B.Sum1 = (proxy_linux_B.Sum1 + proxy_linux_P.ampliFactorMiddle) *
+    proxy_linux_B.sf_MATLABFunction3_b.y[0];
+
+  /* DeadZone: '<S83>/Dead Zone' */
+  if (proxy_linux_B.sf_MATLABFunction3.y[1] > proxy_linux_P.DeadZone_End_dy) {
+    proxy_linux_B.Saturation4 = proxy_linux_B.sf_MATLABFunction3.y[1] -
+      proxy_linux_P.DeadZone_End_dy;
+  } else if (proxy_linux_B.sf_MATLABFunction3.y[1] >=
+             proxy_linux_P.DeadZone_Start_h) {
+    proxy_linux_B.Saturation4 = 0.0F;
+  } else {
+    proxy_linux_B.Saturation4 = proxy_linux_B.sf_MATLABFunction3.y[1] -
+      proxy_linux_P.DeadZone_Start_h;
+  }
+
+  /* End of DeadZone: '<S83>/Dead Zone' */
+
+  /* Product: '<S83>/Product' incorporates:
+   *  Constant: '<S83>/Constant2'
+   *  Gain: '<S83>/Gain'
+   *  Sum: '<S83>/Sum'
+   */
+  proxy_linux_B.Saturation4 = (proxy_linux_P.Gain_Gain_k *
+    proxy_linux_B.Saturation4 + proxy_linux_P.ampliFactorDistal) *
+    proxy_linux_B.sf_MATLABFunction3.y[1];
+
+  /* DeadZone: '<S82>/Dead Zone' */
+  if (proxy_linux_B.Saturation4 > proxy_linux_P.DeadZone_End_gn) {
+    proxy_linux_B.Saturation3_b = proxy_linux_B.Saturation4 -
+      proxy_linux_P.DeadZone_End_gn;
+  } else if (proxy_linux_B.Saturation4 >= proxy_linux_P.DeadZone_Start_e) {
+    proxy_linux_B.Saturation3_b = 0.0F;
+  } else {
+    proxy_linux_B.Saturation3_b = proxy_linux_B.Saturation4 -
+      proxy_linux_P.DeadZone_Start_e;
+  }
+
+  /* End of DeadZone: '<S82>/Dead Zone' */
+
+  /* Product: '<S82>/Product' incorporates:
+   *  Constant: '<S82>/Constant2'
+   *  Sum: '<S82>/Sum'
+   */
+  proxy_linux_B.Saturation3_b = (proxy_linux_B.Saturation3_b +
+    proxy_linux_P.ampliFactorMiddle) * proxy_linux_B.sf_MATLABFunction3.y[0];
+
+  /* Outputs for Atomic SubSystem: '<S7>/Subscribe' */
+  /* MATLABSystem: '<S79>/SourceBlock' */
+  proxy_linux_B.Automatic = Sub_proxy_linux_1180.getLatestMessage
+    (&proxy_linux_B.b_varargout_2_c);
+
+  /* Outputs for Enabled SubSystem: '<S79>/Enabled Subsystem' */
+  proxy_linux_EnabledSubsystem(proxy_linux_B.Automatic,
+    &proxy_linux_B.b_varargout_2_c, &proxy_linux_B.EnabledSubsystem_f);
+
+  /* End of Outputs for SubSystem: '<S79>/Enabled Subsystem' */
+
+  /* End of Outputs for SubSystem: '<S7>/Subscribe' */
+
+  /* ManualSwitch: '<S7>/Automatic ' incorporates:
+   *  ManualSwitch: '<S7>/Manual Switch'
+   */
+  if (proxy_linux_P.Automatic_CurrentSetting == 1) {
+    /* BusAssignment: '<S7>/Bus Assignment2' incorporates:
+     *  Logic: '<S7>/Logical Operator'
+     *  Logic: '<S7>/Logical Operator1'
+     */
+    proxy_linux_B.BusAssignment2.Data =
+      (proxy_linux_B.EnabledSubsystem_f.In1.Data &&
+       (!proxy_linux_B.LogicalOperator));
+  } else if (proxy_linux_P.ManualSwitch_CurrentSetting == 1) {
+    /* ManualSwitch: '<S7>/Manual Switch' incorporates:
+     *  BusAssignment: '<S7>/Bus Assignment2'
+     *  Constant: '<S7>/Constant'
+     */
+    proxy_linux_B.BusAssignment2.Data = proxy_linux_P.Constant_Value_ok;
+  } else {
+    /* BusAssignment: '<S7>/Bus Assignment2' incorporates:
+     *  Constant: '<S7>/Constant1'
+     */
+    proxy_linux_B.BusAssignment2.Data = proxy_linux_P.Constant1_Value_k;
+  }
+
+  /* End of ManualSwitch: '<S7>/Automatic ' */
+
+  /* Outputs for Atomic SubSystem: '<S7>/Publish2' */
+  /* MATLABSystem: '<S78>/SinkBlock' */
+  Pub_proxy_linux_517.publish(&proxy_linux_B.BusAssignment2);
+
+  /* End of Outputs for SubSystem: '<S7>/Publish2' */
+
+  /* Update for DiscreteTransferFcn: '<S3>/Filt 1' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt1_states = (proxy_linux_B.DeadZone7 -
       proxy_linux_P.Filt1_DenCoef[1] * proxy_linux_DW.Filt1_states) /
       proxy_linux_P.Filt1_DenCoef[0];
-    proxy_linux_B.samplesRead++;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S2>/Filt 1' */
+  /* End of Update for DiscreteTransferFcn: '<S3>/Filt 1' */
 
-  /* Update for DiscreteTransferFcn: '<S2>/Filt 2' incorporates:
-   *  SignalConversion: '<S2>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
-   */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt2_states = (proxy_linux_B.In1.Data[6] -
+  /* Update for DiscreteTransferFcn: '<S3>/Filt 2' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt2_states = (proxy_linux_B.DeadZone6 -
       proxy_linux_P.Filt2_DenCoef[1] * proxy_linux_DW.Filt2_states) /
       proxy_linux_P.Filt2_DenCoef[0];
-    proxy_linux_B.samplesRead++;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S2>/Filt 2' */
+  /* End of Update for DiscreteTransferFcn: '<S3>/Filt 2' */
 
-  /* Update for DiscreteTransferFcn: '<S2>/Filt 3' incorporates:
-   *  SignalConversion: '<S2>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
-   */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt3_states = (proxy_linux_B.In1.Data[5] -
+  /* Update for DiscreteTransferFcn: '<S3>/Filt 3' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt3_states = (proxy_linux_B.DeadZone5 -
       proxy_linux_P.Filt3_DenCoef[1] * proxy_linux_DW.Filt3_states) /
       proxy_linux_P.Filt3_DenCoef[0];
-    proxy_linux_B.samplesRead++;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S2>/Filt 3' */
+  /* End of Update for DiscreteTransferFcn: '<S3>/Filt 3' */
 
-  /* Update for DiscreteTransferFcn: '<S2>/Filt 4' incorporates:
-   *  SignalConversion: '<S2>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
-   */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt4_states = (proxy_linux_B.In1.Data[4] -
+  /* Update for DiscreteTransferFcn: '<S3>/Filt 4' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt4_states = (proxy_linux_B.DeadZone4 -
       proxy_linux_P.Filt4_DenCoef[1] * proxy_linux_DW.Filt4_states) /
       proxy_linux_P.Filt4_DenCoef[0];
-    proxy_linux_B.samplesRead++;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S2>/Filt 4' */
+  /* End of Update for DiscreteTransferFcn: '<S3>/Filt 4' */
 
-  /* Update for DiscreteTransferFcn: '<S2>/Filt 5' incorporates:
-   *  SignalConversion: '<S2>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
-   */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt5_states = (proxy_linux_B.In1.Data[3] -
+  /* Update for DiscreteTransferFcn: '<S3>/Filt 5' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt5_states = (proxy_linux_B.DeadZone3 -
       proxy_linux_P.Filt5_DenCoef[1] * proxy_linux_DW.Filt5_states) /
       proxy_linux_P.Filt5_DenCoef[0];
-    proxy_linux_B.samplesRead++;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S2>/Filt 5' */
+  /* End of Update for DiscreteTransferFcn: '<S3>/Filt 5' */
 
-  /* Update for DiscreteTransferFcn: '<S2>/Filt 6' incorporates:
-   *  SignalConversion: '<S2>/SigConversion_InsertedFor_Bus Selector_at_outport_0'
-   */
-  proxy_linux_B.samplesRead = 0;
-  while (proxy_linux_B.samplesRead < 1) {
-    proxy_linux_DW.Filt6_states = (proxy_linux_B.In1.Data[2] -
+  /* Update for DiscreteTransferFcn: '<S3>/Filt 6' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt6_states = (proxy_linux_B.DeadZone2 -
       proxy_linux_P.Filt6_DenCoef[1] * proxy_linux_DW.Filt6_states) /
       proxy_linux_P.Filt6_DenCoef[0];
-    proxy_linux_B.samplesRead++;
+    proxy_linux_B.k++;
   }
 
-  /* End of Update for DiscreteTransferFcn: '<S2>/Filt 6' */
+  /* End of Update for DiscreteTransferFcn: '<S3>/Filt 6' */
 
-  /* Update for UnitDelay: '<S18>/Unit Delay1' incorporates:
-   *  MATLAB Function: '<S18>/Jacobian2'
-   */
-  proxy_linux_DW.UnitDelay1_DSTATE = proxy_linux_B.rtb_VectorConcatenate_idx_3;
+  /* Update for DiscreteTransferFcn: '<S3>/Filt 8' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt8_states = (proxy_linux_B.DeadZone -
+      proxy_linux_P.Filt8_DenCoef[1] * proxy_linux_DW.Filt8_states) /
+      proxy_linux_P.Filt8_DenCoef[0];
+    proxy_linux_B.k++;
+  }
 
-  /* Update for UnitDelay: '<S31>/Unit Delay1' incorporates:
-   *  MATLAB Function: '<S31>/Jacobian2'
-   */
-  proxy_linux_DW.UnitDelay1_DSTATE_m = proxy_linux_B.rtb_VectorConcatenate_idx_2;
+  /* End of Update for DiscreteTransferFcn: '<S3>/Filt 8' */
 
-  /* Update for UnitDelay: '<S12>/Unit Delay1' incorporates:
-   *  MATLAB Function: '<S12>/Jacobian2'
-   */
-  proxy_linux_DW.UnitDelay1_DSTATE_e = proxy_linux_B.Sum1;
+  /* Update for Enabled SubSystem: '<S21>/Subsystem' */
+  proxy_linux_Subsystem_Update(proxy_linux_B.LogicalOperator, proxy_linux_B.Sum,
+    &proxy_linux_DW.Subsystem);
 
-  /* Update for UnitDelay: '<S18>/Unit Delay3' incorporates:
-   *  MATLAB Function: '<S18>/Jacobian2'
-   */
-  proxy_linux_DW.UnitDelay3_DSTATE[0] =
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__m;
+  /* End of Update for SubSystem: '<S21>/Subsystem' */
 
-  /* Update for UnitDelay: '<S31>/Unit Delay3' incorporates:
-   *  MATLAB Function: '<S31>/Jacobian2'
-   */
-  proxy_linux_DW.UnitDelay3_DSTATE_c[0] = proxy_linux_B.rtb_pose_idx_0;
+  /* Update for UnitDelay: '<S14>/Unit Delay1' */
+  proxy_linux_DW.UnitDelay1_DSTATE = proxy_linux_B.sf_Jacobian2.J22_ol;
 
-  /* Update for UnitDelay: '<S12>/Unit Delay3' incorporates:
-   *  MATLAB Function: '<S12>/Jacobian2'
-   */
-  proxy_linux_DW.UnitDelay3_DSTATE_k[0] = proxy_linux_B.rtb_pose_idx_1;
+  /* Update for UnitDelay: '<S14>/Unit Delay3' */
+  proxy_linux_DW.UnitDelay3_DSTATE[0] = proxy_linux_B.sf_Jacobian2.q_next[0];
+  proxy_linux_DW.UnitDelay3_DSTATE[1] = proxy_linux_B.sf_Jacobian2.q_next[1];
 
-  /* Update for UnitDelay: '<S18>/Unit Delay3' incorporates:
-   *  MATLAB Function: '<S18>/Jacobian2'
-   */
-  proxy_linux_DW.UnitDelay3_DSTATE[1] =
-    proxy_linux_B.rtb_TmpSignalConversionAtSFu__c;
+  /* Update for Enabled SubSystem: '<S29>/Subsystem' */
+  proxy_linux_Subsystem_Update(proxy_linux_B.LogicalOperator, proxy_linux_B.Sum2,
+    &proxy_linux_DW.Subsystem_l);
 
-  /* Update for UnitDelay: '<S31>/Unit Delay3' incorporates:
-   *  MATLAB Function: '<S31>/Jacobian2'
-   */
-  proxy_linux_DW.UnitDelay3_DSTATE_c[1] = proxy_linux_B.yI;
+  /* End of Update for SubSystem: '<S29>/Subsystem' */
 
-  /* Update for UnitDelay: '<S12>/Unit Delay3' incorporates:
-   *  MATLAB Function: '<S12>/Jacobian2'
-   */
-  proxy_linux_DW.UnitDelay3_DSTATE_k[1] = proxy_linux_B.rtb_pose_idx_2;
+  /* Update for Enabled SubSystem: '<S50>/Subsystem' */
+  proxy_linux_Subsystem_Update(proxy_linux_B.LogicalOperator,
+    proxy_linux_B.Sum_l, &proxy_linux_DW.Subsystem_a);
 
-  /* Update for S-Function (sdspToNetwork): '<S5>/UDP Send' */
+  /* End of Update for SubSystem: '<S50>/Subsystem' */
+
+  /* Update for UnitDelay: '<S16>/Unit Delay1' */
+  proxy_linux_DW.UnitDelay1_DSTATE_e = proxy_linux_B.sf_Jacobian2_o.J22_ol;
+
+  /* Update for UnitDelay: '<S16>/Unit Delay3' */
+  proxy_linux_DW.UnitDelay3_DSTATE_k[0] = proxy_linux_B.sf_Jacobian2_o.q_next[0];
+  proxy_linux_DW.UnitDelay3_DSTATE_k[1] = proxy_linux_B.sf_Jacobian2_o.q_next[1];
+
+  /* Update for Enabled SubSystem: '<S58>/Subsystem' */
+  proxy_linux_Subsystem_Update(proxy_linux_B.LogicalOperator,
+    proxy_linux_B.Sum2_j, &proxy_linux_DW.Subsystem_c);
+
+  /* End of Update for SubSystem: '<S58>/Subsystem' */
+
+  /* Update for Enabled SubSystem: '<S17>/Subsystem' */
+  proxy_linux_Subsystem_Update(proxy_linux_B.LogicalOperator,
+    proxy_linux_B.Sum2_f, &proxy_linux_DW.Subsystem_f);
+
+  /* End of Update for SubSystem: '<S17>/Subsystem' */
+
+  /* Update for Enabled SubSystem: '<S65>/Subsystem' */
+  proxy_linux_Subsystem_Update(proxy_linux_B.LogicalOperator,
+    proxy_linux_B.Sum2_h, &proxy_linux_DW.Subsystem_cc);
+
+  /* End of Update for SubSystem: '<S65>/Subsystem' */
+
+  /* Update for Enabled SubSystem: '<S69>/Subsystem' */
+  proxy_linux_Subsystem_Update(proxy_linux_B.LogicalOperator,
+    proxy_linux_B.Sum2_i, &proxy_linux_DW.Subsystem_p);
+
+  /* End of Update for SubSystem: '<S69>/Subsystem' */
+
+  /* Update for S-Function (sdspToNetwork): '<S6>/UDP Send' */
   sErr = GetErrorBuffer(&proxy_linux_DW.UDPSend_NetworkLib[0U]);
   LibUpdate_Network(&proxy_linux_DW.UDPSend_NetworkLib[0U],
                     &proxy_linux_B.BytePack[0U], 48);
@@ -4306,7 +2431,117 @@ void proxy_linux_step(void)
     rtmSetStopRequested(proxy_linux_M, 1);
   }
 
-  /* End of Update for S-Function (sdspToNetwork): '<S5>/UDP Send' */
+  /* End of Update for S-Function (sdspToNetwork): '<S6>/UDP Send' */
+
+  /* Update for DiscreteTransferFcn: '<S7>/Filt ' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt_states = (proxy_linux_B.Saturation7 -
+      proxy_linux_P.Filt_DenCoef[1] * proxy_linux_DW.Filt_states) /
+      proxy_linux_P.Filt_DenCoef[0];
+    proxy_linux_B.k++;
+  }
+
+  /* End of Update for DiscreteTransferFcn: '<S7>/Filt ' */
+
+  /* Update for DiscreteTransferFcn: '<S7>/Filt 1' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt1_states_d = (proxy_linux_B.DeadZone_m -
+      proxy_linux_P.Filt1_DenCoef_l[1] * proxy_linux_DW.Filt1_states_d) /
+      proxy_linux_P.Filt1_DenCoef_l[0];
+    proxy_linux_B.k++;
+  }
+
+  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 1' */
+
+  /* Update for DiscreteTransferFcn: '<S7>/Filt 2' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt2_states_d = (proxy_linux_B.Saturation4 -
+      proxy_linux_P.Filt2_DenCoef_a[1] * proxy_linux_DW.Filt2_states_d) /
+      proxy_linux_P.Filt2_DenCoef_a[0];
+    proxy_linux_B.k++;
+  }
+
+  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 2' */
+
+  /* Update for DiscreteTransferFcn: '<S7>/Filt 3' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt3_states_h = (proxy_linux_B.Saturation3_b -
+      proxy_linux_P.Filt3_DenCoef_k[1] * proxy_linux_DW.Filt3_states_h) /
+      proxy_linux_P.Filt3_DenCoef_k[0];
+    proxy_linux_B.k++;
+  }
+
+  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 3' */
+
+  /* Update for DiscreteTransferFcn: '<S7>/Filt 4' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt4_states_a = (proxy_linux_B.Gain3_f -
+      proxy_linux_P.Filt4_DenCoef_l[1] * proxy_linux_DW.Filt4_states_a) /
+      proxy_linux_P.Filt4_DenCoef_l[0];
+    proxy_linux_B.k++;
+  }
+
+  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 4' */
+
+  /* Update for DiscreteTransferFcn: '<S7>/Filt 5' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt5_states_j = (proxy_linux_B.Sum1 -
+      proxy_linux_P.Filt5_DenCoef_g[1] * proxy_linux_DW.Filt5_states_j) /
+      proxy_linux_P.Filt5_DenCoef_g[0];
+    proxy_linux_B.k++;
+  }
+
+  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 5' */
+
+  /* Update for DiscreteTransferFcn: '<S7>/Filt 6' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt6_states_n = (proxy_linux_B.ManualSwitch_p -
+      proxy_linux_P.Filt6_DenCoef_n[1] * proxy_linux_DW.Filt6_states_n) /
+      proxy_linux_P.Filt6_DenCoef_n[0];
+    proxy_linux_B.k++;
+  }
+
+  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 6' */
+
+  /* Update for DiscreteTransferFcn: '<S7>/Filt 7' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt7_states = (proxy_linux_B.Saturation3 -
+      proxy_linux_P.Filt7_DenCoef[1] * proxy_linux_DW.Filt7_states) /
+      proxy_linux_P.Filt7_DenCoef[0];
+    proxy_linux_B.k++;
+  }
+
+  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 7' */
+
+  /* Update for DiscreteTransferFcn: '<S7>/Filt 8' */
+  proxy_linux_B.k = 0;
+  while (proxy_linux_B.k < 1) {
+    proxy_linux_DW.Filt8_states_h = (proxy_linux_B.Saturation2 -
+      proxy_linux_P.Filt8_DenCoef_a[1] * proxy_linux_DW.Filt8_states_h) /
+      proxy_linux_P.Filt8_DenCoef_a[0];
+    proxy_linux_B.k++;
+  }
+
+  /* End of Update for DiscreteTransferFcn: '<S7>/Filt 8' */
+
+  /* Update for S-Function (sdspToNetwork): '<S7>/UDP Send' */
+  sErr = GetErrorBuffer(&proxy_linux_DW.UDPSend_NetworkLib_e[0U]);
+  LibUpdate_Network(&proxy_linux_DW.UDPSend_NetworkLib_e[0U],
+                    &proxy_linux_B.BytePack_c[0U], 44);
+  if (*sErr != 0) {
+    rtmSetErrorStatus(proxy_linux_M, sErr);
+    rtmSetStopRequested(proxy_linux_M, 1);
+  }
+
+  /* End of Update for S-Function (sdspToNetwork): '<S7>/UDP Send' */
 }
 
 /* Model initialize function */
@@ -4331,49 +2566,71 @@ void proxy_linux_initialize(void)
 
   {
     char_T *sErr;
-    static const char_T tmp[32] = { '/', 's', 'v', 'h', '_', 'c', 'o', 'n', 't',
-      'r', 'o', 'l', 'l', 'e', 'r', '/', 'c', 'h', 'a', 'n', 'n', 'e', 'l', '_',
-      'c', 'u', 'r', 'r', 'e', 'n', 't', 's' };
+    static const char_T tmp[17] = { '/', 't', 'r', 'i', 'g', 'g', 'e', 'r', '_',
+      'e', 'x', 'o', '_', 'h', 'a', 'n', 'd' };
 
-    static const char_T tmp_0[5] = { '/', 's', 'c', 'a', 'n' };
+    static const char_T tmp_0[22] = { '/', 'm', 'a', 'n', 'u', 'a', 'l', '_',
+      'c', 'o', 'm', 'm', 'a', 'n', 'd', 's', '/', 's', 't', 'a', 'r', 't' };
 
-    static const char_T tmp_1[11] = { '/', 'M', 'a', 't', 'l', 'a', 'b', 'M',
+    static const char_T tmp_1[5] = { '/', 's', 'c', 'a', 'n' };
+
+    static const char_T tmp_2[11] = { '/', 'M', 'a', 't', 'l', 'a', 'b', 'M',
       'o', 'd', 'e' };
 
-    static const char_T tmp_2[13] = { '/', 'M', 'a', 't', 'l', 'a', 'b', 'S',
+    static const char_T tmp_3[13] = { '/', 'M', 'a', 't', 'l', 'a', 'b', 'S',
       't', 'a', 't', 'u', 's' };
 
-    static const char_T tmp_3[17] = { '/', 't', 'r', 'i', 'g', 'g', 'e', 'r',
-      '_', 'e', 'x', 'o', '_', 'h', 'a', 'n', 'd' };
+    static const char_T tmp_4[32] = { '/', 's', 'v', 'h', '_', 'c', 'o', 'n',
+      't', 'r', 'o', 'l', 'l', 'e', 'r', '/', 'c', 'h', 'a', 'n', 'n', 'e', 'l',
+      '_', 'c', 'u', 'r', 'r', 'e', 'n', 't', 's' };
 
-    char_T tmp_4[6];
-    char_T tmp_5[12];
-    char_T tmp_6[14];
-    char_T tmp_7[18];
+    static const char_T tmp_5[19] = { '/', 'l', 'e', 'f', 't', '_', 'h', 'a',
+      'n', 'd', '/', 'b', 'u', 't', 't', 'o', 'n', '_', '1' };
+
+    char_T tmp_6[6];
+    char_T tmp_7[12];
+    char_T tmp_8[14];
     int32_T i;
 
-    /* Start for Atomic SubSystem: '<S7>/Publish2' */
-    /* Start for MATLABSystem: '<S58>/SinkBlock' */
-    proxy_linux_DW.obj_k.isInitialized = 0;
-    proxy_linux_DW.objisempty = true;
-    proxy_linux_DW.obj_k.isInitialized = 1;
-    for (i = 0; i < 17; i++) {
-      tmp_7[i] = tmp_3[i];
+    /* Start for Atomic SubSystem: '<S1>/Subscribe1' */
+    /* Start for MATLABSystem: '<S9>/SourceBlock' */
+    proxy_linux_DW.obj_i.isInitialized = 0;
+    proxy_linux_DW.objisempty_cw = true;
+    proxy_linux_DW.obj_i.isInitialized = 1;
+    for (i = 0; i < 19; i++) {
+      proxy_linux_B.cv2[i] = tmp_5[i];
     }
 
-    tmp_7[17] = '\x00';
-    Pub_proxy_linux_517.createPublisher(tmp_7, proxy_linux_MessageQueueLen);
+    proxy_linux_B.cv2[19] = '\x00';
+    Sub_proxy_linux_994.createSubscriber(proxy_linux_B.cv2,
+      proxy_linux_MessageQueueLen);
 
-    /* End of Start for MATLABSystem: '<S58>/SinkBlock' */
-    /* End of Start for SubSystem: '<S7>/Publish2' */
+    /* End of Start for MATLABSystem: '<S9>/SourceBlock' */
+    /* End of Start for SubSystem: '<S1>/Subscribe1' */
 
-    /* Start for S-Function (sdspFromNetwork): '<S4>/Receive from Haptics' */
+    /* Start for Atomic SubSystem: '<S3>/Subscribe' */
+    /* Start for MATLABSystem: '<S11>/SourceBlock' */
+    proxy_linux_DW.obj_c.isInitialized = 0;
+    proxy_linux_DW.objisempty_f = true;
+    proxy_linux_DW.obj_c.isInitialized = 1;
+    for (i = 0; i < 32; i++) {
+      proxy_linux_B.cv0[i] = tmp_4[i];
+    }
+
+    proxy_linux_B.cv0[32] = '\x00';
+    Sub_proxy_linux_437.createSubscriber(proxy_linux_B.cv0,
+      proxy_linux_MessageQueueLen);
+
+    /* End of Start for MATLABSystem: '<S11>/SourceBlock' */
+    /* End of Start for SubSystem: '<S3>/Subscribe' */
+
+    /* Start for S-Function (sdspFromNetwork): '<S5>/Receive from Haptics' */
     sErr = GetErrorBuffer(&proxy_linux_DW.ReceivefromHaptics_NetworkLib[0U]);
     CreateUDPInterface(&proxy_linux_DW.ReceivefromHaptics_NetworkLib[0U]);
     if (*sErr == 0) {
       LibCreate_Network(&proxy_linux_DW.ReceivefromHaptics_NetworkLib[0U], 0,
                         "0.0.0.0", proxy_linux_P.ReceivefromHaptics_localPort,
-                        "10.100.39.144", -1, 68, 1, MIN_int32_T);
+                        "10.24.4.17", -1, 68, 1, MIN_int32_T);
     }
 
     if (*sErr == 0) {
@@ -4388,75 +2645,14 @@ void proxy_linux_initialize(void)
       }
     }
 
-    /* End of Start for S-Function (sdspFromNetwork): '<S4>/Receive from Haptics' */
-
-    /* Start for Atomic SubSystem: '<S7>/Publish' */
-    /* Start for MATLABSystem: '<S55>/SinkBlock' */
-    proxy_linux_DW.obj_kr.isInitialized = 0;
-    proxy_linux_DW.objisempty_c = true;
-    proxy_linux_DW.obj_kr.isInitialized = 1;
-    for (i = 0; i < 13; i++) {
-      tmp_6[i] = tmp_2[i];
-    }
-
-    tmp_6[13] = '\x00';
-    Pub_proxy_linux_264.createPublisher(tmp_6, proxy_linux_MessageQueueLen);
-
-    /* End of Start for MATLABSystem: '<S55>/SinkBlock' */
-    /* End of Start for SubSystem: '<S7>/Publish' */
-
-    /* Start for Atomic SubSystem: '<S7>/Publish1' */
-    /* Start for MATLABSystem: '<S56>/SinkBlock' */
-    proxy_linux_DW.obj_a.isInitialized = 0;
-    proxy_linux_DW.objisempty_l = true;
-    proxy_linux_DW.obj_a.isInitialized = 1;
-    for (i = 0; i < 11; i++) {
-      tmp_5[i] = tmp_1[i];
-    }
-
-    tmp_5[11] = '\x00';
-    Pub_proxy_linux_311.createPublisher(tmp_5, proxy_linux_MessageQueueLen);
-
-    /* End of Start for MATLABSystem: '<S56>/SinkBlock' */
-    /* End of Start for SubSystem: '<S7>/Publish1' */
-
-    /* Start for Atomic SubSystem: '<S7>/Publish12' */
-    /* Start for MATLABSystem: '<S57>/SinkBlock' */
-    proxy_linux_DW.obj_b.isInitialized = 0;
-    proxy_linux_DW.objisempty_k = true;
-    proxy_linux_DW.obj_b.isInitialized = 1;
-    for (i = 0; i < 5; i++) {
-      tmp_4[i] = tmp_0[i];
-    }
-
-    tmp_4[5] = '\x00';
-    Pub_proxy_linux_470.createPublisher(tmp_4, proxy_linux_MessageQueueLen);
-
-    /* End of Start for MATLABSystem: '<S57>/SinkBlock' */
-    /* End of Start for SubSystem: '<S7>/Publish12' */
-
-    /* Start for Atomic SubSystem: '<S2>/Subscribe' */
-    /* Start for MATLABSystem: '<S8>/SourceBlock' */
-    proxy_linux_DW.obj.isInitialized = 0;
-    proxy_linux_DW.objisempty_f = true;
-    proxy_linux_DW.obj.isInitialized = 1;
-    for (i = 0; i < 32; i++) {
-      proxy_linux_B.cv0[i] = tmp[i];
-    }
-
-    proxy_linux_B.cv0[32] = '\x00';
-    Sub_proxy_linux_437.createSubscriber(proxy_linux_B.cv0,
-      proxy_linux_MessageQueueLen);
-
-    /* End of Start for MATLABSystem: '<S8>/SourceBlock' */
-    /* End of Start for SubSystem: '<S2>/Subscribe' */
-    /* Start for S-Function (sdspToNetwork): '<S5>/UDP Send' */
+    /* End of Start for S-Function (sdspFromNetwork): '<S5>/Receive from Haptics' */
+    /* Start for S-Function (sdspToNetwork): '<S6>/UDP Send' */
     sErr = GetErrorBuffer(&proxy_linux_DW.UDPSend_NetworkLib[0U]);
     CreateUDPInterface(&proxy_linux_DW.UDPSend_NetworkLib[0U]);
     if (*sErr == 0) {
       LibCreate_Network(&proxy_linux_DW.UDPSend_NetworkLib[0U], 1, "0.0.0.0", -1,
-                        "10.100.39.144", proxy_linux_P.UDPSend_remotePort, 8192,
-                        1, 0);
+                        "10.24.4.17", proxy_linux_P.UDPSend_remotePort, 8192, 1,
+                        0);
     }
 
     if (*sErr == 0) {
@@ -4471,8 +2667,152 @@ void proxy_linux_initialize(void)
       }
     }
 
-    /* End of Start for S-Function (sdspToNetwork): '<S5>/UDP Send' */
+    /* End of Start for S-Function (sdspToNetwork): '<S6>/UDP Send' */
+
+    /* Start for Atomic SubSystem: '<S7>/Publish' */
+    /* Start for MATLABSystem: '<S75>/SinkBlock' */
+    proxy_linux_DW.obj_kr.isInitialized = 0;
+    proxy_linux_DW.objisempty_c = true;
+    proxy_linux_DW.obj_kr.isInitialized = 1;
+    for (i = 0; i < 13; i++) {
+      tmp_8[i] = tmp_3[i];
+    }
+
+    tmp_8[13] = '\x00';
+    Pub_proxy_linux_264.createPublisher(tmp_8, proxy_linux_MessageQueueLen);
+
+    /* End of Start for MATLABSystem: '<S75>/SinkBlock' */
+    /* End of Start for SubSystem: '<S7>/Publish' */
+
+    /* Start for Atomic SubSystem: '<S7>/Publish1' */
+    /* Start for MATLABSystem: '<S76>/SinkBlock' */
+    proxy_linux_DW.obj_a.isInitialized = 0;
+    proxy_linux_DW.objisempty_l = true;
+    proxy_linux_DW.obj_a.isInitialized = 1;
+    for (i = 0; i < 11; i++) {
+      tmp_7[i] = tmp_2[i];
+    }
+
+    tmp_7[11] = '\x00';
+    Pub_proxy_linux_311.createPublisher(tmp_7, proxy_linux_MessageQueueLen);
+
+    /* End of Start for MATLABSystem: '<S76>/SinkBlock' */
+    /* End of Start for SubSystem: '<S7>/Publish1' */
+
+    /* Start for Atomic SubSystem: '<S7>/Publish12' */
+    /* Start for MATLABSystem: '<S77>/SinkBlock' */
+    proxy_linux_DW.obj_b.isInitialized = 0;
+    proxy_linux_DW.objisempty_k = true;
+    proxy_linux_DW.obj_b.isInitialized = 1;
+    for (i = 0; i < 5; i++) {
+      tmp_6[i] = tmp_1[i];
+    }
+
+    tmp_6[5] = '\x00';
+    Pub_proxy_linux_470.createPublisher(tmp_6, proxy_linux_MessageQueueLen);
+
+    /* End of Start for MATLABSystem: '<S77>/SinkBlock' */
+    /* End of Start for SubSystem: '<S7>/Publish12' */
+
+    /* Start for S-Function (sdspToNetwork): '<S7>/UDP Send' */
+    sErr = GetErrorBuffer(&proxy_linux_DW.UDPSend_NetworkLib_e[0U]);
+    CreateUDPInterface(&proxy_linux_DW.UDPSend_NetworkLib_e[0U]);
+    if (*sErr == 0) {
+      LibCreate_Network(&proxy_linux_DW.UDPSend_NetworkLib_e[0U], 1, "0.0.0.0",
+                        -1, "10.24.4.215", proxy_linux_P.UDPSend_remotePort_f,
+                        8192, 1, 0);
+    }
+
+    if (*sErr == 0) {
+      LibStart(&proxy_linux_DW.UDPSend_NetworkLib_e[0U]);
+    }
+
+    if (*sErr != 0) {
+      DestroyUDPInterface(&proxy_linux_DW.UDPSend_NetworkLib_e[0U]);
+      if (*sErr != 0) {
+        rtmSetErrorStatus(proxy_linux_M, sErr);
+        rtmSetStopRequested(proxy_linux_M, 1);
+      }
+    }
+
+    /* End of Start for S-Function (sdspToNetwork): '<S7>/UDP Send' */
+
+    /* Start for Atomic SubSystem: '<S7>/Subscribe' */
+    /* Start for MATLABSystem: '<S79>/SourceBlock' */
+    proxy_linux_DW.obj.isInitialized = 0;
+    proxy_linux_DW.objisempty = true;
+    proxy_linux_DW.obj.isInitialized = 1;
+    for (i = 0; i < 22; i++) {
+      proxy_linux_B.cv1[i] = tmp_0[i];
+    }
+
+    proxy_linux_B.cv1[22] = '\x00';
+    Sub_proxy_linux_1180.createSubscriber(proxy_linux_B.cv1,
+      proxy_linux_MessageQueueLen);
+
+    /* End of Start for MATLABSystem: '<S79>/SourceBlock' */
+    /* End of Start for SubSystem: '<S7>/Subscribe' */
+
+    /* Start for Atomic SubSystem: '<S7>/Publish2' */
+    /* Start for MATLABSystem: '<S78>/SinkBlock' */
+    proxy_linux_DW.obj_k.isInitialized = 0;
+    proxy_linux_DW.objisempty_h = true;
+    proxy_linux_DW.obj_k.isInitialized = 1;
+    for (i = 0; i < 17; i++) {
+      proxy_linux_B.cv3[i] = tmp[i];
+    }
+
+    proxy_linux_B.cv3[17] = '\x00';
+    Pub_proxy_linux_517.createPublisher(proxy_linux_B.cv3,
+      proxy_linux_MessageQueueLen);
+
+    /* End of Start for MATLABSystem: '<S78>/SinkBlock' */
+    /* End of Start for SubSystem: '<S7>/Publish2' */
   }
+
+  /* InitializeConditions for DiscreteTransferFcn: '<S3>/Filt 1' */
+  proxy_linux_DW.Filt1_states = proxy_linux_P.Filt1_InitialStates;
+
+  /* InitializeConditions for DiscreteTransferFcn: '<S3>/Filt 2' */
+  proxy_linux_DW.Filt2_states = proxy_linux_P.Filt2_InitialStates;
+
+  /* InitializeConditions for DiscreteTransferFcn: '<S3>/Filt 3' */
+  proxy_linux_DW.Filt3_states = proxy_linux_P.Filt3_InitialStates;
+
+  /* InitializeConditions for DiscreteTransferFcn: '<S3>/Filt 4' */
+  proxy_linux_DW.Filt4_states = proxy_linux_P.Filt4_InitialStates;
+
+  /* InitializeConditions for DiscreteTransferFcn: '<S3>/Filt 5' */
+  proxy_linux_DW.Filt5_states = proxy_linux_P.Filt5_InitialStates;
+
+  /* InitializeConditions for DiscreteTransferFcn: '<S3>/Filt 6' */
+  proxy_linux_DW.Filt6_states = proxy_linux_P.Filt6_InitialStates;
+
+  /* InitializeConditions for DiscreteTransferFcn: '<S3>/Filt 8' */
+  proxy_linux_DW.Filt8_states = proxy_linux_P.Filt8_InitialStates;
+
+  /* InitializeConditions for UnitDelay: '<S14>/Unit Delay1' */
+  proxy_linux_DW.UnitDelay1_DSTATE = proxy_linux_P.UnitDelay1_InitialCondition;
+
+  /* InitializeConditions for UnitDelay: '<S16>/Unit Delay1' */
+  proxy_linux_DW.UnitDelay1_DSTATE_e =
+    proxy_linux_P.UnitDelay1_InitialCondition_d;
+
+  /* InitializeConditions for UnitDelay: '<S14>/Unit Delay3' */
+  proxy_linux_DW.UnitDelay3_DSTATE[0] =
+    proxy_linux_P.UnitDelay3_InitialCondition[0];
+
+  /* InitializeConditions for UnitDelay: '<S16>/Unit Delay3' */
+  proxy_linux_DW.UnitDelay3_DSTATE_k[0] =
+    proxy_linux_P.UnitDelay3_InitialCondition_e[0];
+
+  /* InitializeConditions for UnitDelay: '<S14>/Unit Delay3' */
+  proxy_linux_DW.UnitDelay3_DSTATE[1] =
+    proxy_linux_P.UnitDelay3_InitialCondition[1];
+
+  /* InitializeConditions for UnitDelay: '<S16>/Unit Delay3' */
+  proxy_linux_DW.UnitDelay3_DSTATE_k[1] =
+    proxy_linux_P.UnitDelay3_InitialCondition_e[1];
 
   /* InitializeConditions for DiscreteTransferFcn: '<S7>/Filt ' */
   proxy_linux_DW.Filt_states = proxy_linux_P.Filt_InitialStates;
@@ -4499,68 +2839,77 @@ void proxy_linux_initialize(void)
   proxy_linux_DW.Filt7_states = proxy_linux_P.Filt7_InitialStates;
 
   /* InitializeConditions for DiscreteTransferFcn: '<S7>/Filt 8' */
-  proxy_linux_DW.Filt8_states = proxy_linux_P.Filt8_InitialStates;
+  proxy_linux_DW.Filt8_states_h = proxy_linux_P.Filt8_InitialStates_e;
 
-  /* InitializeConditions for DiscreteTransferFcn: '<S2>/Filt 1' */
-  proxy_linux_DW.Filt1_states = proxy_linux_P.Filt1_InitialStates;
+  /* SystemInitialize for Atomic SubSystem: '<S1>/Subscribe1' */
 
-  /* InitializeConditions for DiscreteTransferFcn: '<S2>/Filt 2' */
-  proxy_linux_DW.Filt2_states = proxy_linux_P.Filt2_InitialStates;
+  /* SystemInitialize for Enabled SubSystem: '<S9>/Enabled Subsystem' */
+  proxy_lin_EnabledSubsystem_Init(&proxy_linux_B.EnabledSubsystem,
+    &proxy_linux_P.EnabledSubsystem);
 
-  /* InitializeConditions for DiscreteTransferFcn: '<S2>/Filt 3' */
-  proxy_linux_DW.Filt3_states = proxy_linux_P.Filt3_InitialStates;
+  /* End of SystemInitialize for SubSystem: '<S9>/Enabled Subsystem' */
 
-  /* InitializeConditions for DiscreteTransferFcn: '<S2>/Filt 4' */
-  proxy_linux_DW.Filt4_states = proxy_linux_P.Filt4_InitialStates;
+  /* End of SystemInitialize for SubSystem: '<S1>/Subscribe1' */
 
-  /* InitializeConditions for DiscreteTransferFcn: '<S2>/Filt 5' */
-  proxy_linux_DW.Filt5_states = proxy_linux_P.Filt5_InitialStates;
-
-  /* InitializeConditions for DiscreteTransferFcn: '<S2>/Filt 6' */
-  proxy_linux_DW.Filt6_states = proxy_linux_P.Filt6_InitialStates;
-
-  /* InitializeConditions for UnitDelay: '<S18>/Unit Delay1' */
-  proxy_linux_DW.UnitDelay1_DSTATE = proxy_linux_P.UnitDelay1_InitialCondition;
-
-  /* InitializeConditions for UnitDelay: '<S31>/Unit Delay1' */
-  proxy_linux_DW.UnitDelay1_DSTATE_m =
-    proxy_linux_P.UnitDelay1_InitialCondition_n;
-
-  /* InitializeConditions for UnitDelay: '<S12>/Unit Delay1' */
-  proxy_linux_DW.UnitDelay1_DSTATE_e =
-    proxy_linux_P.UnitDelay1_InitialCondition_d;
-
-  /* InitializeConditions for UnitDelay: '<S18>/Unit Delay3' */
-  proxy_linux_DW.UnitDelay3_DSTATE[0] =
-    proxy_linux_P.UnitDelay3_InitialCondition[0];
-
-  /* InitializeConditions for UnitDelay: '<S31>/Unit Delay3' */
-  proxy_linux_DW.UnitDelay3_DSTATE_c[0] =
-    proxy_linux_P.UnitDelay3_InitialCondition_o[0];
-
-  /* InitializeConditions for UnitDelay: '<S12>/Unit Delay3' */
-  proxy_linux_DW.UnitDelay3_DSTATE_k[0] =
-    proxy_linux_P.UnitDelay3_InitialCondition_e[0];
-
-  /* InitializeConditions for UnitDelay: '<S18>/Unit Delay3' */
-  proxy_linux_DW.UnitDelay3_DSTATE[1] =
-    proxy_linux_P.UnitDelay3_InitialCondition[1];
-
-  /* InitializeConditions for UnitDelay: '<S31>/Unit Delay3' */
-  proxy_linux_DW.UnitDelay3_DSTATE_c[1] =
-    proxy_linux_P.UnitDelay3_InitialCondition_o[1];
-
-  /* InitializeConditions for UnitDelay: '<S12>/Unit Delay3' */
-  proxy_linux_DW.UnitDelay3_DSTATE_k[1] =
-    proxy_linux_P.UnitDelay3_InitialCondition_e[1];
-
-  /* SystemInitialize for Atomic SubSystem: '<S2>/Subscribe' */
-  /* SystemInitialize for Enabled SubSystem: '<S8>/Enabled Subsystem' */
-  /* SystemInitialize for Outport: '<S9>/Out1' */
+  /* SystemInitialize for Atomic SubSystem: '<S3>/Subscribe' */
+  /* SystemInitialize for Enabled SubSystem: '<S11>/Enabled Subsystem' */
+  /* SystemInitialize for Outport: '<S12>/Out1' */
   proxy_linux_B.In1 = proxy_linux_P.Out1_Y0;
 
-  /* End of SystemInitialize for SubSystem: '<S8>/Enabled Subsystem' */
-  /* End of SystemInitialize for SubSystem: '<S2>/Subscribe' */
+  /* End of SystemInitialize for SubSystem: '<S11>/Enabled Subsystem' */
+  /* End of SystemInitialize for SubSystem: '<S3>/Subscribe' */
+
+  /* SystemInitialize for Enabled SubSystem: '<S21>/Subsystem' */
+  proxy_linux_Subsystem_Init(&proxy_linux_B.Subsystem, &proxy_linux_DW.Subsystem,
+    &proxy_linux_P.Subsystem);
+
+  /* End of SystemInitialize for SubSystem: '<S21>/Subsystem' */
+
+  /* SystemInitialize for Enabled SubSystem: '<S29>/Subsystem' */
+  proxy_linux_Subsystem_Init(&proxy_linux_B.Subsystem_l,
+    &proxy_linux_DW.Subsystem_l, &proxy_linux_P.Subsystem_l);
+
+  /* End of SystemInitialize for SubSystem: '<S29>/Subsystem' */
+
+  /* SystemInitialize for Enabled SubSystem: '<S50>/Subsystem' */
+  proxy_linux_Subsystem_Init(&proxy_linux_B.Subsystem_a,
+    &proxy_linux_DW.Subsystem_a, &proxy_linux_P.Subsystem_a);
+
+  /* End of SystemInitialize for SubSystem: '<S50>/Subsystem' */
+
+  /* SystemInitialize for Enabled SubSystem: '<S58>/Subsystem' */
+  proxy_linux_Subsystem_Init(&proxy_linux_B.Subsystem_c,
+    &proxy_linux_DW.Subsystem_c, &proxy_linux_P.Subsystem_c);
+
+  /* End of SystemInitialize for SubSystem: '<S58>/Subsystem' */
+
+  /* SystemInitialize for Enabled SubSystem: '<S17>/Subsystem' */
+  proxy_linux_Subsystem_Init(&proxy_linux_B.Subsystem_f,
+    &proxy_linux_DW.Subsystem_f, &proxy_linux_P.Subsystem_f);
+
+  /* End of SystemInitialize for SubSystem: '<S17>/Subsystem' */
+
+  /* SystemInitialize for Enabled SubSystem: '<S65>/Subsystem' */
+  proxy_linux_Subsystem_Init(&proxy_linux_B.Subsystem_cc,
+    &proxy_linux_DW.Subsystem_cc, &proxy_linux_P.Subsystem_cc);
+
+  /* End of SystemInitialize for SubSystem: '<S65>/Subsystem' */
+
+  /* SystemInitialize for Enabled SubSystem: '<S69>/Subsystem' */
+  proxy_linux_Subsystem_Init(&proxy_linux_B.Subsystem_p,
+    &proxy_linux_DW.Subsystem_p, &proxy_linux_P.Subsystem_p);
+
+  /* End of SystemInitialize for SubSystem: '<S69>/Subsystem' */
+
+  /* SystemInitialize for Atomic SubSystem: '<S7>/Subscribe' */
+
+  /* SystemInitialize for Enabled SubSystem: '<S79>/Enabled Subsystem' */
+  proxy_lin_EnabledSubsystem_Init(&proxy_linux_B.EnabledSubsystem_f,
+    &proxy_linux_P.EnabledSubsystem_f);
+
+  /* End of SystemInitialize for SubSystem: '<S79>/Enabled Subsystem' */
+
+  /* End of SystemInitialize for SubSystem: '<S7>/Subscribe' */
 }
 
 /* Model terminate function */
@@ -4568,16 +2917,25 @@ void proxy_linux_terminate(void)
 {
   char_T *sErr;
 
-  /* Terminate for Atomic SubSystem: '<S7>/Publish2' */
-  /* Terminate for MATLABSystem: '<S58>/SinkBlock' */
-  if (proxy_linux_DW.obj_k.isInitialized == 1) {
-    proxy_linux_DW.obj_k.isInitialized = 2;
+  /* Terminate for Atomic SubSystem: '<S1>/Subscribe1' */
+  /* Terminate for MATLABSystem: '<S9>/SourceBlock' */
+  if (proxy_linux_DW.obj_i.isInitialized == 1) {
+    proxy_linux_DW.obj_i.isInitialized = 2;
   }
 
-  /* End of Terminate for MATLABSystem: '<S58>/SinkBlock' */
-  /* End of Terminate for SubSystem: '<S7>/Publish2' */
+  /* End of Terminate for MATLABSystem: '<S9>/SourceBlock' */
+  /* End of Terminate for SubSystem: '<S1>/Subscribe1' */
 
-  /* Terminate for S-Function (sdspFromNetwork): '<S4>/Receive from Haptics' */
+  /* Terminate for Atomic SubSystem: '<S3>/Subscribe' */
+  /* Terminate for MATLABSystem: '<S11>/SourceBlock' */
+  if (proxy_linux_DW.obj_c.isInitialized == 1) {
+    proxy_linux_DW.obj_c.isInitialized = 2;
+  }
+
+  /* End of Terminate for MATLABSystem: '<S11>/SourceBlock' */
+  /* End of Terminate for SubSystem: '<S3>/Subscribe' */
+
+  /* Terminate for S-Function (sdspFromNetwork): '<S5>/Receive from Haptics' */
   sErr = GetErrorBuffer(&proxy_linux_DW.ReceivefromHaptics_NetworkLib[0U]);
   LibTerminate(&proxy_linux_DW.ReceivefromHaptics_NetworkLib[0U]);
   if (*sErr != 0) {
@@ -4588,45 +2946,9 @@ void proxy_linux_terminate(void)
   LibDestroy(&proxy_linux_DW.ReceivefromHaptics_NetworkLib[0U], 0);
   DestroyUDPInterface(&proxy_linux_DW.ReceivefromHaptics_NetworkLib[0U]);
 
-  /* End of Terminate for S-Function (sdspFromNetwork): '<S4>/Receive from Haptics' */
+  /* End of Terminate for S-Function (sdspFromNetwork): '<S5>/Receive from Haptics' */
 
-  /* Terminate for Atomic SubSystem: '<S7>/Publish' */
-  /* Terminate for MATLABSystem: '<S55>/SinkBlock' */
-  if (proxy_linux_DW.obj_kr.isInitialized == 1) {
-    proxy_linux_DW.obj_kr.isInitialized = 2;
-  }
-
-  /* End of Terminate for MATLABSystem: '<S55>/SinkBlock' */
-  /* End of Terminate for SubSystem: '<S7>/Publish' */
-
-  /* Terminate for Atomic SubSystem: '<S7>/Publish1' */
-  /* Terminate for MATLABSystem: '<S56>/SinkBlock' */
-  if (proxy_linux_DW.obj_a.isInitialized == 1) {
-    proxy_linux_DW.obj_a.isInitialized = 2;
-  }
-
-  /* End of Terminate for MATLABSystem: '<S56>/SinkBlock' */
-  /* End of Terminate for SubSystem: '<S7>/Publish1' */
-
-  /* Terminate for Atomic SubSystem: '<S7>/Publish12' */
-  /* Terminate for MATLABSystem: '<S57>/SinkBlock' */
-  if (proxy_linux_DW.obj_b.isInitialized == 1) {
-    proxy_linux_DW.obj_b.isInitialized = 2;
-  }
-
-  /* End of Terminate for MATLABSystem: '<S57>/SinkBlock' */
-  /* End of Terminate for SubSystem: '<S7>/Publish12' */
-
-  /* Terminate for Atomic SubSystem: '<S2>/Subscribe' */
-  /* Terminate for MATLABSystem: '<S8>/SourceBlock' */
-  if (proxy_linux_DW.obj.isInitialized == 1) {
-    proxy_linux_DW.obj.isInitialized = 2;
-  }
-
-  /* End of Terminate for MATLABSystem: '<S8>/SourceBlock' */
-  /* End of Terminate for SubSystem: '<S2>/Subscribe' */
-
-  /* Terminate for S-Function (sdspToNetwork): '<S5>/UDP Send' */
+  /* Terminate for S-Function (sdspToNetwork): '<S6>/UDP Send' */
   sErr = GetErrorBuffer(&proxy_linux_DW.UDPSend_NetworkLib[0U]);
   LibTerminate(&proxy_linux_DW.UDPSend_NetworkLib[0U]);
   if (*sErr != 0) {
@@ -4637,5 +2959,63 @@ void proxy_linux_terminate(void)
   LibDestroy(&proxy_linux_DW.UDPSend_NetworkLib[0U], 1);
   DestroyUDPInterface(&proxy_linux_DW.UDPSend_NetworkLib[0U]);
 
-  /* End of Terminate for S-Function (sdspToNetwork): '<S5>/UDP Send' */
+  /* End of Terminate for S-Function (sdspToNetwork): '<S6>/UDP Send' */
+
+  /* Terminate for Atomic SubSystem: '<S7>/Publish' */
+  /* Terminate for MATLABSystem: '<S75>/SinkBlock' */
+  if (proxy_linux_DW.obj_kr.isInitialized == 1) {
+    proxy_linux_DW.obj_kr.isInitialized = 2;
+  }
+
+  /* End of Terminate for MATLABSystem: '<S75>/SinkBlock' */
+  /* End of Terminate for SubSystem: '<S7>/Publish' */
+
+  /* Terminate for Atomic SubSystem: '<S7>/Publish1' */
+  /* Terminate for MATLABSystem: '<S76>/SinkBlock' */
+  if (proxy_linux_DW.obj_a.isInitialized == 1) {
+    proxy_linux_DW.obj_a.isInitialized = 2;
+  }
+
+  /* End of Terminate for MATLABSystem: '<S76>/SinkBlock' */
+  /* End of Terminate for SubSystem: '<S7>/Publish1' */
+
+  /* Terminate for Atomic SubSystem: '<S7>/Publish12' */
+  /* Terminate for MATLABSystem: '<S77>/SinkBlock' */
+  if (proxy_linux_DW.obj_b.isInitialized == 1) {
+    proxy_linux_DW.obj_b.isInitialized = 2;
+  }
+
+  /* End of Terminate for MATLABSystem: '<S77>/SinkBlock' */
+  /* End of Terminate for SubSystem: '<S7>/Publish12' */
+
+  /* Terminate for S-Function (sdspToNetwork): '<S7>/UDP Send' */
+  sErr = GetErrorBuffer(&proxy_linux_DW.UDPSend_NetworkLib_e[0U]);
+  LibTerminate(&proxy_linux_DW.UDPSend_NetworkLib_e[0U]);
+  if (*sErr != 0) {
+    rtmSetErrorStatus(proxy_linux_M, sErr);
+    rtmSetStopRequested(proxy_linux_M, 1);
+  }
+
+  LibDestroy(&proxy_linux_DW.UDPSend_NetworkLib_e[0U], 1);
+  DestroyUDPInterface(&proxy_linux_DW.UDPSend_NetworkLib_e[0U]);
+
+  /* End of Terminate for S-Function (sdspToNetwork): '<S7>/UDP Send' */
+
+  /* Terminate for Atomic SubSystem: '<S7>/Subscribe' */
+  /* Terminate for MATLABSystem: '<S79>/SourceBlock' */
+  if (proxy_linux_DW.obj.isInitialized == 1) {
+    proxy_linux_DW.obj.isInitialized = 2;
+  }
+
+  /* End of Terminate for MATLABSystem: '<S79>/SourceBlock' */
+  /* End of Terminate for SubSystem: '<S7>/Subscribe' */
+
+  /* Terminate for Atomic SubSystem: '<S7>/Publish2' */
+  /* Terminate for MATLABSystem: '<S78>/SinkBlock' */
+  if (proxy_linux_DW.obj_k.isInitialized == 1) {
+    proxy_linux_DW.obj_k.isInitialized = 2;
+  }
+
+  /* End of Terminate for MATLABSystem: '<S78>/SinkBlock' */
+  /* End of Terminate for SubSystem: '<S7>/Publish2' */
 }
