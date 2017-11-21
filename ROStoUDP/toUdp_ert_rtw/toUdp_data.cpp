@@ -7,9 +7,9 @@
  *
  * Code generation for model "toUdp".
  *
- * Model version              : 1.670
+ * Model version              : 1.688
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Nov 20 15:01:44 2017
+ * C++ source code generated on : Tue Nov 21 09:15:35 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -23,19 +23,31 @@
 
 /* Block parameters (auto storage) */
 P_toUdp_T toUdp_P = {
-  /* Mask Parameter: UDPSend_remotePort
-   * Referenced by: '<Root>/UDP Send'
+  /* Mask Parameter: ReceivefromHaptics_localPort
+   * Referenced by: '<Root>/Receive from Haptics'
    */
-  16106,
+  17006,
+
+  /* Mask Parameter: UDPSend_remotePort
+   * Referenced by: '<S4>/UDP Send'
+   */
+  17106,
 
   /* Computed Parameter: Out1_Y0
-   * Referenced by: '<S2>/Out1'
+   * Referenced by: '<S5>/Out1'
    */
   {
     0.0                                /* Data */
   },
 
   /* Computed Parameter: Constant_Value
+   * Referenced by: '<S3>/Constant'
+   */
+  {
+    0.0                                /* Data */
+  },
+
+  /* Computed Parameter: Constant_Value_g
    * Referenced by: '<S1>/Constant'
    */
   {
@@ -43,17 +55,17 @@ P_toUdp_T toUdp_P = {
   },
 
   /* Computed Parameter: Constant_Value_l
-   * Referenced by: '<Root>/Constant'
+   * Referenced by: '<S4>/Constant'
    */
-  0.2F,
+  10.0F,
 
   /* Computed Parameter: Saturation_UpperSat
-   * Referenced by: '<Root>/Saturation'
+   * Referenced by: '<S4>/Saturation'
    */
   1.0F,
 
   /* Computed Parameter: Saturation_LowerSat
-   * Referenced by: '<Root>/Saturation'
+   * Referenced by: '<S4>/Saturation'
    */
   0.0F
 };

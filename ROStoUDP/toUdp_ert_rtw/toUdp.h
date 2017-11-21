@@ -7,9 +7,9 @@
  *
  * Code generation for model "toUdp".
  *
- * Model version              : 1.670
+ * Model version              : 1.688
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Nov 20 15:01:44 2017
+ * C++ source code generated on : Tue Nov 21 09:15:35 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -59,37 +59,48 @@
 
 /* Block signals (auto storage) */
 typedef struct {
-  SL_Bus_toUdp_std_msgs_Float64 In1;   /* '<S2>/In1' */
-  real32_T Saturation;                 /* '<Root>/Saturation' */
-  uint8_T BytePack[4];                 /* '<Root>/Byte Pack' */
+  real32_T ByteUnpack;                 /* '<Root>/Byte Unpack' */
+  real32_T Saturation;                 /* '<S4>/Saturation' */
+  uint16_T ReceivefromHaptics_o2;      /* '<Root>/Receive from Haptics' */
+  uint8_T ReceivefromHaptics_o1[4];    /* '<Root>/Receive from Haptics' */
+  uint8_T BytePack[4];                 /* '<S4>/Byte Pack' */
 } B_toUdp_T;
 
 /* Block states (auto storage) for system '<Root>' */
 typedef struct {
-  real_T UDPSend_NetworkLib[137];      /* '<Root>/UDP Send' */
-  robotics_slros_internal_block_T obj; /* '<S1>/SourceBlock' */
-  boolean_T objisempty;                /* '<S1>/SourceBlock' */
+  real_T ReceivefromHaptics_NetworkLib[137];/* '<Root>/Receive from Haptics' */
+  real_T UDPSend_NetworkLib[137];      /* '<S4>/UDP Send' */
+  robotics_slros_internal_block_T obj; /* '<S2>/SinkBlock' */
+  robotics_slros_internal_blo_a_T obj_e;/* '<S3>/SourceBlock' */
+  boolean_T objisempty;                /* '<S3>/SourceBlock' */
+  boolean_T objisempty_a;              /* '<S2>/SinkBlock' */
 } DW_toUdp_T;
 
 /* Parameters (auto storage) */
 struct P_toUdp_T_ {
+  int32_T ReceivefromHaptics_localPort;/* Mask Parameter: ReceivefromHaptics_localPort
+                                        * Referenced by: '<Root>/Receive from Haptics'
+                                        */
   int32_T UDPSend_remotePort;          /* Mask Parameter: UDPSend_remotePort
-                                        * Referenced by: '<Root>/UDP Send'
+                                        * Referenced by: '<S4>/UDP Send'
                                         */
   SL_Bus_toUdp_std_msgs_Float64 Out1_Y0;/* Computed Parameter: Out1_Y0
-                                         * Referenced by: '<S2>/Out1'
+                                         * Referenced by: '<S5>/Out1'
                                          */
   SL_Bus_toUdp_std_msgs_Float64 Constant_Value;/* Computed Parameter: Constant_Value
-                                                * Referenced by: '<S1>/Constant'
+                                                * Referenced by: '<S3>/Constant'
                                                 */
+  SL_Bus_toUdp_std_msgs_Float64 Constant_Value_g;/* Computed Parameter: Constant_Value_g
+                                                  * Referenced by: '<S1>/Constant'
+                                                  */
   real32_T Constant_Value_l;           /* Computed Parameter: Constant_Value_l
-                                        * Referenced by: '<Root>/Constant'
+                                        * Referenced by: '<S4>/Constant'
                                         */
   real32_T Saturation_UpperSat;        /* Computed Parameter: Saturation_UpperSat
-                                        * Referenced by: '<Root>/Saturation'
+                                        * Referenced by: '<S4>/Saturation'
                                         */
   real32_T Saturation_LowerSat;        /* Computed Parameter: Saturation_LowerSat
-                                        * Referenced by: '<Root>/Saturation'
+                                        * Referenced by: '<S4>/Saturation'
                                         */
 };
 
@@ -160,7 +171,9 @@ extern "C" {
 /*-
  * These blocks were eliminated from the model due to optimizations:
  *
- * Block '<Root>/Data Type Conversion1' : Eliminate redundant data type conversion
+ * Block '<S4>/Display' : Unused code path elimination
+ * Block '<S4>/Display1' : Unused code path elimination
+ * Block '<S4>/Data Type Conversion1' : Eliminate redundant data type conversion
  */
 
 /*-
@@ -178,7 +191,10 @@ extern "C" {
  * Here is the system hierarchy for this model
  *
  * '<Root>' : 'toUdp'
- * '<S1>'   : 'toUdp/Subscribe'
- * '<S2>'   : 'toUdp/Subscribe/Enabled Subsystem'
+ * '<S1>'   : 'toUdp/Blank Message1'
+ * '<S2>'   : 'toUdp/Publish2'
+ * '<S3>'   : 'toUdp/Subscribe'
+ * '<S4>'   : 'toUdp/Subsystem'
+ * '<S5>'   : 'toUdp/Subscribe/Enabled Subsystem'
  */
 #endif                                 /* RTW_HEADER_toUdp_h_ */

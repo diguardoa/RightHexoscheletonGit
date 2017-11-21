@@ -294,7 +294,22 @@ Dimension
 </tr>
 <tr class="even">
 <td width="42%" align="left" valign="top">
-&lt;Root&gt;/UDP Send
+&lt;Root&gt;/Receive from Haptics
+</td>
+<td width="26%" align="left" valign="top">
+toUdp_P.ReceivefromHaptics_localPort
+</td>
+<td width="21%" align="left" valign="top">
+int32_T
+</td>
+<td width="10%" align="right" valign="top">
+1
+</td>
+
+</tr>
+<tr class="odd">
+<td width="42%" align="left" valign="top">
+&lt;S4&gt;/UDP Send
 </td>
 <td width="26%" align="left" valign="top">
 toUdp_P.UDPSend_remotePort
@@ -307,12 +322,27 @@ int32_T
 </td>
 
 </tr>
-<tr class="odd">
+<tr class="even">
 <td width="42%" align="left" valign="top">
-&lt;S2&gt;/Out1
+&lt;S5&gt;/Out1
 </td>
 <td width="26%" align="left" valign="top">
 toUdp_P.Out1_Y0
+</td>
+<td width="21%" align="left" valign="top">
+SL_Bus_toUdp_std_msgs_Float64
+</td>
+<td width="10%" align="right" valign="top">
+1
+</td>
+
+</tr>
+<tr class="odd">
+<td width="42%" align="left" valign="top">
+&lt;S3&gt;/Constant
+</td>
+<td width="26%" align="left" valign="top">
+toUdp_P.Constant_Value
 </td>
 <td width="21%" align="left" valign="top">
 SL_Bus_toUdp_std_msgs_Float64
@@ -327,7 +357,7 @@ SL_Bus_toUdp_std_msgs_Float64
 &lt;S1&gt;/Constant
 </td>
 <td width="26%" align="left" valign="top">
-toUdp_P.Constant_Value
+toUdp_P.Constant_Value_g
 </td>
 <td width="21%" align="left" valign="top">
 SL_Bus_toUdp_std_msgs_Float64
@@ -339,7 +369,7 @@ SL_Bus_toUdp_std_msgs_Float64
 </tr>
 <tr class="odd">
 <td width="42%" align="left" valign="top">
-&lt;Root&gt;/Constant
+&lt;S4&gt;/Constant
 </td>
 <td width="26%" align="left" valign="top">
 toUdp_P.Constant_Value_l
@@ -354,7 +384,7 @@ real32_T
 </tr>
 <tr class="even">
 <td width="42%" align="left" valign="top">
-&lt;Root&gt;/Saturation
+&lt;S4&gt;/Saturation
 </td>
 <td width="26%" align="left" valign="top">
 toUdp_P.Saturation_UpperSat
@@ -369,7 +399,7 @@ real32_T
 </tr>
 <tr class="odd">
 <td width="42%" align="left" valign="top">
-&lt;Root&gt;/Saturation
+&lt;S4&gt;/Saturation
 </td>
 <td width="26%" align="left" valign="top">
 toUdp_P.Saturation_LowerSat

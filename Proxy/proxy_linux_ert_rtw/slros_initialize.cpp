@@ -9,6 +9,9 @@ SimulinkSubscriber<std_msgs::Bool, SL_Bus_proxy_linux_std_msgs_Bool> Sub_proxy_l
 // For Block proxy_linux/From Ros/Subscribe
 SimulinkSubscriber<std_msgs::Float64MultiArray, SL_Bus_proxy_linux_std_msgs_Float64MultiArray> Sub_proxy_linux_437;
 
+// For Block proxy_linux/Send Data to Hand/Subscribe
+SimulinkSubscriber<std_msgs::Float64, SL_Bus_proxy_linux_std_msgs_Float64> Sub_proxy_linux_1252;
+
 // For Block proxy_linux/ToRos/Subscribe
 SimulinkSubscriber<std_msgs::Bool, SL_Bus_proxy_linux_std_msgs_Bool> Sub_proxy_linux_1180;
 

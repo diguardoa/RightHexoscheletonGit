@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy_linux".
  *
- * Model version              : 1.669
+ * Model version              : 1.692
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Nov 20 11:32:44 2017
+ * C++ source code generated on : Tue Nov 21 13:50:05 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -25,25 +25,23 @@
 P_proxy_linux_T proxy_linux_P = {
   /* Variable: ampliFactor
    * Referenced by:
-   *   '<S7>/Gain1'
    *   '<S7>/Gain2'
    *   '<S7>/Gain7'
    *   '<S7>/Gain8'
-   *   '<S7>/Gain9'
    */
   1.6F,
 
   /* Variable: ampliFactorDistal
    * Referenced by:
-   *   '<S81>/Constant2'
-   *   '<S83>/Constant2'
+   *   '<S88>/Constant2'
+   *   '<S90>/Constant2'
    */
   1.0F,
 
   /* Variable: ampliFactorMiddle
    * Referenced by:
-   *   '<S80>/Constant2'
-   *   '<S82>/Constant2'
+   *   '<S87>/Constant2'
+   *   '<S89>/Constant2'
    */
   2.0F,
 
@@ -63,7 +61,7 @@ P_proxy_linux_T proxy_linux_P = {
   15000,
 
   /* Computed Parameter: Constant_Value
-   * Referenced by: '<S73>/Constant'
+   * Referenced by: '<S80>/Constant'
    */
   {
     {
@@ -1054,200 +1052,185 @@ P_proxy_linux_T proxy_linux_P = {
     }                                  /* Layout */
   },
 
+  /* Expression: -30
+   * Referenced by: '<S3>/Dead Zone'
+   */
+  -30.0,
+
+  /* Expression: 30
+   * Referenced by: '<S3>/Dead Zone'
+   */
+  30.0,
+
+  /* Expression: -30
+   * Referenced by: '<S3>/Dead Zone2'
+   */
+  -30.0,
+
+  /* Expression: 30
+   * Referenced by: '<S3>/Dead Zone2'
+   */
+  30.0,
+
+  /* Expression: -30
+   * Referenced by: '<S3>/Dead Zone3'
+   */
+  -30.0,
+
+  /* Expression: 30
+   * Referenced by: '<S3>/Dead Zone3'
+   */
+  30.0,
+
+  /* Expression: -30
+   * Referenced by: '<S3>/Dead Zone4'
+   */
+  -30.0,
+
+  /* Expression: 30
+   * Referenced by: '<S3>/Dead Zone4'
+   */
+  30.0,
+
+  /* Expression: -30
+   * Referenced by: '<S3>/Dead Zone5'
+   */
+  -30.0,
+
+  /* Expression: 30
+   * Referenced by: '<S3>/Dead Zone5'
+   */
+  30.0,
+
+  /* Expression: -30
+   * Referenced by: '<S3>/Dead Zone6'
+   */
+  -30.0,
+
+  /* Expression: 30
+   * Referenced by: '<S3>/Dead Zone6'
+   */
+  30.0,
+
+  /* Expression: -30
+   * Referenced by: '<S3>/Dead Zone7'
+   */
+  -30.0,
+
+  /* Expression: 30
+   * Referenced by: '<S3>/Dead Zone7'
+   */
+  30.0,
+
+  /* Expression: filt.Numerator{1,1}
+   * Referenced by: '<S3>/Filt 1'
+   */
+  { 0.0, 0.095162581964040441 },
+
+  /* Expression: filt.Denominator{1,1}
+   * Referenced by: '<S3>/Filt 1'
+   */
+  { 1.0, -0.90483741803595952 },
+
+  /* Expression: 0
+   * Referenced by: '<S3>/Filt 1'
+   */
+  0.0,
+
+  /* Expression: filt.Numerator{1,1}
+   * Referenced by: '<S3>/Filt 2'
+   */
+  { 0.0, 0.095162581964040441 },
+
+  /* Expression: filt.Denominator{1,1}
+   * Referenced by: '<S3>/Filt 2'
+   */
+  { 1.0, -0.90483741803595952 },
+
+  /* Expression: 0
+   * Referenced by: '<S3>/Filt 2'
+   */
+  0.0,
+
+  /* Expression: filt.Numerator{1,1}
+   * Referenced by: '<S3>/Filt 3'
+   */
+  { 0.0, 0.095162581964040441 },
+
+  /* Expression: filt.Denominator{1,1}
+   * Referenced by: '<S3>/Filt 3'
+   */
+  { 1.0, -0.90483741803595952 },
+
+  /* Expression: 0
+   * Referenced by: '<S3>/Filt 3'
+   */
+  0.0,
+
+  /* Expression: filt.Numerator{1,1}
+   * Referenced by: '<S3>/Filt 4'
+   */
+  { 0.0, 0.095162581964040441 },
+
+  /* Expression: filt.Denominator{1,1}
+   * Referenced by: '<S3>/Filt 4'
+   */
+  { 1.0, -0.90483741803595952 },
+
+  /* Expression: 0
+   * Referenced by: '<S3>/Filt 4'
+   */
+  0.0,
+
+  /* Expression: filt.Numerator{1,1}
+   * Referenced by: '<S3>/Filt 5'
+   */
+  { 0.0, 0.095162581964040441 },
+
+  /* Expression: filt.Denominator{1,1}
+   * Referenced by: '<S3>/Filt 5'
+   */
+  { 1.0, -0.90483741803595952 },
+
+  /* Expression: 0
+   * Referenced by: '<S3>/Filt 5'
+   */
+  0.0,
+
+  /* Expression: filt.Numerator{1,1}
+   * Referenced by: '<S3>/Filt 6'
+   */
+  { 0.0, 0.095162581964040441 },
+
+  /* Expression: filt.Denominator{1,1}
+   * Referenced by: '<S3>/Filt 6'
+   */
+  { 1.0, -0.90483741803595952 },
+
+  /* Expression: 0
+   * Referenced by: '<S3>/Filt 6'
+   */
+  0.0,
+
+  /* Expression: filt.Numerator{1,1}
+   * Referenced by: '<S3>/Filt 8'
+   */
+  { 0.0, 0.095162581964040441 },
+
+  /* Expression: filt.Denominator{1,1}
+   * Referenced by: '<S3>/Filt 8'
+   */
+  { 1.0, -0.90483741803595952 },
+
+  /* Expression: 0
+   * Referenced by: '<S3>/Filt 8'
+   */
+  0.0,
+
   /* Expression: 1/360
    * Referenced by: '<S3>/Gain'
    */
   0.0027777777777777779,
-
-  /* Expression: 6
-   * Referenced by: '<S18>/Gain'
-   */
-  6.0,
-
-  /* Expression: 5
-   * Referenced by: '<S18>/Saturation1'
-   */
-  5.0,
-
-  /* Expression: -5
-   * Referenced by: '<S18>/Saturation1'
-   */
-  -5.0,
-
-  /* Expression: -30
-   * Referenced by: '<S3>/Dead Zone'
-   */
-  -30.0,
-
-  /* Expression: 30
-   * Referenced by: '<S3>/Dead Zone'
-   */
-  30.0,
-
-  /* Expression: -30
-   * Referenced by: '<S3>/Dead Zone2'
-   */
-  -30.0,
-
-  /* Expression: 30
-   * Referenced by: '<S3>/Dead Zone2'
-   */
-  30.0,
-
-  /* Expression: -30
-   * Referenced by: '<S3>/Dead Zone3'
-   */
-  -30.0,
-
-  /* Expression: 30
-   * Referenced by: '<S3>/Dead Zone3'
-   */
-  30.0,
-
-  /* Expression: -30
-   * Referenced by: '<S3>/Dead Zone4'
-   */
-  -30.0,
-
-  /* Expression: 30
-   * Referenced by: '<S3>/Dead Zone4'
-   */
-  30.0,
-
-  /* Expression: -30
-   * Referenced by: '<S3>/Dead Zone5'
-   */
-  -30.0,
-
-  /* Expression: 30
-   * Referenced by: '<S3>/Dead Zone5'
-   */
-  30.0,
-
-  /* Expression: -30
-   * Referenced by: '<S3>/Dead Zone6'
-   */
-  -30.0,
-
-  /* Expression: 30
-   * Referenced by: '<S3>/Dead Zone6'
-   */
-  30.0,
-
-  /* Expression: -30
-   * Referenced by: '<S3>/Dead Zone7'
-   */
-  -30.0,
-
-  /* Expression: 30
-   * Referenced by: '<S3>/Dead Zone7'
-   */
-  30.0,
-
-  /* Expression: filt.Numerator{1,1}
-   * Referenced by: '<S3>/Filt 1'
-   */
-  { 0.0, 0.095162581964040441 },
-
-  /* Expression: filt.Denominator{1,1}
-   * Referenced by: '<S3>/Filt 1'
-   */
-  { 1.0, -0.90483741803595952 },
-
-  /* Expression: 0
-   * Referenced by: '<S3>/Filt 1'
-   */
-  0.0,
-
-  /* Expression: filt.Numerator{1,1}
-   * Referenced by: '<S3>/Filt 2'
-   */
-  { 0.0, 0.095162581964040441 },
-
-  /* Expression: filt.Denominator{1,1}
-   * Referenced by: '<S3>/Filt 2'
-   */
-  { 1.0, -0.90483741803595952 },
-
-  /* Expression: 0
-   * Referenced by: '<S3>/Filt 2'
-   */
-  0.0,
-
-  /* Expression: filt.Numerator{1,1}
-   * Referenced by: '<S3>/Filt 3'
-   */
-  { 0.0, 0.095162581964040441 },
-
-  /* Expression: filt.Denominator{1,1}
-   * Referenced by: '<S3>/Filt 3'
-   */
-  { 1.0, -0.90483741803595952 },
-
-  /* Expression: 0
-   * Referenced by: '<S3>/Filt 3'
-   */
-  0.0,
-
-  /* Expression: filt.Numerator{1,1}
-   * Referenced by: '<S3>/Filt 4'
-   */
-  { 0.0, 0.095162581964040441 },
-
-  /* Expression: filt.Denominator{1,1}
-   * Referenced by: '<S3>/Filt 4'
-   */
-  { 1.0, -0.90483741803595952 },
-
-  /* Expression: 0
-   * Referenced by: '<S3>/Filt 4'
-   */
-  0.0,
-
-  /* Expression: filt.Numerator{1,1}
-   * Referenced by: '<S3>/Filt 5'
-   */
-  { 0.0, 0.095162581964040441 },
-
-  /* Expression: filt.Denominator{1,1}
-   * Referenced by: '<S3>/Filt 5'
-   */
-  { 1.0, -0.90483741803595952 },
-
-  /* Expression: 0
-   * Referenced by: '<S3>/Filt 5'
-   */
-  0.0,
-
-  /* Expression: filt.Numerator{1,1}
-   * Referenced by: '<S3>/Filt 6'
-   */
-  { 0.0, 0.095162581964040441 },
-
-  /* Expression: filt.Denominator{1,1}
-   * Referenced by: '<S3>/Filt 6'
-   */
-  { 1.0, -0.90483741803595952 },
-
-  /* Expression: 0
-   * Referenced by: '<S3>/Filt 6'
-   */
-  0.0,
-
-  /* Expression: filt.Numerator{1,1}
-   * Referenced by: '<S3>/Filt 8'
-   */
-  { 0.0, 0.095162581964040441 },
-
-  /* Expression: filt.Denominator{1,1}
-   * Referenced by: '<S3>/Filt 8'
-   */
-  { 1.0, -0.90483741803595952 },
-
-  /* Expression: 0
-   * Referenced by: '<S3>/Filt 8'
-   */
-  0.0,
 
   /* Expression: 1/360
    * Referenced by: '<S3>/Gain1'
@@ -1280,12 +1263,12 @@ P_proxy_linux_T proxy_linux_P = {
   0.0014534883720930232,
 
   /* Expression: 7
-   * Referenced by: '<S24>/finger width'
+   * Referenced by: '<S26>/finger width'
    */
   7.0,
 
   /* Expression: 50
-   * Referenced by: '<S24>/proximal length'
+   * Referenced by: '<S26>/proximal length'
    */
   50.0,
 
@@ -1300,12 +1283,12 @@ P_proxy_linux_T proxy_linux_P = {
   250.0,
 
   /* Expression: 7
-   * Referenced by: '<S53>/finger width'
+   * Referenced by: '<S55>/finger width'
    */
   7.0,
 
   /* Expression: 50
-   * Referenced by: '<S53>/proximal length'
+   * Referenced by: '<S55>/proximal length'
    */
   50.0,
 
@@ -1334,6 +1317,21 @@ P_proxy_linux_T proxy_linux_P = {
    */
   -5.0,
 
+  /* Expression: 6
+   * Referenced by: '<S18>/Gain'
+   */
+  6.0,
+
+  /* Expression: 5
+   * Referenced by: '<S18>/Saturation1'
+   */
+  5.0,
+
+  /* Expression: -5
+   * Referenced by: '<S18>/Saturation1'
+   */
+  -5.0,
+
   /* Expression: 0.4
    * Referenced by: '<S19>/Gain'
    */
@@ -1352,21 +1350,35 @@ P_proxy_linux_T proxy_linux_P = {
   },
 
   /* Computed Parameter: Constant_Value_p
-   * Referenced by: '<S79>/Constant'
+   * Referenced by: '<S86>/Constant'
    */
   {
     false                              /* Data */
   },
 
   /* Computed Parameter: Constant_Value_n
-   * Referenced by: '<S72>/Constant'
+   * Referenced by: '<S79>/Constant'
    */
   {
     false                              /* Data */
   },
 
+  /* Computed Parameter: Out1_Y0_o
+   * Referenced by: '<S77>/Out1'
+   */
+  {
+    0.0                                /* Data */
+  },
+
+  /* Computed Parameter: Constant_Value_bz
+   * Referenced by: '<S75>/Constant'
+   */
+  {
+    0.0                                /* Data */
+  },
+
   /* Computed Parameter: Constant_Value_h
-   * Referenced by: '<S71>/Constant'
+   * Referenced by: '<S78>/Constant'
    */
   {
     0.0F                               /* Data */
@@ -1376,6 +1388,16 @@ P_proxy_linux_T proxy_linux_P = {
    * Referenced by: '<S13>/Constant'
    */
   0.3F,
+
+  /* Computed Parameter: Out1_Y0_m
+   * Referenced by: '<S22>/Out1'
+   */
+  0.0F,
+
+  /* Computed Parameter: Memory_InitialCondition
+   * Referenced by: '<S22>/Memory'
+   */
+  460.0F,
 
   /* Computed Parameter: Constant5_Value
    * Referenced by: '<S14>/Constant5'
@@ -1388,12 +1410,12 @@ P_proxy_linux_T proxy_linux_P = {
   1.0F,
 
   /* Computed Parameter: Constant1_Value
-   * Referenced by: '<S21>/Constant1'
+   * Referenced by: '<S23>/Constant1'
    */
   0.0F,
 
   /* Computed Parameter: Constant1_Value_n
-   * Referenced by: '<S29>/Constant1'
+   * Referenced by: '<S31>/Constant1'
    */
   0.0F,
 
@@ -1408,12 +1430,12 @@ P_proxy_linux_T proxy_linux_P = {
   1.0F,
 
   /* Computed Parameter: Constant1_Value_nn
-   * Referenced by: '<S50>/Constant1'
+   * Referenced by: '<S52>/Constant1'
    */
   0.0F,
 
   /* Computed Parameter: Constant1_Value_a
-   * Referenced by: '<S58>/Constant1'
+   * Referenced by: '<S60>/Constant1'
    */
   0.0F,
 
@@ -1433,62 +1455,27 @@ P_proxy_linux_T proxy_linux_P = {
   0.0F,
 
   /* Computed Parameter: Constant2_Value_n
-   * Referenced by: '<S65>/Constant2'
+   * Referenced by: '<S67>/Constant2'
    */
   0.0F,
 
   /* Computed Parameter: Constant2_Value_j
-   * Referenced by: '<S69>/Constant2'
+   * Referenced by: '<S71>/Constant2'
    */
   542.0F,
 
-  /* Computed Parameter: Gain4_Gain
-   * Referenced by: '<S16>/Gain4'
+  /* Computed Parameter: Out1_Y0_j
+   * Referenced by: '<S76>/Out1'
    */
-  1.0F,
+  0.0F,
 
-  /* Computed Parameter: Saturation_UpperSat
-   * Referenced by: '<S16>/Saturation'
+  /* Computed Parameter: Constant1_Value_o
+   * Referenced by: '<S13>/Constant1'
    */
-  6.0F,
-
-  /* Computed Parameter: Saturation_LowerSat
-   * Referenced by: '<S16>/Saturation'
-   */
-  -6.0F,
-
-  /* Computed Parameter: Gain4_Gain_a
-   * Referenced by: '<S14>/Gain4'
-   */
-  1.0F,
-
-  /* Computed Parameter: Saturation_UpperSat_i
-   * Referenced by: '<S14>/Saturation'
-   */
-  6.0F,
-
-  /* Computed Parameter: Saturation_LowerSat_i
-   * Referenced by: '<S14>/Saturation'
-   */
-  -6.0F,
-
-  /* Computed Parameter: Constant4_Value_f
-   * Referenced by: '<S6>/Constant4'
-   */
-  1.0F,
-
-  /* Computed Parameter: Constant1_Value_e
-   * Referenced by: '<S6>/Constant1'
-   */
-  5.0F,
-
-  /* Computed Parameter: Constant3_Value
-   * Referenced by: '<S6>/Constant3'
-   */
-  3.0F,
+  0.1F,
 
   /* Computed Parameter: GainAggiustato_Gain
-   * Referenced by: '<S21>/Gain  Aggiustato'
+   * Referenced by: '<S23>/Gain  Aggiustato'
    */
   0.05F,
 
@@ -1518,12 +1505,12 @@ P_proxy_linux_T proxy_linux_P = {
   0.0F,
 
   /* Computed Parameter: GainAggiustato_Gain_b
-   * Referenced by: '<S29>/Gain Aggiustato'
+   * Referenced by: '<S31>/Gain Aggiustato'
    */
   0.00596548105F,
 
   /* Computed Parameter: Constant_Value_ph
-   * Referenced by: '<S29>/Constant'
+   * Referenced by: '<S31>/Constant'
    */
   4.79778719F,
 
@@ -1537,13 +1524,28 @@ P_proxy_linux_T proxy_linux_P = {
    */
   -100.0F,
 
+  /* Computed Parameter: Gain4_Gain
+   * Referenced by: '<S14>/Gain4'
+   */
+  1.0F,
+
+  /* Computed Parameter: Saturation_UpperSat
+   * Referenced by: '<S14>/Saturation'
+   */
+  6.0F,
+
+  /* Computed Parameter: Saturation_LowerSat
+   * Referenced by: '<S14>/Saturation'
+   */
+  -6.0F,
+
   /* Computed Parameter: Constant2_Value_g
-   * Referenced by: '<S29>/Constant2'
+   * Referenced by: '<S31>/Constant2'
    */
   2.34F,
 
   /* Computed Parameter: GainAggiustato_Gain_h
-   * Referenced by: '<S50>/Gain  Aggiustato'
+   * Referenced by: '<S52>/Gain  Aggiustato'
    */
   0.05F,
 
@@ -1573,12 +1575,12 @@ P_proxy_linux_T proxy_linux_P = {
   0.0F,
 
   /* Computed Parameter: GainAggiustato_Gain_o
-   * Referenced by: '<S58>/Gain Aggiustato'
+   * Referenced by: '<S60>/Gain Aggiustato'
    */
   0.00596548105F,
 
   /* Computed Parameter: Constant_Value_bd
-   * Referenced by: '<S58>/Constant'
+   * Referenced by: '<S60>/Constant'
    */
   5.497787F,
 
@@ -1592,12 +1594,27 @@ P_proxy_linux_T proxy_linux_P = {
    */
   -100.0F,
 
+  /* Computed Parameter: Gain4_Gain_c
+   * Referenced by: '<S16>/Gain4'
+   */
+  1.0F,
+
+  /* Computed Parameter: Saturation_UpperSat_p
+   * Referenced by: '<S16>/Saturation'
+   */
+  6.0F,
+
+  /* Computed Parameter: Saturation_LowerSat_j
+   * Referenced by: '<S16>/Saturation'
+   */
+  -6.0F,
+
   /* Computed Parameter: Constant2_Value_b
-   * Referenced by: '<S58>/Constant2'
+   * Referenced by: '<S60>/Constant2'
    */
   2.34F,
 
-  /* Computed Parameter: Constant3_Value_d
+  /* Computed Parameter: Constant3_Value
    * Referenced by: '<S17>/Constant3'
    */
   0.0F,
@@ -1628,7 +1645,7 @@ P_proxy_linux_T proxy_linux_P = {
   0.0F,
 
   /* Computed Parameter: Constant3_Value_j
-   * Referenced by: '<S65>/Constant3'
+   * Referenced by: '<S67>/Constant3'
    */
   0.0F,
 
@@ -1648,42 +1665,12 @@ P_proxy_linux_T proxy_linux_P = {
   1.0F,
 
   /* Computed Parameter: Constant3_Value_c
-   * Referenced by: '<S69>/Constant3'
+   * Referenced by: '<S71>/Constant3'
    */
   542.0F,
 
   /* Computed Parameter: Constant_Value_o
    * Referenced by: '<S6>/Constant'
-   */
-  0.0F,
-
-  /* Computed Parameter: Constant2_Value_d
-   * Referenced by: '<S6>/Constant2'
-   */
-  0.0F,
-
-  /* Computed Parameter: Switch_Threshold
-   * Referenced by: '<S6>/Switch'
-   */
-  0.0F,
-
-  /* Computed Parameter: Switch1_Threshold
-   * Referenced by: '<S6>/Switch1'
-   */
-  0.0F,
-
-  /* Computed Parameter: Switch2_Threshold
-   * Referenced by: '<S6>/Switch2'
-   */
-  0.0F,
-
-  /* Computed Parameter: Switch3_Threshold
-   * Referenced by: '<S6>/Switch3'
-   */
-  0.0F,
-
-  /* Computed Parameter: Switch4_Threshold
-   * Referenced by: '<S6>/Switch4'
    */
   0.0F,
 
@@ -1727,7 +1714,7 @@ P_proxy_linux_T proxy_linux_P = {
    */
   0.0F,
 
-  /* Computed Parameter: Saturation1_UpperSat_i
+  /* Computed Parameter: Saturation1_UpperSat_iy
    * Referenced by: '<S7>/Saturation1'
    */
   0.99F,
@@ -1913,52 +1900,52 @@ P_proxy_linux_T proxy_linux_P = {
   0.05F,
 
   /* Computed Parameter: DeadZone_Start_n
-   * Referenced by: '<S81>/Dead Zone'
+   * Referenced by: '<S88>/Dead Zone'
    */
   0.0F,
 
   /* Computed Parameter: DeadZone_End_d
-   * Referenced by: '<S81>/Dead Zone'
+   * Referenced by: '<S88>/Dead Zone'
    */
   0.85F,
 
   /* Computed Parameter: Gain_Gain_n
-   * Referenced by: '<S81>/Gain'
+   * Referenced by: '<S88>/Gain'
    */
   1.8F,
 
   /* Computed Parameter: DeadZone_Start_a
-   * Referenced by: '<S80>/Dead Zone'
+   * Referenced by: '<S87>/Dead Zone'
    */
   0.0F,
 
   /* Computed Parameter: DeadZone_End_g
-   * Referenced by: '<S80>/Dead Zone'
+   * Referenced by: '<S87>/Dead Zone'
    */
   0.9F,
 
   /* Computed Parameter: DeadZone_Start_h
-   * Referenced by: '<S83>/Dead Zone'
+   * Referenced by: '<S90>/Dead Zone'
    */
   0.0F,
 
   /* Computed Parameter: DeadZone_End_dy
-   * Referenced by: '<S83>/Dead Zone'
+   * Referenced by: '<S90>/Dead Zone'
    */
   0.85F,
 
   /* Computed Parameter: Gain_Gain_k
-   * Referenced by: '<S83>/Gain'
+   * Referenced by: '<S90>/Gain'
    */
   1.8F,
 
   /* Computed Parameter: DeadZone_Start_e
-   * Referenced by: '<S82>/Dead Zone'
+   * Referenced by: '<S89>/Dead Zone'
    */
   0.0F,
 
   /* Computed Parameter: DeadZone_End_gn
-   * Referenced by: '<S82>/Dead Zone'
+   * Referenced by: '<S89>/Dead Zone'
    */
   0.9F,
 
@@ -2002,16 +1989,6 @@ P_proxy_linux_T proxy_linux_P = {
    */
   1U,
 
-  /* Computed Parameter: ManualSwitch_CurrentSetting_m
-   * Referenced by: '<S6>/Manual Switch'
-   */
-  0U,
-
-  /* Computed Parameter: ManualSwitch1_CurrentSetting_p
-   * Referenced by: '<S6>/Manual Switch1'
-   */
-  1U,
-
   /* Computed Parameter: Automatic_CurrentSetting
    * Referenced by: '<S7>/Automatic '
    */
@@ -2027,10 +2004,10 @@ P_proxy_linux_T proxy_linux_P = {
    */
   0,
 
-  /* Start of '<S79>/Enabled Subsystem' */
+  /* Start of '<S86>/Enabled Subsystem' */
   {
     /* Computed Parameter: Out1_Y0
-     * Referenced by: '<S85>/Out1'
+     * Referenced by: '<S92>/Out1'
      */
     {
       false                            /* Data */
@@ -2038,41 +2015,57 @@ P_proxy_linux_T proxy_linux_P = {
   }
   ,
 
-  /* End of '<S79>/Enabled Subsystem' */
+  /* End of '<S86>/Enabled Subsystem' */
 
-  /* Start of '<S69>/Subsystem' */
+  /* Start of '<S71>/Subsystem' */
   {
     /* Computed Parameter: Out1_Y0
-     * Referenced by: '<S70>/Out1'
+     * Referenced by: '<S73>/Out1'
      */
     0.0F,
 
     /* Computed Parameter: Memory_InitialCondition
-     * Referenced by: '<S70>/Memory'
+     * Referenced by: '<S73>/Memory'
      */
     0.0F
   }
   ,
 
-  /* End of '<S69>/Subsystem' */
+  /* End of '<S71>/Subsystem' */
 
-  /* Start of '<S65>/Subsystem' */
+  /* Start of '<S67>/Subsystem' */
   {
     /* Computed Parameter: Out1_Y0
-     * Referenced by: '<S66>/Out1'
+     * Referenced by: '<S68>/Out1'
      */
     0.0F,
 
     /* Computed Parameter: Memory_InitialCondition
-     * Referenced by: '<S66>/Memory'
+     * Referenced by: '<S68>/Memory'
      */
     0.0F
   }
   ,
 
-  /* End of '<S65>/Subsystem' */
+  /* End of '<S67>/Subsystem' */
 
   /* Start of '<S17>/Subsystem' */
+  {
+    /* Computed Parameter: Out1_Y0
+     * Referenced by: '<S65>/Out1'
+     */
+    0.0F,
+
+    /* Computed Parameter: Memory_InitialCondition
+     * Referenced by: '<S65>/Memory'
+     */
+    0.0F
+  }
+  ,
+
+  /* End of '<S17>/Subsystem' */
+
+  /* Start of '<S60>/Subsystem' */
   {
     /* Computed Parameter: Out1_Y0
      * Referenced by: '<S63>/Out1'
@@ -2086,9 +2079,9 @@ P_proxy_linux_T proxy_linux_P = {
   }
   ,
 
-  /* End of '<S17>/Subsystem' */
+  /* End of '<S60>/Subsystem' */
 
-  /* Start of '<S58>/Subsystem' */
+  /* Start of '<S52>/Subsystem' */
   {
     /* Computed Parameter: Out1_Y0
      * Referenced by: '<S61>/Out1'
@@ -2102,25 +2095,25 @@ P_proxy_linux_T proxy_linux_P = {
   }
   ,
 
-  /* End of '<S58>/Subsystem' */
+  /* End of '<S52>/Subsystem' */
 
-  /* Start of '<S50>/Subsystem' */
+  /* Start of '<S31>/Subsystem' */
   {
     /* Computed Parameter: Out1_Y0
-     * Referenced by: '<S59>/Out1'
+     * Referenced by: '<S34>/Out1'
      */
     0.0F,
 
     /* Computed Parameter: Memory_InitialCondition
-     * Referenced by: '<S59>/Memory'
+     * Referenced by: '<S34>/Memory'
      */
     0.0F
   }
   ,
 
-  /* End of '<S50>/Subsystem' */
+  /* End of '<S31>/Subsystem' */
 
-  /* Start of '<S29>/Subsystem' */
+  /* Start of '<S23>/Subsystem' */
   {
     /* Computed Parameter: Out1_Y0
      * Referenced by: '<S32>/Out1'
@@ -2134,23 +2127,7 @@ P_proxy_linux_T proxy_linux_P = {
   }
   ,
 
-  /* End of '<S29>/Subsystem' */
-
-  /* Start of '<S21>/Subsystem' */
-  {
-    /* Computed Parameter: Out1_Y0
-     * Referenced by: '<S30>/Out1'
-     */
-    0.0F,
-
-    /* Computed Parameter: Memory_InitialCondition
-     * Referenced by: '<S30>/Memory'
-     */
-    0.0F
-  }
-  ,
-
-  /* End of '<S21>/Subsystem' */
+  /* End of '<S23>/Subsystem' */
 
   /* Start of '<S9>/Enabled Subsystem' */
   {

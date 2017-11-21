@@ -6,6 +6,7 @@
 #include <sensor_msgs/JointState.h>
 #include <std_msgs/Bool.h>
 #include <std_msgs/Float32.h>
+#include <std_msgs/Float64.h>
 #include <std_msgs/Float64MultiArray.h>
 #include <std_msgs/Header.h>
 #include <std_msgs/MultiArrayDimension.h>
@@ -25,6 +26,9 @@ void convertToBus(SL_Bus_proxy_linux_std_msgs_Bool* busPtr, std_msgs::Bool const
 
 void convertFromBus(std_msgs::Float32* msgPtr, SL_Bus_proxy_linux_std_msgs_Float32 const* busPtr);
 void convertToBus(SL_Bus_proxy_linux_std_msgs_Float32* busPtr, std_msgs::Float32 const* msgPtr);
+
+void convertFromBus(std_msgs::Float64* msgPtr, SL_Bus_proxy_linux_std_msgs_Float64 const* busPtr);
+void convertToBus(SL_Bus_proxy_linux_std_msgs_Float64* busPtr, std_msgs::Float64 const* msgPtr);
 
 void convertFromBus(std_msgs::Float64MultiArray* msgPtr, SL_Bus_proxy_linux_std_msgs_Float64MultiArray const* busPtr);
 void convertToBus(SL_Bus_proxy_linux_std_msgs_Float64MultiArray* busPtr, std_msgs::Float64MultiArray const* msgPtr);

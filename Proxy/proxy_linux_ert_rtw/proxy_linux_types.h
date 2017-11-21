@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy_linux".
  *
- * Model version              : 1.669
+ * Model version              : 1.692
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Mon Nov 20 11:32:44 2017
+ * C++ source code generated on : Tue Nov 21 13:50:05 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -72,6 +72,15 @@ typedef struct {
   SL_Bus_ROSVariableLengthArrayInfo Data_SL_Info;
   SL_Bus_proxy_linux_std_msgs_MultiArrayLayout Layout;
 } SL_Bus_proxy_linux_std_msgs_Float64MultiArray;
+
+#endif
+
+#ifndef DEFINED_TYPEDEF_FOR_SL_Bus_proxy_linux_std_msgs_Float64_
+#define DEFINED_TYPEDEF_FOR_SL_Bus_proxy_linux_std_msgs_Float64_
+
+typedef struct {
+  real_T Data;
+} SL_Bus_proxy_linux_std_msgs_Float64;
 
 #endif
 
@@ -172,7 +181,7 @@ typedef struct {
 /* Parameters for system: '<S9>/Enabled Subsystem' */
 typedef struct P_EnabledSubsystem_proxy_linu_T_ P_EnabledSubsystem_proxy_linu_T;
 
-/* Parameters for system: '<S21>/Subsystem' */
+/* Parameters for system: '<S23>/Subsystem' */
 typedef struct P_Subsystem_proxy_linux_T_ P_Subsystem_proxy_linux_T;
 
 /* Parameters (auto storage) */
