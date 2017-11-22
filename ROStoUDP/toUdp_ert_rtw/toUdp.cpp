@@ -7,9 +7,9 @@
  *
  * Code generation for model "toUdp".
  *
- * Model version              : 1.688
+ * Model version              : 1.690
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Nov 21 09:15:35 2017
+ * C++ source code generated on : Wed Nov 22 13:22:47 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -31,6 +31,23 @@ DW_toUdp_T toUdp_DW;
 /* Real-time model */
 RT_MODEL_toUdp_T toUdp_M_;
 RT_MODEL_toUdp_T *const toUdp_M = &toUdp_M_;
+real32_T rt_roundf_snf(real32_T u)
+{
+  real32_T y;
+  if ((real32_T)fabs((real_T)u) < 8.388608E+6F) {
+    if (u >= 0.5F) {
+      y = (real32_T)floor((real_T)(u + 0.5F));
+    } else if (u > -0.5F) {
+      y = u * 0.0F;
+    } else {
+      y = (real32_T)ceil((real_T)(u - 0.5F));
+    }
+  } else {
+    y = u;
+  }
+
+  return y;
+}
 
 /* Model step function */
 void toUdp_step(void)
@@ -67,13 +84,13 @@ void toUdp_step(void)
   rtb_BusAssignment2.Data = toUdp_B.ByteUnpack;
 
   /* Outputs for Atomic SubSystem: '<Root>/Publish2' */
-  /* Start for MATLABSystem: '<S2>/SinkBlock' */
+  /* MATLABSystem: '<S2>/SinkBlock' */
   Pub_toUdp_1220.publish(&rtb_BusAssignment2);
 
   /* End of Outputs for SubSystem: '<Root>/Publish2' */
 
   /* Outputs for Atomic SubSystem: '<Root>/Subscribe' */
-  /* Start for MATLABSystem: '<S3>/SourceBlock' */
+  /* MATLABSystem: '<S3>/SourceBlock' */
   b_varargout_1 = Sub_toUdp_1201.getLatestMessage(&rtb_BusAssignment2);
 
   /* Outputs for Enabled SubSystem: '<Root>/Subsystem' incorporates:
@@ -91,19 +108,23 @@ void toUdp_step(void)
 
     /* Saturate: '<S4>/Saturation' */
     if (u0 > toUdp_P.Saturation_UpperSat) {
-      toUdp_B.Saturation = toUdp_P.Saturation_UpperSat;
-    } else if (u0 < toUdp_P.Saturation_LowerSat) {
-      toUdp_B.Saturation = toUdp_P.Saturation_LowerSat;
+      u0 = toUdp_P.Saturation_UpperSat;
     } else {
-      toUdp_B.Saturation = u0;
+      if (u0 < toUdp_P.Saturation_LowerSat) {
+        u0 = toUdp_P.Saturation_LowerSat;
+      }
     }
 
     /* End of Saturate: '<S4>/Saturation' */
 
+    /* Quantizer: '<S4>/Quantizer' */
+    toUdp_B.Quantizer = rt_roundf_snf(u0 / toUdp_P.Quantizer_Interval) *
+      toUdp_P.Quantizer_Interval;
+
     /* S-Function (any2byte): '<S4>/Byte Pack' */
 
     /* Pack: <S4>/Byte Pack */
-    (void) memcpy(&toUdp_B.BytePack[0], &toUdp_B.Saturation,
+    (void) memcpy(&toUdp_B.BytePack[0], &toUdp_B.Quantizer,
                   4);
 
     /* Update for S-Function (sdspToNetwork): '<S4>/UDP Send' */
@@ -117,7 +138,7 @@ void toUdp_step(void)
     /* End of Update for S-Function (sdspToNetwork): '<S4>/UDP Send' */
   }
 
-  /* End of Start for MATLABSystem: '<S3>/SourceBlock' */
+  /* End of MATLABSystem: '<S3>/SourceBlock' */
   /* End of Outputs for SubSystem: '<S3>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<Root>/Subsystem' */
   /* End of Outputs for SubSystem: '<Root>/Subscribe' */
@@ -251,21 +272,21 @@ void toUdp_terminate(void)
   /* End of Terminate for S-Function (sdspFromNetwork): '<Root>/Receive from Haptics' */
 
   /* Terminate for Atomic SubSystem: '<Root>/Publish2' */
-  /* Start for MATLABSystem: '<S2>/SinkBlock' */
+  /* Terminate for MATLABSystem: '<S2>/SinkBlock' */
   if (toUdp_DW.obj.isInitialized == 1) {
     toUdp_DW.obj.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S2>/SinkBlock' */
+  /* End of Terminate for MATLABSystem: '<S2>/SinkBlock' */
   /* End of Terminate for SubSystem: '<Root>/Publish2' */
 
   /* Terminate for Atomic SubSystem: '<Root>/Subscribe' */
-  /* Start for MATLABSystem: '<S3>/SourceBlock' */
+  /* Terminate for MATLABSystem: '<S3>/SourceBlock' */
   if (toUdp_DW.obj_e.isInitialized == 1) {
     toUdp_DW.obj_e.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S3>/SourceBlock' */
+  /* End of Terminate for MATLABSystem: '<S3>/SourceBlock' */
   /* End of Terminate for SubSystem: '<Root>/Subscribe' */
 
   /* Terminate for Enabled SubSystem: '<Root>/Subsystem' */

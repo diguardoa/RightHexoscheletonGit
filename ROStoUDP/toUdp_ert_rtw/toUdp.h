@@ -7,9 +7,9 @@
  *
  * Code generation for model "toUdp".
  *
- * Model version              : 1.688
+ * Model version              : 1.690
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Nov 21 09:15:35 2017
+ * C++ source code generated on : Wed Nov 22 13:22:47 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -21,6 +21,7 @@
 #ifndef RTW_HEADER_toUdp_h_
 #define RTW_HEADER_toUdp_h_
 #include <string.h>
+#include <math.h>
 #include <stddef.h>
 #ifndef toUdp_COMMON_INCLUDES_
 # define toUdp_COMMON_INCLUDES_
@@ -60,7 +61,7 @@
 /* Block signals (auto storage) */
 typedef struct {
   real32_T ByteUnpack;                 /* '<Root>/Byte Unpack' */
-  real32_T Saturation;                 /* '<S4>/Saturation' */
+  real32_T Quantizer;                  /* '<S4>/Quantizer' */
   uint16_T ReceivefromHaptics_o2;      /* '<Root>/Receive from Haptics' */
   uint8_T ReceivefromHaptics_o1[4];    /* '<Root>/Receive from Haptics' */
   uint8_T BytePack[4];                 /* '<S4>/Byte Pack' */
@@ -101,6 +102,9 @@ struct P_toUdp_T_ {
                                         */
   real32_T Saturation_LowerSat;        /* Computed Parameter: Saturation_LowerSat
                                         * Referenced by: '<S4>/Saturation'
+                                        */
+  real32_T Quantizer_Interval;         /* Computed Parameter: Quantizer_Interval
+                                        * Referenced by: '<S4>/Quantizer'
                                         */
 };
 

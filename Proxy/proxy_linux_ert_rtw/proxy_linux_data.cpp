@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy_linux".
  *
- * Model version              : 1.692
+ * Model version              : 1.702
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Nov 21 13:50:05 2017
+ * C++ source code generated on : Wed Nov 22 10:11:26 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -1654,6 +1654,11 @@ P_proxy_linux_T proxy_linux_P = {
    */
   0.0F,
 
+  /* Computed Parameter: GainAggiustato_Gain_a
+   * Referenced by: '<S19>/Gain  Aggiustato'
+   */
+  0.048828125F,
+
   /* Computed Parameter: Gain3_Gain_m
    * Referenced by: '<S19>/Gain3'
    */
@@ -1899,17 +1904,37 @@ P_proxy_linux_T proxy_linux_P = {
    */
   0.05F,
 
+  /* Computed Parameter: DeadZone_Start_h
+   * Referenced by: '<S90>/Dead Zone'
+   */
+  0.0F,
+
+  /* Computed Parameter: DeadZone_End_d
+   * Referenced by: '<S90>/Dead Zone'
+   */
+  0.8F,
+
+  /* Computed Parameter: Gain_Gain_k
+   * Referenced by: '<S90>/Gain'
+   */
+  5.0F,
+
+  /* Computed Parameter: Gain_Gain_n
+   * Referenced by: '<S7>/Gain'
+   */
+  1.3F,
+
   /* Computed Parameter: DeadZone_Start_n
    * Referenced by: '<S88>/Dead Zone'
    */
   0.0F,
 
-  /* Computed Parameter: DeadZone_End_d
+  /* Computed Parameter: DeadZone_End_d4
    * Referenced by: '<S88>/Dead Zone'
    */
   0.85F,
 
-  /* Computed Parameter: Gain_Gain_n
+  /* Computed Parameter: Gain_Gain_nv
    * Referenced by: '<S88>/Gain'
    */
   1.8F,
@@ -1923,21 +1948,6 @@ P_proxy_linux_T proxy_linux_P = {
    * Referenced by: '<S87>/Dead Zone'
    */
   0.9F,
-
-  /* Computed Parameter: DeadZone_Start_h
-   * Referenced by: '<S90>/Dead Zone'
-   */
-  0.0F,
-
-  /* Computed Parameter: DeadZone_End_dy
-   * Referenced by: '<S90>/Dead Zone'
-   */
-  0.85F,
-
-  /* Computed Parameter: Gain_Gain_k
-   * Referenced by: '<S90>/Gain'
-   */
-  1.8F,
 
   /* Computed Parameter: DeadZone_Start_e
    * Referenced by: '<S89>/Dead Zone'

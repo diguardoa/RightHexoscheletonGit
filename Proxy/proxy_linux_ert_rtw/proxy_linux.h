@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy_linux".
  *
- * Model version              : 1.692
+ * Model version              : 1.702
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Nov 21 13:50:05 2017
+ * C++ source code generated on : Wed Nov 22 10:11:26 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -180,8 +180,8 @@ typedef struct {
   uint8_T BytePack_c[44];              /* '<S7>/Byte Pack' */
   real32_T Saturation2;                /* '<S14>/Saturation2' */
   real32_T Saturation3;                /* '<S14>/Saturation3' */
-  real32_T DeadZone_k;                 /* '<S89>/Dead Zone' */
-  real32_T Saturation7;                /* '<S7>/Saturation7' */
+  real32_T DeadZone_a;                 /* '<S89>/Dead Zone' */
+  real32_T DeadZone_k;                 /* '<S87>/Dead Zone' */
   real32_T Saturation6;                /* '<S7>/Saturation6' */
   real32_T Saturation5;                /* '<S7>/Saturation5' */
   real32_T Saturation4;                /* '<S7>/Saturation4' */
@@ -192,7 +192,7 @@ typedef struct {
   real32_T ManualSwitch;               /* '<S18>/Manual Switch' */
   real32_T Sum;
   real32_T u0;
-  real32_T rtb_ManualSwitch_c;
+  real32_T rtb_Saturation2_c;
   int32_T k;
   SL_Bus_proxy_linux_std_msgs_Float32 BusAssignment1;/* '<S7>/Bus Assignment1' */
   SL_Bus_proxy_linux_std_msgs_Float32 BusAssignment;/* '<S7>/Bus Assignment' */
@@ -686,6 +686,9 @@ struct P_proxy_linux_T_ {
   real32_T Constant_Value_i;           /* Computed Parameter: Constant_Value_i
                                         * Referenced by: '<S19>/Constant'
                                         */
+  real32_T GainAggiustato_Gain_a;      /* Computed Parameter: GainAggiustato_Gain_a
+                                        * Referenced by: '<S19>/Gain  Aggiustato'
+                                        */
   real32_T Gain3_Gain_m;               /* Computed Parameter: Gain3_Gain_m
                                         * Referenced by: '<S19>/Gain3'
                                         */
@@ -833,13 +836,25 @@ struct P_proxy_linux_T_ {
   real32_T Saturation8_LowerSat;       /* Computed Parameter: Saturation8_LowerSat
                                         * Referenced by: '<S7>/Saturation8'
                                         */
+  real32_T DeadZone_Start_h;           /* Computed Parameter: DeadZone_Start_h
+                                        * Referenced by: '<S90>/Dead Zone'
+                                        */
+  real32_T DeadZone_End_d;             /* Computed Parameter: DeadZone_End_d
+                                        * Referenced by: '<S90>/Dead Zone'
+                                        */
+  real32_T Gain_Gain_k;                /* Computed Parameter: Gain_Gain_k
+                                        * Referenced by: '<S90>/Gain'
+                                        */
+  real32_T Gain_Gain_n;                /* Computed Parameter: Gain_Gain_n
+                                        * Referenced by: '<S7>/Gain'
+                                        */
   real32_T DeadZone_Start_n;           /* Computed Parameter: DeadZone_Start_n
                                         * Referenced by: '<S88>/Dead Zone'
                                         */
-  real32_T DeadZone_End_d;             /* Computed Parameter: DeadZone_End_d
+  real32_T DeadZone_End_d4;            /* Computed Parameter: DeadZone_End_d4
                                         * Referenced by: '<S88>/Dead Zone'
                                         */
-  real32_T Gain_Gain_n;                /* Computed Parameter: Gain_Gain_n
+  real32_T Gain_Gain_nv;               /* Computed Parameter: Gain_Gain_nv
                                         * Referenced by: '<S88>/Gain'
                                         */
   real32_T DeadZone_Start_a;           /* Computed Parameter: DeadZone_Start_a
@@ -847,15 +862,6 @@ struct P_proxy_linux_T_ {
                                         */
   real32_T DeadZone_End_g;             /* Computed Parameter: DeadZone_End_g
                                         * Referenced by: '<S87>/Dead Zone'
-                                        */
-  real32_T DeadZone_Start_h;           /* Computed Parameter: DeadZone_Start_h
-                                        * Referenced by: '<S90>/Dead Zone'
-                                        */
-  real32_T DeadZone_End_dy;            /* Computed Parameter: DeadZone_End_dy
-                                        * Referenced by: '<S90>/Dead Zone'
-                                        */
-  real32_T Gain_Gain_k;                /* Computed Parameter: Gain_Gain_k
-                                        * Referenced by: '<S90>/Gain'
                                         */
   real32_T DeadZone_Start_e;           /* Computed Parameter: DeadZone_Start_e
                                         * Referenced by: '<S89>/Dead Zone'

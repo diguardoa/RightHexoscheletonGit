@@ -7,9 +7,9 @@
  *
  * Code generation for model "proxy_linux".
  *
- * Model version              : 1.692
+ * Model version              : 1.702
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Nov 21 13:50:05 2017
+ * C++ source code generated on : Wed Nov 22 10:11:26 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -969,7 +969,7 @@ void proxy_linux_step(void)
     '_', 'F', 'i', 'n', 'g', 'e', 'r', '_', 'S', 'p', 'r', 'e', 'a', 'd' };
 
   /* Outputs for Atomic SubSystem: '<S1>/Subscribe1' */
-  /* Start for MATLABSystem: '<S9>/SourceBlock' */
+  /* MATLABSystem: '<S9>/SourceBlock' */
   proxy_linux_B.Automatic = Sub_proxy_linux_994.getLatestMessage
     (&proxy_linux_B.b_varargout_2_b);
 
@@ -985,7 +985,7 @@ void proxy_linux_step(void)
   proxy_linux_B.LogicalOperator = !proxy_linux_B.EnabledSubsystem.In1.Data;
 
   /* Outputs for Atomic SubSystem: '<S3>/Subscribe' */
-  /* Start for MATLABSystem: '<S11>/SourceBlock' incorporates:
+  /* MATLABSystem: '<S11>/SourceBlock' incorporates:
    *  Inport: '<S12>/In1'
    */
   proxy_linux_B.Automatic = Sub_proxy_linux_437.getLatestMessage
@@ -998,7 +998,7 @@ void proxy_linux_step(void)
     proxy_linux_B.In1 = proxy_linux_B.b_varargout_2;
   }
 
-  /* End of Start for MATLABSystem: '<S11>/SourceBlock' */
+  /* End of MATLABSystem: '<S11>/SourceBlock' */
   /* End of Outputs for SubSystem: '<S11>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<S3>/Subscribe' */
 
@@ -1237,10 +1237,10 @@ void proxy_linux_step(void)
    *  MATLAB Function: '<S13>/MATLAB Function'
    */
   if (proxy_linux_P.ManualSwitch_CurrentSetting_o == 1) {
-    proxy_linux_B.Sum1 = (-proxy_linux_B.ByteUnpack[13] + proxy_linux_B.Memory) /
+    proxy_linux_B.u0 = (-proxy_linux_B.ByteUnpack[13] + proxy_linux_B.Memory) /
       100.0F;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant_Value_gc;
+    proxy_linux_B.u0 = proxy_linux_P.Constant_Value_gc;
   }
 
   /* End of ManualSwitch: '<S13>/Manual Switch' */
@@ -1248,7 +1248,7 @@ void proxy_linux_step(void)
   /* Sum: '<S13>/Sum' incorporates:
    *  Constant: '<S13>/Constant1'
    */
-  proxy_linux_B.Sum = proxy_linux_B.Sum1 + proxy_linux_P.Constant1_Value_o;
+  proxy_linux_B.Sum = proxy_linux_B.u0 + proxy_linux_P.Constant1_Value_o;
 
   /* Outputs for Enabled SubSystem: '<S23>/Subsystem' */
   proxy_linux_Subsystem(proxy_linux_B.LogicalOperator, &proxy_linux_B.Subsystem,
@@ -1260,9 +1260,9 @@ void proxy_linux_step(void)
    *  Constant: '<S23>/Constant1'
    */
   if (proxy_linux_B.LogicalOperator) {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant1_Value;
+    proxy_linux_B.u0 = proxy_linux_P.Constant1_Value;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_B.Subsystem.Memory;
+    proxy_linux_B.u0 = proxy_linux_B.Subsystem.Memory;
   }
 
   /* End of Switch: '<S23>/Switch' */
@@ -1271,7 +1271,7 @@ void proxy_linux_step(void)
    *  Gain: '<S23>/Gain  Aggiustato'
    */
   proxy_linux_B.Sum_k = proxy_linux_P.GainAggiustato_Gain *
-    proxy_linux_B.ByteUnpack[8] - proxy_linux_B.Sum1;
+    proxy_linux_B.ByteUnpack[8] - proxy_linux_B.u0;
 
   /* DataTypeConversion: '<S25>/Conversion' incorporates:
    *  UnitDelay: '<S14>/Unit Delay3'
@@ -1309,9 +1309,9 @@ void proxy_linux_step(void)
    *  Constant: '<S31>/Constant1'
    */
   if (proxy_linux_B.LogicalOperator) {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant1_Value_n;
+    proxy_linux_B.u0 = proxy_linux_P.Constant1_Value_n;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_B.Subsystem_l.Memory;
+    proxy_linux_B.u0 = proxy_linux_B.Subsystem_l.Memory;
   }
 
   /* End of Switch: '<S31>/Switch' */
@@ -1322,7 +1322,7 @@ void proxy_linux_step(void)
    *  Sum: '<S31>/Sum'
    */
   proxy_linux_B.ManualSwitch = (proxy_linux_P.Constant_Value_ph -
-    proxy_linux_B.Sum1) - proxy_linux_P.GainAggiustato_Gain_b *
+    proxy_linux_B.u0) - proxy_linux_P.GainAggiustato_Gain_b *
     proxy_linux_B.ByteUnpack[15];
 
   /* Saturate: '<S14>/Saturation2' */
@@ -1341,9 +1341,9 @@ void proxy_linux_step(void)
    *  Constant: '<S14>/Constant5'
    */
   if (proxy_linux_P.ManualSwitch5_CurrentSetting == 1) {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant4_Value;
+    proxy_linux_B.u0 = proxy_linux_P.Constant4_Value;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant5_Value;
+    proxy_linux_B.u0 = proxy_linux_P.Constant5_Value;
   }
 
   /* End of ManualSwitch: '<S14>/Manual Switch5' */
@@ -1352,7 +1352,7 @@ void proxy_linux_step(void)
    *  Constant: '<S14>/Constant1'
    */
   proxy_linux_MATLABFunction2(proxy_linux_P.Constant1_Value_c,
-    proxy_linux_B.Saturation3, proxy_linux_B.Saturation2, proxy_linux_B.Sum1,
+    proxy_linux_B.Saturation3, proxy_linux_B.Saturation2, proxy_linux_B.u0,
     &proxy_linux_B.sf_MATLABFunction2);
 
   /* MATLAB Function: '<S14>/MATLAB Function3' */
@@ -1397,9 +1397,9 @@ void proxy_linux_step(void)
    *  Constant: '<S52>/Constant1'
    */
   if (proxy_linux_B.LogicalOperator) {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant1_Value_nn;
+    proxy_linux_B.u0 = proxy_linux_P.Constant1_Value_nn;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_B.Subsystem_a.Memory;
+    proxy_linux_B.u0 = proxy_linux_B.Subsystem_a.Memory;
   }
 
   /* End of Switch: '<S52>/Switch' */
@@ -1408,7 +1408,7 @@ void proxy_linux_step(void)
    *  Gain: '<S52>/Gain  Aggiustato'
    */
   proxy_linux_B.Sum_l = proxy_linux_P.GainAggiustato_Gain_h *
-    proxy_linux_B.ByteUnpack[9] - proxy_linux_B.Sum1;
+    proxy_linux_B.ByteUnpack[9] - proxy_linux_B.u0;
 
   /* DataTypeConversion: '<S54>/Conversion' incorporates:
    *  UnitDelay: '<S16>/Unit Delay3'
@@ -1446,9 +1446,9 @@ void proxy_linux_step(void)
    *  Constant: '<S60>/Constant1'
    */
   if (proxy_linux_B.LogicalOperator) {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant1_Value_a;
+    proxy_linux_B.u0 = proxy_linux_P.Constant1_Value_a;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_B.Subsystem_c.Memory;
+    proxy_linux_B.u0 = proxy_linux_B.Subsystem_c.Memory;
   }
 
   /* End of Switch: '<S60>/Switch' */
@@ -1458,18 +1458,17 @@ void proxy_linux_step(void)
    *  Gain: '<S60>/Gain Aggiustato'
    *  Sum: '<S60>/Sum'
    */
-  proxy_linux_B.ManualSwitch = (proxy_linux_P.Constant_Value_bd -
-    proxy_linux_B.Sum1) - proxy_linux_P.GainAggiustato_Gain_o *
+  proxy_linux_B.Saturation2 = (proxy_linux_P.Constant_Value_bd -
+    proxy_linux_B.u0) - proxy_linux_P.GainAggiustato_Gain_o *
     proxy_linux_B.ByteUnpack[14];
 
   /* Saturate: '<S16>/Saturation2' */
-  if (proxy_linux_B.ManualSwitch > proxy_linux_P.Saturation2_UpperSat_l) {
-    proxy_linux_B.Saturation2 = proxy_linux_P.Saturation2_UpperSat_l;
-  } else if (proxy_linux_B.ManualSwitch < proxy_linux_P.Saturation2_LowerSat_i)
-  {
-    proxy_linux_B.Saturation2 = proxy_linux_P.Saturation2_LowerSat_i;
+  if (proxy_linux_B.Saturation2 > proxy_linux_P.Saturation2_UpperSat_l) {
+    proxy_linux_B.ManualSwitch = proxy_linux_P.Saturation2_UpperSat_l;
+  } else if (proxy_linux_B.Saturation2 < proxy_linux_P.Saturation2_LowerSat_i) {
+    proxy_linux_B.ManualSwitch = proxy_linux_P.Saturation2_LowerSat_i;
   } else {
-    proxy_linux_B.Saturation2 = proxy_linux_B.ManualSwitch;
+    proxy_linux_B.ManualSwitch = proxy_linux_B.Saturation2;
   }
 
   /* End of Saturate: '<S16>/Saturation2' */
@@ -1479,9 +1478,9 @@ void proxy_linux_step(void)
    *  Constant: '<S16>/Constant5'
    */
   if (proxy_linux_P.ManualSwitch5_CurrentSetting_d == 1) {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant4_Value_n;
+    proxy_linux_B.u0 = proxy_linux_P.Constant4_Value_n;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant5_Value_p;
+    proxy_linux_B.u0 = proxy_linux_P.Constant5_Value_p;
   }
 
   /* End of ManualSwitch: '<S16>/Manual Switch5' */
@@ -1490,7 +1489,7 @@ void proxy_linux_step(void)
    *  Constant: '<S16>/Constant1'
    */
   proxy_linux_MATLABFunction2(proxy_linux_P.Constant1_Value_d,
-    proxy_linux_B.Saturation3, proxy_linux_B.Saturation2, proxy_linux_B.Sum1,
+    proxy_linux_B.Saturation3, proxy_linux_B.ManualSwitch, proxy_linux_B.u0,
     &proxy_linux_B.sf_MATLABFunction2_o);
 
   /* MATLAB Function: '<S16>/MATLAB Function3' */
@@ -1504,7 +1503,7 @@ void proxy_linux_step(void)
    *  UnitDelay: '<S16>/Unit Delay1'
    */
   proxy_linux_Jacobian2(proxy_linux_B.sf_MATLABFunction3_b.y,
-                        proxy_linux_B.Saturation3, proxy_linux_B.Saturation2,
+                        proxy_linux_B.Saturation3, proxy_linux_B.ManualSwitch,
                         proxy_linux_P.fingerwidth_Value_n,
                         proxy_linux_P.proximallength_Value_b,
                         proxy_linux_B.Conversion_a, (real_T)
@@ -1522,7 +1521,7 @@ void proxy_linux_step(void)
   /* Sum: '<S60>/Sum2' incorporates:
    *  Constant: '<S60>/Constant2'
    */
-  proxy_linux_B.Sum2_j = proxy_linux_B.ManualSwitch -
+  proxy_linux_B.Sum2_j = proxy_linux_B.Saturation2 -
     proxy_linux_P.Constant2_Value_b;
 
   /* Outputs for Enabled SubSystem: '<S17>/Subsystem' */
@@ -1535,23 +1534,23 @@ void proxy_linux_step(void)
    *  Constant: '<S17>/Constant2'
    */
   if (proxy_linux_B.LogicalOperator) {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant2_Value;
+    proxy_linux_B.u0 = proxy_linux_P.Constant2_Value;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_B.Subsystem_f.Memory;
+    proxy_linux_B.u0 = proxy_linux_B.Subsystem_f.Memory;
   }
 
   /* End of Switch: '<S17>/Switch' */
 
   /* Sum: '<S17>/Sum' */
-  proxy_linux_B.ManualSwitch = proxy_linux_B.ByteUnpack[11] - proxy_linux_B.Sum1;
+  proxy_linux_B.Saturation2 = proxy_linux_B.ByteUnpack[11] - proxy_linux_B.u0;
 
   /* Saturate: '<S17>/Saturation' */
-  if (proxy_linux_B.ManualSwitch > proxy_linux_P.Saturation_UpperSat_c) {
-    proxy_linux_B.Saturation2 = proxy_linux_P.Saturation_UpperSat_c;
-  } else if (proxy_linux_B.ManualSwitch < proxy_linux_P.Saturation_LowerSat_l) {
-    proxy_linux_B.Saturation2 = proxy_linux_P.Saturation_LowerSat_l;
+  if (proxy_linux_B.Saturation2 > proxy_linux_P.Saturation_UpperSat_c) {
+    proxy_linux_B.ManualSwitch = proxy_linux_P.Saturation_UpperSat_c;
+  } else if (proxy_linux_B.Saturation2 < proxy_linux_P.Saturation_LowerSat_l) {
+    proxy_linux_B.ManualSwitch = proxy_linux_P.Saturation_LowerSat_l;
   } else {
-    proxy_linux_B.Saturation2 = proxy_linux_B.ManualSwitch;
+    proxy_linux_B.ManualSwitch = proxy_linux_B.Saturation2;
   }
 
   /* End of Saturate: '<S17>/Saturation' */
@@ -1559,7 +1558,7 @@ void proxy_linux_step(void)
   /* Sum: '<S17>/Sum2' incorporates:
    *  Constant: '<S17>/Constant3'
    */
-  proxy_linux_B.Sum2_f = proxy_linux_B.ManualSwitch -
+  proxy_linux_B.Sum2_f = proxy_linux_B.Saturation2 -
     proxy_linux_P.Constant3_Value;
 
   /* Gain: '<S17>/Gain' */
@@ -1587,23 +1586,23 @@ void proxy_linux_step(void)
    *  Constant: '<S67>/Constant2'
    */
   if (proxy_linux_B.LogicalOperator) {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant2_Value_n;
+    proxy_linux_B.u0 = proxy_linux_P.Constant2_Value_n;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_B.Subsystem_cc.Memory;
+    proxy_linux_B.u0 = proxy_linux_B.Subsystem_cc.Memory;
   }
 
   /* End of Switch: '<S67>/Switch' */
 
   /* Sum: '<S18>/Sum' */
-  proxy_linux_B.ManualSwitch = proxy_linux_B.ByteUnpack[10] - proxy_linux_B.Sum1;
+  proxy_linux_B.Saturation2 = proxy_linux_B.ByteUnpack[10] - proxy_linux_B.u0;
 
   /* Saturate: '<S18>/Saturation' */
-  if (proxy_linux_B.ManualSwitch > proxy_linux_P.Saturation_UpperSat_b) {
-    proxy_linux_B.rtb_ManualSwitch_c = proxy_linux_P.Saturation_UpperSat_b;
-  } else if (proxy_linux_B.ManualSwitch < proxy_linux_P.Saturation_LowerSat_b) {
-    proxy_linux_B.rtb_ManualSwitch_c = proxy_linux_P.Saturation_LowerSat_b;
+  if (proxy_linux_B.Saturation2 > proxy_linux_P.Saturation_UpperSat_b) {
+    proxy_linux_B.rtb_Saturation2_c = proxy_linux_P.Saturation_UpperSat_b;
+  } else if (proxy_linux_B.Saturation2 < proxy_linux_P.Saturation_LowerSat_b) {
+    proxy_linux_B.rtb_Saturation2_c = proxy_linux_P.Saturation_LowerSat_b;
   } else {
-    proxy_linux_B.rtb_ManualSwitch_c = proxy_linux_B.ManualSwitch;
+    proxy_linux_B.rtb_Saturation2_c = proxy_linux_B.Saturation2;
   }
 
   /* End of Saturate: '<S18>/Saturation' */
@@ -1611,7 +1610,7 @@ void proxy_linux_step(void)
   /* Sum: '<S67>/Sum2' incorporates:
    *  Constant: '<S67>/Constant3'
    */
-  proxy_linux_B.Sum2_h = proxy_linux_B.ManualSwitch -
+  proxy_linux_B.Sum2_h = proxy_linux_B.Saturation2 -
     proxy_linux_P.Constant3_Value_j;
 
   /* Gain: '<S18>/Gain' */
@@ -1630,18 +1629,20 @@ void proxy_linux_step(void)
 
   /* ManualSwitch: '<S19>/Manual Switch1' incorporates:
    *  Constant: '<S19>/Constant'
+   *  Gain: '<S19>/Gain  Aggiustato'
    *  MATLAB Function: '<S19>/MATLAB Function1'
    */
   if (proxy_linux_P.ManualSwitch1_CurrentSetting == 1) {
-    proxy_linux_B.Sum1 = (proxy_linux_B.ByteUnpack[7] - 10.0F) / 250.0F;
+    proxy_linux_B.u0 = proxy_linux_P.GainAggiustato_Gain_a *
+      proxy_linux_B.ByteUnpack[7] / 25.0F;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant_Value_i;
+    proxy_linux_B.u0 = proxy_linux_P.Constant_Value_i;
   }
 
   /* End of ManualSwitch: '<S19>/Manual Switch1' */
 
   /* Gain: '<S19>/Gain3' */
-  proxy_linux_B.Saturation3 = proxy_linux_P.Gain3_Gain_m * proxy_linux_B.Sum1;
+  proxy_linux_B.Saturation3 = proxy_linux_P.Gain3_Gain_m * proxy_linux_B.u0;
 
   /* Outputs for Enabled SubSystem: '<S71>/Subsystem' */
   proxy_linux_Subsystem(proxy_linux_B.LogicalOperator,
@@ -1653,15 +1654,15 @@ void proxy_linux_step(void)
    *  Constant: '<S71>/Constant2'
    */
   if (proxy_linux_B.LogicalOperator) {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant2_Value_j;
+    proxy_linux_B.u0 = proxy_linux_P.Constant2_Value_j;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_B.Subsystem_p.Memory;
+    proxy_linux_B.u0 = proxy_linux_B.Subsystem_p.Memory;
   }
 
   /* End of Switch: '<S71>/Switch' */
 
   /* Sum: '<S19>/Sum1' */
-  proxy_linux_B.Sum1 = proxy_linux_B.ByteUnpack[16] - proxy_linux_B.Sum1;
+  proxy_linux_B.Sum1 = proxy_linux_B.ByteUnpack[16] - proxy_linux_B.u0;
 
   /* Sum: '<S71>/Sum2' incorporates:
    *  Constant: '<S71>/Constant3'
@@ -1675,7 +1676,7 @@ void proxy_linux_step(void)
     proxy_linux_P.Gain2_Gain_b;
 
   /* Outputs for Atomic SubSystem: '<S6>/Subscribe' */
-  /* Start for MATLABSystem: '<S75>/SourceBlock' */
+  /* MATLABSystem: '<S75>/SourceBlock' */
   proxy_linux_B.Automatic = Sub_proxy_linux_1252.getLatestMessage
     (&proxy_linux_B.b_varargout_2_m);
 
@@ -1691,13 +1692,13 @@ void proxy_linux_step(void)
       proxy_linux_B.b_varargout_2_m.Data;
   }
 
-  /* End of Start for MATLABSystem: '<S75>/SourceBlock' */
+  /* End of MATLABSystem: '<S75>/SourceBlock' */
   /* End of Outputs for SubSystem: '<S75>/Enabled Subsystem' */
   /* End of Outputs for SubSystem: '<S6>/Subsystem' */
   /* End of Outputs for SubSystem: '<S6>/Subscribe' */
 
   /* DataTypeConversion: '<S6>/Data Type Conversion4' */
-  proxy_linux_B.ManualSwitch = (real32_T)proxy_linux_B.Gain2_b;
+  proxy_linux_B.Saturation2 = (real32_T)proxy_linux_B.Gain2_b;
 
   /* DataTypeConversion: '<S6>/Data Type Conversion' */
   proxy_linux_B.Saturation1_n = (real32_T)proxy_linux_B.Gain3;
@@ -1785,7 +1786,7 @@ void proxy_linux_step(void)
   proxy_linux_B.BusAssignment.Data = proxy_linux_B.ByteUnpack[0];
 
   /* Outputs for Atomic SubSystem: '<S7>/Publish' */
-  /* Start for MATLABSystem: '<S82>/SinkBlock' */
+  /* MATLABSystem: '<S82>/SinkBlock' */
   Pub_proxy_linux_264.publish(&proxy_linux_B.BusAssignment);
 
   /* End of Outputs for SubSystem: '<S7>/Publish' */
@@ -1794,7 +1795,7 @@ void proxy_linux_step(void)
   proxy_linux_B.BusAssignment1.Data = proxy_linux_B.ByteUnpack[1];
 
   /* Outputs for Atomic SubSystem: '<S7>/Publish1' */
-  /* Start for MATLABSystem: '<S83>/SinkBlock' */
+  /* MATLABSystem: '<S83>/SinkBlock' */
   Pub_proxy_linux_311.publish(&proxy_linux_B.BusAssignment1);
 
   /* End of Outputs for SubSystem: '<S7>/Publish1' */
@@ -1844,7 +1845,7 @@ void proxy_linux_step(void)
   /* DiscreteTransferFcn: '<S7>/Filt 2' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_B.ManualSwitch = proxy_linux_P.Filt2_NumCoef_o[1] *
+    proxy_linux_B.Saturation2 = proxy_linux_P.Filt2_NumCoef_o[1] *
       proxy_linux_DW.Filt2_states_d;
     proxy_linux_B.k++;
   }
@@ -1852,11 +1853,11 @@ void proxy_linux_step(void)
   /* End of DiscreteTransferFcn: '<S7>/Filt 2' */
 
   /* Saturate: '<S7>/Saturation2' */
-  if (proxy_linux_B.ManualSwitch > proxy_linux_P.Saturation2_UpperSat_l4) {
-    proxy_linux_B.ManualSwitch = proxy_linux_P.Saturation2_UpperSat_l4;
+  if (proxy_linux_B.Saturation2 > proxy_linux_P.Saturation2_UpperSat_l4) {
+    proxy_linux_B.Saturation2 = proxy_linux_P.Saturation2_UpperSat_l4;
   } else {
-    if (proxy_linux_B.ManualSwitch < proxy_linux_P.Saturation2_LowerSat_c) {
-      proxy_linux_B.ManualSwitch = proxy_linux_P.Saturation2_LowerSat_c;
+    if (proxy_linux_B.Saturation2 < proxy_linux_P.Saturation2_LowerSat_c) {
+      proxy_linux_B.Saturation2 = proxy_linux_P.Saturation2_LowerSat_c;
     }
   }
 
@@ -1949,7 +1950,7 @@ void proxy_linux_step(void)
   /* DiscreteTransferFcn: '<S7>/Filt 7' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_B.Saturation7 = proxy_linux_P.Filt7_NumCoef[1] *
+    proxy_linux_B.DeadZone_k = proxy_linux_P.Filt7_NumCoef[1] *
       proxy_linux_DW.Filt7_states;
     proxy_linux_B.k++;
   }
@@ -1957,11 +1958,11 @@ void proxy_linux_step(void)
   /* End of DiscreteTransferFcn: '<S7>/Filt 7' */
 
   /* Saturate: '<S7>/Saturation7' */
-  if (proxy_linux_B.Saturation7 > proxy_linux_P.Saturation7_UpperSat) {
-    proxy_linux_B.Saturation7 = proxy_linux_P.Saturation7_UpperSat;
+  if (proxy_linux_B.DeadZone_k > proxy_linux_P.Saturation7_UpperSat) {
+    proxy_linux_B.DeadZone_k = proxy_linux_P.Saturation7_UpperSat;
   } else {
-    if (proxy_linux_B.Saturation7 < proxy_linux_P.Saturation7_LowerSat) {
-      proxy_linux_B.Saturation7 = proxy_linux_P.Saturation7_LowerSat;
+    if (proxy_linux_B.DeadZone_k < proxy_linux_P.Saturation7_LowerSat) {
+      proxy_linux_B.DeadZone_k = proxy_linux_P.Saturation7_LowerSat;
     }
   }
 
@@ -1970,7 +1971,7 @@ void proxy_linux_step(void)
   /* DiscreteTransferFcn: '<S7>/Filt 8' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_B.DeadZone_k = proxy_linux_P.Filt8_NumCoef_n[1] *
+    proxy_linux_B.DeadZone_a = proxy_linux_P.Filt8_NumCoef_n[1] *
       proxy_linux_DW.Filt8_states_h;
     proxy_linux_B.k++;
   }
@@ -1978,11 +1979,11 @@ void proxy_linux_step(void)
   /* End of DiscreteTransferFcn: '<S7>/Filt 8' */
 
   /* Saturate: '<S7>/Saturation8' */
-  if (proxy_linux_B.DeadZone_k > proxy_linux_P.Saturation8_UpperSat) {
-    proxy_linux_B.DeadZone_k = proxy_linux_P.Saturation8_UpperSat;
+  if (proxy_linux_B.DeadZone_a > proxy_linux_P.Saturation8_UpperSat) {
+    proxy_linux_B.DeadZone_a = proxy_linux_P.Saturation8_UpperSat;
   } else {
-    if (proxy_linux_B.DeadZone_k < proxy_linux_P.Saturation8_LowerSat) {
-      proxy_linux_B.DeadZone_k = proxy_linux_P.Saturation8_LowerSat;
+    if (proxy_linux_B.DeadZone_a < proxy_linux_P.Saturation8_LowerSat) {
+      proxy_linux_B.DeadZone_a = proxy_linux_P.Saturation8_LowerSat;
     }
   }
 
@@ -1990,6 +1991,19 @@ void proxy_linux_step(void)
 
   /* MATLAB Function: '<S7>/MATLAB Function - Assign' incorporates:
    *  Constant: '<S80>/Constant'
+   */
+  proxy_linux_B.msg = proxy_linux_P.Constant_Value;
+
+  /* DataTypeConversion: '<S7>/Data Type  Conversion' */
+  proxy_linux_B.u0 = (real32_T)floor((real_T)proxy_linux_B.ByteUnpack[0]);
+  if (rtIsNaNF(proxy_linux_B.u0) || rtIsInfF(proxy_linux_B.u0)) {
+    proxy_linux_B.u0 = 0.0F;
+  } else {
+    proxy_linux_B.u0 = (real32_T)fmod((real_T)proxy_linux_B.u0, 4.294967296E+9);
+  }
+
+  /* MATLAB Function: '<S7>/MATLAB Function - Assign' incorporates:
+   *  DataTypeConversion: '<S7>/Data Type  Conversion'
    *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn1'
    *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn2'
    *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn3'
@@ -2000,17 +2014,18 @@ void proxy_linux_step(void)
    *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn8'
    *  SignalConversion: '<S7>/ConcatBufferAtVector ConcatenateIn9'
    */
-  proxy_linux_B.msg = proxy_linux_P.Constant_Value;
+  proxy_linux_B.msg.Header.Seq = proxy_linux_B.u0 < 0.0F ? (uint32_T)-(int32_T)
+    (uint32_T)-proxy_linux_B.u0 : (uint32_T)proxy_linux_B.u0;
   proxy_linux_B.msg.Position_SL_Info.CurrentLength = 9U;
   proxy_linux_B.msg.Position[0] = proxy_linux_B.Saturation_f;
   proxy_linux_B.msg.Position[1] = proxy_linux_B.Saturation1_n;
-  proxy_linux_B.msg.Position[2] = proxy_linux_B.ManualSwitch;
+  proxy_linux_B.msg.Position[2] = proxy_linux_B.Saturation2;
   proxy_linux_B.msg.Position[3] = proxy_linux_B.Saturation3_b;
   proxy_linux_B.msg.Position[4] = proxy_linux_B.Saturation4;
   proxy_linux_B.msg.Position[5] = proxy_linux_B.Saturation5;
   proxy_linux_B.msg.Position[6] = proxy_linux_B.Saturation6;
-  proxy_linux_B.msg.Position[7] = proxy_linux_B.Saturation7;
-  proxy_linux_B.msg.Position[8] = proxy_linux_B.DeadZone_k;
+  proxy_linux_B.msg.Position[7] = proxy_linux_B.DeadZone_k;
+  proxy_linux_B.msg.Position[8] = proxy_linux_B.DeadZone_a;
   proxy_linux_B.msg.Velocity_SL_Info.CurrentLength = 9U;
   proxy_linux_B.msg.Effort_SL_Info.CurrentLength = 9U;
   memset(&proxy_linux_B.msg.Velocity[0], 0, 9U * sizeof(real_T));
@@ -2062,10 +2077,8 @@ void proxy_linux_step(void)
 
   proxy_linux_B.msg.Name[8].Data_SL_Info.CurrentLength = 24U;
 
-  /* End of MATLAB Function: '<S7>/MATLAB Function - Assign' */
-
   /* Outputs for Atomic SubSystem: '<S7>/Publish12' */
-  /* Start for MATLABSystem: '<S84>/SinkBlock' */
+  /* MATLABSystem: '<S84>/SinkBlock' */
   Pub_proxy_linux_470.publish(&proxy_linux_B.msg);
 
   /* End of Outputs for SubSystem: '<S7>/Publish12' */
@@ -2075,13 +2088,13 @@ void proxy_linux_step(void)
   proxy_linux_B.TmpSignalConversionAtBytePack_b[1] = proxy_linux_B.ByteUnpack[1];
   proxy_linux_B.TmpSignalConversionAtBytePack_b[2] = proxy_linux_B.Saturation_f;
   proxy_linux_B.TmpSignalConversionAtBytePack_b[3] = proxy_linux_B.Saturation1_n;
-  proxy_linux_B.TmpSignalConversionAtBytePack_b[4] = proxy_linux_B.ManualSwitch;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[4] = proxy_linux_B.Saturation2;
   proxy_linux_B.TmpSignalConversionAtBytePack_b[5] = proxy_linux_B.Saturation3_b;
   proxy_linux_B.TmpSignalConversionAtBytePack_b[6] = proxy_linux_B.Saturation4;
   proxy_linux_B.TmpSignalConversionAtBytePack_b[7] = proxy_linux_B.Saturation5;
   proxy_linux_B.TmpSignalConversionAtBytePack_b[8] = proxy_linux_B.Saturation6;
-  proxy_linux_B.TmpSignalConversionAtBytePack_b[9] = proxy_linux_B.Saturation7;
-  proxy_linux_B.TmpSignalConversionAtBytePack_b[10] = proxy_linux_B.DeadZone_k;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[9] = proxy_linux_B.DeadZone_k;
+  proxy_linux_B.TmpSignalConversionAtBytePack_b[10] = proxy_linux_B.DeadZone_a;
 
   /* S-Function (any2byte): '<S7>/Byte Pack' */
 
@@ -2090,108 +2103,15 @@ void proxy_linux_step(void)
                 &proxy_linux_B.TmpSignalConversionAtBytePack_b[0],
                 44);
 
-  /* ManualSwitch: '<S19>/Manual Switch' incorporates:
-   *  Constant: '<S19>/Constant'
-   *  MATLAB Function: '<S19>/MATLAB Function'
-   */
-  if (proxy_linux_P.ManualSwitch_CurrentSetting_l == 1) {
-    proxy_linux_B.Sum1 /= 30.0F;
-  } else {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant_Value_i;
-  }
-
-  /* End of ManualSwitch: '<S19>/Manual Switch' */
-
-  /* Gain: '<S7>/Gain2' incorporates:
-   *  Gain: '<S19>/Gain4'
-   */
-  proxy_linux_B.Saturation3_b = proxy_linux_P.Gain4_Gain_n * proxy_linux_B.Sum1 *
-    proxy_linux_P.ampliFactor;
-
-  /* ManualSwitch: '<S18>/Manual Switch' incorporates:
-   *  Constant: '<S18>/Constant1'
-   *  MATLAB Function: '<S18>/Pose Estimation'
-   */
-  if (proxy_linux_P.ManualSwitch_CurrentSetting_b == 1) {
-    proxy_linux_B.Sum1 = proxy_linux_B.rtb_ManualSwitch_c / 900.0F;
-  } else {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant1_Value_g;
-  }
-
-  /* End of ManualSwitch: '<S18>/Manual Switch' */
-
-  /* Gain: '<S7>/Gain7' */
-  proxy_linux_B.Saturation4 = proxy_linux_P.ampliFactor * proxy_linux_B.Sum1;
-
-  /* ManualSwitch: '<S17>/Manual Switch' incorporates:
-   *  Constant: '<S17>/Constant1'
-   *  MATLAB Function: '<S17>/Pose Estimation'
-   */
-  if (proxy_linux_P.ManualSwitch_CurrentSetting_c == 1) {
-    proxy_linux_B.Sum1 = proxy_linux_B.Saturation2 / 950.0F;
-  } else {
-    proxy_linux_B.Sum1 = proxy_linux_P.Constant1_Value_l;
-  }
-
-  /* End of ManualSwitch: '<S17>/Manual Switch' */
-
-  /* Gain: '<S7>/Gain8' incorporates:
-   *  Gain: '<S17>/Gain1'
-   */
-  proxy_linux_B.Saturation5 = proxy_linux_P.Gain1_Gain_p * proxy_linux_B.Sum1 *
-    proxy_linux_P.ampliFactor;
-
-  /* DeadZone: '<S88>/Dead Zone' */
-  if (proxy_linux_B.sf_MATLABFunction3_b.y[1] > proxy_linux_P.DeadZone_End_d) {
-    proxy_linux_B.Sum1 = proxy_linux_B.sf_MATLABFunction3_b.y[1] -
-      proxy_linux_P.DeadZone_End_d;
-  } else if (proxy_linux_B.sf_MATLABFunction3_b.y[1] >=
-             proxy_linux_P.DeadZone_Start_n) {
-    proxy_linux_B.Sum1 = 0.0F;
-  } else {
-    proxy_linux_B.Sum1 = proxy_linux_B.sf_MATLABFunction3_b.y[1] -
-      proxy_linux_P.DeadZone_Start_n;
-  }
-
-  /* End of DeadZone: '<S88>/Dead Zone' */
-
-  /* Product: '<S88>/Product' incorporates:
-   *  Constant: '<S88>/Constant2'
-   *  Gain: '<S88>/Gain'
-   *  Sum: '<S88>/Sum'
-   */
-  proxy_linux_B.Saturation6 = (proxy_linux_P.Gain_Gain_n * proxy_linux_B.Sum1 +
-    proxy_linux_P.ampliFactorDistal) * proxy_linux_B.sf_MATLABFunction3_b.y[1];
-
-  /* DeadZone: '<S87>/Dead Zone' */
-  if (proxy_linux_B.Saturation6 > proxy_linux_P.DeadZone_End_g) {
-    proxy_linux_B.Saturation7 = proxy_linux_B.Saturation6 -
-      proxy_linux_P.DeadZone_End_g;
-  } else if (proxy_linux_B.Saturation6 >= proxy_linux_P.DeadZone_Start_a) {
-    proxy_linux_B.Saturation7 = 0.0F;
-  } else {
-    proxy_linux_B.Saturation7 = proxy_linux_B.Saturation6 -
-      proxy_linux_P.DeadZone_Start_a;
-  }
-
-  /* End of DeadZone: '<S87>/Dead Zone' */
-
-  /* Product: '<S87>/Product' incorporates:
-   *  Constant: '<S87>/Constant2'
-   *  Sum: '<S87>/Sum'
-   */
-  proxy_linux_B.Saturation7 = (proxy_linux_B.Saturation7 +
-    proxy_linux_P.ampliFactorMiddle) * proxy_linux_B.sf_MATLABFunction3_b.y[0];
-
   /* DeadZone: '<S90>/Dead Zone' */
-  if (proxy_linux_B.sf_MATLABFunction3.y[1] > proxy_linux_P.DeadZone_End_dy) {
-    proxy_linux_B.Sum1 = proxy_linux_B.sf_MATLABFunction3.y[1] -
-      proxy_linux_P.DeadZone_End_dy;
+  if (proxy_linux_B.sf_MATLABFunction3.y[1] > proxy_linux_P.DeadZone_End_d) {
+    proxy_linux_B.u0 = proxy_linux_B.sf_MATLABFunction3.y[1] -
+      proxy_linux_P.DeadZone_End_d;
   } else if (proxy_linux_B.sf_MATLABFunction3.y[1] >=
              proxy_linux_P.DeadZone_Start_h) {
-    proxy_linux_B.Sum1 = 0.0F;
+    proxy_linux_B.u0 = 0.0F;
   } else {
-    proxy_linux_B.Sum1 = proxy_linux_B.sf_MATLABFunction3.y[1] -
+    proxy_linux_B.u0 = proxy_linux_B.sf_MATLABFunction3.y[1] -
       proxy_linux_P.DeadZone_Start_h;
   }
 
@@ -2202,18 +2122,113 @@ void proxy_linux_step(void)
    *  Gain: '<S90>/Gain'
    *  Sum: '<S90>/Sum'
    */
-  proxy_linux_B.DeadZone_k = (proxy_linux_P.Gain_Gain_k * proxy_linux_B.Sum1 +
+  proxy_linux_B.DeadZone_a = (proxy_linux_P.Gain_Gain_k * proxy_linux_B.u0 +
     proxy_linux_P.ampliFactorDistal) * proxy_linux_B.sf_MATLABFunction3.y[1];
 
-  /* DeadZone: '<S89>/Dead Zone' */
-  if (proxy_linux_B.DeadZone_k > proxy_linux_P.DeadZone_End_gn) {
-    proxy_linux_B.ManualSwitch = proxy_linux_B.DeadZone_k -
-      proxy_linux_P.DeadZone_End_gn;
-  } else if (proxy_linux_B.DeadZone_k >= proxy_linux_P.DeadZone_Start_e) {
-    proxy_linux_B.ManualSwitch = 0.0F;
+  /* Gain: '<S7>/Gain' */
+  proxy_linux_B.Saturation3_b = proxy_linux_P.Gain_Gain_n *
+    proxy_linux_B.DeadZone_a;
+
+  /* ManualSwitch: '<S19>/Manual Switch' incorporates:
+   *  Constant: '<S19>/Constant'
+   *  MATLAB Function: '<S19>/MATLAB Function'
+   */
+  if (proxy_linux_P.ManualSwitch_CurrentSetting_l == 1) {
+    proxy_linux_B.u0 = proxy_linux_B.Sum1 / 30.0F;
   } else {
-    proxy_linux_B.ManualSwitch = proxy_linux_B.DeadZone_k -
-      proxy_linux_P.DeadZone_Start_e;
+    proxy_linux_B.u0 = proxy_linux_P.Constant_Value_i;
+  }
+
+  /* End of ManualSwitch: '<S19>/Manual Switch' */
+
+  /* Gain: '<S7>/Gain2' incorporates:
+   *  Gain: '<S19>/Gain4'
+   */
+  proxy_linux_B.Saturation4 = proxy_linux_P.Gain4_Gain_n * proxy_linux_B.u0 *
+    proxy_linux_P.ampliFactor;
+
+  /* ManualSwitch: '<S18>/Manual Switch' incorporates:
+   *  Constant: '<S18>/Constant1'
+   *  MATLAB Function: '<S18>/Pose Estimation'
+   */
+  if (proxy_linux_P.ManualSwitch_CurrentSetting_b == 1) {
+    proxy_linux_B.u0 = proxy_linux_B.rtb_Saturation2_c / 900.0F;
+  } else {
+    proxy_linux_B.u0 = proxy_linux_P.Constant1_Value_g;
+  }
+
+  /* End of ManualSwitch: '<S18>/Manual Switch' */
+
+  /* Gain: '<S7>/Gain7' */
+  proxy_linux_B.Saturation5 = proxy_linux_P.ampliFactor * proxy_linux_B.u0;
+
+  /* ManualSwitch: '<S17>/Manual Switch' incorporates:
+   *  Constant: '<S17>/Constant1'
+   *  MATLAB Function: '<S17>/Pose Estimation'
+   */
+  if (proxy_linux_P.ManualSwitch_CurrentSetting_c == 1) {
+    proxy_linux_B.u0 = proxy_linux_B.ManualSwitch / 950.0F;
+  } else {
+    proxy_linux_B.u0 = proxy_linux_P.Constant1_Value_l;
+  }
+
+  /* End of ManualSwitch: '<S17>/Manual Switch' */
+
+  /* Gain: '<S7>/Gain8' incorporates:
+   *  Gain: '<S17>/Gain1'
+   */
+  proxy_linux_B.Saturation6 = proxy_linux_P.Gain1_Gain_p * proxy_linux_B.u0 *
+    proxy_linux_P.ampliFactor;
+
+  /* DeadZone: '<S88>/Dead Zone' */
+  if (proxy_linux_B.sf_MATLABFunction3_b.y[1] > proxy_linux_P.DeadZone_End_d4) {
+    proxy_linux_B.u0 = proxy_linux_B.sf_MATLABFunction3_b.y[1] -
+      proxy_linux_P.DeadZone_End_d4;
+  } else if (proxy_linux_B.sf_MATLABFunction3_b.y[1] >=
+             proxy_linux_P.DeadZone_Start_n) {
+    proxy_linux_B.u0 = 0.0F;
+  } else {
+    proxy_linux_B.u0 = proxy_linux_B.sf_MATLABFunction3_b.y[1] -
+      proxy_linux_P.DeadZone_Start_n;
+  }
+
+  /* End of DeadZone: '<S88>/Dead Zone' */
+
+  /* Product: '<S88>/Product' incorporates:
+   *  Constant: '<S88>/Constant2'
+   *  Gain: '<S88>/Gain'
+   *  Sum: '<S88>/Sum'
+   */
+  proxy_linux_B.DeadZone_k = (proxy_linux_P.Gain_Gain_nv * proxy_linux_B.u0 +
+    proxy_linux_P.ampliFactorDistal) * proxy_linux_B.sf_MATLABFunction3_b.y[1];
+
+  /* DeadZone: '<S87>/Dead Zone' */
+  if (proxy_linux_B.DeadZone_k > proxy_linux_P.DeadZone_End_g) {
+    proxy_linux_B.Saturation2 = proxy_linux_B.DeadZone_k -
+      proxy_linux_P.DeadZone_End_g;
+  } else if (proxy_linux_B.DeadZone_k >= proxy_linux_P.DeadZone_Start_a) {
+    proxy_linux_B.Saturation2 = 0.0F;
+  } else {
+    proxy_linux_B.Saturation2 = proxy_linux_B.DeadZone_k -
+      proxy_linux_P.DeadZone_Start_a;
+  }
+
+  /* End of DeadZone: '<S87>/Dead Zone' */
+
+  /* Product: '<S87>/Product' incorporates:
+   *  Constant: '<S87>/Constant2'
+   *  Sum: '<S87>/Sum'
+   */
+  proxy_linux_B.ManualSwitch = (proxy_linux_B.Saturation2 +
+    proxy_linux_P.ampliFactorMiddle) * proxy_linux_B.sf_MATLABFunction3_b.y[0];
+
+  /* DeadZone: '<S89>/Dead Zone' */
+  if (proxy_linux_B.DeadZone_a > proxy_linux_P.DeadZone_End_gn) {
+    proxy_linux_B.DeadZone_a -= proxy_linux_P.DeadZone_End_gn;
+  } else if (proxy_linux_B.DeadZone_a >= proxy_linux_P.DeadZone_Start_e) {
+    proxy_linux_B.DeadZone_a = 0.0F;
+  } else {
+    proxy_linux_B.DeadZone_a -= proxy_linux_P.DeadZone_Start_e;
   }
 
   /* End of DeadZone: '<S89>/Dead Zone' */
@@ -2222,11 +2237,11 @@ void proxy_linux_step(void)
    *  Constant: '<S89>/Constant2'
    *  Sum: '<S89>/Sum'
    */
-  proxy_linux_B.ManualSwitch = (proxy_linux_B.ManualSwitch +
+  proxy_linux_B.DeadZone_a = (proxy_linux_B.DeadZone_a +
     proxy_linux_P.ampliFactorMiddle) * proxy_linux_B.sf_MATLABFunction3.y[0];
 
   /* Outputs for Atomic SubSystem: '<S7>/Subscribe' */
-  /* Start for MATLABSystem: '<S86>/SourceBlock' */
+  /* MATLABSystem: '<S86>/SourceBlock' */
   proxy_linux_B.Automatic = Sub_proxy_linux_1180.getLatestMessage
     (&proxy_linux_B.b_varargout_2_b);
 
@@ -2265,7 +2280,7 @@ void proxy_linux_step(void)
   /* End of ManualSwitch: '<S7>/Automatic ' */
 
   /* Outputs for Atomic SubSystem: '<S7>/Publish2' */
-  /* Start for MATLABSystem: '<S85>/SinkBlock' */
+  /* MATLABSystem: '<S85>/SinkBlock' */
   Pub_proxy_linux_517.publish(&proxy_linux_B.BusAssignment2);
 
   /* End of Outputs for SubSystem: '<S7>/Publish2' */
@@ -2428,7 +2443,7 @@ void proxy_linux_step(void)
   /* Update for DiscreteTransferFcn: '<S7>/Filt 1' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_DW.Filt1_states_d = (proxy_linux_B.Saturation3_b -
+    proxy_linux_DW.Filt1_states_d = (proxy_linux_B.Saturation4 -
       proxy_linux_P.Filt1_DenCoef_l[1] * proxy_linux_DW.Filt1_states_d) /
       proxy_linux_P.Filt1_DenCoef_l[0];
     proxy_linux_B.k++;
@@ -2439,7 +2454,7 @@ void proxy_linux_step(void)
   /* Update for DiscreteTransferFcn: '<S7>/Filt 2' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_DW.Filt2_states_d = (proxy_linux_B.DeadZone_k -
+    proxy_linux_DW.Filt2_states_d = (proxy_linux_B.Saturation3_b -
       proxy_linux_P.Filt2_DenCoef_a[1] * proxy_linux_DW.Filt2_states_d) /
       proxy_linux_P.Filt2_DenCoef_a[0];
     proxy_linux_B.k++;
@@ -2450,7 +2465,7 @@ void proxy_linux_step(void)
   /* Update for DiscreteTransferFcn: '<S7>/Filt 3' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_DW.Filt3_states_h = (proxy_linux_B.ManualSwitch -
+    proxy_linux_DW.Filt3_states_h = (proxy_linux_B.DeadZone_a -
       proxy_linux_P.Filt3_DenCoef_k[1] * proxy_linux_DW.Filt3_states_h) /
       proxy_linux_P.Filt3_DenCoef_k[0];
     proxy_linux_B.k++;
@@ -2461,7 +2476,7 @@ void proxy_linux_step(void)
   /* Update for DiscreteTransferFcn: '<S7>/Filt 4' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_DW.Filt4_states_a = (proxy_linux_B.Saturation6 -
+    proxy_linux_DW.Filt4_states_a = (proxy_linux_B.DeadZone_k -
       proxy_linux_P.Filt4_DenCoef_l[1] * proxy_linux_DW.Filt4_states_a) /
       proxy_linux_P.Filt4_DenCoef_l[0];
     proxy_linux_B.k++;
@@ -2472,7 +2487,7 @@ void proxy_linux_step(void)
   /* Update for DiscreteTransferFcn: '<S7>/Filt 5' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_DW.Filt5_states_j = (proxy_linux_B.Saturation7 -
+    proxy_linux_DW.Filt5_states_j = (proxy_linux_B.ManualSwitch -
       proxy_linux_P.Filt5_DenCoef_g[1] * proxy_linux_DW.Filt5_states_j) /
       proxy_linux_P.Filt5_DenCoef_g[0];
     proxy_linux_B.k++;
@@ -2483,7 +2498,7 @@ void proxy_linux_step(void)
   /* Update for DiscreteTransferFcn: '<S7>/Filt 6' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_DW.Filt6_states_n = (proxy_linux_B.Saturation4 -
+    proxy_linux_DW.Filt6_states_n = (proxy_linux_B.Saturation5 -
       proxy_linux_P.Filt6_DenCoef_n[1] * proxy_linux_DW.Filt6_states_n) /
       proxy_linux_P.Filt6_DenCoef_n[0];
     proxy_linux_B.k++;
@@ -2494,7 +2509,7 @@ void proxy_linux_step(void)
   /* Update for DiscreteTransferFcn: '<S7>/Filt 7' */
   proxy_linux_B.k = 0;
   while (proxy_linux_B.k < 1) {
-    proxy_linux_DW.Filt7_states = (proxy_linux_B.Saturation5 -
+    proxy_linux_DW.Filt7_states = (proxy_linux_B.Saturation6 -
       proxy_linux_P.Filt7_DenCoef[1] * proxy_linux_DW.Filt7_states) /
       proxy_linux_P.Filt7_DenCoef[0];
     proxy_linux_B.k++;
@@ -2934,21 +2949,21 @@ void proxy_linux_terminate(void)
   char_T *sErr;
 
   /* Terminate for Atomic SubSystem: '<S1>/Subscribe1' */
-  /* Start for MATLABSystem: '<S9>/SourceBlock' */
+  /* Terminate for MATLABSystem: '<S9>/SourceBlock' */
   if (proxy_linux_DW.obj_i.isInitialized == 1) {
     proxy_linux_DW.obj_i.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S9>/SourceBlock' */
+  /* End of Terminate for MATLABSystem: '<S9>/SourceBlock' */
   /* End of Terminate for SubSystem: '<S1>/Subscribe1' */
 
   /* Terminate for Atomic SubSystem: '<S3>/Subscribe' */
-  /* Start for MATLABSystem: '<S11>/SourceBlock' */
+  /* Terminate for MATLABSystem: '<S11>/SourceBlock' */
   if (proxy_linux_DW.obj_c.isInitialized == 1) {
     proxy_linux_DW.obj_c.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S11>/SourceBlock' */
+  /* End of Terminate for MATLABSystem: '<S11>/SourceBlock' */
   /* End of Terminate for SubSystem: '<S3>/Subscribe' */
 
   /* Terminate for S-Function (sdspFromNetwork): '<S5>/Receive from Haptics' */
@@ -2965,12 +2980,12 @@ void proxy_linux_terminate(void)
   /* End of Terminate for S-Function (sdspFromNetwork): '<S5>/Receive from Haptics' */
 
   /* Terminate for Atomic SubSystem: '<S6>/Subscribe' */
-  /* Start for MATLABSystem: '<S75>/SourceBlock' */
+  /* Terminate for MATLABSystem: '<S75>/SourceBlock' */
   if (proxy_linux_DW.obj_e.isInitialized == 1) {
     proxy_linux_DW.obj_e.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S75>/SourceBlock' */
+  /* End of Terminate for MATLABSystem: '<S75>/SourceBlock' */
   /* End of Terminate for SubSystem: '<S6>/Subscribe' */
 
   /* Terminate for S-Function (sdspToNetwork): '<S6>/UDP Send' */
@@ -2987,30 +3002,30 @@ void proxy_linux_terminate(void)
   /* End of Terminate for S-Function (sdspToNetwork): '<S6>/UDP Send' */
 
   /* Terminate for Atomic SubSystem: '<S7>/Publish' */
-  /* Start for MATLABSystem: '<S82>/SinkBlock' */
+  /* Terminate for MATLABSystem: '<S82>/SinkBlock' */
   if (proxy_linux_DW.obj_kr.isInitialized == 1) {
     proxy_linux_DW.obj_kr.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S82>/SinkBlock' */
+  /* End of Terminate for MATLABSystem: '<S82>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S7>/Publish' */
 
   /* Terminate for Atomic SubSystem: '<S7>/Publish1' */
-  /* Start for MATLABSystem: '<S83>/SinkBlock' */
+  /* Terminate for MATLABSystem: '<S83>/SinkBlock' */
   if (proxy_linux_DW.obj_a.isInitialized == 1) {
     proxy_linux_DW.obj_a.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S83>/SinkBlock' */
+  /* End of Terminate for MATLABSystem: '<S83>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S7>/Publish1' */
 
   /* Terminate for Atomic SubSystem: '<S7>/Publish12' */
-  /* Start for MATLABSystem: '<S84>/SinkBlock' */
+  /* Terminate for MATLABSystem: '<S84>/SinkBlock' */
   if (proxy_linux_DW.obj_b.isInitialized == 1) {
     proxy_linux_DW.obj_b.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S84>/SinkBlock' */
+  /* End of Terminate for MATLABSystem: '<S84>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S7>/Publish12' */
 
   /* Terminate for S-Function (sdspToNetwork): '<S7>/UDP Send' */
@@ -3027,20 +3042,20 @@ void proxy_linux_terminate(void)
   /* End of Terminate for S-Function (sdspToNetwork): '<S7>/UDP Send' */
 
   /* Terminate for Atomic SubSystem: '<S7>/Subscribe' */
-  /* Start for MATLABSystem: '<S86>/SourceBlock' */
+  /* Terminate for MATLABSystem: '<S86>/SourceBlock' */
   if (proxy_linux_DW.obj.isInitialized == 1) {
     proxy_linux_DW.obj.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S86>/SourceBlock' */
+  /* End of Terminate for MATLABSystem: '<S86>/SourceBlock' */
   /* End of Terminate for SubSystem: '<S7>/Subscribe' */
 
   /* Terminate for Atomic SubSystem: '<S7>/Publish2' */
-  /* Start for MATLABSystem: '<S85>/SinkBlock' */
+  /* Terminate for MATLABSystem: '<S85>/SinkBlock' */
   if (proxy_linux_DW.obj_k.isInitialized == 1) {
     proxy_linux_DW.obj_k.isInitialized = 2;
   }
 
-  /* End of Start for MATLABSystem: '<S85>/SinkBlock' */
+  /* End of Terminate for MATLABSystem: '<S85>/SinkBlock' */
   /* End of Terminate for SubSystem: '<S7>/Publish2' */
 }

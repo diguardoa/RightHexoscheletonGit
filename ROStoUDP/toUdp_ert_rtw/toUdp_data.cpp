@@ -7,9 +7,9 @@
  *
  * Code generation for model "toUdp".
  *
- * Model version              : 1.688
+ * Model version              : 1.690
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Nov 21 09:15:35 2017
+ * C++ source code generated on : Wed Nov 22 13:22:47 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -57,7 +57,7 @@ P_toUdp_T toUdp_P = {
   /* Computed Parameter: Constant_Value_l
    * Referenced by: '<S4>/Constant'
    */
-  10.0F,
+  8.0F,
 
   /* Computed Parameter: Saturation_UpperSat
    * Referenced by: '<S4>/Saturation'
@@ -67,5 +67,10 @@ P_toUdp_T toUdp_P = {
   /* Computed Parameter: Saturation_LowerSat
    * Referenced by: '<S4>/Saturation'
    */
-  0.0F
+  0.0F,
+
+  /* Computed Parameter: Quantizer_Interval
+   * Referenced by: '<S4>/Quantizer'
+   */
+  0.1F
 };

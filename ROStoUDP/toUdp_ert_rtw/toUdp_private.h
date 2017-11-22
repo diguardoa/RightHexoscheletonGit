@@ -7,9 +7,9 @@
  *
  * Code generation for model "toUdp".
  *
- * Model version              : 1.688
+ * Model version              : 1.690
  * Simulink Coder version : 8.13 (R2017b) 24-Jul-2017
- * C++ source code generated on : Tue Nov 21 09:15:35 2017
+ * C++ source code generated on : Wed Nov 22 13:22:47 2017
  *
  * Target selection: ert.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -22,4 +22,7 @@
 #define RTW_HEADER_toUdp_private_h_
 #include "rtwtypes.h"
 #include "multiword_types.h"
+
+extern real32_T rt_roundf_snf(real32_T u);
+
 #endif                                 /* RTW_HEADER_toUdp_private_h_ */
