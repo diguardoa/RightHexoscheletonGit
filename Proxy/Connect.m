@@ -52,7 +52,7 @@ Verosim = '10.24.4.215'
 % rosinit
 
 setenv('ROS_MASTER_URI','http://10.24.4.100:11311');
-setenv('ROS_IP','10.24.4.16');%'10.100.39.22');
+setenv('ROS_IP','10.24.4.215');%'10.100.39.22');
 rosinit
 %% First open the model, then
 robotics.ros.createSimulinkBus(gcs)
