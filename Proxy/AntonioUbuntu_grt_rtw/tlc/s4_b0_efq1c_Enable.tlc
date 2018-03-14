@@ -1,0 +1,37 @@
+%implements s4_b0_efq1c_Enable "C"
+
+%function Enable(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcEnableFcnOfS4B0 = OpaqueTLCBlockFcn("Enable", 4, 0, 0, 6)
+%assign tlcEnableFcnOfS4B3 = OpaqueTLCBlockFcn("Enable", 4, 3, 0, 6)
+%assign tlcEnableFcnOfS4B5 = OpaqueTLCBlockFcn("Enable", 4, 5, 0, 6)
+%assign tlcEnableFcnOfS4B8 = OpaqueTLCBlockFcn("Enable", 4, 8, 0, 6)
+%if !WHITE_SPACE(tlcEnableFcnOfS4B0)
+/* Enable for M-S-Function: '<S3>/Serial Receive' */
+%<tlcEnableFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcEnableFcnOfS4B3)
+/* Enable for M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcEnableFcnOfS4B3>\
+%endif
+%if !WHITE_SPACE(tlcEnableFcnOfS4B5)
+/* Enable for M-S-Function: '<S4>/Serial Receive' */
+%<tlcEnableFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcEnableFcnOfS4B8)
+/* Enable for M-S-Function: '<S4>/Serial Configuration' */
+%<tlcEnableFcnOfS4B8>\
+%endif
+%closefile cfgTxt
+%<cfgTxt>
+%endfunction
+%function EnableFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Enable(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 6, fcnProtoType)>
+%endfunction

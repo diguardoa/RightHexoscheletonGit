@@ -1,0 +1,50 @@
+%implements s4_b0_efq1c_SystemInitialize "C"
+
+%function SystemInitialize(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcInitializeConditionsFcnOfS4B0 = OpaqueTLCBlockFcn("InitializeConditions", 4, 0, 0, 1)
+%assign tlcInitializeConditionsFcnOfS4B3 = OpaqueTLCBlockFcn("InitializeConditions", 4, 3, 0, 1)
+%assign tlcInitializeConditionsFcnOfS4B5 = OpaqueTLCBlockFcn("InitializeConditions", 4, 5, 0, 1)
+%assign tlcInitializeConditionsFcnOfS4B8 = OpaqueTLCBlockFcn("InitializeConditions", 4, 8, 0, 1)
+%<SLibInsertAsyncTaskInitializeCode(system)>
+%<SLibWriteMachineInitialize()>
+%if !WHITE_SPACE(tlcInitializeConditionsFcnOfS4B0)
+/* InitializeConditions for M-S-Function: '<S3>/Serial Receive' */
+%<tlcInitializeConditionsFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcInitializeConditionsFcnOfS4B3)
+/* InitializeConditions for M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcInitializeConditionsFcnOfS4B3>\
+%endif
+/* InitializeConditions for Memory: '<S3>/Offset' */
+AntonioUbuntu_DW.Offset_PreviousInput[0] = AntonioUbuntu_P.Offset_InitialCondition[0];
+AntonioUbuntu_DW.Offset_PreviousInput[1] = AntonioUbuntu_P.Offset_InitialCondition[1];
+AntonioUbuntu_DW.Offset_PreviousInput[2] = AntonioUbuntu_P.Offset_InitialCondition[2];
+/* InitializeConditions for RateTransition: '<S6>/Rate Transition' */
+AntonioUbuntu_DW.RateTransition_Buffer0 = AntonioUbuntu_P.RateTransition_InitialCondition;
+%if !WHITE_SPACE(tlcInitializeConditionsFcnOfS4B5)
+/* InitializeConditions for M-S-Function: '<S4>/Serial Receive' */
+%<tlcInitializeConditionsFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcInitializeConditionsFcnOfS4B8)
+/* InitializeConditions for M-S-Function: '<S4>/Serial Configuration' */
+%<tlcInitializeConditionsFcnOfS4B8>\
+%endif
+/* InitializeConditions for Memory: '<S4>/Offset' */
+AntonioUbuntu_DW.Offset_PreviousInput_h[0] = AntonioUbuntu_P.Offset_InitialCondition_n[0];
+AntonioUbuntu_DW.Offset_PreviousInput_h[1] = AntonioUbuntu_P.Offset_InitialCondition_n[1];
+AntonioUbuntu_DW.Offset_PreviousInput_h[2] = AntonioUbuntu_P.Offset_InitialCondition_n[2];
+%<SLibInsertInitPeriodicCStatesFcn(system)>
+%closefile cfgTxt
+%<cfgTxt>
+%endfunction
+%function SystemInitializeFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void SystemInitialize(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 1, fcnProtoType)>
+%endfunction

@@ -1,0 +1,37 @@
+%implements s4_b0_efq1c_Derivatives "C"
+
+%function Derivatives(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcDerivativesFcnOfS4B0 = OpaqueTLCBlockFcn("Derivatives", 4, 0, 0, 4)
+%assign tlcDerivativesFcnOfS4B3 = OpaqueTLCBlockFcn("Derivatives", 4, 3, 0, 4)
+%assign tlcDerivativesFcnOfS4B5 = OpaqueTLCBlockFcn("Derivatives", 4, 5, 0, 4)
+%assign tlcDerivativesFcnOfS4B8 = OpaqueTLCBlockFcn("Derivatives", 4, 8, 0, 4)
+%if !WHITE_SPACE(tlcDerivativesFcnOfS4B0)
+/* Derivatives for M-S-Function: '<S3>/Serial Receive' */
+%<tlcDerivativesFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcDerivativesFcnOfS4B3)
+/* Derivatives for M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcDerivativesFcnOfS4B3>\
+%endif
+%if !WHITE_SPACE(tlcDerivativesFcnOfS4B5)
+/* Derivatives for M-S-Function: '<S4>/Serial Receive' */
+%<tlcDerivativesFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcDerivativesFcnOfS4B8)
+/* Derivatives for M-S-Function: '<S4>/Serial Configuration' */
+%<tlcDerivativesFcnOfS4B8>\
+%endif
+%closefile cfgTxt
+%<cfgTxt>
+%endfunction
+%function DerivativesFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Derivatives(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 4, fcnProtoType)>
+%endfunction

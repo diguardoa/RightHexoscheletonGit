@@ -1,0 +1,58 @@
+%implements s0_b0_dhq1c_Update "C"
+
+%function Update(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+B_OPTOFORCE_T *_rtB;
+%closefile localVarDecl
+%assign tlcUpdateFcnOfS0B0 = OpaqueTLCBlockFcn("Update", 0, 0, 0, 4)
+%assign tlcUpdateFcnOfS0B3 = OpaqueTLCBlockFcn("Update", 0, 3, 0, 4)
+%<SLibCG_TrackBlockIO(0)>\
+_rtB = %<(SLibCG_SE(SLibGetBlockIOStructPtr()))>;
+if (%<(SLibCGIRIsSampleHit(1, 0))>) {
+%if !WHITE_SPACE(tlcUpdateFcnOfS0B0)
+    /* Update for M-S-Function: '<S1>/Serial Receive' */
+%<tlcUpdateFcnOfS0B0>\
+%endif
+}
+if (%<(SLibCGIRIsSampleHit(0, 0))>) {
+%if !WHITE_SPACE(tlcUpdateFcnOfS0B3)
+    /* Update for M-S-Function: '<S1>/Serial Configuration1' */
+%<tlcUpdateFcnOfS0B3>\
+%endif
+}
+if (%<(SLibCGIRIsSampleHit(1, 0))>) {
+    /* Update for Memory: '<S1>/Offset' */
+%<SLibCG_SetDWV(1, 0, 0, 3, "", -1, "", 0, "_rtB->Switch[0]")>\
+%<SLibCG_SetDWV(1, 0, 0, 3, "", -1, "", 1, "_rtB->Switch[1]")>\
+%<SLibCG_SetDWV(1, 0, 0, 3, "", -1, "", 2, "_rtB->Switch[2]")>\
+}
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[0].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Update", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, FcnSysModuleIsRateGrouping(rtmArgSys, "Update"))
+%<SLibCG_AccessArg(0, 4, 0)>
+%endif
+%if SLibCG_ArgAccessed(0, 4, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Update", rtmArgSys.CurrentTID, FcnSysModuleIsRateGrouping(rtmArgSys, "Update"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface)) ||...
+(GenerateClassInterface && SLibIsMultiInstanceServer(rtmArgSys))
+%<SLibCG_UndoAccessArg(0, 4, 0)>
+%endif
+%<LibSetSystemField(system, "CachedUpdateLocalVars", localVarDecl)>
+%endfunction
+%function UpdateFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Update(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(0, 4, 0)
+%<comma>%<::tSimStructType> *S\
+%assign comma = ", "
+%endif
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 4, fcnProtoType)>
+%endfunction

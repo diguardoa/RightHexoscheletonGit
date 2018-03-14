@@ -1,0 +1,83 @@
+%% Procedura di identificazione dei parametri della mano
+% Fase 1: tenere fermo il giunto distale e muovere solo il metacarpale
+
+% numero acquisizioni
+n = 100;
+% apro il file delle prime acquisizioni
+load mano_di_legno/first.mat
+
+% ingresso parametri registrati della traiettoria (il primo per ogni
+% colonna e' qB, il secondo e' lx)
+u = zeros(2,n);
+A = zeros(n,3);
+b = zeros(n,1);
+
+% campiono la traiettoria
+step = floor(size(middle_pose,1)/n);
+m = 0;
+for i = 1:step:(n*step)
+   m = m + 1;
+   u(1,m) = middle_pose(i,1); % qB
+   u(2,m) = middle_pose(i,2); % lx
+end
+
+% [y x s]
+for i = 1:n
+    qB = u(1,i);
+    lx = u(2,i);
+    [m,q] = calcola_retta(qB,lx);
+    A(i,1) = 1;
+    A(i,2) = -m;
+    alpha = 1/(cos(atan(m)));
+    A(i,3) = -alpha;
+    b(1,1) = q;
+end
+%%
+% [m,q] = calcola_retta(qB,lx)
+
+% Calcola i 3 parametri % [y x s]
+% ricorda che per avere lo spessore del dito da mettere nell'algoritmo devi
+% togliere ad 's' lo spessore della slitta (13.5 mm)
+
+% soluzione problema ai minimi quadrati
+par = inv(A'*A)*A'*b;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+offx = par(2);
+offy = par(1);
+s = par(3);
+
+%% Calcola lunghezza dita (Parametro)
+% Blocco l'angolo tra le due falangi pari a 45' (utilizzando apposito
+% supporto)
+% Muovo il giunto metacarpale
+% Nota: sono sufficienti i parametri gia' identificati per identificare il
+% primo angolo
+
+% Per ogni punto della traiettoria minimizzo la funzione obiettivo (trovo
+% il valore di Ldito tale che...e poi li plotto tutti. Il valore effettivo
+% e' il valore medio
+
+% numero acquisizioni
+m = 100;
+
+% ingresso parametri registrati della traiettoria (il primo per ogni
+% colonna e' qB, il secondo e' lx)
+u2 = zeros(2,m);
+l_opt = zeros(1,m);
+syms LLM
+for i=1:m
+    qB = u2(1,i);
+    lx = u2(2,i);
+    [qo1, xJ, yJ] = calcolo_giunto_metacarpale(qB,lx, offx, offy, s)
+    % Calcolo parametri
+    xM = offx - LLM*cos(qo1); yM = offy - LLM*sin(qo1);
+    qj3 = atan((yJ - yM)/(xJ - xM));
+    LJM = sqrt((xJ - xM)^2 + (yJ - yM)^2);
+    c2 = sqrt(LJM^2 - s^2);
+    qj2 = acos(-s^2 + LJM^2 + c2^2)/(2*c2*LJM);
+    eqn = pi/4 == qj2 + qj3 - qo1;    
+    current_solution = solve(eqn,LLM)
+    %l_opt(m) = current_solution;
+end
+
+l_true = mean(l_opt);
+plot(l_opt);

@@ -1,0 +1,53 @@
+%implements s4_b0_efq1c_Update "C"
+
+%function Update(block, system) Output
+%<SLibCGIRAccessLocalVar(5, 0)> %% rtb_Switch
+%<SLibCGIRAccessLocalVar(6, 0)> %% rtb_Switch_g
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcUpdateFcnOfS4B0 = OpaqueTLCBlockFcn("Update", 4, 0, 0, 3)
+%assign tlcUpdateFcnOfS4B3 = OpaqueTLCBlockFcn("Update", 4, 3, 0, 3)
+%assign tlcUpdateFcnOfS4B5 = OpaqueTLCBlockFcn("Update", 4, 5, 0, 3)
+%assign tlcUpdateFcnOfS4B8 = OpaqueTLCBlockFcn("Update", 4, 8, 0, 3)
+%if !WHITE_SPACE(tlcUpdateFcnOfS4B0)
+/* Update for M-S-Function: '<S3>/Serial Receive' */
+%<tlcUpdateFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcUpdateFcnOfS4B3)
+/* Update for M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcUpdateFcnOfS4B3>\
+%endif
+/* Update for Memory: '<S3>/Offset' */
+AntonioUbuntu_DW.Offset_PreviousInput[0] = rtb_Switch[0];
+AntonioUbuntu_DW.Offset_PreviousInput[1] = rtb_Switch[1];
+AntonioUbuntu_DW.Offset_PreviousInput[2] = rtb_Switch[2];
+/* Update for RateTransition: '<S6>/Rate Transition' */
+if (%<(SLibCGIRIsSampleHit(2, 4))>) {
+    AntonioUbuntu_DW.RateTransition_Buffer0 = AntonioUbuntu_B.GetParameter3_o1;
+}
+/* End of Update for RateTransition: '<S6>/Rate Transition' */
+%if !WHITE_SPACE(tlcUpdateFcnOfS4B5)
+
+/* Update for M-S-Function: '<S4>/Serial Receive' */
+%<tlcUpdateFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcUpdateFcnOfS4B8)
+/* Update for M-S-Function: '<S4>/Serial Configuration' */
+%<tlcUpdateFcnOfS4B8>\
+%endif
+/* Update for Memory: '<S4>/Offset' */
+AntonioUbuntu_DW.Offset_PreviousInput_h[0] = rtb_Switch_g[0];
+AntonioUbuntu_DW.Offset_PreviousInput_h[1] = rtb_Switch_g[1];
+AntonioUbuntu_DW.Offset_PreviousInput_h[2] = rtb_Switch_g[2];
+%closefile cfgTxt
+%<cfgTxt>
+%endfunction
+%function UpdateFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Update(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 3, fcnProtoType)>
+%endfunction

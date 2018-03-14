@@ -1,0 +1,71 @@
+%implements s4_b0_efq1c_Terminate "C"
+
+%function Terminate(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcTerminateFcnOfS4B0 = OpaqueTLCBlockFcn("Terminate", 4, 0, 0, 7)
+%assign tlcTerminateFcnOfS4B3 = OpaqueTLCBlockFcn("Terminate", 4, 3, 0, 7)
+%assign tlcTerminateFcnOfS4B5 = OpaqueTLCBlockFcn("Terminate", 4, 5, 0, 7)
+%assign tlcTerminateFcnOfS4B8 = OpaqueTLCBlockFcn("Terminate", 4, 8, 0, 7)
+%assign tlcCleanupRuntimeResourcesFcnOfS4B0 = OpaqueTLCBlockFcn("CleanupRuntimeResources", 4, 0, 0, 7)
+%assign tlcCleanupRuntimeResourcesFcnOfS4B3 = OpaqueTLCBlockFcn("CleanupRuntimeResources", 4, 3, 0, 7)
+%assign tlcCleanupRuntimeResourcesFcnOfS4B5 = OpaqueTLCBlockFcn("CleanupRuntimeResources", 4, 5, 0, 7)
+%assign tlcCleanupRuntimeResourcesFcnOfS4B8 = OpaqueTLCBlockFcn("CleanupRuntimeResources", 4, 8, 0, 7)
+%if !WHITE_SPACE(tlcTerminateFcnOfS4B0)
+/* Terminate for M-S-Function: '<S3>/Serial Receive' */
+%<tlcTerminateFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcTerminateFcnOfS4B3)
+/* Terminate for M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcTerminateFcnOfS4B3>\
+%endif
+%if !WHITE_SPACE(tlcTerminateFcnOfS4B5)
+/* Terminate for M-S-Function: '<S4>/Serial Receive' */
+%<tlcTerminateFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcTerminateFcnOfS4B8)
+/* Terminate for M-S-Function: '<S4>/Serial Configuration' */
+%<tlcTerminateFcnOfS4B8>\
+%endif
+/* Terminate for Atomic SubSystem: '<Root>/Publish1' */
+/* Start for MATLABSystem: '<S5>/SinkBlock' */
+if (AntonioUbuntu_DW.obj_l.isInitialized == 1) {
+    AntonioUbuntu_DW.obj_l.isInitialized = 2;
+}
+/* End of Start for MATLABSystem: '<S5>/SinkBlock' */
+/* End of Terminate for SubSystem: '<Root>/Publish1' */
+
+/* Start for MATLABSystem: '<S6>/Get Parameter3' */
+if (AntonioUbuntu_DW.obj.isInitialized == 1) {
+    AntonioUbuntu_DW.obj.isInitialized = 2;
+}
+/* End of Start for MATLABSystem: '<S6>/Get Parameter3' */
+%if !WHITE_SPACE(tlcCleanupRuntimeResourcesFcnOfS4B0)
+
+/* CleanupRuntimeResources for M-S-Function: '<S3>/Serial Receive' */
+%<tlcCleanupRuntimeResourcesFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcCleanupRuntimeResourcesFcnOfS4B3)
+/* CleanupRuntimeResources for M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcCleanupRuntimeResourcesFcnOfS4B3>\
+%endif
+%if !WHITE_SPACE(tlcCleanupRuntimeResourcesFcnOfS4B5)
+/* CleanupRuntimeResources for M-S-Function: '<S4>/Serial Receive' */
+%<tlcCleanupRuntimeResourcesFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcCleanupRuntimeResourcesFcnOfS4B8)
+/* CleanupRuntimeResources for M-S-Function: '<S4>/Serial Configuration' */
+%<tlcCleanupRuntimeResourcesFcnOfS4B8>\
+%endif
+%closefile cfgTxt
+%<cfgTxt>
+%endfunction
+%function TerminateFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Terminate(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 7, fcnProtoType)>
+%endfunction

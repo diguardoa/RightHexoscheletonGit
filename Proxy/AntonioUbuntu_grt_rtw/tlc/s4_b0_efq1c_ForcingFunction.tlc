@@ -1,0 +1,37 @@
+%implements s4_b0_efq1c_ForcingFunction "C"
+
+%function ForcingFunction(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%assign tlcForcingFunctionFcnOfS4B0 = OpaqueTLCBlockFcn("ForcingFunction", 4, 0, 0, 5)
+%assign tlcForcingFunctionFcnOfS4B3 = OpaqueTLCBlockFcn("ForcingFunction", 4, 3, 0, 5)
+%assign tlcForcingFunctionFcnOfS4B5 = OpaqueTLCBlockFcn("ForcingFunction", 4, 5, 0, 5)
+%assign tlcForcingFunctionFcnOfS4B8 = OpaqueTLCBlockFcn("ForcingFunction", 4, 8, 0, 5)
+%if !WHITE_SPACE(tlcForcingFunctionFcnOfS4B0)
+/* ForcingFunction for M-S-Function: '<S3>/Serial Receive' */
+%<tlcForcingFunctionFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcForcingFunctionFcnOfS4B3)
+/* ForcingFunction for M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcForcingFunctionFcnOfS4B3>\
+%endif
+%if !WHITE_SPACE(tlcForcingFunctionFcnOfS4B5)
+/* ForcingFunction for M-S-Function: '<S4>/Serial Receive' */
+%<tlcForcingFunctionFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcForcingFunctionFcnOfS4B8)
+/* ForcingFunction for M-S-Function: '<S4>/Serial Configuration' */
+%<tlcForcingFunctionFcnOfS4B8>\
+%endif
+%closefile cfgTxt
+%<cfgTxt>
+%endfunction
+%function ForcingFunctionFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void ForcingFunction(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 5, fcnProtoType)>
+%endfunction

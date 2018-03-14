@@ -1,0 +1,62 @@
+clear all;
+% senza tempo
+load ./step4.mat
+
+close all;
+
+to_plot = 1:size(E_obs,1);
+% %to_plot = t>0 & t<128;
+% 
+close all; 
+subplot(1,2,1);
+plot(master_index_proximal);
+hold on;
+plot(slave_index_proximal);
+plot(torque_index_proximal,'y');
+
+legend('Xm','Xs','torque');
+xlabel('time[cs]');
+ylabel('angle [rad], torque [Nm]');
+title('proximal phalanx');
+grid on;
+subplot(1,2,2);
+
+plot(master_index_distal);
+hold on;
+plot(slave_index_distal);
+plot(torque_index_distal,'y');
+
+legend('Xm','Xs','torque');
+xlabel('time[s]');
+ylabel('angle [rad], torque [Nm]');
+title('distal phalanx');
+grid on;
+%%
+%  close all;
+figure
+subplot(1,2,1);
+%plot(ref_force);
+plot(ref_passivato);
+hold on; grid on;
+plot(mes_force);
+
+legend('Fm pas','Fm meas');
+xlabel('time[s]');
+ylabel('force [N]');
+title('reference vs measured (exo)');
+subplot(1,2,2);
+plot(ref_force);
+hold on; grid on;
+plot(ref_passivato);
+plot(E_obs./600,'y');
+legend('Fm ref','Fm pas','Energy');
+xlabel('time[s]');
+ylabel('force [N], Energy');
+title('passivity (exo)');
+%%
+figure
+plot(pwm_value)
+xlabel('time[s]');
+ylabel('duty cycle');
+
+legend('PWM');

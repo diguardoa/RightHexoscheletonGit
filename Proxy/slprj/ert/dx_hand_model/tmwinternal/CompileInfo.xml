@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MF0 version="1.1">
+    <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="b03bf6f2-ffdf-4fd8-8370-10c743dfb694">
+        <dataDictionary/>
+        <dataTransferInfos>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAAAAAABAAAAAQAAAAAAAAAFAAQAAQAAAAEAAAAAAAAA</dataTransferInfos>
+        <hasInlineVariantBlock>false</hasInlineVariantBlock>
+        <hasMachineDataAccess>false</hasMachineDataAccess>
+        <hasSigObjWithICDrivingRootOutport>false</hasSigObjWithICDrivingRootOutport>
+        <needElapsedTime>false</needElapsedTime>
+        <userSpecifiedFixedStepSize>0</userSpecifiedFixedStepSize>
+        <zeroInternalMemoryAtStartupUnchecked>false</zeroInternalMemoryAtStartupUnchecked>
+        <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="66e770dd-5c04-4c58-be8f-75cae4546e5c"/>
+        <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="1c4f2f72-b637-4d41-bbed-cf5c5ec4acb4">
+            <deterministicRTBs>dx_hand_model/Get From Exo/Rate Transition1</deterministicRTBs>
+            <deterministicRTBs>dx_hand_model/Get From Schunk/Get positions/Get Positions/Rate Transition</deterministicRTBs>
+            <deterministicRTBs>dx_hand_model/Index Finger/Active/Rate Transition</deterministicRTBs>
+            <deterministicRTBs>dx_hand_model/Index Finger/Choose/Rate Transition</deterministicRTBs>
+            <deterministicRTBs>dx_hand_model/Index Finger/Force/Position Force Basic Architecture/pos_gains//dist/Rate Transition</deterministicRTBs>
+            <deterministicRTBs>dx_hand_model/Index Finger/Force/Position Force Basic Architecture/pos_gains//prox/Rate Transition</deterministicRTBs>
+            <deterministicRTBs>dx_hand_model/Index Finger/Force/Subsystem/Rate Transition</deterministicRTBs>
+            <deterministicRTBs>dx_hand_model/Index Finger/Pose Generator/Angular Potentiometer/Rate Transition</deterministicRTBs>
+            <deterministicRTBs>dx_hand_model/Index Finger/Pose Generator/Rate Transition</deterministicRTBs>
+            <deterministicRTBs>dx_hand_model/Index Finger/Position/Pre-Proc/Rate Transition</deterministicRTBs>
+            <hasHiddenDeterministicRTB>false</hasHiddenDeterministicRTB>
+        </periodicEventPortUnsupportedBlockInfo>
+        <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="1377a3c8-9e06-49bf-aac9-233181bf0641">
+            <compSimulinkFunctionCatalog>AAFJTQAAAAAOAAAAgAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAFAAQADgAAAAEAAAAOAAAAQ29tcEZ1bmN0aW9ucwAAAA4AAAAwAAAABgAAAAgAAAAGAAAAAAAAAAUAAAAIAAAAAAAAAAAAAAABAAAAAAAAAAkAAAAAAAAA</compSimulinkFunctionCatalog>
+            <postPropHasAnyExportedFunction>false</postPropHasAnyExportedFunction>
+            <postPropHasAnyVariantExportedFunction>false</postPropHasAnyVariantExportedFunction>
+        </simulinkFunctions>
+    </ModelRefInfoRepo.ModelRefInfoRoot>
+</MF0>

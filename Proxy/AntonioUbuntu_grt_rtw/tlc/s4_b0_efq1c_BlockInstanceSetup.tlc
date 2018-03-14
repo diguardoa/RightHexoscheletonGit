@@ -1,0 +1,9 @@
+%implements s4_b0_efq1c_BlockInstanceSetup "C"
+
+%function BlockInstanceSetup(block, system) Output
+%% Subsystems with iterators in IR:
+%% TLC Block Registration buffer:
+%<LibAddToCommonIncludes("slros_initialize.h")>
+%<LibAddToCommonIncludes("slros_initialize.h")>
+%% END  Block Registration buffer
+%endfunction

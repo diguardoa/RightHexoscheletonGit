@@ -1,0 +1,47 @@
+%implements s0_b0_dhq1c_Derivatives "C"
+
+%function Derivatives(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+B_OPTOFORCE_T *_rtB;
+%closefile localVarDecl
+%assign tlcDerivativesFcnOfS0B0 = OpaqueTLCBlockFcn("Derivatives", 0, 0, 0, 5)
+%assign tlcDerivativesFcnOfS0B3 = OpaqueTLCBlockFcn("Derivatives", 0, 3, 0, 5)
+_rtB = %<(SLibCG_SE(SLibGetBlockIOStructPtr()))>;
+%if !WHITE_SPACE(tlcDerivativesFcnOfS0B0)
+/* Derivatives for M-S-Function: '<S1>/Serial Receive' */
+%<tlcDerivativesFcnOfS0B0>\
+%endif
+%if !WHITE_SPACE(tlcDerivativesFcnOfS0B3)
+/* Derivatives for M-S-Function: '<S1>/Serial Configuration1' */
+%<tlcDerivativesFcnOfS0B3>\
+%endif
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[0].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Derivative", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, FcnSysModuleIsRateGrouping(rtmArgSys, "Derivative"))
+%<SLibCG_AccessArg(0, 5, 0)>
+%endif
+%if SLibCG_ArgAccessed(0, 5, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Derivative", rtmArgSys.CurrentTID, FcnSysModuleIsRateGrouping(rtmArgSys, "Derivative"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface)) ||...
+(GenerateClassInterface && SLibIsMultiInstanceServer(rtmArgSys))
+%<SLibCG_UndoAccessArg(0, 5, 0)>
+%endif
+%<LibSetSystemField(system, "CachedDerivativeLocalVars", localVarDecl)>
+%endfunction
+%function DerivativesFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Derivatives(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(0, 5, 0)
+%<comma>%<::tSimStructType> *S\
+%assign comma = ", "
+%endif
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 5, fcnProtoType)>
+%endfunction

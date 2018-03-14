@@ -1,0 +1,29 @@
+%implements s4_b0_efq1c_PublicModuleTypes "C"
+
+%function PublicModuleTypes(block) Output
+
+#ifndef typedef_robotics_slros_internal_block_T
+#define typedef_robotics_slros_internal_block_T
+typedef struct
+{
+    int32_T isInitialized;
+} robotics_slros_internal_block_T;
+#endif /*typedef_robotics_slros_internal_block_T*/
+#ifndef typedef_robotics_slros_internal_blo_e_T
+#define typedef_robotics_slros_internal_blo_e_T
+typedef struct
+{
+    int32_T isInitialized;
+    real_T SampleTime;
+} robotics_slros_internal_blo_e_T;
+#endif /*typedef_robotics_slros_internal_blo_e_T*/
+
+/* Custom Type definition for MATLAB Function: '<Root>/MATLAB Function - Assign' */
+#ifndef typedef_cell_wrap_0_AntonioUbuntu_T
+#define typedef_cell_wrap_0_AntonioUbuntu_T
+typedef struct
+{
+    char_T f1[5];
+} cell_wrap_0_AntonioUbuntu_T;
+#endif /*typedef_cell_wrap_0_AntonioUbuntu_T*/
+%endfunction

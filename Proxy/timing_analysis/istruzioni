@@ -1,0 +1,23 @@
+le operazioni fatte fanno riferimento al codice presente su git 'cbsd_proj'
+
+1) installare trace-cmd e kernelshark
+installa utilities 
+sudo apt-get install cpufrequtils
+2) isolare 1 CPU
+cd  /etc/default
+sudo vim grub
+
+aggiungi riga
+GRUB_CMDLINE_LINUX_DEFAULT='intel_pstate=disable isolcpus=0'
+aggiorna grub
+sudo update-grub
+riavvia il computer
+
+carico il governor userspace
+sudo modprobe cpufreq_userspace
+
+lo carico nella cpu 0
+sudo cpufreq-set -c 0 -g userspace
+
+pompo abbala la frequenza
+sudo cpufreq-set -c 0 -f 3.2GHz

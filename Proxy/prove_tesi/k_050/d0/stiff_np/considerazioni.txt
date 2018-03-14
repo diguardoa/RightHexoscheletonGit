@@ -1,0 +1,8 @@
+considerazioni sui grafici
+
+index_pwm: si vede come si raggiongano i 12 Newton "tranquillamente" senza andare a saturare il PWM.
+Questo vuol dire che il motore può ancora spingere di più (e che i problemi di stabilità erano dati da 
+come avevo calibrato in precedenza il PI del motore). 
+
+=> CAMBIA MODELLO SIMULINK CON LIMITI DELLE FORZE A 20 N 
+(e piuttosto il saturatore lo metti sulla Beaglebone)

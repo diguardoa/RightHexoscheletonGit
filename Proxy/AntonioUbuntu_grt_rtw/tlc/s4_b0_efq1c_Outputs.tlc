@@ -1,0 +1,202 @@
+%implements s4_b0_efq1c_Outputs "C"
+
+%function Outputs(block, system) Output
+%<SLibCGIRAccessLocalVar(7, 0)> %% rtb_Add
+%<SLibCGIRAccessLocalVar(8, 0)> %% rtb_Offset
+%<SLibCGIRAccessLocalVar(1, 0)> %% rtb_DataTypeConversion
+%<SLibCGIRAccessLocalVar(5, 0)> %% rtb_Switch
+%<SLibCGIRAccessLocalVar(6, 0)> %% rtb_Switch_g
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+cell_wrap_0_AntonioUbuntu_T b;
+cell_wrap_0_AntonioUbuntu_T c;
+static const char_T d[5] = { 'S', 'e', 'n', 's', '1' };
+static const char_T e[5] = { 'S', 'e', 'n', 's', '2' };
+boolean_T p;
+boolean_T p_0;
+real_T value;
+real32_T rtb_DataTypeConversion1;
+int32_T i;
+%closefile localVarDecl
+%assign tlcOutputsFcnOfS4B0 = OpaqueTLCBlockFcn("Outputs", 4, 0, 0, 2)
+%assign tlcOutputsFcnOfS4B1 = OpaqueTLCBlockFcn("Outputs", 4, 1, 0, 2)
+%assign tlcOutputsFcnOfS4B2 = OpaqueTLCBlockFcn("Outputs", 4, 2, 0, 2)
+%assign tlcOutputsFcnOfS4B3 = OpaqueTLCBlockFcn("Outputs", 4, 3, 0, 2)
+%assign tlcOutputsFcnOfS4B4 = OpaqueTLCBlockFcn("Outputs", 4, 4, 0, 2)
+%assign tlcOutputsFcnOfS4B5 = OpaqueTLCBlockFcn("Outputs", 4, 5, 0, 2)
+%assign tlcOutputsFcnOfS4B6 = OpaqueTLCBlockFcn("Outputs", 4, 6, 0, 2)
+%assign tlcOutputsFcnOfS4B7 = OpaqueTLCBlockFcn("Outputs", 4, 7, 0, 2)
+%assign tlcOutputsFcnOfS4B8 = OpaqueTLCBlockFcn("Outputs", 4, 8, 0, 2)
+%assign tlcOutputsFcnOfS4B9 = OpaqueTLCBlockFcn("Outputs", 4, 9, 0, 2)
+%assign tlcOutputsFcnOfS4B14 = OpaqueTLCBlockFcn("Outputs", 4, 14, 0, 2)
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B0)
+/* M-S-Function: '<S3>/Serial Receive' */
+%<tlcOutputsFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B1)
+/* S-Function (byte2any): '<S3>/Byte Unpack2' */
+%<tlcOutputsFcnOfS4B1>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B2)
+/* S-Function (reverseendian): '<S3>/Byte Reversal1' */
+%<tlcOutputsFcnOfS4B2>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B3)
+/* M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcOutputsFcnOfS4B3>\
+%endif
+/* Memory: '<S3>/Offset' */
+rtb_Add[0] = AntonioUbuntu_DW.Offset_PreviousInput[0];
+/* Sum: '<S3>/Add' */
+rtb_Offset[0] = (int16_T)(AntonioUbuntu_B.ByteReversal1[0] - rtb_Add[0]);
+/* Memory: '<S3>/Offset' */
+rtb_Add[1] = AntonioUbuntu_DW.Offset_PreviousInput[1];
+/* Sum: '<S3>/Add' */
+rtb_Offset[1] = (int16_T)(AntonioUbuntu_B.ByteReversal1[1] - rtb_Add[1]);
+/* Memory: '<S3>/Offset' */
+rtb_Add[2] = AntonioUbuntu_DW.Offset_PreviousInput[2];
+/* Sum: '<S3>/Add' */
+rtb_Offset[2] = (int16_T)(AntonioUbuntu_B.ByteReversal1[2] - rtb_Add[2]);
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B4)
+/* Scope: '<S3>/Scope' */
+%<tlcOutputsFcnOfS4B4>\
+%endif
+/* DataTypeConversion: '<S3>/Data Type Conversion' */
+rtb_DataTypeConversion[0] = rtb_Offset[0];
+rtb_DataTypeConversion[1] = rtb_Offset[1];
+rtb_DataTypeConversion[2] = rtb_Offset[2];
+/* RateTransition: '<S6>/Rate Transition' */
+if (%<(SLibCGIRIsSampleHit(2, 4))>) {
+    AntonioUbuntu_B.RateTransition = AntonioUbuntu_DW.RateTransition_Buffer0;
+}
+/* End of RateTransition: '<S6>/Rate Transition' */
+
+/* DataTypeConversion: '<S6>/Data Type Conversion1' */
+rtb_DataTypeConversion1 = (real32_T)AntonioUbuntu_B.RateTransition;
+/* Switch: '<S3>/Switch' incorporates:
+ *  DataTypeConversion: '<S6>/Data Type Conversion1'
+ */
+if ((real32_T)AntonioUbuntu_B.RateTransition > AntonioUbuntu_P.Switch_Threshold) {
+    rtb_Switch[0] = AntonioUbuntu_B.ByteReversal1[0];
+    rtb_Switch[1] = AntonioUbuntu_B.ByteReversal1[1];
+    rtb_Switch[2] = AntonioUbuntu_B.ByteReversal1[2];
+} else {
+    rtb_Switch[0] = rtb_Add[0];
+    rtb_Switch[1] = rtb_Add[1];
+    rtb_Switch[2] = rtb_Add[2];
+}
+/* End of Switch: '<S3>/Switch' */
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B5)
+
+/* M-S-Function: '<S4>/Serial Receive' */
+%<tlcOutputsFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B6)
+/* S-Function (byte2any): '<S4>/Byte Unpack2' */
+%<tlcOutputsFcnOfS4B6>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B7)
+/* S-Function (reverseendian): '<S4>/Byte Reversal1' */
+%<tlcOutputsFcnOfS4B7>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B8)
+/* M-S-Function: '<S4>/Serial Configuration' */
+%<tlcOutputsFcnOfS4B8>\
+%endif
+/* Memory: '<S4>/Offset' */
+rtb_Offset[0] = AntonioUbuntu_DW.Offset_PreviousInput_h[0];
+/* Sum: '<S4>/Add' */
+rtb_Add[0] = (int16_T)(AntonioUbuntu_B.ByteReversal1_m[0] - rtb_Offset[0]);
+/* Memory: '<S4>/Offset' */
+rtb_Offset[1] = AntonioUbuntu_DW.Offset_PreviousInput_h[1];
+/* Sum: '<S4>/Add' */
+rtb_Add[1] = (int16_T)(AntonioUbuntu_B.ByteReversal1_m[1] - rtb_Offset[1]);
+/* Memory: '<S4>/Offset' */
+rtb_Offset[2] = AntonioUbuntu_DW.Offset_PreviousInput_h[2];
+/* Sum: '<S4>/Add' */
+rtb_Add[2] = (int16_T)(AntonioUbuntu_B.ByteReversal1_m[2] - rtb_Offset[2]);
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B9)
+/* Scope: '<S4>/Scope' */
+%<tlcOutputsFcnOfS4B9>\
+%endif
+/* Switch: '<S4>/Switch' */
+if (rtb_DataTypeConversion1 > AntonioUbuntu_P.Switch_Threshold_k) {
+    rtb_Switch_g[0] = AntonioUbuntu_B.ByteReversal1_m[0];
+    rtb_Switch_g[1] = AntonioUbuntu_B.ByteReversal1_m[1];
+    rtb_Switch_g[2] = AntonioUbuntu_B.ByteReversal1_m[2];
+} else {
+    rtb_Switch_g[0] = rtb_Offset[0];
+    rtb_Switch_g[1] = rtb_Offset[1];
+    rtb_Switch_g[2] = rtb_Offset[2];
+}
+/* End of Switch: '<S4>/Switch' */
+
+/* MATLAB Function: '<Root>/MATLAB Function - Assign' incorporates:
+ *  Constant: '<Root>/Constant2'
+ *  Constant: '<S1>/Constant'
+ *  DataTypeConversion: '<S4>/Data Type Conversion'
+ *  SignalConversion: '<S2>/TmpSignal ConversionAt SFunction Inport2'
+ */
+AntonioUbuntu_B.msg = AntonioUbuntu_P.Constant_Value;
+AntonioUbuntu_B.msg.Header.Seq = AntonioUbuntu_P.Constant2_Value;
+AntonioUbuntu_B.msg.Position_SL_Info.CurrentLength = 2U;
+AntonioUbuntu_B.msg.Position[0] = rtb_DataTypeConversion[2];
+AntonioUbuntu_B.msg.Position[1] = rtb_Add[2];
+AntonioUbuntu_B.msg.Velocity_SL_Info.CurrentLength = 2U;
+AntonioUbuntu_B.msg.Effort_SL_Info.CurrentLength = 2U;
+AntonioUbuntu_B.msg.Velocity[0] = 0.0;
+AntonioUbuntu_B.msg.Effort[0] = 0.0;
+AntonioUbuntu_B.msg.Velocity[1] = 0.0;
+AntonioUbuntu_B.msg.Effort[1] = 0.0;
+AntonioUbuntu_B.msg.Name_SL_Info.CurrentLength = 2U;
+AntonioUbuntu_B.msg.Name[0].Data_SL_Info.CurrentLength = 5U;
+for (i = 0; i < 5; i++) {
+    b.f1[i] = d[i];
+    c.f1[i] = e[i];
+    AntonioUbuntu_B.msg.Name[0].Data[i] = (uint8_T)b.f1[i];
+    AntonioUbuntu_B.msg.Name[1].Data[i] = (uint8_T)c.f1[i];
+}
+AntonioUbuntu_B.msg.Name[1].Data_SL_Info.CurrentLength = 5U;
+/* End of MATLAB Function: '<Root>/MATLAB Function - Assign' */
+
+/* Outputs for Atomic SubSystem: '<Root>/Publish1' */
+/* Start for MATLABSystem: '<S5>/SinkBlock' */
+Pub_AntonioUbuntu_68.publish(&AntonioUbuntu_B.msg);
+/* End of Outputs for SubSystem: '<Root>/Publish1' */
+%if !WHITE_SPACE(tlcOutputsFcnOfS4B14)
+
+/* Scope: '<Root>/Scope' */
+%<tlcOutputsFcnOfS4B14>\
+%endif
+if (%<(SLibCGIRIsSampleHit(2, 4))>) {
+    /* Start for MATLABSystem: '<S6>/Get Parameter3' */
+    p = false;
+    p_0 = true;
+    if (!(AntonioUbuntu_DW.obj.SampleTime == AntonioUbuntu_P.GetParameter3_SampleTime)) {
+        p_0 = false;
+    }
+    if (p_0) {
+        p = true;
+    }
+    if (!p) {
+        AntonioUbuntu_DW.obj.SampleTime = AntonioUbuntu_P.GetParameter3_SampleTime;
+    }
+    ParamGet_AntonioUbuntu_73.get_parameter(&value);
+    /* MATLABSystem: '<S6>/Get Parameter3' */
+    AntonioUbuntu_B.GetParameter3_o1 = value;
+}
+%<SLibInsertSolverResetCode()>\
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction
+%function OutputsFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 2, fcnProtoType)>
+%endfunction

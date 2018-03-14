@@ -1,0 +1,104 @@
+%implements s0_b0_dhq1c_Outputs "C"
+
+%function Outputs(block, system) Output
+%<SLibCGIRAccessLocalVar(2, 0)> %% rtb_Add
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+B_OPTOFORCE_T *_rtB;
+%closefile localVarDecl
+%assign tlcOutputsFcnOfS0B0 = OpaqueTLCBlockFcn("Outputs", 0, 0, 0, 3)
+%assign tlcOutputsFcnOfS0B1 = OpaqueTLCBlockFcn("Outputs", 0, 1, 0, 3)
+%assign tlcOutputsFcnOfS0B2 = OpaqueTLCBlockFcn("Outputs", 0, 2, 0, 3)
+%assign tlcOutputsFcnOfS0B3 = OpaqueTLCBlockFcn("Outputs", 0, 3, 0, 3)
+%assign tlcOutputsFcnOfS0B4 = OpaqueTLCBlockFcn("Outputs", 0, 4, 0, 3)
+%<SLibCG_TrackBlockIO(0)>\
+_rtB = %<(SLibCG_SE(SLibGetBlockIOStructPtr()))>;
+%<SLibCG_TrackEO(0)>\
+%<SLibCG_TrackEI(0)>\
+if (%<(SLibCGIRIsSampleHit(1, 0))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS0B0)
+    /* M-S-Function: '<S1>/Serial Receive' */
+%<tlcOutputsFcnOfS0B0>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS0B1)
+    /* S-Function (byte2any): '<S1>/Byte Unpack2' */
+%<tlcOutputsFcnOfS0B1>\
+%endif
+%if !WHITE_SPACE(tlcOutputsFcnOfS0B2)
+    /* S-Function (reverseendian): '<S1>/Byte Reversal1' */
+%<tlcOutputsFcnOfS0B2>\
+%endif
+}
+if (%<(SLibCGIRIsSampleHit(0, 0))>) {
+%if !WHITE_SPACE(tlcOutputsFcnOfS0B3)
+    /* M-S-Function: '<S1>/Serial Configuration1' */
+%<tlcOutputsFcnOfS0B3>\
+%endif
+}
+if (%<(SLibCGIRIsSampleHit(1, 0))>) {
+    /* Sum: '<S1>/Add' incorporates:
+ *  Memory: '<S1>/Offset'
+ */
+    rtb_Add[0] = (int16_T)(_rtB->ByteReversal1[0] - %<(SLibCG_SE(SLibCG_DWV(1, 0, 0, 3, "", -1, "", 0)))>);
+    rtb_Add[1] = (int16_T)(_rtB->ByteReversal1[1] - %<(SLibCG_SE(SLibCG_DWV(1, 0, 0, 3, "", -1, "", 1)))>);
+    rtb_Add[2] = (int16_T)(_rtB->ByteReversal1[2] - %<(SLibCG_SE(SLibCG_DWV(1, 0, 0, 3, "", -1, "", 2)))>);
+%if !WHITE_SPACE(tlcOutputsFcnOfS0B4)
+    /* Scope: '<S1>/Scope' */
+%<tlcOutputsFcnOfS0B4>\
+%endif
+    /* Switch: '<S1>/Switch' incorporates:
+ *  Memory: '<S1>/Offset'
+ */
+    if (*((const real32_T **)ssGetInputPortSignalPtrs(S, 0))[0] > 0.0F) {
+        _rtB->Switch[0] = _rtB->ByteReversal1[0];
+        _rtB->Switch[1] = _rtB->ByteReversal1[1];
+    } else {
+        _rtB->Switch[0] = %<(SLibCG_SE(SLibCG_DWV(1, 0, 0, 3, "", -1, "", 0)))>;
+        _rtB->Switch[1] = %<(SLibCG_SE(SLibCG_DWV(1, 0, 0, 3, "", -1, "", 1)))>;
+    }
+    /* Outport: '<Root>/OptoXYZ' incorporates:
+ *  DataTypeConversion: '<S1>/Data Type Conversion'
+ */
+    ((real_T *)ssGetOutputPortSignal(S, 0))[0] = rtb_Add[0];
+    ((real_T *)ssGetOutputPortSignal(S, 0))[1] = rtb_Add[1];
+    /* Switch: '<S1>/Switch' incorporates:
+ *  Memory: '<S1>/Offset'
+ */
+    if (*((const real32_T **)ssGetInputPortSignalPtrs(S, 0))[0] > 0.0F) {
+        _rtB->Switch[2] = _rtB->ByteReversal1[2];
+    } else {
+        _rtB->Switch[2] = %<(SLibCG_SE(SLibCG_DWV(1, 0, 0, 3, "", -1, "", 2)))>;
+    }
+    /* Outport: '<Root>/OptoXYZ' incorporates:
+ *  DataTypeConversion: '<S1>/Data Type Conversion'
+ */
+    ((real_T *)ssGetOutputPortSignal(S, 0))[2] = rtb_Add[2];
+}
+%<SLibInsertSolverResetCode()>\
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[0].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Output", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, FcnSysModuleIsRateGrouping(rtmArgSys, "Output"))
+%<SLibCG_AccessArg(0, 3, 0)>
+%endif
+%if SLibCG_ArgAccessed(0, 3, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Output", rtmArgSys.CurrentTID, FcnSysModuleIsRateGrouping(rtmArgSys, "Output"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface)) ||...
+(GenerateClassInterface && SLibIsMultiInstanceServer(rtmArgSys))
+%<SLibCG_UndoAccessArg(0, 3, 0)>
+%endif
+%<LibSetSystemField(system, "CachedOutputLocalVars", localVarDecl)>
+%endfunction
+%function OutputsFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Outputs(\
+%assign comma = ""
+%<comma>%<::tSimStructType> *S\
+%assign comma = ", "
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 3, fcnProtoType)>
+%endfunction

@@ -1,0 +1,108 @@
+%implements s4_b0_efq1c_Start "C"
+
+%function Start(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+static const char_T tmp[24] = { '/', 'h', 'a', 'n', 'd', '_', 'e', 'x', 'o', '/', 'f', 's', '/', 'c', 'a', 'l', 'i', 'b', 'r', 'a', 't', 'i', 'o', 'n' };
+static const char_T tmp_0[23] = { '/', 'h', 'a', 'n', 'd', '_', 'e', 'x', 'o', '/', 'f', 'o', 'r', 'c', 'e', '_', 's', 'e', 'n', 's', 'o', 'r', 's' };
+char_T tmp_1[25];
+char_T tmp_2[24];
+int32_T i;
+%closefile localVarDecl
+%assign tlcSetupRuntimeResourcesFcnOfS4B0 = OpaqueTLCBlockFcn("SetupRuntimeResources", 4, 0, 0, 0)
+%assign tlcSetupRuntimeResourcesFcnOfS4B3 = OpaqueTLCBlockFcn("SetupRuntimeResources", 4, 3, 0, 0)
+%assign tlcSetupRuntimeResourcesFcnOfS4B5 = OpaqueTLCBlockFcn("SetupRuntimeResources", 4, 5, 0, 0)
+%assign tlcSetupRuntimeResourcesFcnOfS4B8 = OpaqueTLCBlockFcn("SetupRuntimeResources", 4, 8, 0, 0)
+%assign tlcStartFcnOfS4B0 = OpaqueTLCBlockFcn("Start", 4, 0, 0, 0)
+%assign tlcStartFcnOfS4B3 = OpaqueTLCBlockFcn("Start", 4, 3, 0, 0)
+%assign tlcStartFcnOfS4B4 = OpaqueTLCBlockFcn("Start", 4, 4, 0, 0)
+%assign tlcStartFcnOfS4B5 = OpaqueTLCBlockFcn("Start", 4, 5, 0, 0)
+%assign tlcStartFcnOfS4B8 = OpaqueTLCBlockFcn("Start", 4, 8, 0, 0)
+%assign tlcStartFcnOfS4B9 = OpaqueTLCBlockFcn("Start", 4, 9, 0, 0)
+%assign tlcStartFcnOfS4B14 = OpaqueTLCBlockFcn("Start", 4, 14, 0, 0)
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS4B0)
+/* SetupRuntimeResources for M-S-Function: '<S3>/Serial Receive' */
+%<tlcSetupRuntimeResourcesFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS4B3)
+/* SetupRuntimeResources for M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcSetupRuntimeResourcesFcnOfS4B3>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS4B5)
+/* SetupRuntimeResources for M-S-Function: '<S4>/Serial Receive' */
+%<tlcSetupRuntimeResourcesFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS4B8)
+/* SetupRuntimeResources for M-S-Function: '<S4>/Serial Configuration' */
+%<tlcSetupRuntimeResourcesFcnOfS4B8>\
+%endif
+%if !WHITE_SPACE(tlcStartFcnOfS4B0)
+/* Start for M-S-Function: '<S3>/Serial Receive' */
+%<tlcStartFcnOfS4B0>\
+%endif
+%if !WHITE_SPACE(tlcStartFcnOfS4B3)
+/* Start for M-S-Function: '<S3>/Serial Configuration1' */
+%<tlcStartFcnOfS4B3>\
+%endif
+%if !WHITE_SPACE(tlcStartFcnOfS4B4)
+/* Start for Scope: '<S3>/Scope' */
+%<tlcStartFcnOfS4B4>\
+%endif
+/* Start for RateTransition: '<S6>/Rate Transition' */
+AntonioUbuntu_B.RateTransition = AntonioUbuntu_P.RateTransition_InitialCondition;
+%if !WHITE_SPACE(tlcStartFcnOfS4B5)
+/* Start for M-S-Function: '<S4>/Serial Receive' */
+%<tlcStartFcnOfS4B5>\
+%endif
+%if !WHITE_SPACE(tlcStartFcnOfS4B8)
+/* Start for M-S-Function: '<S4>/Serial Configuration' */
+%<tlcStartFcnOfS4B8>\
+%endif
+%if !WHITE_SPACE(tlcStartFcnOfS4B9)
+/* Start for Scope: '<S4>/Scope' */
+%<tlcStartFcnOfS4B9>\
+%endif
+/* Start for Atomic SubSystem: '<Root>/Publish1' */
+/* Start for MATLABSystem: '<S5>/SinkBlock' */
+AntonioUbuntu_DW.obj_l.isInitialized = 0;
+AntonioUbuntu_DW.objisempty_j = true;
+AntonioUbuntu_DW.obj_l.isInitialized = 1;
+for (i = 0; i < 23; i++) {
+    tmp_2[i] = tmp_0[i];
+}
+tmp_2[23] = '\x00';
+Pub_AntonioUbuntu_68.createPublisher(tmp_2, AntonioUbuntu_MessageQueueLen);
+/* End of Start for MATLABSystem: '<S5>/SinkBlock' */
+/* End of Start for SubSystem: '<Root>/Publish1' */
+%if !WHITE_SPACE(tlcStartFcnOfS4B14)
+
+/* Start for Scope: '<Root>/Scope' */
+%<tlcStartFcnOfS4B14>\
+%endif
+/* Start for MATLABSystem: '<S6>/Get Parameter3' */
+AntonioUbuntu_DW.obj.isInitialized = 0;
+AntonioUbuntu_DW.objisempty = true;
+AntonioUbuntu_DW.obj.SampleTime = AntonioUbuntu_P.GetParameter3_SampleTime;
+AntonioUbuntu_DW.obj.isInitialized = 1;
+for (i = 0; i < 24; i++) {
+    tmp_1[i] = tmp[i];
+}
+tmp_1[24] = '\x00';
+ParamGet_AntonioUbuntu_73.initialize(tmp_1);
+ParamGet_AntonioUbuntu_73.initialize_error_codes(0U, 1U, 2U, 3U);
+ParamGet_AntonioUbuntu_73.set_initial_value(AntonioUb_ParameterInitialValue);
+/* End of Start for MATLABSystem: '<S6>/Get Parameter3' */
+%closefile cfgTxt
+%<cfgTxt>
+%<LibSetSystemField(system, "CachedStartLocalVars", localVarDecl)>
+%endfunction
+%function StartFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Start(\
+%assign comma = ""
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 0, fcnProtoType)>
+%endfunction

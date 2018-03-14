@@ -1,0 +1,62 @@
+%implements s0_b0_dhq1c_Start "C"
+
+%function Start(block, system) Output
+%assign cfgTxt = ""
+%openfile cfgTxt
+%assign localVarDecl = ""
+%openfile localVarDecl
+B_OPTOFORCE_T *_rtB;
+%closefile localVarDecl
+%assign tlcSetupRuntimeResourcesFcnOfS0B0 = OpaqueTLCBlockFcn("SetupRuntimeResources", 0, 0, 0, 0)
+%assign tlcSetupRuntimeResourcesFcnOfS0B3 = OpaqueTLCBlockFcn("SetupRuntimeResources", 0, 3, 0, 0)
+%assign tlcStartFcnOfS0B0 = OpaqueTLCBlockFcn("Start", 0, 0, 0, 0)
+%assign tlcStartFcnOfS0B3 = OpaqueTLCBlockFcn("Start", 0, 3, 0, 0)
+%assign tlcStartFcnOfS0B4 = OpaqueTLCBlockFcn("Start", 0, 4, 0, 0)
+_rtB = %<(SLibCG_SE(SLibGetBlockIOStructPtr()))>;
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS0B0)
+/* SetupRuntimeResources for M-S-Function: '<S1>/Serial Receive' */
+%<tlcSetupRuntimeResourcesFcnOfS0B0>\
+%endif
+%if !WHITE_SPACE(tlcSetupRuntimeResourcesFcnOfS0B3)
+/* SetupRuntimeResources for M-S-Function: '<S1>/Serial Configuration1' */
+%<tlcSetupRuntimeResourcesFcnOfS0B3>\
+%endif
+%if !WHITE_SPACE(tlcStartFcnOfS0B0)
+/* Start for M-S-Function: '<S1>/Serial Receive' */
+%<tlcStartFcnOfS0B0>\
+%endif
+%if !WHITE_SPACE(tlcStartFcnOfS0B3)
+/* Start for M-S-Function: '<S1>/Serial Configuration1' */
+%<tlcStartFcnOfS0B3>\
+%endif
+%if !WHITE_SPACE(tlcStartFcnOfS0B4)
+/* Start for Scope: '<S1>/Scope' */
+%<tlcStartFcnOfS0B4>\
+%endif
+%closefile cfgTxt
+%<cfgTxt>
+%assign rtmArgSys = ::CompiledModel.System[::CompiledModel.System[::CompiledModel.RTWCGModules.RTWCGModule[0].CGSystemIdx].NonInlinedParentSystemIdx]
+%if SysFcnArgNeeded("Start", rtmArgSys.Interface.RTMArgDef, rtmArgSys.CurrentTID, FcnSysModuleIsRateGrouping(rtmArgSys, "Start"))
+%<SLibCG_AccessArg(0, 0, 0)>
+%endif
+%if SLibCG_ArgAccessed(0, 0, 0)
+%<SLibAccessArg(rtmArgSys.Interface.RTMArgDef, "Start", rtmArgSys.CurrentTID, FcnSysModuleIsRateGrouping(rtmArgSys, "Start"))>
+%endif
+%if (IsModelReferenceBaseSys(rtmArgSys) && (IsModelRefScalableBuild() || GenerateClassInterface)) ||...
+(GenerateClassInterface && SLibIsMultiInstanceServer(rtmArgSys))
+%<SLibCG_UndoAccessArg(0, 0, 0)>
+%endif
+%<LibSetSystemField(system, "CachedStartLocalVars", localVarDecl)>
+%endfunction
+%function StartFcnProtoType(block, system) Output
+%assign fcnProtoType = ""
+%openfile fcnProtoType
+static void Start(\
+%assign comma = ""
+%if SLibCG_ArgAccessed(0, 0, 0)
+%<comma>%<::tSimStructType> *S\
+%assign comma = ", "
+%endif
+%closefile fcnProtoType
+%<SLibCG_SetFcnProtoType(0, 0, fcnProtoType)>
+%endfunction
